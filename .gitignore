@@ -1,0 +1,25 @@
+# Excude these files from repo
+#
+*.DS_Store
+*.Rhistory
+*.RData
+*.swp
+
+*.csv
+*.tsv
+*.xlsx
+
+# Tex files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.cls
