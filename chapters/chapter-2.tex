@@ -103,23 +103,107 @@ policies as Findable, Accessible, Interoperable and Reusable (FAIR)
 semantics are used to accomplish the interoperability and reusability of
 biodiversity data as well as the monitoring of their use \citep{mouquet_review_2015}.
 Indispensable to the curation process of marine data have been the standards of
-the Biodiversity Information Standards2, more specifically Darwin Core (Wieczorek et al., 2012) and vocabularies such as those included in the International Commission on Zoological Nomenclature3, the World Register of Marine Species4 (WoRMS) (WoRMS Editorial Board, 2022), the Environmental Ontology5 (ENVO) (Buttigieg et al., 2016) and Marine Regions6 (Claus et al., 2014). These standards and vocabularies and their adoption by biodiversity initiatives like GBIF and OBIS align with the goal of marine biodiversity Linked Open Data and support their interoperability and reusability (Page, 2016; Penev et al., 2019; Zárate and Buckle, 2021).
+the Biodiversity Information Standards \footnote{https://www.tdwg.org/}, more
+specifically Darwin Core \citep{wieczorek_darwin_2012}
+and vocabularies such as those included in the International Commission on
+Zoological Nomenclature \footnote{https://www.iczn.org/}, the World Register of
+Marine Species \footnote{http://www.marinespecies.org/}
+(WoRMS) \citep{horton_world_2022}, 
+the Environment Ontology \footnote{https://sites.google.com/site/environmentontology/home} (ENVO) \citep{buttigieg2016environment}
+and Marine Regions \footnote{https://www.marineregions.org/} \citep{claus_marine_2014}.
+These standards and vocabularies and their adoption by biodiversity initiatives
+like GBIF and OBIS align with the goal of marine biodiversity Linked Open Data
+and support their interoperability and reusability \citep{page_towards_2016, penev_openbiodiv_2019,zarate_lobd_2021}.
 
-The rescue process of historical biodiversity documents can be summarised in four tasks (Figure 1). The first task is the digitisation of the document, which involves locating and cataloguing the original data sources, imaging/scanning with specific equipment and standards and uploading them to digital libraries (Lin, 2006; Thompson and Richard, 2013). In the second task, the images are analysed with text recognition software, mainly through Optical Character Recognition (OCR) (for standards see Groom et al., 2019 and for reviews see Lyal, 2016 and Owen et al., 2020). Text recognition errors are then corrected manually by professionals or citizen scientists (Herrmann, 2020). The third task is named Information Extraction (IE) as it involves the steps of named entity recognition, mapping and normalisation of biodiversity information (Thessen et al., 2012). Here, the curators may compile a species’ occurrence census enriched with metadata of the study, geolocation, environment, sampling methods and traits among others (Faulwetter et al., 2016). Lastly, the fourth task, is the data publishing to online biodiversity databases/repositories (Costello et al., 2013; Penev et al., 2017). Expert manual curation is a cross-cutting action through all the aforementioned tasks for quality control and stewardship (Vandepitte et al., 2015). This article focuses on the tools and curation procedures encompassed in the third and fourth tasks described above.
+The rescue process of historical biodiversity documents can be summarised in
+four tasks Figure \ref{fig:rescue-workflow}. 
+The first task is the digitisation of the document, which involves locating 
+and cataloguing the original data sources, imaging/scanning with specific 
+equipment and standards and uploading them to digital libraries \citep{lin_quality_2006, thompson_moving_2013}.
+In the second task, the images are analysed with text recognition software,
+mainly through Optical Character Recognition (OCR)
+(for standards see \citep{groom_improved_2019} and for reviews
+see \citep{lyal_digitising_2016, 10.3897/rio.6.e58030}.
+Text recognition errors are then corrected manually by professionals or
+citizen scientists \citep{herrmann_building_2020}. The third task is named
+Information Extraction (IE) as it involves the steps of named entity
+recognition, mapping and normalisation of biodiversity information \citep{hakenberg_applications_2012}.
+Here, the curators may compile a species’ occurrence census enriched with
+metadata of the study, geolocation, environment, sampling methods and traits
+among others \citep{faulwetter_emodnet_2016}.
+Lastly, the fourth task, is the data publishing to online biodiversity
+databases/repositories \citep{costello_biodiversity_2013,penev_strategies_2017}.
+Expert manual curation is a cross-cutting action through all the aforementioned
+tasks for quality control and stewardship \citep{vandepitte_fishing_2015}.
+This article focuses on the tools and curation procedures encompassed in
+the third and fourth tasks described above.
    \begin{figure}[h]
       \centering
-      \includegraphics[width=0.98\columnwidth]{figures/deco-figure-1.jpg}
-      \caption[Historical document rescue process]{
-           Summarised process of historical document rescue. Four tasks are required to complete the data rescue process of biodiversity documents. Each of these has several steps, methodology, tools and standards. Curation is needed in every task, for tool handling and error correction. The stars represent the 5-star ranking system of Linked Data as introduced by W3C7 (Heath and Bizer, 2011). Availability of information from historical data increases as the curation tasks are completed (as exemplified by the fan on the right). Icons used from the Noun Project released under CC BY: book by Oleksandr Panasovskyi, scanning by LAFS, Book info by Xinh Studio, Library by ibrandify, Scanner Text by Wolf Böse, Check form by allex, Whale by Alina Oleynik, Fish by Asmuh, tag code vigorn, pivot layout by paisan, Certificate by P Thanga Vignesh, web service by mynamepong.
-      }
-      \label{fig:deco-rescue-pipeline}
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/deco-figure-1.jpg}
+      \caption[Historical document rescue process]{Summarised process of historical document rescue. Four tasks are required to complete the data rescue process of biodiversity documents. Each of these has several steps, methodology, tools and standards. Curation is needed in every task, for tool handling and error correction. The stars represent the 5-star ranking system of Linked Data as introduced by W3C \footnotemark \citep{heath_linked_2011}. Availability of information from historical data increases as the curation tasks are completed (as exemplified by the fan on the right). Icons used from the Noun Project released under CC BY: book by Oleksandr Panasovskyi, scanning by LAFS, Book info by Xinh Studio, Library by ibrandify, Scanner Text by Wolf Böse, Check form by allex, Whale by Alina Oleynik, Fish by Asmuh, tag code vigorn, pivot layout by paisan, Certificate by P Thanga Vignesh, web service by mynamepong.}
+      \label{fig:rescue-workflow}
    \end{figure}
 
-   Several factors may turn the curation of historical documents into a serious challenge (Faulwetter et al., 2016; Beja et al., 2022). Errors from the first and second tasks, as presented in Figure 1 \ref{fig:deco-rescue-pipeline} (i.e. bad quality imaging, mis-recognised characters etc.) are propagated through the whole process. In terms of georeferencing constraints, location names or sampling points on an old map may be provided instead of the actual coordinates. Additionally, taxonomic constraints (e.g. old, currently unaccepted synonyms, lack of authority associated with the taxon names) combined with the absence of taxonomic literature or voucher specimens (e.g. identifier number for samples of natural history/expedition collections) require the taxonomists’ assistance. Numerical measurement units often need to be converted to the International System of Units (SI system) (e.g. fathoms to metres) (Calder, 1982; Wieczorek et al., 2012). Old toponyms and political boundaries that have now changed should also be taken into consideration, as well as coordinates that now fall on land instead of in the sea, due to the changes in the coastline. Lastly, the use of languages other than English is quite common in old scientific publications, so multilingual curators are required. Some of the aforementioned issues are presented in Figure 2. Because of these limitations, the manual curation of data and metadata is mandatory when it comes to historical data (Faulwetter et al., 2016).7
+   \footnotetext{\url{https://dvcs.w3.org/hg/gld/raw-file/default/glossary/index.html\#x5-star-linked-open-data}}
 
-Manual curation, a tedious and multistep process, requires substantial effort for the correct interpretation of valuable historical information; however, text mining tools appear to be promising in assisting and accelerating this part of the curation process (Alex et al., 2008). Text mining is the automatic extraction of information from unstructured data (Hearst, 1999; Ananiadou and Mcnaught, 2005). These mining tools build upon standardised knowledge, vocabularies, dictionaries and perform multistep Natural Language Processes. Named Entity Recognition (NER) is a key step in this process for locating terms of interest in text (Perera et al., 2020). The entities of interest for biodiversity documents include: (1) taxon names, (2) people’s names (Page, 2019a; Groom et al., 2020), (3) environments/ habitats (Pafilis et al., 2015; Pafilis et al., 2017), (4) geolocations/ localities (Alex et al., 2015; Stahlman and Sheffield, 2019), (5) phenotypic traits/morphological characteristics (Thessen et al., 2018), (6) physico-chemical variables, and (7) quantities, measurement units and/or values. Subsequent steps include the relation extraction between entities. Multiple tools have emerged to retrieve a single or a collection of these entities in the past few years (Batista-Navarro et al., 2017; Muñoz et al., 2019; Dimitrova et al., 2020; Le Guillarme and Thuiller, 2022).
+   \begin{figure}[h]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/deco-figure-2.jpg}
+      \caption[Common problems encountered in historical data]{Common problems encountered in historical data, such as old ligatures, absence of taxon names, ambiguous symbols, shortened words and descriptive information instead of numerical (page 185 from \citep{WoRMS:SourceID:40714})}
+      \label{fig:historical-data-problems}
+   \end{figure}
 
-The work described in this document has a threefold structure: (a) the abundance of marine historical literature digitised/available for curation is attempted to be estimated; (b) bioinformatics tools, focusing on automating and assisting the curation process for these documents, are compiled/reviewed. Two categories of such curation software are described: (i) the first one relies on web and standalone applications with Graphical User Interface (GUI) and the second (ii) combines Command Line Interface (CLI) programming libraries and software packages; lastly, (c) a demonstrator biodiversity data curation workflow, named DECO (bioDivErsity data Curation programming wOrkflow8), developed using programming tools, is presented.
+Several factors may turn the curation of historical documents into a
+serious challenge \citep{faulwetter_emodnet_2016,beja_chapter_2022}.
+Errors from the first and second tasks, as presented in Figure 
+\ref{fig:rescue-workflow} (i.e. bad quality imaging, mis-recognised characters etc.)
+are propagated through the whole process. In terms of georeferencing
+constraints, location names or sampling points on an old map may be provided
+instead of the actual coordinates. Additionally, taxonomic constraints
+(e.g. old, currently unaccepted synonyms, lack of authority associated with the
+taxon names) combined with the absence of taxonomic literature or voucher
+specimens (e.g. identifier number for samples of natural history/expedition
+collections) require the taxonomists’ assistance. Numerical measurement units
+often need to be converted to the International System of Units (SI system)
+(e.g. fathoms to metres)\citep{calder_proposal_1982,wieczorek_darwin_2012}.
+Old toponyms and political boundaries that have now changed should also be
+taken into consideration, as well as coordinates that now fall on land instead
+of in the sea, due to the changes in the coastline. Lastly, the use of
+languages other than English is quite common in old scientific publications, so
+multilingual curators are required. Some of the aforementioned issues are
+presented in Figure \ref{fig:historical-data-problems}. Because of these
+limitations, the manual curation of data and metadata is mandatory when it
+comes to historical data \citep{faulwetter_emodnet_2016}.
+
+Manual curation, a tedious and multistep process, requires substantial effort
+for the correct interpretation of valuable historical information; however,
+text mining tools appear to be promising in assisting and accelerating this
+part of the curation process \citep{alex_assisted_2008}. Text mining is the
+automatic extraction of information from unstructured data
+\citep{hearst_untangling_1999,10.5555/1199003}. These mining tools build upon
+standardised knowledge, vocabularies, dictionaries and perform multistep
+Natural Language Processes. Named Entity Recognition (NER) is a key step in
+this process for locating terms of interest in text \citep{perera_named_2020}.
+The entities of interest for biodiversity documents include: (1) taxon names,
+(2) people’s names \citep{page_text-mining_2019,groom_people_2020},
+(3) environments/ habitats \citep{pafilis_environments_2015,pafilis_extract_2017},
+(4) geolocations/ localities \citep{alex_adapting_2015,stahlman_geoparsing_2019},
+(5) phenotypic traits/morphological characteristics \citep{thessen_automated_2018}
+(6) physico-chemical variables, and (7) quantities, measurement units and/or
+values. Subsequent steps include the relation extraction between entities.
+Multiple tools have emerged to retrieve a single or a collection of these
+entities in the past few years \citep{batista-navarro_text_2017,10.3897/BDJ.7.e28737,dimitrova_pensoft_2020,le_guillarme_taxonerd_2022}.
+
+The work described in this document has a threefold structure: (a) the
+abundance of marine historical literature digitised/available for curation
+is attempted to be estimated; (b) bioinformatics tools, focusing on automating
+and assisting the curation process for these documents, are compiled/reviewed.
+Two categories of such curation software are described: (i) the first one
+relies on web and standalone applications with Graphical User Interface (GUI)
+and the second (ii) combines Command Line Interface (CLI) programming libraries
+and software packages; lastly, (c) a demonstrator biodiversity data curation
+workflow, named DECO (bioDivErsity data Curation programming wOrkflow \footnote{https://github.com/lab42open-team/deco}),
+developed using programming tools, is presented.
 
 % DECO METHODS
 \section{Method}
