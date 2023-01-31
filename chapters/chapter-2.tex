@@ -330,24 +330,273 @@ GitHub repository (\url{https://github.com/lab42open-team/deco}).
 \label{sec:deco-results}
 
    \subsection{Historical Literature Discovery}
-   \subsection{Bioinformatics Tools Compilation and Review}
+
+Marine literature analysis on BHL holdings revealed that there are
+1,627 different digital items that contain at least 100 distinct taxa to a
+maximum of 10,000 taxa, as identified automatically from the Global Names
+GNfinder tool. These items cover the period from 1558 to 1960, contain 648,927
+pages, written in 10 different languages, 80\% of which being English. An
+absolute estimation of historical marine data is difficult to be made as
+several more documents are stored locally in legacy formats.
+
+The rescued historical marine data uploaded on OBIS are 223 datasets, published
+from 1753 to 1960. Hence, the manual curated literature is much lower than the
+available digitised documents. These rescued biogeographical datasets cover
+46,000 species and 38 phyla that contain about 1.5 million occurrences at the
+species level.
+
+    \subsection{Bioinformatics Tools Compilation and Review}
+
+This section describes the tools used in the curation workflow
+(Figure \ref{fig:curation-process}). In each step, the main up-to-date
+programming tools, web services and applications, used for the extraction of
+biodiversity data, are presented. These curation tools are listed, accompanied
+with features such as extracted information, input format and their interface
+in Table \ref{table-tools}.
+
+
+\begin{table}[]
+\resizebox{\textwidth}{!}{%
+\renewcommand{\arraystretch}{2}%
+\begin{tabular}{lllll}
+\hline
+    \textbf{Tool} & \textbf{Curation Step} & \textbf{Input} & \textbf{Interface} & \textbf{Reference} \\
+    \hline
+Global Names Recognition and Discovery & NER - Taxon names & User query, Free text, PDF or image & WA, API, CLI & Pyle (2016) \\
+BOM (Biodiversity Observations Miner) & \begin{tabular}[c]{@{}l@{}}OCR\\ NER - Taxon names, Biotic interactions, Traits\end{tabular} & User query, Free text, PDF & WA, API & Muñoz et al. (2019) \\
+TextAnnotator & NER - Generic Annotations & User query, Free text & WA & Abrami et al. (2021) \\
+Pensoft Annotator & \begin{tabular}[c]{@{}l@{}}NER - Annotation of free text with ontology terms\\ Entity Mapping\end{tabular} & User query, Free text & WA, API & Dimitrova et al. (2020) \\
+Taxon Finder & NER - Taxon names & User query, Free text & WA, API &  \\
+EXTRACT & NER - Taxon names, Environments and Tissue & Free text & API, CLI & Pafilis et al. (2017) \\
+TaxoNerd & NER - Taxon names & Free text, PDF, png & CLI & Le Guillarme and Thuiller (2022) \\
+Stanford NER & NER - People, organisation, locality & Free text & CLI & Finkel et al. (2005) \\
+Clear Earth & NER - Locality, unit, value, functional traits, taxon names & Free text & CLI & Thessen et al. (2018) \\
+BioStor & \begin{tabular}[c]{@{}l@{}}Literature identification, \\ NER - geolocation\end{tabular} & Taxon names and other keywords & WA & Page (2011) \\
+Marine Regions Gazetteer & Entity mapping & User input & WA, API & Claus et al. (2014) \\
+Edinburgh geoparser & \begin{tabular}[c]{@{}l@{}}NER - geolocation\\ Entity mapping\end{tabular} & Free text & CLI & Alex et al. (2015) \\
+Ontobee & Entity mapping & User input & WA & Xiang et al. (2011) \\
+WoRMS taxon match & Entity mapping & Taxon list on comma separated / spreadsheet file & WA, CLI, API & WoRMS Editorial Board (2022) \\
+worrms R package & \begin{tabular}[c]{@{}l@{}}Entity mapping\\ Data transformations\end{tabular} & Taxon list: comma / tab separated file & CLI, API & Chamberlain (2020) \\
+Taxize R package & \begin{tabular}[c]{@{}l@{}}Entity mapping\\ Data transformations\end{tabular} & Taxon list: comma / tab separated file & CLI, API & Chamberlain and Szöcs (2013) \\
+GloBI nomer tool & \begin{tabular}[c]{@{}l@{}}Entity mapping\\ Data transformations\end{tabular} & Tab separated file & CLI & Poelen and Salim (2022) \\
+ &  &  &  &  \\
+OpenRefine & Data transformations, Quality control & Spreadsheet files, Comma / tab separated files, XML, RDF, JSON, SQL database & GUI app & Verborgh and Wilde (2013) \\
+LifeWatch Belgium \& EMODnet Biology QC tool & Quality control & IPT or a DwC-A file & WA &  \\
+LifeWatch Belgium Data Services & Quality control, Entity mapping & Comma / tab separated file, spreadsheet excel file & WA &  \\
+EMODnetBiocheck & Quality Control & IPT, comma / tab separated file & CLI & De Pooter and Perez-Perez (2019) \\
+GBIF Data Validator & Quality control & Comma separated, IPT or a DwC-A file & WA, CLI, API &  \\
+Obistools R package & Entity Mapping, Data transformations, Quality control & Free text, comma / tab separated file & CLI & Provoost et al. (2019) \\
+IPT server nodes & Quality control, Data Upload & Comma / tab separated file & GUI app & Robertson et al. (2014) \\
+GoldenGate-Imagine & OCR, NER, Entity mapping & PDF & GUI app & Sautter et al. (2007) \\
+DECO & OCR, NER, Entity mapping, & PDF, png, free text & CLI & This work
+\end{tabular}%
+}
+\caption{Functions, interface and curation step of the tools tested in this work.}
+\label{table-tools}
+\end{table}
 
    \subsubsection{Named Entity Recognition}
+   The Global Names Recognition and Discovery19 (GNRD) tool, within Global Names Architecture20 (GNA), is a web application used for the recognition of scientific names. It can use files such as PDF, images or Microsoft Office documents and one can still input URLs or even free-form text. It supports OCR transformation from PDF files using the tool Tesseract21 and uses the GNfinder22 discovery engine, in order to provide the list of names. It offers an API and can be installed locally. GNA is also used by the BHL platform to locate taxonomic names within the pages of its collections (Richard, 2020).
+The test performed on the Forbes (1844) six-page PDF template provided 128 unique scientific names at species level, out of the 218 identified through the manual curation
+(Figure S1). WoRMS Aphia IDs (Vandepitte et al., 2015; Martín Míguez et al., 2019) are widely used and included in GNRD.
+The Biodiversity Observation Miner23 (BOM) is a web application based on R Shiny24, also available on GitHub25, that allows for the semi-automated discovery of biodiversity observations (e.g. biotic interactions, functional or behavioural traits and natural history descriptions) associated with the species scientific names (Muñoz et al., 2019). It uses the GNfinder discovery engine through the R package taxize26 (Chamberlain and Szöcs, 2013). BOM is still under development (April 2022) and an OCR processed PDF file must be used as input. The novelty of this tool is the provision of text snippets (Figure S2) and the co-occurrence of words, accompanied with their count, to inform curators for terms that appear together in the document. 27
+TextAnnotator , provided by the specialised information service BIOfid28, is focused on information extraction about taxon names of vascular plants, birds, moths and butterflies, location and time mentioned in German texts (Driller et al., 2018; Driller et al., 2020). This could be extended to other environments, languages and taxonomic groups with the BIOfid Github page29 serving as the starting point. The TextAnnotator - in beta version - accepts web pages or free text. Evidence of recent use of this tool was found in Driller et al. (2020).
+The Pensoft Annotator30 is another beta web application that works with ontologies (Dimitrova et al., 2020) (Figure S3). The Pensoft Annotator has Relation Ontology31 (RO) and ENVO built in but it is extendable to any ontology with curation modifications for stopwords. The character limitation, however, can be expanded upon communication with the tool’s administrators.
+Taxonfinder32 is a web application for the extraction of scientific names mentioned in web pages. It features an API that was used in BHL for large scale annotations of taxonomic names until 2019, when it was replaced by GNfinder (Richard, 2020).
+The most notable NER tool, with CLI, for taxon names is the Global Names Finder (GNfinder) (Pyle, 2016; Mozzherin et al., 2022) which provides fuzzy search and is the underlying engine of most biodiversity text mining tools. It is in active development, deeming it a reliable tool for this work. The main command line tool is gnfinder find which returns two arrays (metadata and names). The metadata are the language, date of the execution of the command and total number of words. The data have one entry per identified string which contains the matched string, the returned name and the positional boundaries in character sequence.
+In order to simultaneously extract taxa, environment and tissue mentions, the tool EXTRACT33 (Pafilis et al., 2017) implements the JensenLab tagger API (Jensen, 2016) with advanced dictionaries SPECIES-ORGANISMS34 (Pafilis et al., 2013), ENVIRONMENTS35 (Pafilis et al., 2015) and TISSUES36 (Palasca et al., 2018). It returns NCBI Taxonomy IDs (Schoch et al., 2020), ENVO terms and BRENDA IDs37, respectively to a file with 3 columns: tagged text, entity type and term ID. TaxoNERD (Le Guillarme and Thuiller, 2022), using Deep neural networks, scores higher than other NER tools on taxon name recognition based on golden standard corpora.
+An important NER system is the Stanford NER38 (Finkel et al., 2005) which recognises locations, persons and organisations in text. It has a generic scope but it can also assist in the curation of biodiversity data. The general tokenisation and normalisation procedures developed by the NLP Stanford team are the basis of many text mining tools. Additionally, the ClearEarth39 project
+
+(Thessen et al., 2018) can tag biotic and abiotic entities, localities, units and values in text and is built using the ClearTK NLP toolkit40 (Bethard et al., 2014). Upon installation it downloads multiple dictionaries and takes up to six gigabytes of space. It relies on Stanford NLP and other dependencies and provides a Python wrapper and a CLI.
+A common constraint in historical documents is the lack of coordinates from the sampling areas, so the data curator should provide the coordinates using the toponyms given. There are tools that enable this procedure, such as Marine Gazetteer. BioStor-Lite map41, which contains automated geolocation annotation of BHL documents (Page, 2019b), displays the points on the global map providing the user the ability to search for additional documents with selected points on the map or by drawing rectangles. The Edinburgh geoparser (Alex et al., 2015), a command line tool, recognises places in text and is one of very few tools to have this functionality. The Stanford NER system has been used as well (Stahlman and Sheffield, 2019) upon receiving training, for geolocation recognition.
+
    \subsubsection{Entity Normalisation and Mapping}
+   Mapping the information retrieved from the NER tools to different IDs is crucial for cross-platform interoperability, ensuring a good output requires the mapping services to be up to date.
+Taxon names can have multiple IDs depending on the platform, taxonomy common IDs, apart from the Linnaean system, are the LSID, NCBI taxonomy identifiers, EOL identifiers etc. For marine species LSIDs based on Aphia IDs are the most widely adopted.
+Ontobee42, a web server that links ontologies, is useful for the annotation of text to ontology IDs (Xiang et al., 2011). Curators can provide text snippets to Ontobee in order to retrieve ontology terms regarding environmental features (e.g. ENVO IDs), functional traits (e.g. PATO IDs43 (Tan et al., 2022)) or other ontology terms of interest. Currently, the use of entire documents is not recommended.
+The WoRMS Taxon match44 tool matches the taxon list found against the World Register of Marine Species (WoRMS) taxon LSID. Geographic regions are confirmed with the use of the georeference tool developed for the Marine Gazetteer, users can enter the location name in the gazetteer search field of the web interface and the result’s output includes the region’s boundaries and the corresponding MRGID.
+
+Most vocabulary servers provide APIs that map the different IDs. EMODnet Biology
+has adopted LSIDs for marine species based on Aphia IDs from the
+WoRMS vocabulary, which provides a dedicated API and an R package worrms
+\citep{chamberlain_worrms_2020}. Additionally, the R package taxize
+\citep{chamberlain_taxize_2013} provides taxon mapping capabilities across many
+data sources (i.e. NCBI taxonomy, Integrated Taxonomic Information System,
+Encyclopedia of Life, WoRMS). Functions like get\_eolid, get\_nbnid, get\_wormsid
+can perform mapping across rows of the taxon name of the case study. In
+addition, the GloBI \footnote{https://www.globalbioticinteractions.org/}
+(Global Biotic Interactions) nomer tool
+\footnote{https://github.com/globalbioticinteractions/nomer}
+\citep{poelen_globalbioticinteractionsnomer_2022} can also be used as it
+provides entity mapping functionality via CLI \citep{poelen_global_2014}.
+
    \subsubsection{Data Transformations}
+   In this step, curators organise data according to the Darwin Core47 standard and extensions, such as extended Measurement or Fact Extension48, resulting in the creation of a Darwin Core Archive (see guidelines via the link49) with detailed sampling descriptors and terms based on controlled vocabularies.
+When considering data transformations, curators tend to use GUI spreadsheet applications like Microsoft Excel, Google Sheets and LibreOffice Calc. OpenRefine50 is a free, open source software that handles messy data and provides their transformation in various ways (Ham, 2013). The software’s main goal is to provide data cleaning, fixing and analysing while also enhancing the interconnection between different datasets (Verborgh and De Wilde, 2013).
+Automation can be used for this transformation through CLI tools like the R tidyverse51 package suite, Python pandas52 library and AWK programming language53, among others. These tools support fast and scalable tabular and text data handling, manipulations, merging and filtering. The choice of tools depends on the users’ familiarity, expertise and operating system.
+
    \subsubsection{Quality Control}
+   Prior to publishing the dataset it is important to perform sanity checks and quality checks to ensure that the data comply with the Darwin Core Standards (Vandepitte et al., 2015). LifeWatch- EMODnetBiology QC tool54 allows the use of the IPT URL or the dataset’s DwC-A files and provides a list of the quality issues encountered, according to the EMODnet Biology criteria, as an output. It is available as a Web Application interface, based on RShiny, and as a R package55 (De Pooter and Perez-Perez, 2019). LifeWatch Belgium Data Services’56 has similar functionalities, providing a compilation of data services from plain text and spreadsheet files as input. The GBIF Data Validator57 combines all the above mentioned options, in terms of input, and provides a detailed summary of issues encountered in data and metadata. Open Refine, is equipped with a few extensions that can also check for taxon names and reconcile them.
+   The Obistools58 R package (Provoost et al., 2019), the basis of the LifeWatch-EMODnetBiology QC tool, can be used to check the coordinate boundaries and calculate centroids in cases where the exact location is unknown. It also checks for dates’ formats and events. It has comprehensive documentation and is in active development.
+
    \subsubsection{Upload to Database}
+   The last step of the curation process is the publication of the standards’ compliant formatted data, which is facilitated by the Integrated Publishing Toolkit59 (IPT) software platform (Robertson et al., 2014).
+Curators create an IPT resource entry with the aforementioned data and associated metadata, which is then uploaded to an IPT instance, e.g. the MedOBIS60 Repository (Arvanitidis et al., 2006). In the case of MedOBIS, the IPT is subsequently harvested and made available by the central OBIS61 system, thus being a strong example and supporter of the ‘collect once, use many times’ concept.
+
    \subsubsection{One-Stop-Shop Tools}
+   The main all-in-one GUI computer program is Golden-GATE- imagine62, an updated version of GoldenGATE editor (Sautter et al., 2007). This tool supports OCR, NER and entity mapping, as described in the various steps of the curator’s workflow by providing annotations on PDF backed up by ontologies. It was developed by Plazi in 2015 and was last updated in 2016. Several recent biodiversity data related publications still report the use of it although it has not been updated since that time (Miller et al., 2019; Rivera-Quiroz and Miller, 2019; Agosti et al., 2020). Due to its open source nature, Golden-Gate-imagine can be further developed by any interested parties, as exemplified in GNfinder.
+
    \subsection{DECO: A Biodiversity Data Curation Programming Workflow}
+   A CLI workflow named DECO developed to demonstrate the advantages of the CLI approach, is available via this GitHub repository63. DECO has connected different tools of the programming curation steps (Figure 3). The execution is via a single command with a user-provided PDF file and the output are the taxon names and records from WoRMS API, taxonomy NCBI IDs and ENVO terms from the Environmental Ontology. Complementary tools (i.e. Ghostscript64, jq65 and ImageMagick66) and UNIX commands are also called in a single Bash script which unifies the workflow. In order to simplify the setup procedure of the workflow a Docker container and a Singularity container were developed that include all the dependencies and the code. The code and both containers have been tested on Ubuntu, Mac and Debian server (Table 2). For a larger corpus of biodiversity historical data the recommendation is to use the Singularity container in a remote server or a High Performance Computing (HPC) cluster.
 
 % DECO DISCUSSION
 \section{Discussion}
 \label{sec:deco-discussion}
 
    \subsection{Data Rescue Landscape}
+   The huge difference between rescued historical marine datasets uploaded on OBIS and the available digital items on BHL holdings reflects the challenges faced by curators and the minimal attention paid by the wider community, when compared to other data rescue activities (e.g. specimens, oceanographic data, etc.). Many publications lack basic metadata such as location, date, purpose or method of sampling. Tracing this information is limited as the data providers may (a) have forgotten these details, (b) be retired or (c) be deceased (Michener et al., 1997).
+The project ‘Census of Marine Life’ included, among its initial objectives, the rescue of historical marine data. Since then, there have been ongoing efforts within the EMODnet Biology project and LifeWatch Research Infrastructure, among others. Similarly, initiatives like Global Oceanographic Data Archaeology and Rescue67 (GODAR), Oceans Past Initiative68 (OPI) and RECovery of Logbooks And International Marine data69 (RECLAIM) (Wilkinson et al., 2011) rescue data from ship logs for oceanographic, climate and biodiversity data. More effort is however needed, as exemplified by museum specimen collections and herbaria digitisation (Mora et al., 2011; Wheeler et al., 2012). The museum specimen collections and herbaria digitisation has multiple projects and infrastructures like Distributed System of Scientific Collections70 (DiSSCo), Innovation and consolidation for large scale digitisation of natural heritage71 (ICEDIG), Integrated Digitized Biocollections72 (iDigBio) and Biodiversity Community Integrated Knowledge Library (BiCIKL) (Penev et al., 2022). Similar attention is required to rescue marine biodiversity data from historical documents that can contribute to a more complete global biodiversity synthesis (Heberling et al., 2021).
+In the last few years, an upsurge in web applications development regarding the enhancement of biodiversity data digitisation has been observed. This is an indication of the need for such initiatives. Advancements in the field of OCR, text mining and information technology promise semi-automation and acceleration of the curator’s work, which could transform the biodiversity curation field into an -omics like, interdisciplinary field that requires complementary skills of document handling, web technologies and text mining, to name but a few.
+
    \subsection{Interface Remarks}
+   Web applications provide the advantage of visual aids (e.g. highlights of NER terms), which improve the evaluation easiness and intuitiveness when using their graphical interfaces. Emerging web development technologies like R Shiny, Flask73 and Django74 among others, have simplified the processes of web application development. These applications are powerful and effective in most cases but are siloed in functionality and extendability, they also have many software dependencies which increase instability, when not maintained in the long term.
+CLI tools are a powerful way to implement scalable, reproducible and replicable workflows: scalable because the same code can be applied to multiple files (e.g. in this case, the various documents); reproducible and replicable because the code can be executed multiple times and with different types of documents, respectively. Furthermore, they usually have additional functionalities that have not been implemented in their web application counterparts. The difficulties regarding CLI tools’ dependency and portability are being resolved with the rise of containerised applications which include all system requirements and are distributed through web repositories like Docker Hub75, the downside is that without interactiveness they are cumbersome when assisting the curation process.
+
    \subsection{Sustainability}
+   Tool usability relies on active development and continuous support and
+debugging. Sustainability is considered the main issue regarding the tools’
+functionality. An example is EnvMine \citep{tamames_envmine_2010}, a promising
+2010 cutting edge tool which is no longer available. One-stop-shop purpose
+software applications for domain specific usage, like GoldenGate, are very
+helpful but require more effort to stay up to date with the integrated tools.
+Other tools are often out of date, as active development and contribution to
+reporting issues in open-source repositories, such as Github, is lacking, thus
+becoming obsolete and unsupported in only a few years from their first release.
+
    \subsection{Curation Step-Wise Remarks}
+   The curators’ role is invaluable in the data rescue process, as their domain
+specific expertise is far from becoming entirely automated. There are plenty of
+available digitised historical documents that are not curated in web libraries,
+such as BHL, the Belgian Marine
+Bibliography\footnote{\url{https://www.vliz.be/en/belgian-marine-bibliography}},
+Web of Science \footnote{https://www.webofknowledge.com}, Wiley Online
+Library \footnote{https://onlinelibrary.wiley.com} and Taylor \& Francis
+Online \footnote{https://www.tandfonline.com/}, among others \citep{kearney_its_2019}.
+BHL provides “OCRed” documents and there are plenty of other tools that can
+tackle this process which are reviewed elsewhere \citep{10.3897/rio.6.e58030},
+however OCR is a crucial limiting step in the workflows, in terms of the
+information transformed from image to text, because there are many cases that
+lead to mispelled or lost text; especially the case with handwritten text and
+poor quality images \citep{lyal_digitising_2016}.
+
+Information extraction can be performed both on a small and a large scale.
+Named Entities are what most text mining tools extract. Taxon names recognition
+is the main function of the majority of the current tools and has matured
+significantly over the past decade, especially through the integration of
+multiple platforms with the GNA \citep{pyle_towards_2016}. Environments and
+geolocations have strong background data, Environment Ontology terms (retrieved
+with the EXTRACT tool) and GeoNames\footnote{http://www.geonames.org}/
+Marineregions gazetteers, respectively. Geolocation mining, in particular, has
+not been adapted in biodiversity curation but there are generic tools
+(e.g. mordecai\footnote{https://github.com/openeventdata/mordecai} -
+\citep{halterman2017mordecai} that are able to be trained with gazetteers to
+extract approximate localities from text. Also extraction of sample location
+from maps is possible by first geolocating the historic map in Geographic
+Information Systems \citep{jenny_studying_2011} and then using computer vision
+to find the locations’ coordinates \citep{10.1145/2557423}. Characteristics of
+taxa, i.e. phenotypic traits, associated physico-chemical variables, units and
+the use of semantics to describe relations, are still under standardisation
+\citep{thessen_transforming_2020} and NER prototypes have been made with
+ClearEarth and Pensoft Annotator, for example.
+
+Entity mapping has also seen an important development because there are many
+open public APIs for vocabularies like those used in WoRMS, and Marine Regions
+and aggregators such as GBIF and OBIS, among others, and in some cases software
+packages (mostly in the R programming language). The task for Publication has
+its dedicated applications and tools with the CLI tools being able to perform
+quality control and deliver a preferred on-the-fly format.
+
    \subsection{DECO}
+   The CLI scientific workflow assembled in this paper, DECO, is a demonstration
+of EMODnet Biology’s vision for biodiversity data rescue using programming
+tools. To the best of our knowledge, this is the first task-driven CLI that
+brings together state-of-the-art image processing, OCR tools, text mining
+technologies and Web APIs, in order to assist curators. By using programming
+interface and Command Line Tools the workflow is scalable, customisable and
+modular, meaning that more tools can be incorporated to, e.g. include the
+entities mentioned in the previous section. It is fast, may be used on a
+personal computer, and is available as a Docker and a Singularity container.
+The containerised versions of the workflow simplify the installation procedure
+and increase its stability, scalability and portability because they include
+all the necessary dependencies. This CLI scientific workflow promises a faster
+and high throughput processing that could be applied to any type of data, not
+only historical, thus contributing to the overall digitisation of biodiversity
+knowledge.
+
    \subsection{Future Outlook}
+   Progress has been made in the advancement of the historical data rescue
+process, from digitisation platforms to standards, services and publication
+\citep{beja_chapter_2022}. To bridge the gap between tools and curators
+requires effort on both ends; namely the data curators and the tool developers.
+It is recommended that curators are trained in basic programming skills from
+which they and the historical data rescue process in general would benefit in
+the long term \citep{10.12688/f1000research.25413.2}. Regarding software
+development, important features are highlighted, like the use of multiple
+ontologies in Pensoft Annotator. This is a direction which should be further
+expanded to all entities of interest. Multidisciplinary cooperation between
+scientific communities and partners of tools, ontologies and databases is
+needed to accomplish this task \citep{bowker_biodiversity_2000}. An important
+example was set by GNA which advanced scientific names recognition
+significantly. In addition, the co-occurrence feature, that was present in
+Biodiversity Observation Miner, once expanded to other entities and associated
+with a scoring scheme will be a state-of-the-art text mining application that
+goes beyond NER to actually infer relations. The rise of deep neural networks
+is promising as well in all different tasks of Information Extraction, as seen
+in TaxoNERD \citep{le_guillarme_taxonerd_2022}. Lastly, the community is
+pushing to Semantic Publishing, FAIR completeness of new data and new taxonomic
+publishing guidelines to eliminate the need of text mining and curation in
+current publications \citep{penev_openbiodiv_2019,fawcett_digital_2022}.
+
+The implementation of crowdsourced curation within citizen science projects for
+the historical biodiversity data is encouraged \citep{clavero_mine_2014,arnaboldi_text_2020,10.12688/f1000research.25413.2}.
+Practices like this are already in place in the digitisation of natural history
+collections and have been proved fruitful \citep{ellwood_accelerating_2015}.
+EMODnet Biology’s Phase IV will launch such a citizen science project for
+historical documents curation during the second half of 2022. Approaches from
+other fields of science that handle historical and old data, such as history,
+linguistics, archaeology would provide useful insights for the text mining of
+historical biodiversity data.
+
    \subsection{Concluding Remarks}
+   Historical marine biodiversity data provide important and significant
+snapshots of the past that can help understand the current status of ocean
+ecosystems and predict future trends in face of the climate crisis. There is a
+wealth of historical documents that have been digitised yet, most of their data
+have not been rescued or published in online systems. To accelerate the tedious
+data rescue process it is essential that more curators become engaged, and
+tools for Information Extraction and Publication get improved to satisfy their
+needs. Tools like DECO and GoldenGATE demonstrate possible future directions
+for one-stop-shop applications for command line and graphical user interfaces,
+respectively. Research Infrastructures can play a pivotal role towards this
+goal. Last but not least, the community and funding bodies should prioritise
+the data rescue of these invaluable documents before their decay and inevitable
+loss.
+
+
+\section{DATA AVAILABILITY STATEMENT}
+
+%DECO is available here: https://github.com/lab42open-team/ deco. Historical marine literature analysis is here: https://github. com/savvas-paragkamian/historical-marine-literature. BHL, EMODnet Biology and OBIS data are available for download here https://about.biodiversitylibrary.org/tools-andservices/deve loper-and-data-tools/ and https://www.emodnetbiology.eu/tool box/en/download/occurrence/explore and herehttps://obis.org/ manual/access/, respectively. The digitised document of the “Report on the Mollusca andRadiata of the Aegean Sea, and on their distribution, considered as bearing on Geology. 13th Meeting of the British Association for the Advancement of Science, London, 1844” is available here: https://www. biodiversitylibrary.org/page/12920789. The curated dataset of the case study is available here (version 1.9 and above): http://ipt. medobis.eu/resource?r=mollusca_forbes.
+
+\section{AUTHOR CONTRIBUTIONS}
+
+Conceptualisation: CA, EP, and VG. Wrote first draft of the manuscript: SP, GS,
+DM, CP, CA, EP, and VG. Revised the manuscript: all. Web applications testing:
+SP, GS, ME, RP. Programming tools testing: SP, HZ, and EP. Code development and
+containerisation: SP and HZ. Work Package Leaders: VG and DM. Project
+coordinator: JB. All authors contributed to the article and approved the
+submitted version.
+
+\section{FUNDING}
+This work was supported by EMODnet Biology Phase III (EASME/ EMFF/2016/-1.3.1.2/Lot 5/SI2.750022 and EASME/EMFF/2017/ 1.3.1.2/02/SI2.789013) and Phase IV (EMFF/2019/1.3.1.9/Lot 6/SI2. 837974). The European Marine Observation and Data Network (EMODnet) is financed by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund. SP was supported also by EMODnet Biology Phase IV and for different parts of his work he was supported from the project “Centre for the study and sustainable exploitation of Marine Biological Resources (CMBR)” (MIS 5002670), which is implemented under the Action “Reinforcement of the Research and Innovation Infrastructure,” funded by the Operational Programme “Competitiveness, Entrepreneurship and Innovation” (NSRF 2014–2020) and co-financed by Greece and the EU (European Regional Development Fund). GS received support from EMODnet Biology Phase III and Phase IV. SP and HZ received support from the Hellenic Foundation for Research and Innovation(HFRI) and the General Secretariat for Research and Innovation (GSRI), under grant agreement No. 241 (PREGO project). DM and VG have received support from LifeWatchGreece Research Infrastructure (Arvanitidis et al., 2016) and “Centre for the study and sustainable exploitation of Marine Biological Resources (CMBR)” (MIS 5002670), which is implemented under the Action “Reinforcement of the Research and Innovation Infrastructure,” funded by the Operational Programme “Competitiveness, Entrepreneurship and Innovation” (NSRF 2014-2020) and co-financed by Greece and the European Union (European Regional Development Fund). LB received support by EMODNET Biology, Phase IV. The work of LV is funded by Research Foundation - Flanders (FWO) as part of the Belgian contribution to LifeWatch. For different aspects of his work HZ received support from ELIXIR-GR: Managing and Analysing Life Sciences Data (MIS: 5002780) which is co-financed by Greece and the European Union - European Regional Development Fund. CA received support from LifeWatch ERIC. LifeWatch ERIC funded the publication fees. The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript.
+
+
