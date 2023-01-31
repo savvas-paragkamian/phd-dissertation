@@ -396,14 +396,72 @@ DECO & OCR, NER, Entity mapping, & PDF, png, free text & CLI & This work
 \end{table}
 
    \subsubsection{Named Entity Recognition}
-   The Global Names Recognition and Discovery19 (GNRD) tool, within Global Names Architecture20 (GNA), is a web application used for the recognition of scientific names. It can use files such as PDF, images or Microsoft Office documents and one can still input URLs or even free-form text. It supports OCR transformation from PDF files using the tool Tesseract21 and uses the GNfinder22 discovery engine, in order to provide the list of names. It offers an API and can be installed locally. GNA is also used by the BHL platform to locate taxonomic names within the pages of its collections (Richard, 2020).
-The test performed on the Forbes (1844) six-page PDF template provided 128 unique scientific names at species level, out of the 218 identified through the manual curation
-(Figure S1). WoRMS Aphia IDs (Vandepitte et al., 2015; Martín Míguez et al., 2019) are widely used and included in GNRD.
-The Biodiversity Observation Miner23 (BOM) is a web application based on R Shiny24, also available on GitHub25, that allows for the semi-automated discovery of biodiversity observations (e.g. biotic interactions, functional or behavioural traits and natural history descriptions) associated with the species scientific names (Muñoz et al., 2019). It uses the GNfinder discovery engine through the R package taxize26 (Chamberlain and Szöcs, 2013). BOM is still under development (April 2022) and an OCR processed PDF file must be used as input. The novelty of this tool is the provision of text snippets (Figure S2) and the co-occurrence of words, accompanied with their count, to inform curators for terms that appear together in the document. 27
-TextAnnotator , provided by the specialised information service BIOfid28, is focused on information extraction about taxon names of vascular plants, birds, moths and butterflies, location and time mentioned in German texts (Driller et al., 2018; Driller et al., 2020). This could be extended to other environments, languages and taxonomic groups with the BIOfid Github page29 serving as the starting point. The TextAnnotator - in beta version - accepts web pages or free text. Evidence of recent use of this tool was found in Driller et al. (2020).
-The Pensoft Annotator30 is another beta web application that works with ontologies (Dimitrova et al., 2020) (Figure S3). The Pensoft Annotator has Relation Ontology31 (RO) and ENVO built in but it is extendable to any ontology with curation modifications for stopwords. The character limitation, however, can be expanded upon communication with the tool’s administrators.
-Taxonfinder32 is a web application for the extraction of scientific names mentioned in web pages. It features an API that was used in BHL for large scale annotations of taxonomic names until 2019, when it was replaced by GNfinder (Richard, 2020).
-The most notable NER tool, with CLI, for taxon names is the Global Names Finder (GNfinder) (Pyle, 2016; Mozzherin et al., 2022) which provides fuzzy search and is the underlying engine of most biodiversity text mining tools. It is in active development, deeming it a reliable tool for this work. The main command line tool is gnfinder find which returns two arrays (metadata and names). The metadata are the language, date of the execution of the command and total number of words. The data have one entry per identified string which contains the matched string, the returned name and the positional boundaries in character sequence.
+   The Global Names Recognition and Discovery\footnote{https://gnrd.globalnames.org/}
+(GNRD) tool, within Global Names Architecture
+\footnote{http://globalnames.org/} (GNA), is a web application used for the
+recognition of scientific names. It can use files such as PDF, images or
+Microsoft Office documents and one can still input URLs or even free-form text.
+It supports OCR transformation from PDF files using the tool
+Tesseract\footnote{\url{https://github.com/tesseract-ocr/tesseract}} and uses
+the GNfinder\footnote{https://github.com/gnames/gnfinder} discovery engine, in
+order to provide the list of names. It offers an API and can be installed
+locally. GNA is also used by the BHL platform to locate taxonomic names within
+the pages of its collections \citep{richard_improving_2020}.
+
+The test performed on the \citep{WoRMS:SourceID:40714} six-page PDF template
+provided 128 unique scientific names at species level, out of the 218
+identified through the manual curation
+(Figure S1)\todo{where to put the supplementary figures}. WoRMS Aphia IDs
+\citep{vandepitte_fishing_2015,martin_miguez_european_2019} are widely used and
+included in GNRD.
+
+The Biodiversity Observation Miner \footnote{\url{https://fgabriel1891.shinyapps.io/biodiversityobservationsminer/}}
+(BOM) is a web application based on R Shiny \footnote{https://shiny.rstudio.com/},
+also available on GitHub \footnote{https://github.com/fgabriel1891/BiodiversityObservationsMiner},
+that allows for the semi-automated discovery of biodiversity observations (e.g.
+biotic interactions, functional or behavioural traits and natural history
+descriptions) associated with the species scientific names \citep{10.3897/BDJ.7.e28737}.
+It uses the GNfinder discovery engine through the R package
+taxize \footnote{https://github.com/ropensci/taxize} \citep{chamberlain_taxize_2013}.
+BOM is still under development (April 2022) and an OCR processed PDF file must
+be used as input. The novelty of this tool is the provision of text snippets
+(Figure S2)\todo{another S figure} and the co-occurrence of words, accompanied
+with their count, to inform curators for terms that appear together in the
+document.
+
+TextAnnotator\footnote{http://www.textannotator.texttechnologylab.org/},
+provided by the specialised information service BIOfid\footnote{https://biofid.de/en/},
+is focused on information extraction about taxon names of vascular plants,
+birds, moths and butterflies, location and time mentioned in German texts
+\citep{driller_workflow_2018,driller_fast_2020}. This could be extended to
+other environments, languages and taxonomic groups with the BIOfid Github
+page\footnote{\url{https://github.com/FID-Biodiversity/BIOfid/tree/master/BIOfid-Dataset-NER}}
+serving as the starting point. The TextAnnotator - in beta version - accepts
+web pages or free text. Evidence of recent use of this tool was found in \citep{driller_fast_2020}.
+
+The Pensoft Annotator\footnote{https://annotator.pensoft.net/} is another beta
+web application that works with ontologies \citep{dimitrova_pensoft_2020}
+(Figure S3)\todo{another s figure}. The Pensoft Annotator has Relation
+Ontology\footnote{\url{https://github.com/oborel/obo-relations}} (RO) and ENVO
+built in but it is extendable to any ontology with curation modifications for
+stopwords. The character limitation, however, can be expanded upon
+communication with the tool’s administrators.
+
+Taxonfinder\footnote{http://taxonfinder.org/} is a web application for the
+extraction of scientific names mentioned in web pages. It features an API that
+was used in BHL for large scale annotations of taxonomic names until 2019,
+when it was replaced by GNfinder \citep{richard_improving_2020}.
+
+The most notable NER tool, with CLI, for taxon names is the Global Names Finder
+(GNfinder) \citep{pyle_towards_2016,mozzherin_gnamesgnfinder_2022} which
+provides fuzzy search and is the underlying engine of most biodiversity text
+mining tools. It is in active development, deeming it a reliable tool for this
+work. The main command line tool is gnfinder find which returns two arrays
+(metadata and names). The metadata are the language, date of the execution of
+the command and total number of words. The data have one entry per identified
+string which contains the matched string, the returned name and the positional
+boundaries in character sequence.
+
 In order to simultaneously extract taxa, environment and tissue mentions, the tool EXTRACT33 (Pafilis et al., 2017) implements the JensenLab tagger API (Jensen, 2016) with advanced dictionaries SPECIES-ORGANISMS34 (Pafilis et al., 2013), ENVIRONMENTS35 (Pafilis et al., 2015) and TISSUES36 (Palasca et al., 2018). It returns NCBI Taxonomy IDs (Schoch et al., 2020), ENVO terms and BRENDA IDs37, respectively to a file with 3 columns: tagged text, entity type and term ID. TaxoNERD (Le Guillarme and Thuiller, 2022), using Deep neural networks, scores higher than other NER tools on taxon name recognition based on golden standard corpora.
 An important NER system is the Stanford NER38 (Finkel et al., 2005) which recognises locations, persons and organisations in text. It has a generic scope but it can also assist in the curation of biodiversity data. The general tokenisation and normalisation procedures developed by the NLP Stanford team are the basis of many text mining tools. Additionally, the ClearEarth39 project
 
