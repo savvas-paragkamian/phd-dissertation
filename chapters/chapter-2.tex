@@ -210,25 +210,119 @@ developed using programming tools, is presented.
 \label{sec:deco-method}
 
     \subsection{Historical Literature Discovery}
-A search was conducted on BHL to amass the historical literature on BHL regarding marine biodiversity. Using the keywords “marine”, “ocean”, “fishery”, “fisheries” and “sea” on the items’ titles and their subjects (the scripts, results and documentation are available in this repository9) the documents available for information extraction were estimated. Subjects are categories provided for each title and multiple subjects can be assigned to each title. The items that were originally published before 1960 were selected, in order to include only historical documents, according to the definition included in the Introduction section. Furthermore, the taxon names on each page, which were identified by BHL using the Global Names parser tool (Mozzherin et al., 2022), were summarised for every document. Hence, summaries of the number of automatically identified taxon names were calculated along with the page number for each item. Additionally, OBIS’ historical datasets originally published before 1960 were downloaded and analysed. This analysis provides an approximation of the size of available marine historical literature compared to the already rescued documents. All analysis scripts were written in GNU AWK programming language and the visualisation scripts were written in R using the ggplot2 library (Wickham, 2016).
+A search was conducted on BHL to amass the historical literature on BHL
+regarding marine biodiversity. Using the keywords “marine”, “ocean”, “fishery”,
+“fisheries” and “sea” on the items’ titles and their subjects (the scripts,
+results and documentation are available in this
+repository \footnote{https://github.com/savvas-paragkamian/historical-marine-literature})
+the documents available for information extraction were estimated. Subjects are
+categories provided for each title and multiple subjects can be assigned to
+each title. The items that were originally published before 1960 were selected,
+in order to include only historical documents, according to the definition
+included in the Introduction section. Furthermore, the taxon names on each page,
+which were identified by BHL using the Global Names parser tool \citep{mozzherin_gnamesgnfinder_2022},
+were summarised for every document. Hence, summaries of the number of
+automatically identified taxon names were calculated along with the page number
+for each item. Additionally, OBIS’ historical datasets originally published
+before 1960 were downloaded and analysed. This analysis provides an
+approximation of the size of available marine historical literature compared to
+the already rescued documents. All analysis scripts were written in GNU AWK
+programming language and the visualisation scripts were written in R using
+the ggplot2 library \citep{wickham_ggplot2_2016}.
 
 
     \subsection{Historical Document Rescue Methodology}
-    Data curators thoroughly read each page of a document and insert the data into spreadsheets, mapping them to Darwin Core terms, adding metadata and creating a standard Darwin Core Archive10. This whole process, which is mostly manual,means reading the information (e.g. the occurrence of a specific taxon and its locality) and inputting it through typing to the corresponding cell of the data file. It is, as expected, a time- and resource-consuming procedure. Taxon names, traits, environments and localities can be identified as well and the transformation of these results to database identifiers (IDs), like Life Science Identifier11 (LSID) of Aphia IDs12, Encyclopedia of Life13 (EOL) IDs (Parr et al., 2014), Marine regions gazetteer IDs, marine species traits14 among others, can be facilitated through web applications and programming software. The Natural Environment Research Council15 Vocabulary Server, developed and hosted by the British Oceanographic Data Centre16 was used for mapping facts and additional measurements included in documents.
-Tools assist curators in this process for the NER, Entity Mapping, data structure manipulation and finally data upload steps. Curation tools can be categorised as GUI applications (computer programs and web applications) and CLI applications (interconnected programming tools, libraries and packages) (Figure 3). As an example, multiple page documents can be searched for taxon names in seconds, with technologies that find synonyms and fuzzy search for the OCR transformation misspelling. The interconnection and guidance of these steps still requires human interaction and correction.
-GUI applications are standalone applications or web applications, the latter support document upload and, once they are processed in a server, the results are delivered back to the user (Lamurias and Couto, 2019). CLI tools include programming packages and libraries of any programming language in UNIX (Linux and Mac operating systems - OS) and Windows OS. Even though programming packages and libraries are fast and scalable they require familiarity and expertise in CLI and programming which, on the other hand, takes effort and time because of its initial learning curve. The CLI tools, Application Programming Interfaces (APIs) and programming packages chosen during this study are open-source, are in active development, can process many documents and can be combined with other tools in some of the considered steps.
+    Data curators thoroughly read each page of a document and insert the data
+into spreadsheets, mapping them to Darwin Core terms, adding metadata and
+creating a standard Darwin Core Archive \footnote{https://manual.obis.org}.
+This whole process, which is mostly manual,means reading the information
+(e.g. the occurrence of a specific taxon and its locality) and inputting it
+through typing to the corresponding cell of the data file. It is, as expected,
+a time- and resource-consuming procedure. Taxon names, traits, environments
+and localities can be identified as well and the transformation of these
+results to database identifiers (IDs), like Life Science Identifier
+(LSID) \footnote{http://www.lsid.info/} of
+Aphia IDs \footnote{https://www.marinespecies.org/aphia.php?p=webservice},
+Encyclopedia of Life \footnote{https://eol.org/} (EOL)
+IDs \citep{parr_encyclopedia_2014}, Marine regions gazetteer IDs,
+marine species traits \footnote{https://www.marinespecies.org/traits/} among
+others, can be facilitated through web applications and programming software.
+The Natural Environment Research Council
+\footnote{\url{https://www.bodc.ac.uk/resources/products/web_services/vocab/}}
+Vocabulary Server, developed and hosted by the British Oceanographic Data
+Centre \footnote{https://www.bodc.ac.uk/} was used for mapping facts and
+additional measurements included in documents.
 
+   \begin{figure}[h]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/deco-figure-3.jpg}
+      \caption[Common problems encountered in historical data]{ The curation process of marine historical biodiversity documents: on the left column are the required steps starting from the scanned document (usually a PDF file) and ending with the data publishing step. Two approaches are presented: in the middle column are the GUI tools whereas on the right column are the CLI and/or the executable programming tools. Note that the list of given examples is non-exhaustive. Icons used from the Noun Project released under CC BY: Whale by Alina Oleynik, Fish by Asmuh, tag code by vigorn, pivot layout by paisan, Certificate by P Thanga Vignesh, web service by mynamepong}
+      \label{fig:curation-process}
+   \end{figure}
+
+Tools assist curators in this process for the NER, Entity Mapping, data
+structure manipulation and finally data upload steps. Curation tools can be
+categorised as GUI applications (computer programs and web applications) and
+CLI applications (interconnected programming tools, libraries and packages)
+(Figure \ref{fig:curation-process}). As an example, multiple page documents can
+be searched for taxon names in seconds, with technologies that find synonyms
+and fuzzy search for the OCR transformation misspelling. The interconnection
+and guidance of these steps still requires human interaction and correction.
+
+GUI applications are standalone applications or web applications, the latter
+support document upload and, once they are processed in a server, the results
+are delivered back to the user \citep{lamurias_text_2019}. CLI tools include
+programming packages and libraries of any programming language in UNIX (Linux
+and Mac operating systems - OS) and Windows OS. Even though programming
+packages and libraries are fast and scalable they require familiarity and
+expertise in CLI and programming which, on the other hand, takes effort and
+time because of its initial learning curve. The CLI tools,
+Application Programming Interfaces (APIs) and programming packages chosen during
+this study are open-source, are in active development, can process many
+documents and can be combined with other tools in some of the considered steps.
+
+   \begin{figure}[h]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/deco-figure-4.jpg}
+      \caption[Common problems encountered in historical data]{ A screenshot of the dataset used where the structure of the data and metadata provided can be seen (page 180 from \citep{WoRMS:SourceID:40714})}
+      \label{fig:forbes-screenshot}
+   \end{figure}
 
     \subsection{Case Study}
-The historical document “Report on the Mollusca and Radiata of the Aegean Sea: and on their Distribution, Considered as Bearing on Geology” by Forbes (1844) and its curated dataset were used as a case study for the tool usage description and evaluation (where applicable). More specifically, the six page long Appendix No. 1 (pages 180-185) document has been manually curated and published, thus serving as a golden standard (Figure 4). It was digitised and transcribed on 2009-04-22 by the Internet Archive17 and on 2021-09-30 it was manually curated (Mavraki et al., 2021) and published in MedOBIS18 (Arvanitidis et al., 2006). The rescue process resulted in a Darwin Core Archive file with 530 occurrence records, 17 unique sampling stations and 260 taxa, covering 217 species. The effort required from the information extraction task to data publishing was roughly 50 working days (8 hours per day) by a single data curator.
+The historical document “Report on the Mollusca and Radiata of the Aegean Sea:
+and on their Distribution, Considered as Bearing on Geology” by
+\citep{WoRMS:SourceID:40714} and its curated dataset were used as a case study
+for the tool usage description and evaluation (where applicable). More
+specifically, the six page long Appendix No. 1 (pages 180-185) document has
+been manually curated and published, thus serving as a golden standard
+(Figure \ref{fig:forbes-screenshot}). It was digitised and transcribed on
+2009-04-22 by the Internet Archive \footnote{https://archive.org/details/reportofbritisha43cor}
+and on 2021-09-30 it was manually curated \citep{mavraki_digitization_2021} and
+published in MedOBIS \footnote{\url{ https://www.lifewatchgreece.eu/?q=content/medobis}}
+\citep{arvanitidis_medobis_2006}. The rescue process resulted in a Darwin Core
+Archive file with 530 occurrence records, 17 unique sampling stations and
+260 taxa, covering 217 species. The effort required from the information
+extraction task to data publishing was roughly 50 working days (8 hours per day)
+by a single data curator.
 
     \subsection{Tool Usability Evaluation}
 The web applications mentioned in this work were tested in November 2020 in 
-two web browsers, Mozilla Firefox version 83 and Google Chrome version 87, both on Microsoft Windows 10 and MacOS 10.14.
+two web browsers, Mozilla Firefox version 83 and Google Chrome version 87,
+both on Microsoft Windows 10 and MacOS 10.14.
 
     \subsection{Demonstrator}
 
-    DECO was developed for the automation of biodiversity historical data curation. Its workflow combines image processing tools for scanned historical documents OCR with text mining technologies. It extracts biodiversity entities such as taxon names, environments as described in ENVO and tissue mentions. The extracted entities are further enriched with marine data identifiers from public APIs (e.g. WoRMS) and presented in a structured format as well as in report format with automated visualisation components. Furthermore, the workflow was implemented as a Docker container to ease its installation and its scalable application on large documents. DECO is under the GNU GPLv3 licence (for 3rd party components separate licences apply) and is available via the GitHub repository (https://github. com/lab42open-team/deco).
+DECO was developed for the automation of biodiversity historical data
+curation. Its workflow combines image processing tools for scanned historical
+documents OCR with text mining technologies. It extracts biodiversity entities
+such as taxon names, environments as described in ENVO and tissue mentions.
+The extracted entities are further enriched with marine data identifiers from
+public APIs (e.g. WoRMS) and presented in a structured format as well as in
+report format with automated visualisation components. Furthermore, the
+workflow was implemented as a Docker container to ease its installation and its
+scalable application on large documents. DECO is under the GNU GPLv3 licence
+(for 3rd party components separate licences apply) and is available via the
+GitHub repository (\url{https://github.com/lab42open-team/deco}).
 
 
 % DECO RESULTS
