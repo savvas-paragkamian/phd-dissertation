@@ -454,13 +454,67 @@ Curators create an IPT resource entry with the aforementioned data and associate
 \label{sec:deco-discussion}
 
    \subsection{Data Rescue Landscape}
-   The huge difference between rescued historical marine datasets uploaded on OBIS and the available digital items on BHL holdings reflects the challenges faced by curators and the minimal attention paid by the wider community, when compared to other data rescue activities (e.g. specimens, oceanographic data, etc.). Many publications lack basic metadata such as location, date, purpose or method of sampling. Tracing this information is limited as the data providers may (a) have forgotten these details, (b) be retired or (c) be deceased (Michener et al., 1997).
-The project ‘Census of Marine Life’ included, among its initial objectives, the rescue of historical marine data. Since then, there have been ongoing efforts within the EMODnet Biology project and LifeWatch Research Infrastructure, among others. Similarly, initiatives like Global Oceanographic Data Archaeology and Rescue67 (GODAR), Oceans Past Initiative68 (OPI) and RECovery of Logbooks And International Marine data69 (RECLAIM) (Wilkinson et al., 2011) rescue data from ship logs for oceanographic, climate and biodiversity data. More effort is however needed, as exemplified by museum specimen collections and herbaria digitisation (Mora et al., 2011; Wheeler et al., 2012). The museum specimen collections and herbaria digitisation has multiple projects and infrastructures like Distributed System of Scientific Collections70 (DiSSCo), Innovation and consolidation for large scale digitisation of natural heritage71 (ICEDIG), Integrated Digitized Biocollections72 (iDigBio) and Biodiversity Community Integrated Knowledge Library (BiCIKL) (Penev et al., 2022). Similar attention is required to rescue marine biodiversity data from historical documents that can contribute to a more complete global biodiversity synthesis (Heberling et al., 2021).
-In the last few years, an upsurge in web applications development regarding the enhancement of biodiversity data digitisation has been observed. This is an indication of the need for such initiatives. Advancements in the field of OCR, text mining and information technology promise semi-automation and acceleration of the curator’s work, which could transform the biodiversity curation field into an -omics like, interdisciplinary field that requires complementary skills of document handling, web technologies and text mining, to name but a few.
+   The huge difference between rescued historical marine datasets uploaded on
+OBIS and the available digital items on BHL holdings reflects the challenges
+faced by curators and the minimal attention paid by the wider community,
+when compared to other data rescue activities (e.g. specimens, oceanographic
+data, etc.). Many publications lack basic metadata such as location, date,
+purpose or method of sampling. Tracing this information is limited as the data
+providers may (a) have forgotten these details, (b) be retired or (c) be
+deceased \citep{michener_nongeospatial_1997}.
+
+The project ‘Census of Marine Life’ included, among its initial objectives, the
+rescue of historical marine data. Since then, there have been ongoing efforts
+within the EMODnet Biology project and LifeWatch Research Infrastructure, among
+others. Similarly, initiatives like Global Oceanographic Data Archaeology and
+Rescue \footnote{\url{https://www.ncei.noaa.gov/products/ocean-climate-laboratory/global-oceanographic-data-archaeology-and-rescue}}
+(GODAR), Oceans Past Initiative\footnote{https://oceanspast.org} (OPI) and
+RECovery of Logbooks And International Marine data
+\footnote{https://icoads.noaa.gov/reclaim/} (RECLAIM) \citep{wilkinson_recovery_2011}
+rescue data from ship logs for oceanographic, climate and biodiversity data.
+More effort is however needed, as exemplified by museum specimen collections
+and herbaria digitisation \citep{mora_how_2011,wheeler_mapping_2012}.
+The museum specimen collections and herbaria digitisation has multiple projects
+and infrastructures like Distributed System of Scientific
+Collections\footnote{https://www.dissco.eu} (DiSSCo), Innovation and
+consolidation for large scale digitisation of natural
+heritage\footnote{https://icedig.eu/} (ICEDIG), Integrated Digitized
+Biocollections\footnote{https://www.idigbio.org/} (iDigBio) and Biodiversity
+Community Integrated Knowledge Library (BiCIKL) \citep{penev_biodiversity_2022}.
+Similar attention is required to rescue marine biodiversity data from
+historical documents that can contribute to a more complete global biodiversity
+synthesis \citep{heberling_j_mason_data_2021}.
+
+In the last few years, an upsurge in web applications development regarding the
+enhancement of biodiversity data digitisation has been observed. This is an
+indication of the need for such initiatives. Advancements in the field of OCR,
+text mining and information technology promise semi-automation and acceleration
+of the curator’s work, which could transform the biodiversity curation field
+into an -omics like, interdisciplinary field that requires complementary skills
+of document handling, web technologies and text mining, to name but a few.
 
    \subsection{Interface Remarks}
-   Web applications provide the advantage of visual aids (e.g. highlights of NER terms), which improve the evaluation easiness and intuitiveness when using their graphical interfaces. Emerging web development technologies like R Shiny, Flask73 and Django74 among others, have simplified the processes of web application development. These applications are powerful and effective in most cases but are siloed in functionality and extendability, they also have many software dependencies which increase instability, when not maintained in the long term.
-CLI tools are a powerful way to implement scalable, reproducible and replicable workflows: scalable because the same code can be applied to multiple files (e.g. in this case, the various documents); reproducible and replicable because the code can be executed multiple times and with different types of documents, respectively. Furthermore, they usually have additional functionalities that have not been implemented in their web application counterparts. The difficulties regarding CLI tools’ dependency and portability are being resolved with the rise of containerised applications which include all system requirements and are distributed through web repositories like Docker Hub75, the downside is that without interactiveness they are cumbersome when assisting the curation process.
+   Web applications provide the advantage of visual aids (e.g. highlights of
+NER terms), which improve the evaluation easiness and intuitiveness when using
+their graphical interfaces. Emerging web development technologies like R Shiny,
+Flask \footnote{https://flask.palletsprojects.com/} and
+Django\footnote{https://www.djangoproject.com/} among others, have simplified
+the processes of web application development. These applications are powerful
+and effective in most cases but are siloed in functionality and extendability,
+they also have many software dependencies which increase instability, when not
+maintained in the long term.
+
+CLI tools are a powerful way to implement scalable, reproducible and replicable
+workflows: scalable because the same code can be applied to multiple files
+(e.g. in this case, the various documents); reproducible and replicable because
+the code can be executed multiple times and with different types of documents,
+respectively. Furthermore, they usually have additional functionalities that
+have not been implemented in their web application counterparts. The
+difficulties regarding CLI tools’ dependency and portability are being resolved
+with the rise of containerised applications which include all system
+requirements and are distributed through web repositories like Docker
+Hub\footnote{https://hub.docker.com/}, the downside is that without
+interactiveness they are cumbersome when assisting the curation process.
 
    \subsection{Sustainability}
    Tool usability relies on active development and continuous support and
