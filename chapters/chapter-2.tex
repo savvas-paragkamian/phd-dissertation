@@ -356,6 +356,7 @@ in Table \ref{table-tools}.
 
 
 \begin{table}[]
+\LARGE
 \resizebox{\textwidth}{!}{%
 \renewcommand{\arraystretch}{2}%
 \begin{tabular}{lllll}
@@ -462,17 +463,70 @@ the command and total number of words. The data have one entry per identified
 string which contains the matched string, the returned name and the positional
 boundaries in character sequence.
 
-In order to simultaneously extract taxa, environment and tissue mentions, the tool EXTRACT33 (Pafilis et al., 2017) implements the JensenLab tagger API (Jensen, 2016) with advanced dictionaries SPECIES-ORGANISMS34 (Pafilis et al., 2013), ENVIRONMENTS35 (Pafilis et al., 2015) and TISSUES36 (Palasca et al., 2018). It returns NCBI Taxonomy IDs (Schoch et al., 2020), ENVO terms and BRENDA IDs37, respectively to a file with 3 columns: tagged text, entity type and term ID. TaxoNERD (Le Guillarme and Thuiller, 2022), using Deep neural networks, scores higher than other NER tools on taxon name recognition based on golden standard corpora.
-An important NER system is the Stanford NER38 (Finkel et al., 2005) which recognises locations, persons and organisations in text. It has a generic scope but it can also assist in the curation of biodiversity data. The general tokenisation and normalisation procedures developed by the NLP Stanford team are the basis of many text mining tools. Additionally, the ClearEarth39 project
+In order to simultaneously extract taxa, environment and tissue mentions, the
+tool EXTRACT\footnote{https://extract.jensenlab.org/} \citep{pafilis_extract_2017}
+implements the JensenLab tagger API \citep{jensen2016one} with advanced
+dictionaries SPECIES-ORGANISMS\footnote{https://species.jensenlab.org} \citep{pafilis_species_2013},
+ENVIRONMENTS\footnote{https://environments.jensenlab.org}
+\citep{pafilis_environments_2015} and TISSUES\footnote{https://tissues.jensenlab.org/About}
+\citep{palasca_tissues_2018}. It returns NCBI Taxonomy IDs \citep{schoch2020ncbi},
+ENVO terms and BRENDA IDs\footnote{https://www.brenda-enzymes.org/},
+respectively to a file with 3 columns: tagged text, entity type and term ID.
+TaxoNERD \citep{le_guillarme_taxonerd_2022}, using Deep neural networks, scores
+higher than other NER tools on taxon name recognition based on golden standard
+corpora.
 
-(Thessen et al., 2018) can tag biotic and abiotic entities, localities, units and values in text and is built using the ClearTK NLP toolkit40 (Bethard et al., 2014). Upon installation it downloads multiple dictionaries and takes up to six gigabytes of space. It relies on Stanford NLP and other dependencies and provides a Python wrapper and a CLI.
-A common constraint in historical documents is the lack of coordinates from the sampling areas, so the data curator should provide the coordinates using the toponyms given. There are tools that enable this procedure, such as Marine Gazetteer. BioStor-Lite map41, which contains automated geolocation annotation of BHL documents (Page, 2019b), displays the points on the global map providing the user the ability to search for additional documents with selected points on the map or by drawing rectangles. The Edinburgh geoparser (Alex et al., 2015), a command line tool, recognises places in text and is one of very few tools to have this functionality. The Stanford NER system has been used as well (Stahlman and Sheffield, 2019) upon receiving training, for geolocation recognition.
+An important NER system is the Stanford NER\footnote{\url{https://nlp.stanford.edu/software/CRF-NER.html}}
+\citep{finkel_incorporating_2005} which recognises locations, persons and
+organisations in text. It has a generic scope but it can also assist in the
+curation of biodiversity data. The general tokenisation and normalisation
+procedures developed by the NLP Stanford team are the basis of many text mining
+tools. Additionally, the ClearEarth \footnote{http://github.com/ClearEarthProject/ClearEarthNLP}
+project \citep{thessen_automated_2018} can tag biotic and abiotic entities,
+localities, units and values in text and is built using the ClearTK NLP
+toolkit \footnote{http://cleartk.github.io/cleartk/} \citep{bethard_cleartk_2014}.
+Upon installation it downloads multiple dictionaries and takes up to six
+gigabytes of space. It relies on Stanford NLP and other dependencies and
+provides a Python wrapper and a CLI.
+
+A common constraint in historical documents is the lack of coordinates from the
+sampling areas, so the data curator should provide the coordinates using the
+toponyms given. There are tools that enable this procedure, such as Marine
+Gazetteer. BioStor-Lite map \footnote{https://biostor.org/map.php}, which
+contains automated geolocation annotation of BHL documents
+\citep{page_text-mining_2019}, displays the points on the global map providing
+the user the ability to search for additional documents with selected points on
+the map or by drawing rectangles. The Edinburgh geoparser
+\citep{alex_adapting_2015}, a command line tool, recognises places in text and
+is one of very few tools to have this functionality. The Stanford NER system
+has been used as well \citep{stahlman_geoparsing_2019} upon receiving training,
+for geolocation recognition.
 
    \subsubsection{Entity Normalisation and Mapping}
-   Mapping the information retrieved from the NER tools to different IDs is crucial for cross-platform interoperability, ensuring a good output requires the mapping services to be up to date.
-Taxon names can have multiple IDs depending on the platform, taxonomy common IDs, apart from the Linnaean system, are the LSID, NCBI taxonomy identifiers, EOL identifiers etc. For marine species LSIDs based on Aphia IDs are the most widely adopted.
-Ontobee42, a web server that links ontologies, is useful for the annotation of text to ontology IDs (Xiang et al., 2011). Curators can provide text snippets to Ontobee in order to retrieve ontology terms regarding environmental features (e.g. ENVO IDs), functional traits (e.g. PATO IDs43 (Tan et al., 2022)) or other ontology terms of interest. Currently, the use of entire documents is not recommended.
-The WoRMS Taxon match44 tool matches the taxon list found against the World Register of Marine Species (WoRMS) taxon LSID. Geographic regions are confirmed with the use of the georeference tool developed for the Marine Gazetteer, users can enter the location name in the gazetteer search field of the web interface and the result’s output includes the region’s boundaries and the corresponding MRGID.
+   Mapping the information retrieved from the NER tools to different IDs is
+crucial for cross-platform interoperability, ensuring a good output requires
+the mapping services to be up to date.
+
+Taxon names can have multiple IDs depending on the platform, taxonomy common
+IDs, apart from the Linnaean system, are the LSID, NCBI taxonomy identifiers,
+EOL identifiers etc. For marine species LSIDs based on Aphia IDs are the most
+widely adopted.
+
+Ontobee \footnote{https://www.ontobee.org/}, a web server that links
+ontologies, is useful for the annotation of text to ontology IDs
+\citep{xiang_ontobee_2011}. Curators can provide text snippets to Ontobee in
+order to retrieve ontology terms regarding environmental features (e.g. ENVO
+IDs), functional traits (e.g. PATO
+IDs\footnote{\url{https://github.com/pato-ontology}} \citep{tan_pato-ontologypato_2022})
+or other ontology terms of interest. Currently, the use of entire documents is
+not recommended.
+
+The WoRMS Taxon match\footnote{\url{http://www.marinespecies.org/aphia.php?p=match}}
+tool matches the taxon list found against the World Register of Marine Species
+(WoRMS) taxon LSID. Geographic regions are confirmed with the use of the
+georeference tool developed for the Marine Gazetteer, users can enter the
+location name in the gazetteer search field of the web interface and the
+result’s output includes the region’s boundaries and the corresponding MRGID.
 
 Most vocabulary servers provide APIs that map the different IDs. EMODnet Biology
 has adopted LSIDs for marine species based on Aphia IDs from the
@@ -489,23 +543,109 @@ addition, the GloBI \footnote{https://www.globalbioticinteractions.org/}
 provides entity mapping functionality via CLI \citep{poelen_global_2014}.
 
    \subsubsection{Data Transformations}
-   In this step, curators organise data according to the Darwin Core47 standard and extensions, such as extended Measurement or Fact Extension48, resulting in the creation of a Darwin Core Archive (see guidelines via the link49) with detailed sampling descriptors and terms based on controlled vocabularies.
-When considering data transformations, curators tend to use GUI spreadsheet applications like Microsoft Excel, Google Sheets and LibreOffice Calc. OpenRefine50 is a free, open source software that handles messy data and provides their transformation in various ways (Ham, 2013). The software’s main goal is to provide data cleaning, fixing and analysing while also enhancing the interconnection between different datasets (Verborgh and De Wilde, 2013).
-Automation can be used for this transformation through CLI tools like the R tidyverse51 package suite, Python pandas52 library and AWK programming language53, among others. These tools support fast and scalable tabular and text data handling, manipulations, merging and filtering. The choice of tools depends on the users’ familiarity, expertise and operating system.
+   In this step, curators organise data according to the Darwin
+Core\footnote{https://dwc.tdwg.org/} standard and extensions, such as extended
+Measurement or Fact Extension\footnote{https://manual.obis.org}, resulting in
+the creation of a Darwin Core Archive (see guidelines via the
+link\footnote{\url{https://www.gbif.org/tool/81282/darwin-core-archive-assistant}})
+with detailed sampling descriptors and terms based on controlled vocabularies.
+
+When considering data transformations, curators tend to use GUI spreadsheet
+applications like Microsoft Excel, Google Sheets and LibreOffice Calc.
+OpenRefine \citep{https://openrefine.org/} is a free, open source software that
+handles messy data and provides their transformation in various
+ways \citep{ham_openrefine_2013}. The software’s main goal is to provide data
+cleaning, fixing and analysing while also enhancing the interconnection between
+different datasets \citep{verborgh_using_2013}.
+
+Automation can be used for this transformation through CLI tools like the R
+tidyverse\footnote{https://www.tidyverse.org} package suite, Python
+pandas\footnote{https://pandas.pydata.org} library and AWK programming
+language\footnote{https://en.wikipedia.org/wiki/AWK}, among others. These tools
+support fast and scalable tabular and text data handling, manipulations,
+merging and filtering. The choice of tools depends on the users’ familiarity,
+expertise and operating system.
 
    \subsubsection{Quality Control}
-   Prior to publishing the dataset it is important to perform sanity checks and quality checks to ensure that the data comply with the Darwin Core Standards (Vandepitte et al., 2015). LifeWatch- EMODnetBiology QC tool54 allows the use of the IPT URL or the dataset’s DwC-A files and provides a list of the quality issues encountered, according to the EMODnet Biology criteria, as an output. It is available as a Web Application interface, based on RShiny, and as a R package55 (De Pooter and Perez-Perez, 2019). LifeWatch Belgium Data Services’56 has similar functionalities, providing a compilation of data services from plain text and spreadsheet files as input. The GBIF Data Validator57 combines all the above mentioned options, in terms of input, and provides a detailed summary of issues encountered in data and metadata. Open Refine, is equipped with a few extensions that can also check for taxon names and reconcile them.
-   The Obistools58 R package (Provoost et al., 2019), the basis of the LifeWatch-EMODnetBiology QC tool, can be used to check the coordinate boundaries and calculate centroids in cases where the exact location is unknown. It also checks for dates’ formats and events. It has comprehensive documentation and is in active development.
+Prior to publishing the dataset it is important to perform sanity checks and
+quality checks to ensure that the data comply with the Darwin Core
+Standards \citep{vandepitte_fishing_2015}. LifeWatch- EMODnetBiology QC
+tool\footnote{https://rshiny.lifewatch.be/BioCheck/} allows the use of the IPT
+URL or the dataset’s DwC-A files and provides a list of the quality issues
+encountered, according to the EMODnet Biology criteria, as an output. It is
+available as a Web Application interface, based on RShiny, and as a R
+package\footnote{https://github.com/EMODnet/EMODnetBiocheck} \citep{de_pooter_emodnetbiocheck_2019}.
+LifeWatch Belgium Data Services’\footnote{\url{https://www.lifewatch.be/data-services/}}
+has similar functionalities, providing a compilation of data services from
+plain text and spreadsheet files as input. The GBIF Data
+Validator\footnote{\url{http://gbif.org/tools/data-validator}} combines all the
+above mentioned options, in terms of input, and provides a detailed summary of
+issues encountered in data and metadata. Open Refine, is equipped with a few
+extensions that can also check for taxon names and reconcile them.
+
+The Obistools\footnote{https://github.com/iobis/obistools} R package \citep{provoost_iobisobistools_2019},
+the basis of the LifeWatch-EMODnetBiology QC tool, can be used to check the
+coordinate boundaries and calculate centroids in cases where the exact location
+is unknown. It also checks for dates’ formats and events. It has comprehensive
+documentation and is in active development.
 
    \subsubsection{Upload to Database}
-   The last step of the curation process is the publication of the standards’ compliant formatted data, which is facilitated by the Integrated Publishing Toolkit59 (IPT) software platform (Robertson et al., 2014).
-Curators create an IPT resource entry with the aforementioned data and associated metadata, which is then uploaded to an IPT instance, e.g. the MedOBIS60 Repository (Arvanitidis et al., 2006). In the case of MedOBIS, the IPT is subsequently harvested and made available by the central OBIS61 system, thus being a strong example and supporter of the ‘collect once, use many times’ concept.
+The last step of the curation process is the publication of the standards’
+compliant formatted data, which is facilitated by the Integrated Publishing
+Toolkit\footnote{https://www.gbif.org/ipt} (IPT) software platform \citep{robertson_gbif_2014}.
+Curators create an IPT resource entry with the aforementioned data and
+associated metadata, which is then uploaded to an IPT instance, e.g. the
+MedOBIS\footnote{\url{https://www.lifewatchgreece.eu/?q=content/medobis}}
+Repository \citep{arvanitidis_medobis_2006}. In the case of MedOBIS, the IPT is
+subsequently harvested and made available by the central OBIS\footnote{https://manual.obis.org}
+system, thus being a strong example and supporter of the ‘collect once, use
+many times’ concept.
 
    \subsubsection{One-Stop-Shop Tools}
-   The main all-in-one GUI computer program is Golden-GATE- imagine62, an updated version of GoldenGATE editor (Sautter et al., 2007). This tool supports OCR, NER and entity mapping, as described in the various steps of the curator’s workflow by providing annotations on PDF backed up by ontologies. It was developed by Plazi in 2015 and was last updated in 2016. Several recent biodiversity data related publications still report the use of it although it has not been updated since that time (Miller et al., 2019; Rivera-Quiroz and Miller, 2019; Agosti et al., 2020). Due to its open source nature, Golden-Gate-imagine can be further developed by any interested parties, as exemplified in GNfinder.
+The main all-in-one GUI computer program is Golden-GATE-
+imagine\footnote{\url{https://github.com/plazi/GoldenGATE-Imagine}}, an updated
+version of GoldenGATE editor \citep{sautter_semi-automated_2007}. This tool
+supports OCR, NER and entity mapping, as described in the various steps of the
+curator’s workflow by providing annotations on PDF backed up by ontologies. It
+was developed by Plazi in 2015 and was last updated in 2016. Several recent
+biodiversity data related publications still report the use of it although it
+has not been updated since that time
+\citep{10.3897/biss.3.37078,rivera-quiroz_extracting_2019,10.3897/biss.4.59178}.
+Due to its open source nature, Golden-Gate-imagine can be further developed by
+any interested parties, as exemplified in GNfinder.
+
+\begin{table}[ht]
+\large
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllll}
+\hline
+\textbf{OS} & \textbf{Source code - running time} & \textbf{Container - running time (minutes)} & \textbf{CPU} & \textbf{RAM (GB)} \\
+\hline
+macOS Catalina 10.15.7 & 28 minutes & Docker - 33’ & Intel(R) Core(TM) i5-4258U CPU @ 2.40GHz & 8 \\
+Linux Ubuntu 18.04.5 LTS (Bionic Beaver) & 20 minutes & Docker - 27’ & Intel(R) Pentium(R) Dual-Core CPU T4200 @ 2.00GHz & 4 \\
+Linux Debian server 4.9.0-8-amd64 & --- & Singularity - 20’ & Intel(R) Xeon(R) Silver 4114 CPU @ 2.20GHz & 4
+\end{tabular}%
+}
+\caption{The platforms where the CLI workflow was tested.Please note that running time can be affected by internet speed and stability due to API calls. The workflow uses open source tools and software libraries that are distributed across the major platforms; Linux, Mac and Windows.}
+\label{table-CLI}
+\end{table}
 
    \subsection{DECO: A Biodiversity Data Curation Programming Workflow}
-   A CLI workflow named DECO developed to demonstrate the advantages of the CLI approach, is available via this GitHub repository63. DECO has connected different tools of the programming curation steps (Figure 3). The execution is via a single command with a user-provided PDF file and the output are the taxon names and records from WoRMS API, taxonomy NCBI IDs and ENVO terms from the Environmental Ontology. Complementary tools (i.e. Ghostscript64, jq65 and ImageMagick66) and UNIX commands are also called in a single Bash script which unifies the workflow. In order to simplify the setup procedure of the workflow a Docker container and a Singularity container were developed that include all the dependencies and the code. The code and both containers have been tested on Ubuntu, Mac and Debian server (Table 2). For a larger corpus of biodiversity historical data the recommendation is to use the Singularity container in a remote server or a High Performance Computing (HPC) cluster.
+A CLI workflow named DECO developed to demonstrate the advantages of the CLI
+approach, is available via this GitHub repository\footnote{\url{https://github.com/lab42open-team/deco}}.
+DECO has connected different tools of the programming curation steps
+\ref{fig:curation-process}. The execution is via a single command with a
+user-provided PDF file and the output are the taxon names and records from
+WoRMS API, taxonomy NCBI IDs and ENVO terms from the Environmental Ontology.
+Complementary tools (i.e. Ghostscript\footnote{https://www.ghostscript.com/index.html},
+jq\footnote{https://stedolan.github.io/jq/} and ImageMagick\footnote{https://imagemagick.org/index.php})
+and UNIX commands are also called in a single Bash script which unifies
+the workflow. In order to simplify the setup procedure of the workflow a Docker
+container and a Singularity container were developed that include all the
+dependencies and the code. The code and both containers have been tested on
+Ubuntu, Mac and Debian server (Table \ref{table-CLI}). For a larger corpus of biodiversity
+historical data the recommendation is to use the Singularity container in a
+remote server or a High Performance Computing (HPC) cluster.
 
 % DECO DISCUSSION
 \section{Discussion}
