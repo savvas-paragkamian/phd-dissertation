@@ -6,6 +6,66 @@
 
 %% Saved with string encoding Unicode (UTF-8) 
 
+@Article{Callahan2017,
+author={Callahan, Benjamin J.
+and McMurdie, Paul J.
+and Holmes, Susan P.},
+title={Exact sequence variants should replace operational taxonomic units in marker-gene data analysis},
+journal={The ISME Journal},
+year={2017},
+month={Dec},
+day={01},
+volume={11},
+number={12},
+pages={2639--2643},
+abstract={Recent advances have made it possible to analyze high-throughput marker-gene sequencing data without resorting to the customary construction of molecular operational taxonomic units (OTUs): clusters of sequencing reads that differ by less than a fixed dissimilarity threshold. New methods control errors sufficiently such that amplicon sequence variants (ASVs) can be resolved exactly, down to the level of single-nucleotide differences over the sequenced gene region. The benefits of finer resolution are immediately apparent, and arguments for ASV methods have focused on their improved resolution. Less obvious, but we believe more important, are the broad benefits that derive from the status of ASVs as consistent labels with intrinsic biological meaning identified independently from a reference database. Here we discuss how these features grant ASVs the combined advantages of closed-reference OTUs---including computational costs that scale linearly with study size, simple merging between independently processed data sets, and forward prediction---and of de novo OTUs---including accurate measurement of diversity and applicability to communities lacking deep coverage in reference databases. We argue that the improvements in reusability, reproducibility and comprehensiveness are sufficiently great that ASVs should replace OTUs as the standard unit of marker-gene analysis and reporting.},
+issn={1751-7370},
+doi={10.1038/ismej.2017.119},
+url={https://doi.org/10.1038/ismej.2017.119}
+}
+
+
+@ARTICLE{Wei2021,
+  
+AUTHOR={Wei, Ze-Gang and Zhang, Xiao-Dan and Cao, Ming and Liu, Fei and Qian, Yu and Zhang, Shao-Wu},   
+	 
+TITLE={Comparison of Methods for Picking the Operational Taxonomic Units From Amplicon Sequences},      
+	
+JOURNAL={Frontiers in Microbiology},      
+	
+VOLUME={12},           
+	
+YEAR={2021},      
+	  
+URL={https://www.frontiersin.org/articles/10.3389/fmicb.2021.644012},       
+	
+DOI={10.3389/fmicb.2021.644012},      
+	
+ISSN={1664-302X},   
+   
+ABSTRACT={With the advent of next-generation sequencing technology, it has become convenient and cost efficient to thoroughly characterize the microbial diversity and taxonomic composition in various environmental samples. Millions of sequencing data can be generated, and how to utilize this enormous sequence resource has become a critical concern for microbial ecologists. One particular challenge is the OTUs (operational taxonomic units) picking in 16S rRNA sequence analysis. Lucky, this challenge can be directly addressed by sequence clustering that attempts to group similar sequences. Therefore, numerous clustering methods have been proposed to help to cluster 16S rRNA sequences into OTUs. However, each method has its clustering mechanism, and different methods produce diverse outputs. Even a slight parameter change for the same method can also generate distinct results, and how to choose an appropriate method has become a challenge for inexperienced users. A lot of time and resources can be wasted in selecting clustering tools and analyzing the clustering results. In this study, we introduced the recent advance of clustering methods for OTUs picking, which mainly focus on three aspects: (i) the principles of existing clustering algorithms, (ii) benchmark dataset construction for OTU picking and evaluation metrics, and (iii) the performance of different methods with various distance thresholds on benchmark datasets. This paper aims to assist biological researchers to select the reasonable clustering methods for analyzing their collected sequences and help algorithm developers to design more efficient sequences clustering methods.}
+}
+
+@article{Kopylova2016,
+author = {Evguenia Kopylova and Jose A. Navas-Molina and Céline Mercier and Zhenjiang Zech Xu and Frédéric Mahé and Yan He and Hong-Wei Zhou and Torbjørn Rognes and J. Gregory Caporaso and Rob Knight},
+title = {Open-Source Sequence Clustering Methods Improve the State Of the Art},
+journal = {mSystems},
+volume = {1},
+number = {1},
+pages = {10.1128/msystems.00003-15},
+year = {2016},
+doi = {10.1128/msystems.00003-15},
+
+URL = {https://journals.asm.org/doi/abs/10.1128/msystems.00003-15},
+eprint = {https://journals.asm.org/doi/pdf/10.1128/msystems.00003-15}
+,
+    abstract = { Massive collections of next-generation sequencing data call for fast, accurate, and easily accessible bioinformatics algorithms to perform sequence clustering. A comprehensive benchmark is presented, including open-source tools and the popular USEARCH suite. Simulated, mock, and environmental communities were used to analyze sensitivity, selectivity, species diversity (alpha and beta), and taxonomic composition. The results demonstrate that recent clustering algorithms can significantly improve accuracy and preserve estimated diversity without the application of aggressive filtering. Moreover, these tools are all open source, apply multiple levels of multithreading, and scale to the demands of modern next-generation sequencing data, which is essential for the analysis of massive multidisciplinary studies such as the Earth Microbiome Project (EMP) (J. A. Gilbert, J. K. Jansson, and R. Knight, BMC Biol 12:69, 2014, http://dx.doi.org/10.1186/s12915-014-0069-1
+). Sequence clustering is a common early step in amplicon-based microbial community analysis, when raw sequencing reads are clustered into operational taxonomic units (OTUs) to reduce the run time of subsequent analysis steps. Here, we evaluated the performance of recently released state-of-the-art open-source clustering software products, namely, OTUCLUST, Swarm, SUMACLUST, and SortMeRNA, against current principal options (UCLUST and USEARCH) in QIIME, hierarchical clustering methods in mothur, and USEARCH’s most recent clustering algorithm, UPARSE. All the latest open-source tools showed promising results, reporting up to 60\% fewer spurious OTUs than UCLUST, indicating that the underlying clustering algorithm can vastly reduce the number of these derived OTUs. Furthermore, we observed that stringent quality filtering, such as is done in UPARSE, can cause a significant underestimation of species abundance and diversity, leading to incorrect biological results. Swarm, SUMACLUST, and SortMeRNA have been included in the QIIME 1.9.0 release. 
+IMPORTANCE Massive collections of next-generation sequencing data call for fast, accurate, and easily accessible bioinformatics algorithms to perform sequence clustering. A comprehensive benchmark is presented, including open-source tools and the popular USEARCH suite. Simulated, mock, and environmental communities were used to analyze sensitivity, selectivity, species diversity (alpha and beta), and taxonomic composition. The results demonstrate that recent clustering algorithms can significantly improve accuracy and preserve estimated diversity without the application of aggressive filtering. Moreover, these tools are all open source, apply multiple levels of multithreading, and scale to the demands of modern next-generation sequencing data, which is essential for the analysis of massive multidisciplinary studies such as the Earth Microbiome Project (EMP) (J. A. Gilbert, J. K. Jansson, and R. Knight, BMC Biol 12:69, 2014, http://dx.doi.org/10.1186/s12915-014-0069-1
+). }
+}
+
+
 @article{Glassman2018,
 author = {Sydney I. Glassman and Jennifer B. H. Martiny},
 title = {Broadscale Ecological Patterns Are Robust to Use of Exact Sequence Variants versus Operational Taxonomic Units},
