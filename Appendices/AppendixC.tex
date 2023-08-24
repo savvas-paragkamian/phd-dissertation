@@ -5,12 +5,38 @@
 
 \section{Amplicon 16s rRNA is soil}
 
+\section{Errors in Amplicon Microbial Ecology}
+
+Microbial ecology based on amplicon 16s rRNA sequences has flourished since the
+2010s. The endeavor to understand the microbial world faces multiple challenges
+across the scientific workflow, from sampling to ecological analyses.
+
+Errors propagate starting with the sampling. There are contaminations from the
+people in the field, in the lab for the DNA extraction. 
+
+Instrument errors from PCR amplification and errors from sequencing.
+Approximation and computation errors from algoritms that cluster, measure similarities between
+sequences.
+
+Semantic errors because of reductionist approaches and/or oversimplification
+of the microbial communities
 
 \section{OTU vs ASV}
 
 Amplicon rRNA sequencing provides a collection of sequence reads per sample. 
 The ecological interpretation of the reads requires their transformation to
-taxonomy - sample matrix.
+taxonomic information. To do so there are two approaches currently in use, 
+the clustering method and the denoising method. With clustering reads are 
+grouped together and a best representing sequence is produced for each 
+cluster, i.e. the Operetional Taxonomic Unit. This approach makes the OTUs 
+from different runs, i.e executions of the algorithm and/or different studies
+incoperable and irreproducible.
+
+Currently, many studies propose the use of Amplicon Sequence Variants \citep{Callahan2017}. 
+ASVs are real biological sequences and can be used for comparison.
+
+The influence of the different methods to subsequent ecological analyses has
+little impact \citep{Glassman2018}.
 %   \begin{figure}[h]
 %      \centering
 %      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/deco-figure-S1.jpg}
