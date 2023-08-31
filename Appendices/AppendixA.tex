@@ -75,7 +75,7 @@ Consequently, scoring attributes require testing different measures and their pa
 
 \section*{Literature Channel}
 
-Scoring in the Literature channel is implemented as in STRING 9.1 \citep{franceschini2012string} and COMPARTMENTS \citep{binder2014compartments}, where the text mining method uses a three-step scoring scheme. 
+Scoring in the Literature channel is implemented as in STRING 9.1 \cite{franceschini2012string} and COMPARTMENTS \cite{binder2014compartments}, where the text mining method uses a three-step scoring scheme. 
 First, for each co-mention/co-occurrence between entities (e.g., Methanosarcina mazei with Sulfur carrier activity), a weighted count is calculated because of the complexity of the text.  
 
 
@@ -100,10 +100,10 @@ Subsequently, the co-occurrence score is calculated as follows:
 where $a = 0.6$ is a weighting factor, and the $c_{x,.}$, $c_{.,.}$, 
 $c_{.,y}$ are the weighted counts as shown in Table~\ref{table:pregoA1} estimated using the same Equation~\ref{eq:prego-score-2}. 
 This value of the weighting factor has been chosen because it has been optimized and benchmarked in various 
-applications of text mining~\citep{franceschini2012string, binder2014compartments, pletscher2015diseases}. 
+applications of text mining~\cite{franceschini2012string, binder2014compartments, pletscher2015diseases}. 
 The value of Equation~\ref{eq:prego-score-2} is sensitive to the increasing size of the number of documents (MEDLINE PubMed—PMC OA).
 Therefore, to obtain a more robust measure, the value of the score is transformed to $z$-score. 
-This transformation is elaborated in detail in the COMPARTMENTS resource \citep{binder2014compartments}. 
+This transformation is elaborated in detail in the COMPARTMENTS resource \cite{binder2014compartments}. 
 Finally, the confidence score is the $z$-score divided by two. Cases in which the scores exceed the (0,4] interval are capped to a maximum of 4 to reflect the uncertainty of the text mining pipeline.
 
 \section*{Environmental Samples Channel}

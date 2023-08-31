@@ -36,51 +36,51 @@ DOI: \href{https://doi.org/10.3390/microorganisms10020293}{10.3390/microorganism
 \section{Introduction}
 \label{sec:prego-intro}
 
-   Microbes are omnipresent and impact global ecosystem functions \citep{falkowski2008microbial} through their abundance \citep{bar2018biomass}, versatility \citep{delgado2016microbial}, and interactions \citep{rottjers2018hairballs}. 
-   These facts have inspired microbiologists from diverse scientific fields to study their genotype and phenotype \citep{morris2020linking}, their metabolism \citep{biggs2015metabolic}, and their interactions with the environment \citep{hall2018understanding}. 
+   Microbes are omnipresent and impact global ecosystem functions \cite{falkowski2008microbial} through their abundance \cite{bar2018biomass}, versatility \cite{delgado2016microbial}, and interactions \cite{rottjers2018hairballs}. 
+   These facts have inspired microbiologists from diverse scientific fields to study their genotype and phenotype \cite{morris2020linking}, their metabolism \cite{biggs2015metabolic}, and their interactions with the environment \cite{hall2018understanding}. 
    All this work has resulted in a wealth of knowledge available in the forms of literature and experimental data. Literature contains vast amounts of information in the free text form that overwhelms researchers. 
-   Advanced text mining methods \citep{jensen2006literature} have been developed to assist this issue. 
-   Experimental data and their metadata require mining \citep{delmont2011metagenomic} as well for their integration, mostly through metagenomic mining from online repositories. 
-   Hence, the combination of this knowledge about microbial life (who), their metabolic functions (what), and the environment they influence (where) is an important step to study ecosystem function \citep{raes2008molecular}.
+   Advanced text mining methods \cite{jensen2006literature} have been developed to assist this issue. 
+   Experimental data and their metadata require mining \cite{delmont2011metagenomic} as well for their integration, mostly through metagenomic mining from online repositories. 
+   Hence, the combination of this knowledge about microbial life (who), their metabolic functions (what), and the environment they influence (where) is an important step to study ecosystem function \cite{raes2008molecular}.
 
-   High Throughput Sequencing (HTS) has turned the page on microbial ecology studies \citep{nilsson2019mycobiome}. 
-   Over the past 20 years, both the taxonomic and the functional profiles of microbial communities from both local and large-scale regions (e.g., Tara Oceans \citep{pesant2015open}, Earth Microbiome \citep{gilbert2014earth}) are being accumulated at a higher and higher rate. 
-   Extreme environments, i.e., areas with high salinity, low pH, etc., are being studied, providing us with unprecedented insight \citep{shu2021microbial}. 
+   High Throughput Sequencing (HTS) has turned the page on microbial ecology studies \cite{nilsson2019mycobiome}. 
+   Over the past 20 years, both the taxonomic and the functional profiles of microbial communities from both local and large-scale regions (e.g., Tara Oceans \cite{pesant2015open}, Earth Microbiome \cite{gilbert2014earth}) are being accumulated at a higher and higher rate. 
+   Extreme environments, i.e., areas with high salinity, low pH, etc., are being studied, providing us with unprecedented insight \cite{shu2021microbial}. 
    Both amplicon and shotgun metagenomics studies have played a crucial part in this development. Latest technological breakthroughs, such as Metagenome-Assembled Genomes (MAGs) and Single Amplified Genomes (SAGs), are enhancing the assessment of the taxonomic and functional repertoire of microbiomes even further. 
    However, the mass use of these technologies and their consequent data have led to a number of needs and challenges, with metadata curation being among the most crucial ones.
 
    Standards-promoting communities, like \href{https://gensc.org/}{Genomic Standards Consortium (GSC)}\footnote{
       \href{https://gensc.org/}{https://gensc.org/}
-   }, their efforts, like Minimum Information about any (x) Sequence (MIxS) \citep{yilmaz2011minimum}, and projects endorsing those, like National Microbiome Data Collaborative (NMDC) \citep{wood2020national, vangay2021microbiome}, offer guidelines and best-practices to assist the annotation of microbial ecology samples. 
-   Controlled vocabularies and ontologies contribute to these efforts as they describe each subject area with formal terms \citep{walls2014semantics}. 
-   Environment types, for example, are described by the Environment Ontology (ENVO) \citep{buttigieg2016environment}. 
-   Other key biological aspects that have been captured include molecular functions (Gene Ontology Molecular Function (GOmf) \citep{ashburner2000gene, gene2021gene}, Enzyme Commission nomenclature \citep{noauthor_1999}, etc.), and the pathways carrying out different biological processes (GO Biological Process (GObp), MetaCyc \citep{caspi2020metacyc}, etc.). 
-   These knowledge structures, along with taxonomic centralized resources like the National Center for Biotechnology Information (NCBI) Taxonomy \citep{schoch2020ncbi}
-   and LPSN (List of Prokaryotic names with Standing in Nomenclature) \citep{parte2020list}, 
-   provide the means for a standardized representation of, for example, environments, process-oriented terms, and microbial taxa, respectively. Global-scale public resources (like MGnify \citep{mitchell2020mgnify}, 
-   JGI/IMG \citep{chen2021img}, 
-   MG-RAST \citep{wilke2015restful}) 
+   }, their efforts, like Minimum Information about any (x) Sequence (MIxS) \cite{yilmaz2011minimum}, and projects endorsing those, like National Microbiome Data Collaborative (NMDC) \cite{wood2020national, vangay2021microbiome}, offer guidelines and best-practices to assist the annotation of microbial ecology samples. 
+   Controlled vocabularies and ontologies contribute to these efforts as they describe each subject area with formal terms \cite{walls2014semantics}. 
+   Environment types, for example, are described by the Environment Ontology (ENVO) \cite{buttigieg2016environment}. 
+   Other key biological aspects that have been captured include molecular functions (Gene Ontology Molecular Function (GOmf) \cite{ashburner2000gene, gene2021gene}, Enzyme Commission nomenclature \cite{noauthor_1999}, etc.), and the pathways carrying out different biological processes (GO Biological Process (GObp), MetaCyc \cite{caspi2020metacyc}, etc.). 
+   These knowledge structures, along with taxonomic centralized resources like the National Center for Biotechnology Information (NCBI) Taxonomy \cite{schoch2020ncbi}
+   and LPSN (List of Prokaryotic names with Standing in Nomenclature) \cite{parte2020list}, 
+   provide the means for a standardized representation of, for example, environments, process-oriented terms, and microbial taxa, respectively. Global-scale public resources (like MGnify \cite{mitchell2020mgnify}, 
+   JGI/IMG \cite{chen2021img}, 
+   MG-RAST \cite{wilke2015restful}) 
    combine some of the aforementioned resources to support the collection, analysis, and distribution of multiple types of HTS data (e.g., amplicon, metagenomics, metatranscriptomics, etc.).
 
    Besides the data and the analyses \textit{per se}, the related scientific literature stores valuable information in billions of text lines. 
-   PubMed \citep{schoch2020ncbi} and PubMed Central (PMC) \citep{roberts2001pubmed} are gateways to relationships among microbes (\textit{who}), the environments they live in (\textit{where}) and their associated processes and functions (\textit{what}) hidden in text \citep{harmston2010papers}. 
-   Text mining (on both literature and metadata) can serve the extraction of these relationships. Named Entity Recognition (NER) can, for example, locate organism names \citep{pafilis2013species}, ENVO and GO terms \citep{pafilis2016extract} mentioned in text and map them to their corresponding identifiers. 
-   Association statistics, like co-mention analysis, can subsequently suggest ranked association among such entities \citep{von2005string, franceschini2012string}. 
-   The new era of omics has been interwoven with data integration \citep{gomez2014data} by bringing together scattered and fragmented pieces of information.
+   PubMed \cite{schoch2020ncbi} and PubMed Central (PMC) \cite{roberts2001pubmed} are gateways to relationships among microbes (\textit{who}), the environments they live in (\textit{where}) and their associated processes and functions (\textit{what}) hidden in text \cite{harmston2010papers}. 
+   Text mining (on both literature and metadata) can serve the extraction of these relationships. Named Entity Recognition (NER) can, for example, locate organism names \cite{pafilis2013species}, ENVO and GO terms \cite{pafilis2016extract} mentioned in text and map them to their corresponding identifiers. 
+   Association statistics, like co-mention analysis, can subsequently suggest ranked association among such entities \cite{von2005string, franceschini2012string}. 
+   The new era of omics has been interwoven with data integration \cite{gomez2014data} by bringing together scattered and fragmented pieces of information.
 
-   The time is ripe for tools that integrate all this knowledge and henceforth assist researchers to tackle major challenges like climate change \citep{cavicchioli2019scientists}, 
-   sustainability \citep{d2021microbiome}, 
-   and synthetic ecology \citep{conde2020synthetic}.
-   Many resources have emerged in this realm \citep{baltoumas2021biomolecule}, 
-   each one serving a specific purpose, such as BacDive \citep{reimer2019bac}. 
+   The time is ripe for tools that integrate all this knowledge and henceforth assist researchers to tackle major challenges like climate change \cite{cavicchioli2019scientists}, 
+   sustainability \cite{d2021microbiome}, 
+   and synthetic ecology \cite{conde2020synthetic}.
+   Many resources have emerged in this realm \cite{baltoumas2021biomolecule}, 
+   each one serving a specific purpose, such as BacDive \cite{reimer2019bac}. 
    BacDive is a large-scale curated database with prokaryotic information about phenotypic, morphological, and metabolic information. 
-   Other resources like Microbe Directory \citep{shaaban2018microbe}, 
-   Web of Microbes (WoM) \citep{kosina2018web}, 
+   Other resources like Microbe Directory \cite{shaaban2018microbe}, 
+   Web of Microbes (WoM) \cite{kosina2018web}, 
    and Microbial Interaction Network Database (\href{http://www.microbialnet.org/mind_home.html}{MIND}\footnote{
       \href{http://www.microbialnet.org/mind_home.html}{http://www.microbialnet.org/mind\_home.html}
    }) focus on microbial environmental conditions, metabolite interactions with microbes and microbe-microbe interactions, respectively. 
-   In addition, taking advantage of aforementioned resources, novel pipelines, e.g., \citep{tang2020tripartite}, are emerging with the aim to explore the network associations of who (microbial taxa) is performing what (microbial processes) and where (environments) directly using graph theory \citep{koutrouli2020guide}. 
-   These analyses and resources are important because microbiologists can enrich their data to explore hypotheses but also to identify potential gaps in knowledge regarding these associations \citep{li2021microbial}.
+   In addition, taking advantage of aforementioned resources, novel pipelines, e.g., \cite{tang2020tripartite}, are emerging with the aim to explore the network associations of who (microbial taxa) is performing what (microbial processes) and where (environments) directly using graph theory \cite{koutrouli2020guide}. 
+   These analyses and resources are important because microbiologists can enrich their data to explore hypotheses but also to identify potential gaps in knowledge regarding these associations \cite{li2021microbial}.
 
    Here, we present PREGO, a hypothesis generation web resource that is designed to be useful to microbiologists—in particular microbial ecologists and environmental microbiologists. 
    Its specific aims include: 
@@ -151,7 +151,7 @@ DOI: \href{https://doi.org/10.3390/microorganisms10020293}{10.3390/microorganism
    \end{table}
 
 
-   In cases in which the retrieved data and metadata are in text form, they are standardized to the aforementioned identifiers and taxonomies using Named Entity Recognition (NER) tools, namely the EXTRACT tagger \citep{pafilis2016extract, jensen2016one}. 
+   In cases in which the retrieved data and metadata are in text form, they are standardized to the aforementioned identifiers and taxonomies using Named Entity Recognition (NER) tools, namely the EXTRACT tagger \cite{pafilis2016extract, jensen2016one}. 
    In cases where data contain KEGG Orthology terms and/or Uniref identifiers, they are mapped to the respective GOmf using the mapping files available from the UniProt (see Appendix~\ref{app:A}). 
    Associations are extracted after the mapping and standardization of the entities from each resource (Figure~\ref{fig:prego-pipeline}, step 3).
    The association extraction pipeline is distinct for each channel and resource because of differences in the data type origin (see \texttt{prego\_gathering\_data} in the Availability of Supporting Source Codes section). 
@@ -167,14 +167,14 @@ DOI: \href{https://doi.org/10.3390/microorganisms10020293}{10.3390/microorganism
    \label{subsec:prego-tm}
 
    PREGO implements a text mining methodology to extract associations of the aforementioned entities from literature. 
-   The origin of text mining is a corpus that comprises scientific abstracts and full text articles from MEDLINE® and PubMed® and PubMed Central® Open Access Subset (PMC OA Subset) \citep{sayers2021database}, respectively. 
+   The origin of text mining is a corpus that comprises scientific abstracts and full text articles from MEDLINE® and PubMed® and PubMed Central® Open Access Subset (PMC OA Subset) \cite{sayers2021database}, respectively. 
    The building and periodic update of the corpus is possible through the NCBI File Transfer Protocol (FTP) services. 
    PREGO also has a dedicated text-mining dictionary (see Availability of Supporting Source Codes section) that contains the entities ids, names, synonyms, and neglected words (stop words). 
-   PREGO dictionary incorporates the ORGANISMS \citep{pafilis2013species} and ENVIRONMENTS \citep{pafilis2015environments} evaluated dictionaries as well as the experimental dictionaries of Gene Ontology Biological Process and Molecular Function.
-   Text mining is subsequently performed on the corpus using the dictionary through the EXTRACT tagger \citep{pafilis2016extract, jensen2016one}. 
+   PREGO dictionary incorporates the ORGANISMS \cite{pafilis2013species} and ENVIRONMENTS \cite{pafilis2015environments} evaluated dictionaries as well as the experimental dictionaries of Gene Ontology Biological Process and Molecular Function.
+   Text mining is subsequently performed on the corpus using the dictionary through the EXTRACT tagger \cite{pafilis2016extract, jensen2016one}. 
    The tagger recognizes the entities of the dictionary in each abstract and full text article and assigns their co-mentions with a score. 
    The score is sensitive to the text structural level of co-mention; higher to lower scoring when co-mention appears in the same sentence, then, in the same paragraph, and lastly in the same article. 
-   All these are integrated and normalized to a single score for each association, as implemented in STRING 9.1 \citep{franceschini2012string} (see Appendix ~\ref{app:C} for more details). 
+   All these are integrated and normalized to a single score for each association, as implemented in STRING 9.1 \cite{franceschini2012string} (see Appendix ~\ref{app:C} for more details). 
    In addition, the tagger extracts each mention in every article to provide the origin of each association it extracts.
 
 
@@ -182,22 +182,22 @@ DOI: \href{https://doi.org/10.3390/microorganisms10020293}{10.3390/microorganism
    \label{subsec:prego-isolates}
 
    Annotated genomes and isolates comprise the most trustworthy data in PREGO's knowledge base because they refer to a single species/strain and also have manually curated metadata. 
-   Among other data types, JGI-IMG \citep{chen2021img, mukherjee2021genomes} includes millions of genes from isolated genomes (isolates), SAGs and MAGs. Such annotations, along with their corresponding metadata, were collected using web-parsing technologies. Their metadata, describing their related environment/ecosystem, were tagged using the EXTRACT tagger to infer organisms—environments associations. The annotated KEGG terms were mapped to GOmf terms (see Appendix A). The GOmf terms were then used to extract organisms—processes associations.
+   Among other data types, JGI-IMG \cite{chen2021img, mukherjee2021genomes} includes millions of genes from isolated genomes (isolates), SAGs and MAGs. Such annotations, along with their corresponding metadata, were collected using web-parsing technologies. Their metadata, describing their related environment/ecosystem, were tagged using the EXTRACT tagger to infer organisms—environments associations. The annotated KEGG terms were mapped to GOmf terms (see Appendix A). The GOmf terms were then used to extract organisms—processes associations.
    
-   The Struo pipeline \citep{de2020struo} and its outcome when using the Genome Taxonomy DataBase (GTDB) (v.03-RS86) \citep{parks2020complete} was exploited to enrich organisms—processes associations. 
+   The Struo pipeline \cite{de2020struo} and its outcome when using the Genome Taxonomy DataBase (GTDB) (v.03-RS86) \cite{parks2020complete} was exploited to enrich organisms—processes associations. 
    A set of 21,276 representative genomes, accompanied by UniRef50 annotations, was retrieved using the provided FTP server. The annotations were then mapped to GOmf terms (see Appendix~\ref{app:A}). 
    Related GTDB genomes were mapped to their corresponding NCBI taxa (see Appendix~\ref{app:A}). 
    All associations extracted from these resources were assigned arbitrarily a confidence level of four out of five. 
    This score choice reflects the high-quality of these data and metadata.
    
-   In addition, BioProject data were integrated to PREGO using the NCBI FTP/e-utils services \citep{sayers2021database}. 
+   In addition, BioProject data were integrated to PREGO using the NCBI FTP/e-utils services \cite{sayers2021database}. 
    The BioProject ids that were integrated are the ones that have been assigned a PubMed abstract, a unicellular taxon, and Genome sequencing as data type. Then, using the text mining pipeline, associations were extracted connecting the assigned taxon with the rest of the entities that appear in the abstracts. This method resulted in associations that were assigned a confidence level of three (out of five) because of the combined method of curated data with text mining.
 
 
    \subsection{Environmental Samples}
    \label{subsec:prego-envsamples}
 
-   MGnify \citep{mitchell2020mgnify} and MG-RAST \citep{wilke2015restful} repositories provide a great number of public metagenomic records. 
+   MGnify \cite{mitchell2020mgnify} and MG-RAST \cite{wilke2015restful} repositories provide a great number of public metagenomic records. 
    In the PREGO framework, both amplicon and shotgun metagenomic analyses are retrieved periodically along with their corresponding metadata. 
    Data retrieval from these resources is possible from their Application Programming Interfaces (APIs). Marker gene analyses are retrieved and by measuring
    the co-occurrence of taxa present in the various environmental types (e.g., biomes, materials, features, etc.) organisms—environments associations are extracted. 
@@ -214,10 +214,10 @@ DOI: \href{https://doi.org/10.3390/microorganisms10020293}{10.3390/microorganism
    \label{subsec:prego-seq-search}
 
    In the case of organisms, PREGO enables sequence-based queries, meaning a sequence (amplicon) can be used as an entry point like it was a taxon name. 
-   To this end, a custom database was built using a set of reference custom databases for four commonly used marker genes. For 16S and 18S rRNA, the SILVA database (v.138) \citep{quast_silva_2013} and the PR2 database (version\_4.14.0) \citep{guillou2012protist, del2018eukref} were used. 
-   Cytochrome c oxidase I (COI) \citep{suter2021capturing} is another commonly used marker gene; 
-   for this reason, Midori 2 (version GB243) \citep{leray2018midori} was integrated in PREGO's custom database. 
-   Finally, for the Internal transcribed spacer (ITS), common in studies focusing on Fungi, the Unite (version 8.3, accessed 10.05.2021) \citep{nilsson2019unite} database was added.
+   To this end, a custom database was built using a set of reference custom databases for four commonly used marker genes. For 16S and 18S rRNA, the SILVA database (v.138) \cite{quast_silva_2013} and the PR2 database (version\_4.14.0) \cite{guillou2012protist, del2018eukref} were used. 
+   Cytochrome c oxidase I (COI) \cite{suter2021capturing} is another commonly used marker gene; 
+   for this reason, Midori 2 (version GB243) \cite{leray2018midori} was integrated in PREGO's custom database. 
+   Finally, for the Internal transcribed spacer (ITS), common in studies focusing on Fungi, the Unite (version 8.3, accessed 10.05.2021) \cite{nilsson2019unite} database was added.
 
 
 
@@ -313,7 +313,7 @@ DOI: \href{https://doi.org/10.3390/microorganisms10020293}{10.3390/microorganism
    \subsection*{\textit{Which Environments Are Related to a Taxon?}}
    \label{subsec:envo-taxa}
 
-   Based on Pavloudi et al. (2017) \citep{pavloudi2017diversity}, several bacterial and archaeal SRM were found in lagoonal sediments, after amplifying and sequencing the dissimilatory sulfite reductase $\beta$-subunit (dsrB). 
+   Based on Pavloudi et al. (2017) \cite{pavloudi2017diversity}, several bacterial and archaeal SRM were found in lagoonal sediments, after amplifying and sequencing the dissimilatory sulfite reductase $\beta$-subunit (dsrB). 
    Using PREGO for the case of Desulfobacteraceae, the family in which the majority of the observed OTUs of the study belonged to, several environmental types similar to lagoons were retrieved from both the \textit{Literature} and the \textit{Environmental samples} channels (Figure~\ref{fig:prego_ui_resources}a,b). Moreover, most of them had a high $z$-score, such as \textit{"sediment"}, \textit{"sludge"}, and \textit{"activated sludge"}. 
    Several dissimilar environmental types were associated with Desulfobacteraceae, e.g., \textit{"oil reservoir"} indicating them as potential environments where sulfate reduction takes place. 
    However, the presence of taxa within that family in different environments, from \textit{"sea water"} to \textit{"forest"} and \textit{"Wastewater treatment plant"}, may suggest that this family has ubiquitous representatives in diverse conditions.
@@ -481,7 +481,7 @@ DOI: \href{https://doi.org/10.3390/microorganisms10020293}{10.3390/microorganism
 
    Additionally, the text mining methodology of the Literature channel has retrieved most of the entities present in PREGO knowledge base (Table~\ref{table:prego2}). 
    A significant contribution to the taxa with associations is due to the PMC OA processing by the text mining pipeline of the Literature channel. 
-   This is in-line with reports in other applications of text mining when using full text articles \citep{westergaard2018comprehensive}. 
+   This is in-line with reports in other applications of text mining when using full text articles \cite{westergaard2018comprehensive}. 
    However, the resulting associations are suggestive because of the text mining nature, and therefore subject for further review by the users.
 
    \subsection{Related Tools' Functionality and Content}
@@ -540,21 +540,21 @@ DOI: \href{https://doi.org/10.3390/microorganisms10020293}{10.3390/microorganism
 
    PREGO is a user-friendly association mining and sharing platform. 
    Its modular web-architecture grants it the flexibility for further improvements in the aforementioned aspects, namely: 
-   source datasets, user interface, entity, and association scope expansion. Regarding datasets, additional data, such as transcriptomes from MGnify and other records annotated with metadata from studies in \href{https://ebi-metagenomics.github.io/blog/2021/11/17/Publication-Annotations/}{EuroPMC}, accessed on 24 December 2021) \citep{ferguson2021europe}, could be incorporated. 
-   Similarly, the \href{https://data.microbiomedata.org/}{NMDC data platform standards-compliant annotated records}\footnote{\href{https://data.microbiomedata.org/}{https://data.microbiomedata.org/}} (accessed on 24 December 2021) could serve as an additional resource with its high-quality metadata \citep{wood2020national, vangay2021microbiome}. 
+   source datasets, user interface, entity, and association scope expansion. Regarding datasets, additional data, such as transcriptomes from MGnify and other records annotated with metadata from studies in \href{https://ebi-metagenomics.github.io/blog/2021/11/17/Publication-Annotations/}{EuroPMC}, accessed on 24 December 2021) \cite{ferguson2021europe}, could be incorporated. 
+   Similarly, the \href{https://data.microbiomedata.org/}{NMDC data platform standards-compliant annotated records}\footnote{\href{https://data.microbiomedata.org/}{https://data.microbiomedata.org/}} (accessed on 24 December 2021) could serve as an additional resource with its high-quality metadata \cite{wood2020national, vangay2021microbiome}. 
    Reciprocally, if requested, pertinent literature and association summaries could be programmatically offered to interested third parties.
 
    Furthermore, the entity types supported by the PREGO system could be expanded. For example, GOmf terms could be upgraded as a search-entry point to the system. 
-   In addition, disease and tissue describing terms, already supported by the PREGO-underlying EXTRACT system \citep{pafilis2016extract}, could enter the PREGO ecosystem of associated entities. 
+   In addition, disease and tissue describing terms, already supported by the PREGO-underlying EXTRACT system \cite{pafilis2016extract}, could enter the PREGO ecosystem of associated entities. 
    From a statistics perspective, the calculation of a combined association score, when an association is reported by more than one channel of information, could be another feature to add.
 
    The user interface can be enhanced to support multiple entity and/or sequence queries, instead of single ones. 
-   Sequences can be processed by taxonomy assignment pipelines (e.g., PEMA \citep{zafeiropoulos2020pema}) and be converted into searching PREGO for associations. 
-   In addition, network visualization tools, like Arena3Dweb \citep{karatzas2021arena3dweb}, could allow interactive browsing of associations through multi-layered graphs. 
-   Enrichment analyses, like those performed by OnTheFly2.0 \citep{baltoumas2021onthefly2} or Flame \citep{thanati2021flame}, 
+   Sequences can be processed by taxonomy assignment pipelines (e.g., PEMA \cite{zafeiropoulos2020pema}) and be converted into searching PREGO for associations. 
+   In addition, network visualization tools, like Arena3Dweb \cite{karatzas2021arena3dweb}, could allow interactive browsing of associations through multi-layered graphs. 
+   Enrichment analyses, like those performed by OnTheFly2.0 \cite{baltoumas2021onthefly2} or Flame \cite{thanati2021flame}, 
    can be incorporated. 
-   Omics data analysis pipelines, like MiBiOmics \citep{zoppi2021mibiomics}, environment associations with sequences using SeqEnv \citep{sinclair2016seqenv} and biogeochemical associations with metagenomic data with DiTing~\citep{xue_diting_2021} could be enabled by comparing the associations pertinent to different groups of entities. 
-   The computationally intensive tasks of multiple queries, taxonomy assignments to sequences and enrichment analysis could be offered by our in-house High Performance Computing facility (https://hpc.hcmr.gr/, accessed on 24 December 2021) \citep{zafeiropoulos_0s_2021} in synergy with pertinent Research Infrastructures like \href{https://elixir-europe.org}{ELIXIR}\footnote{\href{https://elixir-europe.org}{https://elixir-europe.org}} (accessed on 24 December 2021) and \href{https://www.lifewatch.eu/}{LifeWatch ERIC}\footnote{\href{https://www.lifewatch.eu/}{https://www.lifewatch.eu/}} (accessed on 24 December 2021).
+   Omics data analysis pipelines, like MiBiOmics \cite{zoppi2021mibiomics}, environment associations with sequences using SeqEnv \cite{sinclair2016seqenv} and biogeochemical associations with metagenomic data with DiTing~\cite{xue_diting_2021} could be enabled by comparing the associations pertinent to different groups of entities. 
+   The computationally intensive tasks of multiple queries, taxonomy assignments to sequences and enrichment analysis could be offered by our in-house High Performance Computing facility (https://hpc.hcmr.gr/, accessed on 24 December 2021) \cite{zafeiropoulos_0s_2021} in synergy with pertinent Research Infrastructures like \href{https://elixir-europe.org}{ELIXIR}\footnote{\href{https://elixir-europe.org}{https://elixir-europe.org}} (accessed on 24 December 2021) and \href{https://www.lifewatch.eu/}{LifeWatch ERIC}\footnote{\href{https://www.lifewatch.eu/}{https://www.lifewatch.eu/}} (accessed on 24 December 2021).
 
 
 
