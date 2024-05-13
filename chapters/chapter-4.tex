@@ -50,9 +50,9 @@ Bacteria and archaea are considered major drivers for the functionality of soil.
 They infuence and are infuenced by their environment and their community structure 
 defies their macroscopic functionality \parencite{Bahram2018}.
 Global soil microbiome studies have been employed to decipher soil microbiome
-compositions \parencite{thompson2017a-communal, Delgado-Baquerizo2018, Labouyrie2023},
-functions \parencite{Bahram2018} and biogeography \parencite{Martiny2006, Guerra2020}.
-These results showed the remarkable diversity in soils yet there are blind spots \parencite{Guerra2020}
+compositions \parencite{thompson2017a-communal, Delgado-Baquerizo-atlas, Labouyrie2023},
+functions \parencite{Bahram2018} and biogeography \parencite{Martiny2006, guerra2020Blind}.
+These results showed the remarkable diversity in soils yet there are blind spots \parencite{guerra2020Blind}
 and these sampling are sparce when considering samples per area density. One of most resolute
 study is by \parencite{Karimi2020} which exemplified the 
 vast complexity of soil bacterial communuties and the requirement of
@@ -76,7 +76,7 @@ fauna \parencite{Sidiropoulos_Polymeni_Legakis_2017,Anastasiou2018Tenebrionid}, 
 Crete is home to the only endemic mammal of Greece, the Cretan shrew (\textit{Crocidura zimmermanni}),
 more than 350 endemic arthropods \parencite{bolanakis2024} and 183 endemic plants \parencite{Kougioumoutzis2020}
 among them a tree \textit{Zelkova abelicea}. Multifacet factors have shaped the
-biodiversity of the island, for example the sharp elevation gradient \parencite{trigas2013, FAZAN2017},
+biodiversity of the island, for example the sharp elevation gradient \parencite{trigas2013elevational, FAZAN2017},
 the complex evolutionary history \parencite{POULAKAKIS2002} and the human - nature
 interactions over thousands of years \parencite{Vogiatzakis2008_med, Sfenthourakis2017}.
 The major threats of human activities are becoming apperend in the island's ecosystems,
@@ -98,7 +98,7 @@ Database for Europe (SPADE) \parencite{Hiederer2006}.
 
 Data and metadata of these samplings are stored in different databases, yet 
 great effort from these distinct communities have led to establishing standards
-to enable FAIR data \parencite{Wilkinson2016}. For amplicon sequences the Genome Standards
+to enable FAIR data \parencite{wilkinson2016the-fair}. For amplicon sequences the Genome Standards
 Consortium \parencite{Field2011} has established the MIMARKS \parencite{yilmaz2011minimum}
 standards among others, and has been a advocate for open and unrestricted data \parencite{Amann2019}.
 Examples of rich metadata and platforms of hosting open data and digital soil maps are the 
@@ -148,7 +148,7 @@ Amplicon Sequence Variants were inferred using DADA2 \parencite{Callahan2016} fo
 filtering, denoising and chimeric reads removal. Normalisation of the reads
 across samples was implemented with the SRS R package \parencite{Beule2020}. Samples
 with less than 10000 reads were removed. ASVs were assigned to taxonomy using 
-DADA2 with Silva 138 \parencite{Quast2012}.
+DADA2 with Silva 138 \parencite{quast_silva_2013}.
 
 \subsection{Crete data cube}\label{data}
 
@@ -176,20 +176,20 @@ In addition, we filtered these taxa that appeared in SOSO samples and had more t
 SOSO mean relative abundance. The subsequent network analyses were carried out
 with the igraph R package \parencite{Csardi2006}.
 
-For taxa function annotation we used the manually curated FAPROTAX database and python script \parencite{Louca2016}.
+For taxa function annotation we used the manually curated FAPROTAX database and python script \parencite{loucaDecouplingFunctionTaxonomy2016}.
 Whereas for the differential abundance analysis with ANCOM-BC2 R package \parencite{Lin2023}.
 Numerical ecology analyses,e.g diversity indices, NMDS, PERMANOVA we calculated
-with the vegan R package \parencite{vegan}.
+with the vegan R package \parencite{oksanen2024vegan}.
 For PCoA ordination we used ape R packege \parencite{Paradis2004} and UMAP python library\parencite{mcinnes2018umap-software}.
 
 \subsection{Tools}\label{Coding environment}
-%PEMA for OTU inferrence \parencite{Zafeiropoulos2020}
-%U-CIE R package for coloring 3 dimentional data \parencite{Koutrouli2022}
+PEMA for OTU inferrence \parencite{zafeiropoulos2020pema}
+U-CIE R package for coloring 3 dimentional data \parencite{Koutrouli2022}
 
-Visualisation was implemented with ggplot2 \parencite{ggplot22016} and pheatmap \parencite{Kolde2019}.
+Visualisation was implemented with ggplot2 \parencite{wickham_ggplot2_2016} and pheatmap \parencite{Kolde2019}.
 The environment we worked had Python 3.11.4, R version 4.3.2 \parencite{rcoreteam}
 and Julia language version 1.9.3 \parencite{Julia-2017}in Julia language version 1.9.3 \parencite{Julia-2017}.
-Finally, computations were performed on HPC infrastrure of HCMR \parencite{Zafeiropoulos2021}.
+Finally, computations were performed on HPC infrastrure of HCMR \parencite{zafeiropoulos_0s_2021}.
 
 \section{Results}\label{results}
 
@@ -296,7 +296,7 @@ processes and interactions of fauna, flora and microbes \parencite{Fry2019, Crow
 Positive and negative in soils \parencite{Liu2024}
 
 Global hotspots \parencite{Guerra2022}
-and soil conservation instead of specific species \parencite{Guerra2021}
+and soil conservation instead of specific species \parencite{guerra2021tracking}
 and policy \parencite{KONINGER2022} across countries \parencite{Putten2023} and in Greece \parencite{SCHISMENOS2022100035}
 
 "A holistic perspective on soil architecture is needed as a key to soil functions" \parencite{philippot2024the-interplay}
@@ -304,7 +304,7 @@ and policy \parencite{KONINGER2022} across countries \parencite{Putten2023} and 
 
 Mountain peaks soil microbes \parencite{Adamczyk2019}
 Even though amplicon studies in soil should be interpeted with caution \parencite{alteio2021} they 
-can act as early warning signals towards public health conserns \parencite{Banerjee2023}.
+can act as early warning signals towards public health conserns \parencite{banerjee2023Soil}.
 
 The pillar of data integration is the unrestricted open data across disciplines and 
 the open source software.
