@@ -21,7 +21,7 @@
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
-
+%\PassOptionsToPackage{english,greek}{babel}
 \documentclass[
 11pt, % The default document font size, options: 10pt, 11pt, 12pt
 %oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
@@ -40,6 +40,8 @@ headsepline, % Uncomment to get a line under the header
 
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
+%\usepackage{textgreek}
+%\usepackage[main=english,greek]{babel}
 
 \usepackage{mathpazo} % Use the Palatino font by default
 
@@ -85,7 +87,7 @@ linkcolor=teal
 \usepackage{amssymb}
 
 % To have todo notes
-\usepackage{todonotes}
+%\usepackage{todonotes}
 
 % To have part A, B etc in a figure
 \usepackage{subcaption}
@@ -171,16 +173,20 @@ linkcolor=teal
 \href{http://www.johnsmith.com}{\authorname} % Author name - remove the \href bracket to remove the link
 \end{flushleft}
 \end{minipage}
-\begin{minipage}[t]{0.4\textwidth}
+\begin{minipage}[t]{0.5\textwidth}
 \begin{flushright} \large
 \emph{Doctoral Advisory Committee:} \\
 \href{https://www.imbb.forth.gr/imbb-people/en/sarris-members/item/2695-dr-panagiotis-f-sarris}{Prof. Panagiotis F. \textsc{Sarris}}\\ % Supervisor name - remove the \href bracket to remove the link  
 \href{http://lab42open.hcmr.gr/people/evangelospafilis/}{Dr Evangelos \textsc{Pafilis}}\\ % Supervisor name - remove the \href bracket to remove the link  
 \href{https://users.auth.gr/~iantonio/MEMBERSAntoniou.html}{Prof. Ioannis \textsc{Antoniou}}\\ % Supervisor name - remove the \href bracket to remove the link  
+\emph{Examination Committee:} \\
+\href{https://dinalika.weebly.com}{Prof. Dina \textsc{Lika}}\\ % Supervisor name - remove the \href bracket to remove the link  
+\href{https://www.biology.uoc.gr/index.php/en/personnel/faculty-members?view=article&id=246:ladoukakis-emmanuel&catid=27:dep-en-gb}{Prof. Emmanuel \textsc{Ladoukakis}}\\ % Supervisor name - remove the \href bracket to remove the link  
+\href{http://pop-gen.eu/wordpress/people}{Prof. Pavlos \textsc{Pavlidis}}\\ % Supervisor name - remove the \href bracket to remove the link  
+\href{https://www.medschool.umaryland.edu/profiles/holm-johanna/}{Prof. Johanna \textsc{Holms}}\\ % Supervisor name - remove the \href bracket to remove the link  
 \end{flushright}
 \end{minipage}\\[1cm]
  
-\vfill
 
 \large \textit{A thesis submitted in fulfillment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
 \textit{in the}\\[0.4cm]
@@ -189,12 +195,10 @@ linkcolor=teal
 \textit{and the}\\[0.4cm]
 \groupname\\[0.5cm] % Research group name and department name
  
-\vfill
 %%
-\vspace{3cm}
+\vspace{1cm}
 {\large \today}\\[4cm] % Date
  
-\vfill
 \end{center}
 \end{titlepage}
 
@@ -241,10 +245,163 @@ linkcolor=teal
 \begin{abstract}
 \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
 
-Data integration
+To comprehend ecosystem functioning, it's imperative to discern
+the processes occurring in various environments (where) and the organisms
+responsible for them (who). Ecosystems form complex associations of taxa,
+abiotic parameters and physical characteristics of the materials. For example,
+the soil ecosystem holds 10 billion cells in each gram. The texture and the 
+chemistry of the soil affects and is affected by the existing taxa across the
+tree of life, plants, arthropods, bacteria, fungi etc. Regarding microbes and
+metagenomics there is a wealth of data in open omics databeses and in the 
+literature. Yet, all this information is inhomogenous and spread in separate 
+resources. PREGO, a comprehensive knowledge base, amalgamates
+text mining and data integration techniques to extract these what-where-who
+associations from scattered scientific literature and omics repositories. It
+identifies microorganisms, biological processes, and environmental types,
+mapping them to ontology terms. Through text and metagenomics data analysis,
+PREGO extracts associations, assigning confidence levels via a scoring scheme.
+With 364,508 microbial taxa, 1090 environmental types, 15,091 biological processes,
+and 7,971 molecular functions, PREGO aims to aid researchers in experiment
+design and interpretation. Additionally, it facilitates exploration of
+environment-process-microbe associations.
 
-The Thesis Abstract is written here (and usually kept to just this page). 
-The page is kept centered vertically so can expand into the blank space above the title too
+Furthermore, to understand the current status of ecosystems is important to 
+know their past conditions. Historical biodiversity documents are crucial for
+long-term data cycles but pose challenges in data curation due to their historical
+context. The data rescue process involves document digitization, transcription, information extraction
+using text mining tools, and publication to standardized formats. Information
+Extraction (IE) tools, evolved over the years, recognize entities in text, aiding in curation.
+To this end, this work expanded on IE from a marine historical biodiversity perspective,
+orchestrating tools to provide a unified methodology. The classification of
+tools enables curators to choose based on their needs. A new tool, DECO, is
+introduced, aiming to enhance the data rescue process in biodiversity research.
+
+Studying ecosystems past and current conditions has made apperent the need for 
+conservation actions because there are under multiple threats.
+An example of ecosystem collapse is the arthropod decline, a globally documented
+trend that remains insufficiently handled by the society. In
+Crete, a biodiversity hotspot, research on its arthropod fauna dates back centuries.
+Here we investigate the conservation status of the Cretan Arthropods using
+Preliminary Automated Conservation Assessments (PACA) and the overlap of Cretan
+Arthropod distributions with the Natura 2000 protected areas. Moreover we
+investigate their endemicity hotspots and propose candidate Key Biodiversity Areas.
+In order to perform these analyses, we assembled occurrences of the endemic
+Arthropods in Crete located in the collections of the Natural History Museum of
+Crete together with literature data. Conservation status assessments using PACA
+reveal potential threats to 75\% of endemic arthropods.
+Endemic taxa hotspots and candidate Key Biodiversity Areas are mainly in
+mountainous regions, often overlapping with Natura 2000 protected areas.
+However, human activities impact these areas, and some taxa lack sufficient
+protection.
+
+Apart from plants and fauna, microbes significantly influence soil ecosystem
+functioning, yet synthesizing microbial biodiversity data remains challenging.
+Island biogeography presents a unique opportunity, to advance the understanding
+of microbiome diversity in the soil environment.
+Crete, as a continental island, has a distinct natural and evolutionary history
+with extreme contrasts in vegetation cover, climatic conditions and geology. 
+It has been studied for centuries and because of its location in southeastern
+Mediterrenean is important for climate change studies.
+To this end, the first island-wide soil microbiome study conducted on the
+island of Crete in 2016, assessed the microbiome diversity drivers and determined that
+Crete microbial diversity is driven by pH and soil moisture along elevation
+gradient. Together, a team of researchers and citizen scientists collected 435 soil samples
+from 72 sites across four distinct ecozones in a single day. The Island Sampling Day Crete 2016
+project, further integrates microbial data with soil, spatial and remote sensing data,
+to decipher ecosystem function drivers on the island. High-altitude areas harbor diverse
+microorganisms, mirroring patterns seen in other faunal groups like arthropods.
+Spatial data integration identifies warning signals in pristine and grazing
+ecosystems, aiding in identifying biodiversity drivers and evaluating ecosystem threats.
+
+In summary, studying ecosystems ecology with conteporary tools and data poses unique 
+opportunities. Cumulative work across the centuries is becoming integrated to the 
+digital and holistic representation of ecosystems. Multiple steps are still required 
+to this realisation but there is a ground opportunity to unlock novel insights 
+through the integration. Conservation and basic research are occurring simultaneously 
+because the window of action in the face of ecosystem services collapse is narrow.
+
+%\textgreek{
+%Για να κατανοήσουμε τη λειτουργία των οικοσυστημάτων, είναι ανάγκη να διακρίνουμε
+%τις διεργασίες που συμβαίνουν σε διάφορα περιβάλλοντα και τους οργανισμούς
+%που τις επιτελούν. Τα οικοσυστήματα αποτελούνται από πολύπλοκες αλληλεπιδράσεις τάξων,
+%αβιοτικών παραμέτρων και τα φυσικά χαρακτηριστικά των υλικών. Για παράδειγμα,
+%το οικοσύστημα του εδάφους περιέχει 10 δισεκατομμύρια κύτταρα σε κάθε γραμμάριο. Η υφή και η
+%η χημεία του εδάφους επηρεάζει και επηρεάζεται από τα υπάρχοντα τάξα από όλο το
+%δέντρο της ζωής, φυτά, αρθρόποδα, βακτήρια, μύκητες κλπ. Όσον αφορά τα μικρόβια
+%υπάρχει πληθώρα δεδομένων σε ανοιχτές βάσεις δεδομένων και στη
+%βιβλιογραφία. Ωστόσο, όλες αυτές οι πληροφορίες είναι ανομοιογενείς και αποθηκευμένες σε 
+%βάσεις δεδομένων ως σιλό. Το PREGO, αποτελεί μια συγκεντρωτική βάση γνώσης. Μέσω
+%τεχνικών εξόρυξης κειμένου και ενσωμάτωσης δεδομένων συγχωνεύει 
+%συσχετίσεις οργανισμών, περιβάλλοντος και λειτουργιών από
+%από την επιστημονική βιβλιογραφία και βάσεις δεδομένων. 
+%Οι μικροοργανισμοί, βιολογικές διεργασίες και περιβαλλοντικοί τύποι αντιστοιχούνται
+%με όρους οντολογίας και κάθε συσχέτιση κατηγοριοποιείται με ένα σύστημα αξιολόγησης 
+%βαθμών εμπιστοσύνης.
+%Με 364.508 μικροβιακά τάξα, 1090 περιβαλλοντικούς τύπους, 15.091 βιολογικές διεργασίες,
+%και 7.971 μοριακές λειτουργίες, το PREGO στοχεύει να βοηθήσει τους ερευνητές στο 
+%σχεδιασμό και ερμηνεία πειραμάτων αλλά και την διατύπωση νέων υποθέσων εργασίας. Επιπλέον, διευκολύνει την εξερεύνηση
+%συσχετίσεις περιβάλλοντος-διαδικασιών-μικροβίων.
+%
+%Είναι σημαντικό να κατανοήθεί η τρέχουσα κατάσταση των οικοσυστημάτων. Σε αυτό είναι
+%απαραίτητη η ιστορική γνώση που υπάρχει από προηγούμενες μελέτες.
+%Τα ιστορικά έγγραφα βιοποικιλότητας είναι ζωτικής σημασίας για
+%μακροπρόθεσμες αναλύσεις. Όμως η διάσωση και η επιμέλεια δεδομένων ιστορικών δεδομένων είναι δύσκολη λόγω του ιστορικού τους
+%πλαισίου. Η διαδικασία διάσωσης δεδομένων περιλαμβάνει ψηφιοποίηση εγγράφων, μεταγραφή, εξαγωγή πληροφοριών
+%χρησιμοποιώντας εργαλεία εξόρυξης κειμένου και τη μετέπειτα δημοσίευση σε βάσεις δεδομένων.
+%Τα εργαλεία εξόρυξης γνώσης, που έχουν εξελιχθεί ραγδαία τα τελευταία χρόνια,
+%αναγνωρίζουν οντότητες στο κείμενο, βοηθώντας στην επιμέλεια.
+%Για το σκοπό αυτό, αυτή η εργασία εστίασε στην διάσωση γνώσης θαλάσσιας ιστορικής βιοποικιλότητας και την
+%αξιολόγηση των εργαλείων για τον σχεδιασμό μιας ενοποιημένης μεθοδολογίας επιμέλειας. 
+%Πηγαίνοντας ένα βήμα παραπέρα, ένα νέο εργαλείο, το DECO, αναπτύχθηκε
+%με στόχο την ενίσχυση της διαδικασίας διάσωσης δεδομένων στην έρευνα για τη βιοποικιλότητα.
+%
+%Η μελέτη των οικοσυστημάτων του παρελθόντος και των σημερινών συνθηκών έχει κάνει εμφανή την ανάγκη για
+%δράσεις διατήρησης επειδή βρίσκονται υπό πολλαπλές απειλές.
+%Ένα παράδειγμα είναι η κατάρρευση των αρθροπόδων, μια παγκόσμια τεκμηριωμένη
+%τάση που έχει αντιμετωπιστεί ανεπαρκώς από την κοινωνία.
+%Η Κρήτη είναι ένα hotspot βιοποικιλότητας και η έρευνα για την πανίδα των αρθροπόδων της χρονολογείται από τον 19ο αιώνα.
+%Στην παρούσα εργασία αξιολογήθηκε η κατάσταση της διατήρησης των ενδημικών αρθρόποδων της Κρήτης χρησιμοποιώντας
+%μια αυτοματοποιημένη αξιολόγηση (PACA) και η επικάλυψη των κατανομών των αρθρόποδων
+%στις προστατευόμενες περιοχές Natura 2000. Επιπλέον 
+%να διερευνήθηκαν τα hotspot ενδημικότητάς τους και προτάθηκαν υποψήφιες Βασικές Περιοχές Βιοποικιλότητας.
+%Για αυτές τις αναλύσεις, συγκεντρώθηκαν παρουσίες του ενδημικών αρθροπόδων της Κρήτης
+%που βρίσκονται στις συλλογές του Μουσείου Φυσικής Ιστορίας της
+%Κρήτη μαζί με στοιχεία από την εκτενή βιβλιογραφία. Η αξιολόγηση της κατάστασης διατήρησης με την μέθοδο PACA
+%κατέταξε το 75\% των ενδημικών αρθροπόδων ως πιθανά απειλούμενα.
+%Τα ενδημικά hotspots και οι υποψήφιες βασικές περιοχές βιοποικιλότητας βρίσκονται κυρίως σε
+%ορεινές περιοχές, που συχνά επικαλύπτονται με προστατευόμενες περιοχές Natura 2000.
+%Ωστόσο, οι ανθρώπινες δραστηριότητες επηρεάζουν αυτές τις περιοχές και ορισμένα αρθρόποδα δεν 
+%προστατεύονται επαρκώς.
+%
+%Εκτός από την χλωρίδα και την πανίδα, τα μικρόβια επηρεάζουν σημαντικά το οικοσύστημα του εδάφους.
+%Όμως η αποσαφήνιση των λειτουργιών της μικροβιακής βιοποικιλότητας παραμένει πρόκληση.
+%Η νησιωτική βιογεωγραφία προσφέρει μια μοναδική ευκαιρία, για να προωθηθεί η κατανόηση
+%της ποικιλότητας των μικροβιωμάτων στο εδαφικό περιβάλλον.
+%Η Κρήτη, ως ηπειρωτικό νησί, έχει μια ξεχωριστή φυσική και εξελικτική ιστορία
+%με ακραίες αντιθέσεις στη βλάστηση, τις κλιματικές συνθήκες και τη γεωλογία.
+%Έχει μελετηθεί για αιώνες και λόγω της θέσης του στα νοτιοανατολικά
+%της Μεσογείου είναι σημαντική για τις μελέτες για την κλιματική αλλαγή.
+%Για το σκοπό αυτό, η πρώτη ολοκληρωμένη μελέτη μικροβιώματος εδάφους σε νησί διεξήχθη στο
+%νησί της Κρήτης το 2016. Αξιολογήθηκαν οι δείκτες ποικιλότητας του μικροβιώματος και ως αποτέλεσμα
+%φαίνεται να είναι ότι η μικροβιακή ποικιλότητα της Κρήτης επηρεάζεται από το pH και
+%την υγρασία του εδάφους, σε σχέση και με το υψόμετρο. Αυτή η έρευνα συντονίστηκε από μια ομάδα ερευνητών η οποία συνέλεξε 435 δείγματα εδάφους
+%από 72 τοποθεσίες σε τέσσερις διακριτές οικολογικές ζώνες της Κρήτης σε μια μέρα. The Island Sampling Day Κρήτη 2016
+%ενσωματώνει επίσης, μικροβιακά δεδομένα με δεδομένα εδάφους, χωρικά και τηλεπισκόπησης.
+%Βασικός στόχος είναι η ψηφιακή αναπαράσταση του εδάφους της Κρήτης για να αποκρυπτογραφήθούν
+%οι λειτουργίες των ποικίλων οικοσυστημάτων του νησιού. Οι περιοχές με μεγάλο υψόμετρο φιλοξενούν μεγάλη βιοποικιλότητα
+%μικροοργανισμών, αντικατοπτρίζοντας μοτίβα που παρατηρούνται σε άλλες ομάδες πανίδας όπως τα αρθρόποδα.
+%Η ενοποίηση χωρικών δεδομένων ανέδειξε πιθανά σήματα αρνητικής ανθρωπογενούς επίδρασης σε παρθένα οικοσυστήματα αλλά και 
+%βοσκοτόπια βοηθώντας στον εντοπισμό των παραγόντων της βιοποικιλότητας και στην αξιολόγηση των απειλών.
+%
+%Συνοψίζοντας, η μελέτη της οικολογίας των οικοσυστημάτων με σύγχρονα εργαλεία και δεδομένα
+%έχει σημαντικές προοπτικές. Η συσσώρευση δεδομένων καταστεί εφικτή την
+%ψηφιακή και ολιστική αναπαράσταση των οικοσυστημάτων. Απαιτούνται ακόμη πολλά βήματα
+%για την υλοποίηση αυτή όμως υπάρχουν ευκαιρίες για να νέα ερωτήματα και νέες ιδέες
+%μέσω της ενσωμάτωσης. Η προστασία, η διατήρηση και η βασική έρευνα πλεόν χρειάζεται να 
+%γίνονται ταυτόχρονα επειδή τα περιθώρια δράσης ενόψει της κατάρρευσης των
+%οικοσυστημάτων είναι στενά.
+%}
+
 \end{abstract}
 
 \textbf{Keywords}
@@ -332,12 +489,52 @@ These four projects are:
     \item Island Sampling Day Crete, soil microbiome diversity in Chapter \ref{cha:crete-soil}
 \end{enumerate}
 
-Academic writing and publishing is important, albeit difficult. There is so much 
-production of papers and journals that is difficult to decide where to publish. 
+Starting with PREGO, a data and text mining metagenomic resourse, we developed a 
+knowledge base with web interface and Application Programming Interface. PREGO 
+is a meta platform, which is based upon open data and standards of metagenomics. 
+It brings the wealth of taxonomic, environmental and biological functions of 
+microbial data and literature all in one place. Multiple platforms are harvested and the data 
+and metadata are harmonised using text mining. In addition, academic texts contain 
+valuable information that is missing from databeses and text mining solutions unearth 
+this information. Hence, the PREGO approach allowed to bring the heterogenous
+data together in a single knowledge base. 
+
+Apart from the conteporary data and metagenomics, important biodiversity data is 
+included in historical biodiversity documents. This information from 
+previous centuries reports, books and expeditions notes is an important glimpse into
+the past. These data due to their legacy format and other complexities, for example 
+multiple languages, different taxa names and approximate coordinates, require 
+enormous effort to rescue in databases. Curators are indispensable in this process 
+yet there are multiple tools that assist them. Using text mining and other tools 
+for Object Character Recognition we demonstrated a workflow to rescue such documents.
+This workflow is named DECO and is a software container that can handle multiple 
+documents and also combines multiple tools for the steps of the data rescue process.
+
+To further highlight the importance of historical data along with conteporary we 
+worked on the endemic arthropods of the island of Crete. Based on a novel dataset
+that contained historical data and specimens of the Natural History Museum of Crete
+we assessed the conservation status of different taxa. Hence, this work contained 
+work from the 19th century along with the 4 decades long samplings of the NHMC. 
+The overlap of Cretan Arthropod distributions with the Natura 2000 protected areas
+were investigated along with their endemicity hotspots and proposed candidate Key Biodiversity Areas.
+
+The forth and final chapter of this PhD is the Island Sampling Day Crete.
+Island Sampling Day (ISD) is a large scale study for the microbial diversity of the
+topsoil of Crete. It is a 16s rRNA amplicon study designed to put standards into action. 
+ISD is a citizen science standardisation effort, voluntarily designed and
+operated by the participants of the 18th Genome Standards Consortium
+Workshop and the Hellenic Centre for Marine Research in June 2016.
+This project adds a new chapter to the study of biodiversity in Crete,
+the soil microbial diversity.
+
+Academic writing and publishing is important, albeit difficult, and I have learned a
+lot during the PhD. The first 3 chapters are accepted/published in journals as
+mentioned in each chapter. The last chapter will be 2 back to back submissions.
+There is so much production of papers and journals that is difficult to decide where to publish. 
 So except from the common flagship journals I discovered the work that shaped my 
 PhD in themed issues of Philoshophical Transections of the Royal Society B.
-A journal that really stands out and it was established on 1887!! This was an
-important realisation during the PhD that there are journal launched only 10 years
+A journal that really stands out and it was established on 1887! This was an
+important realisation during the PhD that there are journals launched only 10 years
 ago with incredible high impact factor but there are journals in ecology
 with rich history and groundbraking articles.
 
@@ -349,7 +546,40 @@ Most notably:
     \item Integrative research perspectives on marine conservation \href{https://doi.org/10.1098/rstb.2019.0444}{Volume 375, Issue 1814}
 \end{itemize}
 
+Having these issues as guides covered all the different fields that I am interested 
+in working on. Microbial ecology is a great field, here I focused on soil mostly, that
+combines all aspects of numerical ecology. There are many things that scientists 
+haven't deciphered yet, like how the above ground biodiversity influences the below
+ground biodiversity. Ecological complexity is what inspired me to continue to a 
+master's degree and I still am looking forward to apply and learn the amazing 
+theoritical mathematical models. And lastly is the integration of multiple methods 
+and data to describe an ecosystem. This is what I worked mostly on my PhD and 
+harversting different types of data, i.e sequences, spatial data, occurrence data, 
+text etc, has it's unique challenges. Each type of data requires different tools and has 
+different objects to handle them. Furthermore, types of data come from different 
+fields with different scientific communities and standards. Incorporating and even 
+discovering these data is time consuming and mind bending. Yet, utilising diverse 
+published data to analyse an ecosystem can lead to novel insights. 
 
+The projects that are presented in the following chapters are about 
+bringing together contrasts. Starting with biodiversity, we investigated taxa that 
+have been studied for centuries, e.g coleoptera, as well as new undiscovered ones, the soil microbiome of 
+Crete. These works span from basic research to conservation analyses. 
+Spatial analysis brought together the micro scale of microbes with the macro
+scale of the island of Crete.
+Microbes also unlocked some processes and fuctions they facilitate in their environments assisting in
+categorising them and finding possible one health concerns.
+Using text mining we incorporated historical texts and conteporary literature.
+Lastly, in the Island Sampling Day project we covered
+the whole spectrum of the analysis from large scale field sampling to informatics.
+
+All this work was made possible because of the adoption of open data and standards
+and open source software. Following these values, all the data and software produced
+in this work are documented and deposited in platforms with open source licences. 
+Working also with the Genome Standards Consortium was a great experience to witness
+great scientists devoting a lot of time to design and promote standards across the 
+community. This openness is both inspiring and humbling and I hope to contribute and follow 
+their lead.
 
 
 %----------------------------------------------------------------------------------------
@@ -470,7 +700,6 @@ Most notably:
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
 %----------------------------------------------------------------------------------------
-\listoftodos[Notes]
 \appendix % Cue to tell LaTeX that the following "chapters" are Appendices
 
 % Include the appendices of the thesis as separate files from the Appendices folder
