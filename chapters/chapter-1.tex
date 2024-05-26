@@ -1,581 +1,310 @@
 % --------------------------------------------------
 % 
-% This chapter is for PREGO
+% This chapter is for Crete system ecology
 % 
 % --------------------------------------------------
 
 
-\chapter{PREGO: a literature- and data-mining resource to associate microorganisms, biological processes, and environment types}
-\label{cha:prego}
+\chapter{Island Sampling Day, the case of Crete}
+\label{cha:isd-crete-soil}
+
+%\textbf{Citation:} \\ 
+
+\section{Introduction}\label{intro}
+
+Microbes influence global ecosystem functions \parencite{falkowski2008microbial}
+and are ubiquitous \parencite{delgado2016microbial}. The terrestrial biomass of bacteria is
+70 Gt C, second to plants with sixfold difference \parencite{bar2018biomass}. In subsurface systems, bacteria and
+archaea are the most abundant, having 90\% of the biomass.
+
+Microbial ecology based on amplicon 16s rRNA sequences has flourished since the
+2010s. The endeavor to understand the microbial world faces multiple challenges
+across the scientific workflow, from sampling to ecological analyses \parencite{Lee2012}.
+Errors propagate starting with the sampling. There are contaminations from the
+people in the field, in the lab for the DNA extraction \parencite{EISENHOFER2019105}. 
+Errors from PCR amplification and errors from sequencing \parencite{Schloss2011, Schimer2015}.
+Approximation and computation errors from algoritms that cluster, measure similarities between
+sequences. Semantic errors because of reductionist approaches and/or oversimplification
+of the microbial communities. Microbiome matrix data are compositional \parencite{Gloor2017}
 
 
-\textbf{Citation:} \\ 
-Zafeiropoulos H, Paragkamian S, Ninidakis S, Pavlopoulos GA, Jensen LJ, Pafilis E. PREGO: A Literature and Data-Mining Resource to Associate Microorganisms, Biological Processes, and Environment Types. Microorganisms. 2022; 10(2):293. \\ 
-Shared co-first authorship.
-
-\textbf{Journal:} Microorganisms
-
-This article belongs to the Special Issue Selected Papers from the 9th Conference of the Hellenic Scientific Society MIKROBIOKOSMOS \textit{Beneficial Microbes at the Heart of Mikrobiokosmos}
-
-DOI: \href{https://doi.org/10.3390/microorganisms10020293}{10.3390/microorganisms10020293}\footnote{
-   For author contributions and supplementary material please refer to the relevant sections. 
-   This is a modified version of the published version,
-   in terms of relevance, coherence and formatting.}
-
-
-
-% PREGO ABSTRACT
-\section{Abstract}
-
-   To elucidate ecosystem functioning, it is fundamental to recognize \textit{what} processes occur in which environments (\textit{where}) and which microorganisms carry them out (\textit{who}). 
-   Here, we present PREGO, a one-stop-shop knowledge base providing such associations. 
-   PREGO combines text mining and data integration techniques to mine such what-where-who associations from data and metadata scattered in the scientific literature and in public omics repositories. 
-   Microorganisms, biological processes, and environment types are identified and mapped to ontology terms from established community resources. 
-   Analyses of comentions in text and co-occurrences in metagenomics data/metadata are performed to extract associations and a level of confidence is assigned to each of them thanks to a scoring scheme. 
-   The PREGO knowledge base contains associations for 364,508 microbial taxa, 1090 environmental types, 15,091 biological processes, and 7,971 molecular functions with a total of almost 58 million associations. 
-   These associations are available through a web interface (\href{https://prego.hcmr.gr}{https://prego.hcmr.gr}), an Application Programming Interface (API), and bulk download. 
-   By exploring environments and/or processes associated with each other or with microbes, PREGO aims to assist researchers in design and interpretation of experiments and their results. 
-   To demonstrate PREGO's capabilities, a thorough presentation of its web interface is given along with a meta-analysis of experimental results from a lagoon-sediment study of sulfur-cycle related microbes.
-
-% RPEGO INTRODUCTION
-\section{Introduction}
-\label{sec:prego-intro}
-
-   Microbes are omnipresent and impact global ecosystem functions \parencite{falkowski2008microbial} through their abundance \parencite{bar2018biomass}, versatility \parencite{delgado2016microbial}, and interactions \parencite{rottjers2018hairballs}. 
-   These facts have inspired microbiologists from diverse scientific fields to study their genotype and phenotype \parencite{morris2020linking}, their metabolism \parencite{biggs2015metabolic}, and their interactions with the environment \parencite{hall2018understanding}. 
-   All this work has resulted in a wealth of knowledge available in the forms of literature and experimental data. Literature contains vast amounts of information in the free text form that overwhelms researchers. 
-   Advanced text mining methods \parencite{jensen2006Literature} have been developed to assist this issue. 
-   Experimental data and their metadata require mining \parencite{delmont2011metagenomic} as well for their integration, mostly through metagenomic mining from online repositories. 
-   Hence, the combination of this knowledge about microbial life (who), their metabolic functions (what), and the environment they influence (where) is an important step to study ecosystem function \parencite{raes2008Molecular}.
-
-   High Throughput Sequencing (HTS) has turned the page on microbial ecology studies \parencite{nilsson2019mycobiome}. 
-   Over the past 20 years, both the taxonomic and the functional profiles of microbial communities from both local and large-scale regions (e.g., Tara Oceans \parencite{pesant2015open}, Earth Microbiome \parencite{gilbert2014earth}) are being accumulated at a higher and higher rate. 
-   Extreme environments, i.e., areas with high salinity, low pH, etc., are being studied, providing us with unprecedented insight \parencite{shu2021microbial}. 
-   Both amplicon and shotgun metagenomics studies have played a crucial part in this development. Latest technological breakthroughs, such as Metagenome-Assembled Genomes (MAGs) and Single Amplified Genomes (SAGs), are enhancing the assessment of the taxonomic and functional repertoire of microbiomes even further. 
-   However, the mass use of these technologies and their consequent data have led to a number of needs and challenges, with metadata curation being among the most crucial ones.
-
-   Standards-promoting communities, like \href{https://gensc.org/}{Genomic Standards Consortium (GSC)}\footnote{
-      \href{https://gensc.org/}{https://gensc.org/}
-   }, their efforts, like Minimum Information about any (x) Sequence (MIxS) \parencite{yilmaz2011minimum}, and projects endorsing those, like National Microbiome Data Collaborative (NMDC) \parencite{wood2020national, vangay2021microbiome}, offer guidelines and best-practices to assist the annotation of microbial ecology samples. 
-   Controlled vocabularies and ontologies contribute to these efforts as they describe each subject area with formal terms \parencite{walls2014semantics}. 
-   Environment types, for example, are described by the Environment Ontology (ENVO) \parencite{buttigieg2016environment}. 
-   Other key biological aspects that have been captured include molecular functions (Gene Ontology Molecular Function (GOmf) \parencite{ashburner2000gene, gene2021gene}, Enzyme Commission nomenclature \parencite{noauthor_1999}, etc.), and the pathways carrying out different biological processes (GO Biological Process (GObp), MetaCyc \parencite{caspi2020metacyc}, etc.). 
-   These knowledge structures, along with taxonomic centralized resources like the National Center for Biotechnology Information (NCBI) Taxonomy \parencite{schoch2020ncbi}
-   and LPSN (List of Prokaryotic names with Standing in Nomenclature) \parencite{parte2020list}, 
-   provide the means for a standardized representation of, for example, environments, process-oriented terms, and microbial taxa, respectively. Global-scale public resources (like MGnify \parencite{mitchell2020mgnify}, 
-   JGI/IMG \parencite{chen2021img}, 
-   MG-RAST \parencite{wilke2015restful}) 
-   combine some of the aforementioned resources to support the collection, analysis, and distribution of multiple types of HTS data (e.g., amplicon, metagenomics, metatranscriptomics, etc.).
-
-   Besides the data and the analyses \textit{per se}, the related scientific literature stores valuable information in billions of text lines. 
-   PubMed \parencite{schoch2020ncbi} and PubMed Central (PMC) \parencite{roberts2001pubmed} are gateways to relationships among microbes (\textit{who}), the environments they live in (\textit{where}) and their associated processes and functions (\textit{what}) hidden in text \parencite{harmston2010papers}. 
-   Text mining (on both literature and metadata) can serve the extraction of these relationships. Named Entity Recognition (NER) can, for example, locate organism names \parencite{pafilis2013species}, ENVO and GO terms \parencite{pafilis2016extract} mentioned in text and map them to their corresponding identifiers. 
-   Association statistics, like co-mention analysis, can subsequently suggest ranked association among such entities \parencite{von2005string, franceschini2012string}. 
-   The new era of omics has been interwoven with data integration \parencite{gomez2014data} by bringing together scattered and fragmented pieces of information.
-
-   The time is ripe for tools that integrate all this knowledge and henceforth assist researchers to tackle major challenges like climate change \parencite{cavicchioli2019scientists}, 
-   sustainability \parencite{d2021microbiome}, 
-   and synthetic ecology \parencite{conde2020synthetic}.
-   Many resources have emerged in this realm \parencite{baltoumas2021biomolecule}, 
-   each one serving a specific purpose, such as BacDive \parencite{reimer2019bac}. 
-   BacDive is a large-scale curated database with prokaryotic information about phenotypic, morphological, and metabolic information. 
-   Other resources like Microbe Directory \parencite{shaaban2018microbe}, 
-   Web of Microbes (WoM) \parencite{kosina2018web}, 
-   and Microbial Interaction Network Database (\href{http://www.microbialnet.org/mind_home.html}{MIND}\footnote{
-      \href{http://www.microbialnet.org/mind_home.html}{http://www.microbialnet.org/mind\_home.html}
-   }) focus on microbial environmental conditions, metabolite interactions with microbes and microbe-microbe interactions, respectively. 
-   In addition, taking advantage of aforementioned resources, novel pipelines, e.g., \parencite{tang2020tripartite}, are emerging with the aim to explore the network associations of who (microbial taxa) is performing what (microbial processes) and where (environments) directly using graph theory \parencite{koutrouli2020guide}. 
-   These analyses and resources are important because microbiologists can enrich their data to explore hypotheses but also to identify potential gaps in knowledge regarding these associations \parencite{li2021microbial}.
-
-   Here, we present PREGO, a hypothesis generation web resource that is designed to be useful to microbiologists—in particular microbial ecologists and environmental microbiologists. 
-   Its specific aims include: 
-   (a) the gathering of source data, metadata, and literature followed by the extraction of microorganism, process, environment associations contained therein, 
-   (b) making such a mined knowledge base available to life sciences researchers via an easy to use and explore web portal. 
-   As such, PREGO can be useful also to system microbiologists and large-scale data analysts through bulk download and programming access. 
-   We document the principles, analysis methodology, and contents behind PREGO. 
-   Last but not least, we demonstrate PREGO's capabilities for researcher-support related to the above through a case study involving sulfate-reducing microorganisms.
-
-
-
-% RPEGO METHODS
-\section{Methods \& Implementation}
-\label{sec:prego-methods}
-
-   PREGO is a resource designed to assist molecular ecologists in acquiring a single point overview of what-where-who process–environment–organism associations. The system is comprised of two main parts: (a) a server that periodically harvests data and extracts process-environment-organism associations from the scientific literature, environmental samples, and genome annotation sequences (Figure~\ref{fig:prego-pipeline}, step 1 to 5) and (b) a web-based interface as well as an Application Programming Interface (API) that provides users and programmers with a friendly way to extract and navigate across the process–environment–organism associations (Figure~\ref{fig:prego-pipeline}, step 6).
-
-   \begin{figure}[h]
-      \centering
-      \includegraphics[width=0.98\columnwidth]{figures/prego_analysis_horizontal.png}
-      \caption[PREGO analysis methodology]{
-         PREGO analysis methodology: PREGO periodically retrieves three distinct types of data from open access resources. 
-         Scientific text, environmental sample data, and genomic annotations are handled with respective methodologies in order to standardize their entities. 
-         Named Entity Recognition and Comention/Co-occurrence analysis is the common framework in order to build a weighted association network with nodes being the entity identifiers. Lastly, all these associations are available through a Web interface and an API. 
-         All these steps have been implemented in an autonomous way with regular cycles of updates (see Appendix~\ref{app:B}). 
-         Icons used from the Noun Project released under CC BY: Books by Shakeel Ch., Bacteria by Maxim Kulikov, ftp by DinosoftLab, Mountain by Diane, Ship on Sea by farra nugraha, River by Chanut is Industries.
-      }
-      \label{fig:prego-pipeline}
-   \end{figure}
-
-
-
-   \subsection{Entity Types, Channels, and Associations}
-   \label{subsec:prego-terms}
-
-   PREGO supports three entity types: \textit{Process}, \textit{Environment}, and \textit{Organism}. 
-   For interoperability and consistency, an ontology or taxonomy is adopted for each type of entity.
-   Processes are represented as Gene Ontology (GO) terms and are grouped either as Biological processes (GObp) or as Molecular functions (GOmf). 
-   In addition, Environments are represented by terms from the Environmental Ontology. 
-   Organisms are represented by the microbial NCBI Taxonomy Ids (Bacteria, Archaea, and unicellular eukaryotes). For the unicellular eukaryotes, a custom list was populated with the unicellular eukaryotic taxa using a curated list.
-   PREGO's contents are mainly divided into three distinct channels of information based on data origin and format (Figure~\ref{fig:prego-pipeline}, step 1). 
-   The \textit{Literature} channel exploits scientific publications, i.e., abstracts and full text open access scientific publications (Table~\ref{table:prego1} and Section~\ref{subsec:prego-tm}). 
-   Through the \textit{Annotated Genomes and Isolates} channel, PREGO retrieves genome annotations and their accompanying metadata (Table~\ref{table:prego1} and Section~\ref{subsec:prego-isolates}). 
-   Finally, the \textit{Environmental Samples} channel supports the integration of metagenomic analyses from both amplicon and shotgun studies. 
-   These include taxonomic and functional profiles along with their corresponding metadata (Table~\ref{table:prego1}, more details in Section~\ref{subsec:prego-envsamples}).
-
-
-   % SOURCE DATABASES TABLE table:prego1
-   \begin{table}[ht]
-      \begin{tabular}{@{}ccccc@{}}
-      \toprule
-      \textbf{Source} & \textbf{\# items} & \textbf{Data type} & \textbf{Metadata} & \textbf{License} \\ \midrule
-      \begin{tabular}[c]{@{}c@{}}MEDLINE and \\ PubMed\end{tabular} & 33 million & abstracts (text) & no & NLM Copyright \\
-      \begin{tabular}[c]{@{}c@{}}PubMed Central \\ OA Subset\end{tabular} & 2.7 million & full article (text) & no & \begin{tabular}[c]{@{}c@{}}CC for Commercial, \\ non-commercial\end{tabular} \\
-      JGI IMG & 9,644 & \begin{tabular}[c]{@{}c@{}}Isolates Annotated \\ genomes\end{tabular} & yes & JGI Data Policy \\
-      Struo & 21,276 & Annotated genomes & no & MIT, CC BY-SA 4.0 \\
-      BioProject & 18,752 & \begin{tabular}[c]{@{}c@{}}Annotated genomes \\ with abstracts (text)\end{tabular} & yes & INSDC policy \\
-      \multirow{2}{*}{MG-RAST} & 16,096 & markergene samples & yes & CC0 \\
-      & 7,965 & metagenomic samples & yes & CC0 \\
-      MGnify & 10,500 & markergene samples & yes & CC-BY, CC0 \\ \bottomrule
-      \end{tabular}
-      \caption[Source databases integrated in PREGO and the number of items retrieved]{
-         Source databases that are integrated in PREGO and the number of items retrieved. 
-         The Open Access subset of PubMed Central has a Creative Commons license available for commercial and noncommercial use. 
-         JGI has its own license, the same applies for BioProject, MEDLINE®, and PubMed® as well.
-         }
-         \label{table:prego1}
-   \end{table}
-
-
-   In cases in which the retrieved data and metadata are in text form, they are standardized to the aforementioned identifiers and taxonomies using Named Entity Recognition (NER) tools, namely the EXTRACT tagger \parencite{pafilis2016extract, jensen2016one}. 
-   In cases where data contain KEGG Orthology terms and/or Uniref identifiers, they are mapped to the respective GOmf using the mapping files available from the UniProt (see Appendix~\ref{app:A}). 
-   Associations are extracted after the mapping and standardization of the entities from each resource (Figure~\ref{fig:prego-pipeline}, step 3).
-   The association extraction pipeline is distinct for each channel and resource because of differences in the data type origin (see \texttt{prego\_gathering\_data} in the Availability of Supporting Source Codes section). 
-   By the means of navigation, the large number of associations returned to the user require a type of sorting; 
-   ideally, one that ranks the most trustworthy associations at the top. 
-   For those reasons, each channel of PREGO has a dedicated scoring scheme bounded within the (0,5] space for consistency. 
-   In Appendix ~\ref{app:A} , the scoring scheme of each channel is elaborated.
+Amplicon rRNA sequencing provides a collection of sequence reads per sample. 
+The ecological interpretation of the reads requires their transformation to
+taxonomic information. To do so there are two approaches currently in use, 
+the clustering method and the denoising method. With clustering reads are 
+grouped together and a best representing sequence is produced for each 
+cluster, i.e. the Operetional Taxonomic Unit. This approach makes the OTUs 
+from different runs, i.e executions of the algorithm and/or different studies
+incoperable and irreproducible. Currently, many studies propose the use of Amplicon Sequence Variants \parencite{Callahan2017}. 
+ASVs are real biological sequences and can be used for comparison. The influence of the different methods to subsequent ecological analyses has
+little impact \parencite{Glassman2018}.
 
 
 
 
-   \subsection{Text Mining of Scientific Literature}
-   \label{subsec:prego-tm}
+Soil ecosystems are the cornerstone of terrestrial habitats, biodiversity and henceforth human activities.
+Soils are characterised by multiple properties; chemical, physical and biological that 
+form complex interdependent interactions. Biodiversity of soils covers
+all forms of life, fauna, flora, bacteria, archaea, fungi, viruses. 
+Bacteria and archaea are considered major drivers for the functionality of soil.
+They influence and are influenced by their environment and their community structure 
+defies their macroscopic functionality \parencite{Bahram2018}.
+Global soil microbiome studies have been employed to decipher soil microbiome
+compositions \parencite{thompson2017a-communal, Delgado-Baquerizo-atlas, Labouyrie2023},
+functions \parencite{Bahram2018} and biogeography \parencite{Martiny2006, guerra2020Blind}.
+These results showed the remarkable diversity in soils yet there are blind spots \parencite{guerra2020Blind}
+and these sampling are sparse when considering samples per area density. One of most resolute
+study is by \parencite{Karimi2020} which exemplified the 
+vast complexity of soil bacterial communities and the requirement of
+dense samplings and isolated systems \parencite{Dini-Andreote2021}.
 
-   PREGO implements a text mining methodology to extract associations of the aforementioned entities from literature. 
-   The origin of text mining is a corpus that comprises scientific abstracts and full text articles from MEDLINE® and PubMed® and PubMed Central® Open Access Subset (PMC OA Subset) \parencite{sayers2021database}, respectively. 
-   The building and periodic update of the corpus is possible through the NCBI File Transfer Protocol (FTP) services. 
-   PREGO also has a dedicated text-mining dictionary (see Availability of Supporting Source Codes section) that contains the entities ids, names, synonyms, and neglected words (stop words). 
-   PREGO dictionary incorporates the ORGANISMS \parencite{pafilis2013species} and ENVIRONMENTS \parencite{pafilis2015environments} evaluated dictionaries as well as the experimental dictionaries of Gene Ontology Biological Process and Molecular Function.
-   Text mining is subsequently performed on the corpus using the dictionary through the EXTRACT tagger \parencite{pafilis2016extract, jensen2016one}. 
-   The tagger recognizes the entities of the dictionary in each abstract and full text article and assigns their co-mentions with a score. 
-   The score is sensitive to the text structural level of co-mention; higher to lower scoring when co-mention appears in the same sentence, then, in the same paragraph, and lastly in the same article. 
-   All these are integrated and normalized to a single score for each association, as implemented in STRING 9.1 \parencite{franceschini2012string} (see Appendix ~\ref{app:C} for more details). 
-   In addition, the tagger extracts each mention in every article to provide the origin of each association it extracts.
+Islands are nature's labs \parencite{Whittaker2017} because of their isolation and smaller scale.
+Borrowing this paradigm, soil microbes \parencite{Li2020} and mycorrhizal fungi \parencite{Delavaux2021} studies
+in islands show the benefits of using islands as models. Ultimately islands can
+set the ground to represent ecosystems with data and complex interactions \parencite{Davies2016}.
+This was also the case for the Island Sampling Day (ISD) project \parencite{holm2024}
+of the Genome Standards Consortium \parencite{Field2011}
+during the 18th workshop in June 2026 in Crete island, Greece. The goal was to "put standards into action"
+in a soil microbiome survey with a dense sampling, 0.017 samples per km\textsuperscript{2}.
+Hence, ISD is a large scale study in the confined space of the island of Crete which 
+is considered a miniature continent \parencite{Vogiatzakis2008_crete}.
 
+In the ISD project, ten teams followed a pre-defined sampling route of sampling locations. Samples
+were collected in a single day in order to control for variations in environmental
+factors that may impact the abundance and diversity of microbes such as season,
+temperature and humidity. Soil samples were collected by 26 participants in 10 teams.
+For each sampling location, teams selected two specific sampling sites that were
+at least 10 feet from the edge of the road and 2 feet (0.6 m) from the base of
+the identified tree or plant. Flora located at the sampling site were
+identified and photographed. Soil was collected from the two sub site locations (5-10 feet (1.5-3 m) apart).
+At each sub site, soil was sampled (3 replicates, collected one inch apart). 
 
-   \subsection{Annotated Genomes and Isolates}
-   \label{subsec:prego-isolates}
+Two replicate sets of the 144 sub site samples were shipped, on dry ice, to the
+University of Maryland Soil Lab (Dr. Stephanie Yarwood) for RNA and DNA extraction
+and soil chemistry analysis (USDA PERMIT NUMBER: P330-16-00090).
+Prior to DNA extraction, the moisture, total organic Carbon and Nitrogen (CN) weights
+and CN analysis were determined. The CN analysis was conducted on 10/4/2016.
+Dr. Yarwood’s group submitted 144 combustion capsules of soil for C and N analyses using LECO CN628 
 
-   Annotated genomes and isolates comprise the most trustworthy data in PREGO's knowledge base because they refer to a single species/strain and also have manually curated metadata. 
-   Among other data types, JGI-IMG \parencite{chen2021img, mukherjee2021genomes} includes millions of genes from isolated genomes (isolates), SAGs and MAGs. Such annotations, along with their corresponding metadata, were collected using web-parsing technologies. Their metadata, describing their related environment/ecosystem, were tagged using the EXTRACT tagger to infer organisms—environments associations. The annotated KEGG terms were mapped to GOmf terms (see Appendix A). The GOmf terms were then used to extract organisms—processes associations.
-   
-   The Struo pipeline \parencite{de2020struo} and its outcome when using the Genome Taxonomy DataBase (GTDB) (v.03-RS86) \parencite{parks2020complete} was exploited to enrich organisms—processes associations. 
-   A set of 21,276 representative genomes, accompanied by UniRef50 annotations, was retrieved using the provided FTP server. The annotations were then mapped to GOmf terms (see Appendix~\ref{app:A}). 
-   Related GTDB genomes were mapped to their corresponding NCBI taxa (see Appendix~\ref{app:A}). 
-   All associations extracted from these resources were assigned arbitrarily a confidence level of four out of five. 
-   This score choice reflects the high-quality of these data and metadata.
-   
-   In addition, BioProject data were integrated to PREGO using the NCBI FTP/e-utils services \parencite{sayers2021database}. 
-   The BioProject ids that were integrated are the ones that have been assigned a PubMed abstract, a unicellular taxon, and Genome sequencing as data type. Then, using the text mining pipeline, associations were extracted connecting the assigned taxon with the rest of the entities that appear in the abstracts. This method resulted in associations that were assigned a confidence level of three (out of five) because of the combined method of curated data with text mining.
+DNA was extracted from 144 soil samples following the Earth Microbiome Project (EMP)
+standard protocols, utilizing the MoBio RNA extraction kit and the  MoBio DNA elution kit to go with RNA kit (Qiagen).
+Quantification was performed using Qbit (Thermofisher) to confirm extraction, Qbit dsDNA
+quantification. Three of the samples, collected in sand, had no detectable DNA
+following extractions. Additionally, 17 samples had a DNA amount too low for metagenomics: 1 from ISD1, ISD4, and ISD35, 6 from ISD7, 4 from ISD8, and 3 from ISD10. A second attempt to re-extract with MoBio powermax kit (2g soil). 
 
+Amplicon libraries were prepared and sequenced (16S ribosomal (rRNA) amplicon
+sequenced (16S rRNA V3, V4 region)) on an Illumina HiSeq2500 with processing of
+the reads conducted to determine the relative abundances and taxonomic diversity of bacterial taxa in soil.
+Sequencing analysis was conducted at the Institute for Genome Sciences, Genomics
+Resource Center (Maryland Genomics) at the University of Maryland School of Medicine.
+The V3-V4 region of 16S rRNA gene from each sample was sequenced, using a
+PCR-based protocol that targets the V3-V4 region of the 16S rRNA gene (V3 V4 primers: Forward: 5'-ACTCCTACGGGAGGCAGCAG-3'; Reverse: 5'-GGACTACHVGGGTWTCTAAT-3').
 
-   \subsection{Environmental Samples}
-   \label{subsec:prego-envsamples}
-
-   MGnify \parencite{mitchell2020mgnify} and MG-RAST \parencite{wilke2015restful} repositories provide a great number of public metagenomic records. 
-   In the PREGO framework, both amplicon and shotgun metagenomic analyses are retrieved periodically along with their corresponding metadata. 
-   Data retrieval from these resources is possible from their Application Programming Interfaces (APIs). Marker gene analyses are retrieved and by measuring
-   the co-occurrence of taxa present in the various environmental types (e.g., biomes, materials, features, etc.) organisms—environments associations are extracted. 
-   These associations emerge when a taxon is reported together with a certain environmental type, being mentioned in the metadata of a sample (metadata based co-occurrence). 
-   Similarly, analyses of metagenomic samples along with their corresponding metadata and annotations are also retrieved and organisms—environments, organisms—processes and processes—environments are extracted. 
-   The processes—environments associations are possible through co-occurrence of the functional annotations of metagenomes with the environmental metadata of the samples.
-   
-   In all cases, the EXTRACT tagger is used on the microorganism names and the corresponding metadata of each sample to identify their identifiers (NCBI ids, ENVO terms, GOmf, GObp). 
-   All associations in this channel are scored based on the number of samples the entity of interest co-occurs with specific sample metadata (e.g., environmental type) or annotations (functional annotations or taxonomic annotations). 
-   The same scoring scheme was implemented across the channel resources (see Appendix~\ref{app:C} for more details), which ranks these associations with a value in the (0,5] space.
-
-
-   \subsection{Sequence Search}
-   \label{subsec:prego-seq-search}
-
-   In the case of organisms, PREGO enables sequence-based queries, meaning a sequence (amplicon) can be used as an entry point like it was a taxon name. 
-   To this end, a custom database was built using a set of reference custom databases for four commonly used marker genes. For 16S and 18S rRNA, the SILVA database (v.138) \parencite{quast_silva_2013} and the PR2 database (version\_4.14.0) \parencite{guillou2012protist, del2018eukref} were used. 
-   Cytochrome c oxidase I (COI) \parencite{suter2021capturing} is another commonly used marker gene; 
-   for this reason, Midori 2 (version GB243) \parencite{leray2018midori} was integrated in PREGO's custom database. 
-   Finally, for the Internal transcribed spacer (ITS), common in studies focusing on Fungi, the Unite (version 8.3, accessed 10.05.2021) \parencite{nilsson2019unite} database was added.
-
-
-
-   \subsection{Back-End Server and Front-End Implementation}
-   \label{subsec:prego-back-end}
-
-   PREGO is a multi-tier web-based application. 
-   It is hosted on a 64 GB RAM DELL R540, 20 core, Debian server. 
-   Custom API clients (written in Python) are responsible for retrieving the data and metadata from each source (Figure~\ref{fig:prego-pipeline}, step 2). 
-   These clients as well as the subsequent methodology (Figure~\ref{fig:prego-pipeline}, step 3 to 6) are updated in regular cycles using custom daemons (see Appendix~\ref{app:B}, Figure~\ref{fig:devops}). 
-   The \textit{mamba/blackmamba} web framework underlies communication to the Postgres association-holding database and the client-side communication. 
-   HTML 5, Ajax, JQuery, and custom Javascript enhance the user web experience. 
-   PREGO supports widely used browsers (e.g., Chrome, Firefox, Safari, Edge) in various operating systems, such as Windows 10, Linux (Ubuntu 18), and MacOS (10.12, 11).
+In this study
 
 
-% RPEGO RESULTS
-\section{Results \& Validation}
-\label{sec:prego-results}
 
-   \subsection{The PREGO Web Resource}
-   \label{subsec:prego-web-resource}
 
-   Users can access the PREGO contents through its web User Interface (UI) (Figures~\ref{fig:prego_ui} and \ref{fig:prego_ui_resources}), its Application Programming Interface (API) (Figure~\ref{fig:prego_api_schema}), or bulk download of all associations (Appendix D). 
-   The User Interface comes with two search fields: a plain text search and a sequence search (Figure~\ref{fig:prego_ui}a). 
-   The latter is used when the user wants to search for a taxon sequence (see Section~\ref{subsec:prego-seq-search} for supported sequence databases). 
-   The plain text search supports three types of entry points; the user can search for a taxon name, e.g., \textit{Methanosarcina mazei}, an environmental type, e.g., lagoon, or a biological process e.g., methanogenesis. 
-   In all entry points, PREGO returns an overview page consisting of tabs with associations of the entity of interest with the entities of the two other types (Figure~\ref{fig:prego_ui}b–d) as well as Documents and Downloads tabs (Figure~\ref{fig:prego_ui}e,f).
-
+\section{Materials and Methods}\label{methods}
 
    \begin{figure}[h]
       \centering
-      \includegraphics[width=0.98\columnwidth]{figures/prego_ui.png}
-      \caption[PREGO web user interface]{
-         PREGO web user interface. 
-         (a) There are two search fields, plain text and taxa sequences. 
-         (b-d) three associations tabs each one presenting associations of the querred entity with the respective entities, Environments (b), Biological Process (c ) and Molecular Function (d). 
-         Three channels of information are distinguishing the associations based on the original data. 
-         (e) Documents tab presents the scientific articles that mention the queried entity highlighted with color. 
-         (f) Downloads tab provides the associations of each channel (when available) to be downloaded in JSON and TSV format.
-      }
-      \label{fig:prego_ui}
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/isd_crete_flowchart.png}
+      \caption[Reproducible workflow of ISD analysis]{Three steps of the ISD bioinformatics workflow, reproducible by design}
+      \label{fig:isd_workflow_taxonomy}
    \end{figure}
+   
+\subsection{Island Sampling Day: Crete}\label{isd_data}
+
+This study uses the ISD Crete data that have been deposited
+in the European Nucleotide Archive (ENA) at EMBL-EBI under accession number PRJEB21776.
+The raw sequences (fastq files) and metadata (xml files) were downloaded with custom scripts using the ENA API \parencite{Yuan2023}.
+Specific information regarding the ISD sampling, DNA extractions, PCR and sequencing
+protocols are discussed here \parencite{holm2024}. The bioinformatics workflow is 
+reproducible as described in Appendix Figure \ref{fig:isd_workflow_taxonomy}.
+
+Amplicon Sequence Variants were inferred using DADA2 \parencite{Callahan2016} for 
+filtering, denoising and chimeric reads removal. Normalisation of the reads
+across samples was implemented with the SRS R package \parencite{Beule2020}. Samples
+with less than 10000 reads were removed. ASVs were assigned to taxonomy using 
+DADA2 with Silva 138 \parencite{quast_silva_2013}.
+
+\begin{figure}[t] 
+    \centering\includegraphics[width=\columnwidth]{isd_map_fig1-small}
+    \caption{Crete ISD sampling. A. The routes of the single day event sampling. B. Beta diversity differences are represented with color.}
+    \label{fig:isd_crete_sampling}
+\end{figure}
 
 
-   Regarding the association tabs, when a taxon is used as a query, PREGO returns an overview page consisting of tabs for environments, biological processes, and molecular functions. When an environmental type is used as input, PREGO returns the organisms that have been found to be related to it, as well as the Biological Processes observed in the given environment. 
-   Lastly, if a biological process is under study, PREGO returns a tab with the organisms along with another tab with the Environments related to the process. 
-   Notably, only the associations with scores higher than $0.5$ are presented in the web platform and are sorted in descending order based on their score. 
-   The score is visualized with a five-star system (see Appendix~\ref{app:C} for the scoring scheme).
-   Every association tab contains three tables with associations derived from the PREGO channels (see Section~\ref{sec:prego-methods}) along with their supported evidence. 
-   The user can both search and scroll through these tables, which makes knowledge extraction easier in cases where, for example, Isolate data contain hundreds of associations. 
-   In the \textit{Literature} channel, each association is supported by the scientific articles with text-mining identified co-mentions. 
-   When a user clicks on an association, a popup window appears. This window displays abstracts or excerpts of full text with the associated entities highlighted (Figure~\ref{fig:prego_ui_resources}a). 
-   Additionally, the Environmental Samples and Genome annotations and Isolates channels support evidence for each association by providing links to more detailed information. 
-   In the former channel, when the users click on an association, they are redirected to pertinent sample pages of MGnify (Figure~\ref{fig:prego_ui_resources}b). 
-   Similarly, the latter redirects users to JGI and NCBI genomes when the associations originated from JGI—IMG and Struo, respectively (Figure~\ref{fig:prego_ui_resources}c).
 
+\subsection{Tools}\label{Coding environment}
+PEMA for OTU inference \parencite{zafeiropoulos2020pema}
+U-CIE R package for coloring 3 dimensional data \parencite{Koutrouli2022}
 
+Visualisation was implemented with ggplot2 \parencite{wickham_ggplot2_2016} and pheatmap \parencite{Kolde2019}.
+The environment we worked had Python 3.11.4, R version 4.3.2 \parencite{rcoreteam}
+and Julia language version 1.9.3 \parencite{Julia-2017}in Julia language version 1.9.3 \parencite{Julia-2017}.
+Finally, computations were performed on HPC infrastructure of HCMR \parencite{zafeiropoulos_0s_2021}.
+
+\section{Results}\label{results}
+
+\subsection{Soil microbiome}\label{soil_microbiome}
+
+The Illumina HiSeq2500 libraries yielded 51 million sequenced reads (16-20 GB) with
+an average of 355,326 reads/sample (range 2,437-525144). Sequences and the
+metadata thereof were submitted to the ENA under the study accession number PRJEB21776.
+Sequencing produced 51 million reads, with an average of 250-500 K reads per
+sample (15-20 GB of data), with an average of 355,326 average reads per sample
+(range: 2,437-525,144) and less than 15,000 reads for reads of either less than
+445 bp or over 515 bp, Figure \ref{fig:isd_srs-curve_samples}.
+   
    \begin{figure}[h]
       \centering
-      \includegraphics[width=0.85\textwidth]{figures/prego_ui_resources.png}
-      \caption[PREGO in action - examples]{ 
-         Each association is supported by original data. 
-         (a) Literature channel has a pop-up functionality that displays the scientific articles that each specific association occurs with highlighted color. 
-         (b) Environmental Samples channel redirects to the samples that support the specific association (currently only is supported MGnify). 
-         (c) Annotated Genomes channel similarly redirects to the isolates ids that each association is based on (both Struo and JGI IMG are supported).
-      }
-      \label{fig:prego_ui_resources}
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/isd_crete_srs_curve.jpeg}
+      \caption[SRS curve]{SRS curve of the samples. }
+      \label{fig:isd_srs-curve_samples}
    \end{figure}
 
+\begin{figure}[t] 
+    \centering\includegraphics[width=\columnwidth]{figures/isd_community_site_locations_dif.png}
+\caption{Sample dissimilarity between samples in the same site (2 subsites) and the rest.}
+    \label{fig:isd_site_locations}
+\end{figure}
 
-   The \textit{Documents} tab includes a list of scientific publications where the queried entity is mentioned. 
-   Through the \textit{Downloads} tab, users are able to get all of the PREGO associations found for their query, per entity type (e.g., all the environments found related to an organism) and per channel (e.g., all the Environments found related to an organism through the \textit{Literature} channel). 
-   This data retrieval functionality is also available via the PREGO API (syntax described in Figure~\ref{fig:prego_api_schema}). 
-   Finally, all PREGO associations are available for bulk download from each channel (see Table~\ref{table:pregoA1}).
+In summary, DADA2 resulted in 216,360 ASVs (2,704 unique
+taxa; 1123 ASVs at species level and 1059 at genus level) and
+PEMA (VSEARCH) in 13,285 OTUs.
+The representative Phyla ( > 5\% presence in all samples) are:
+Actinobacteriota, Proteobacteria, Chloroflexi, Acidobacteriota,
+Bacterodota and Planctomycetota, Figure \ref{fig:isd_top_phyla_samples}.
+There are 25 specialist (samples < 10 and mean relative
+abundance > 0.003) and 146 generalist taxa (samples > 120), Figure \ref{fig:isd_fig2_taxonomy}.
 
+\begin{figure}[t] 
+    \centering\includegraphics[width=\columnwidth]{isd_fig2_taxonomy}
+    \caption{Taxonomic prevalence and representative phyla of the soil bacteria of Crete. 
+    A. Distribution of ASVs samples proportion. B. Distribution of taxa samples
+proportion and categorisation in generalists and specialists. C. Phyla samples proportion.
+D. Phyla relative abundance box plots, each dot represents one sample that the phylum occurs.}
+    \label{fig:isd_fig2_taxonomy}
+\end{figure}
 
+Alpha-diversity (Shannon Index) is significantly differed by physical and chemical features.
+Shannon diversity was negatively correlated with elevation (p=0.02), and
+positively correlated with both soil moisture and organic carbon (p < 0.001).
 
-   \begin{figure}[h]
+\begin{table}[]
+    \caption{Taxonomic depth of ASVs and the unique number of taxa of each level.\label{table:asv_taxonomy}}%
+\begin{tabular}{@{}lllll@{}}
+classification depth & Total ASV    & Total (ASV) taxa & Total OTUs & Total (OTU) taxa\\
+Kingdom              & 1974         & 2                & 284        & 2               \\
+Phylum               & 4034         & 33               & 121        & 15              \\
+Order                & 38517        & 193              & 1224       & 135             \\
+Class                & 24157        & 83               & 978        & 62              \\
+Family               & 71355        & 287              & 2319       & 218             \\
+Genus                & 90137        & 1166             & 1920       & 582             \\
+Species              & 9120         & 1338             & 44         & 43              \\
+Total                & $\sim$239000 & 3102             & 6890       & 1057            
+\end{tabular}
+\label{table:asv_taxonomy}
+\end{table}
+
+\begin{figure}[h]
       \centering
-      \includegraphics[width=135mm]{figures/figure_4_PREGO API.png}
-      \caption[The PREGO API schema]{The PREGO API schema.}
-      \label{fig:prego_api_schema}
-   \end{figure}
-
-
-   \subsection{PREGO in Action}
-   \label{subsec:prego-action}
-
-   To demonstrate PREGO's potential, we present four different ways that PREGO can assist molecular ecologists. 
-   The demo focuses on the sulfate-reducing microorganisms (SRMs) as well as the processes and environments that relate to sulfate reduction. 
-   Through this demo, we highlight how the different channels may provide complementary insights regarding different taxonomic levels and different association types.
-
-   \subsection*{\textit{Which Environments Are Related to a Taxon?}}
-   \label{subsec:envo-taxa}
-
-   Based on Pavloudi et al. (2017) \parencite{pavloudi2017diversity}, several bacterial and archaeal SRM were found in lagoonal sediments, after amplifying and sequencing the dissimilatory sulfite reductase $\beta$-subunit (dsrB). 
-   Using PREGO for the case of Desulfobacteraceae, the family in which the majority of the observed OTUs of the study belonged to, several environmental types similar to lagoons were retrieved from both the \textit{Literature} and the \textit{Environmental samples} channels (Figure~\ref{fig:prego_ui_resources}a,b). Moreover, most of them had a high $z$-score, such as \textit{"sediment"}, \textit{"sludge"}, and \textit{"activated sludge"}. 
-   Several dissimilar environmental types were associated with Desulfobacteraceae, e.g., \textit{"oil reservoir"} indicating them as potential environments where sulfate reduction takes place. 
-   However, the presence of taxa within that family in different environments, from \textit{"sea water"} to \textit{"forest"} and \textit{"Wastewater treatment plant"}, may suggest that this family has ubiquitous representatives in diverse conditions.
-
-   Searching for \textit{Desulfatiglans anilini} (\href{https://prego.hcmr.gr/example1}{example1}\footnote{\href{https://prego.hcmr.gr/example1}{https://prego.hcmr.gr/example1}}, accessed on 24 December 2021) at the species level, 
-   the most abundant species in Pavloudi et al. (2017) and, 
-   for \textit{Desulfatiglans anilini} DSM 4660 strain ({\href{https://prego.hcmr.gr/example2}{example 2}\footnote{\href{https://prego.hcmr.gr/example2}{https://prego.hcmr.gr/example2}}, accessed on 24 December 2021), 
-   PREGO provides associations with the \textit{"Anaerobic sediment"}, \textit{"Marine oxygen minimum zone"}, and \textit{"Anaerobic digester sludge"} terms. 
-   These associations further corroborate the relationship between the species and sulfate reduction. 
-   More specifically, the \textit{"sulfur spring"} ENVO term was retrieved from the Environmental samples channel as well.
-
-
-   \subsection*{\textit{Which Biological Processes and Molecular Functions Are Related to a Taxon?}}
-   \label{subsec:proc-taxa}
-
-   According to Pavloudi et al. (2017), \textit{Desulfatiglans anilini} plays an important role in sulfate reduction. 
-   The Biological Processes provided by PREGO's Literature channel are the GO terms \textit{"Sulfate reduction"}, \textit{"Sulfide oxidation"}, and \textit{"Sulfide ion homeostasis"}, which support this claim. 
-   In addition, the \textit{"Denitrification pathway"} term was also retrieved. 
-   This is rather interesting as it is in line with what Pavloudi et al. (2017) discussed about the SRMs and their ability to use various electron acceptors, e.g., nitrate and nitrite.
-
-   Furthermore, PREGO's Molecular Function tab provides more insight on this example. Several GO terms related to sulfate reduction (e.g., terms related to \textit{"sulfite reductase"}) were associated with DSM 4660 strain and Desulfatiglans anilini species in multiple channels. Interestingly, in the case of the strain query, the Annotated Genomes channel returned many GO terms related to the nitrogen fixation, e.g., \textit{"nitric oxide dioxygenase activity"}.
-
-
-   \subsection*{\textit{Which Taxa Are Related to a Biological Process?}}
-   \label{subsec:taxa-proces}
-
-   PREGO can be also used to report organisms that relate to a certain biological process. Searching for \textit{"dissimilatory sulfate reduction"} associations with taxa (\href{https://prego.hcmr.gr/example3}{example 3}\footnote{\href{https://prego.hcmr.gr/example3}{https://prego.hcmr.gr/example3}}, accessed on 24 December 2021) resulted in several taxa that were mentioned in the Pavloudi et al. (2017) study. 
-   For example, taxa such as Thermodesulfobacteria and Thermodesulfovibrio were found among the entries with the highest score (e.g.,) based on the Literature channel. 
-   The other two channels did not contain any associations. 
-   Using the \textit{"Sulfate assimilation"} (\href{https://prego.hcmr.gr/example4}{example 4}\footnote{\href{https://prego.hcmr.gr/example4}{https://prego.hcmr.gr/example4}}, accessed on 24 December 2021) as the biological process input, PREGO results showed several genera that were missing from PREGO results concerning the \textit{"dissimilatory sulfate reduction"}. 
-   Hence, manual search of GObp terms that describe the actual biological process of interest is more insightful.
-
-
-   \subsection*{\textit{Are There Any Associations between Environments and Biological Processes?}}
-   \label{subsec:envo-proc}
-
-   Are there other environmental types, except the lagoonal sediments, in which sulfate assimilation occurs? In that question, and in \textit{"dissimilatory sulfate reduction"} (\href{https://prego.hcmr.gr/example3}{example 3}) in particular, PREGO assigns the highest score to “sediment” while, among others, \textit{"anoxic water"}, \textit{"oil reservoir"}, \textit{"mud volcano"}, and \textit{"basalt"} are potentially associated with environments related to sulfate reduction.
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/isd_asv_taxonomy_ratios_top_phyla_samples.png}
+      \caption[Top phyla of each samples]{The top phyla for all samples with their relative abundance}
+      \label{fig:isd_top_phyla_samples}
+\end{figure}
    
-   Inversely, PREGO is insightful about occurring processes in a specific environmental type. 
-   For example, searching for the biological processes that take place in \textit{"basalt"} (\href{https://prego.hcmr.gr/example5}{example 5}\footnote{\href{https://prego.hcmr.gr/example5}{https://prego.hcmr.gr/example5}}, accessed on 24 December 2021), processes like \textit{"Nitrogen fixation"} and \textit{"Reactive nitrogen species metabolic process"} stand out. 
-   However, sulfate reduction is not among the associations. 
-   However, when asking for \textit{"Mafic lava"} (\href{https://prego.hcmr.gr/example6}{example 6}\footnote{\href{https://prego.hcmr.gr/example6}{https://prego.hcmr.gr/example6}}, accessed on 24 December 2021), both the \textit{"nitrogen fixation"} and \textit{"Sulfur compound metabolic process"} terms are returned. 
-   This highlights the suggestions of Pavloudi et al. (2017), regarding the potential use of various electron acceptors from the different strains present in different environmental types.
+
+\subsection{Communities}\label{communities}
+Microbial beta diversity differently associated with physical and chemical
+features of ISD. PCoA 1 (describing 14\% of the variance) was largely driven by
+elevation (F=23, p < 0.001). PCoA 2, which explained 12\% of the variance,
+was significantly associated with soil moisture (F=90, p < 0.001).
+PCoA 2 also positively correlated with both organic carbon and nitrogen.
 
 
-   \subsection{PREGO Contents}
-   \label{subsec:prego-contents}
+\section{Discussion}\label{discussion}
 
-   PREGO contains the literature, environmental samples, and genome annotations of the resources shown in Table~\ref{table:prego1}. 
-   The extracted contents of these resources have resulted to a knowledge base with ~364 K distinct taxonomic groups (out of a pool of ~$620$K Bacteria, Archaea, and microbial eukaryotes, based on NCBI Taxonomy) from which ~$258$K are at the species level (Table~\ref{table:prego2}). 
-   These taxa are associated with ~1 K Environment Ontology terms, ~15 K GObp terms, and with ~7.9 K GOmf terms. 
-   Combining the above, PREGO maintains a knowledge base of entities and associations between them that form a multipartite network with entities as nodes and scored associations between them as weighted links.
+Multiple works have emerged the past 5 years about enumerating all
+biodiversity \parencite{Anthony2023} and deciphering the biogeochemical 
+processes and interactions of fauna, flora and microbes in global
+studies \parencite{Fry2019, Crowther2019,GRANDY201640,Delgado-Baquerizo2020} and
+in mountain peaks soil microbiomes \parencite{Adamczyk2019}. One of our profound
+results is that soil bacterial biodiversity is very complex, even sites a few meters apart can differ
+significantly in their community composition, Figure \ref{fig:isd_site_locations}.
+This is a fact that is sometimes neglected in worldwide studies and the island biogeography
+paradigm can assist to remove clutter.
 
+Apart from the profound diversity in soils, there is also high speciation and uniqueness. 
+As shown in Figure \ref{fig:isd_fig2_taxonomy}, most ASVs occur in 1 or 2 or 3 samples.
+This is different when compering with the ocean. When using the deepest taxonomic
+level of ASVs is possible to identify the specialists and generalists \parencite{Barberan2012}. 
+In addition, focusing on the phyla, we see a pattern looking like a phase transition, from 
+rare phyla to phyla that dominate all samples, Figure \ref{fig:isd_fig2_taxonomy} C. Lastly, in Figure \ref{fig:isd_fig2_taxonomy} D,
+and \ref{fig:isd_top_phyla_samples}, we found some distinct top phyla profiles of samples.
 
-   % PREGO ENTITIES AFTER NER AND MAPPING - table:prego2
-   \begin{table}[ht]
-      \begin{tabular}{@{}cccrccc@{}}
-      \toprule
-      \textbf{Channel} & \textbf{Source} & \multicolumn{2}{c}{\textbf{Taxonomy}} & \textbf{\begin{tabular}[c]{@{}c@{}}Environ- \\ ments\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Biological \\ Processes\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Molecular \\ Functions\end{tabular}} \\ \midrule
-      \multirow{3}{*}{Literature} & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MEDLINE \\ PubMed - \\ PMC OA\end{tabular}} & Strains & 8,929 & \multirow{3}{*}{1,077} & \multirow{3}{*}{15,079} & \multirow{3}{*}{7,318} \\
-      &  & Species & 240,377 &  &  &  \\
-      &  & Total & 342,506 &  &  &  \\
-      \multirow{9}{*}{\begin{tabular}[c]{@{}c@{}}Environ- \\ mental \\ samples\end{tabular}} & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MG-RAST \\ amplicon\end{tabular}} & Strains & 1,392 & \multirow{3}{*}{162} & \multirow{3}{*}{-} & \multirow{3}{*}{-} \\
-      &  & Species & 4,324 &  &  &  \\
-      &  & Total & 5,859 &  &  &  \\
-      & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MG-RAST \\ metagenome\end{tabular}} & Strains & 2,522 & \multirow{3}{*}{258} & \multirow{3}{*}{-} & \multirow{3}{*}{3,839} \\
-      &  & Species & 4,406 &  &  &  \\
-      &  & Total & 7,157 &  &  &  \\
-      & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MGnify \\ amplicon\end{tabular}} & Strains & 2 & \multirow{3}{*}{216} & \multirow{3}{*}{11} & \multicolumn{1}{l}{\multirow{3}{*}{-}} \\
-      &  & Species & 1,471 &  &  & \multicolumn{1}{l}{} \\
-      &  & Total & 2,955 &  &  & \multicolumn{1}{l}{} \\
-      \multirow{9}{*}{\begin{tabular}[c]{@{}c@{}}Annotated\\Genomes \&\\Isolates\end{tabular}} & \multirow{3}{*}{JGI IMGisolates} & Strains & 2,398 & \multirow{3}{*}{241} & \multirow{3}{*}{-} & \multirow{3}{*}{3,670} \\
-      &  & Species & 11,203 &  &  &  \\
-      &  & Total & 13,849 &  &  &  \\
-      & \multirow{3}{*}{STRUO} & Strains & 6 & \multirow{3}{*}{-} & \multirow{3}{*}{-} & \multirow{3}{*}{2,789} \\
-      &  & Species & 19,289 &  &  &  \\
-      &  & Total & 19,325 &  &  &  \\
-      & \multirow{3}{*}{BioProject} & Strains & 5,754 & \multirow{3}{*}{309} & \multirow{3}{*}{626} & \multirow{3}{*}{-} \\
-      &  & Species & 3,373 &  &  &  \\
-      &  & Total & 9,393 &  &  &  \\
-      \multirow{3}{*}{Total} & \multirow{3}{*}{All} & Strains & 12,840 & \multirow{3}{*}{1,090} & \multirow{3}{*}{15,091} & \multirow{3}{*}{7,971} \\
-      &  & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} &  &  &  \\
-      &  & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} &  &  &  \\ \bottomrule
-      \end{tabular}
-
-      \caption[The entities of PREGO after the NER and mapping of every source]{
-         The entities of PREGO after the NER and mapping of every source. 
-         Counts of distinct entities of Taxa, Environments (ENVO terms), Biological Processes (Gene Ontology Biological process) and Molecular Function (Gene Ontology Molecular Function).
-      }
-      \label{table:prego2}
-
-   \end{table}
+Elevation gradients of biodiversity are known since Humboldt's work \parencite{Rahbek2019} 
+yet these patterns remain elusive regarding the soil microbiome \parencite{Looby2020, Siles2023}.
+Mostly because it's difficult to isolate other co-founding effects \parencite{Nottingham2018}.
+In our results elevation showed important distinction of taxa and of diversity. Yet more work is 
+needed to explore the Asterousia mountain transect in isolation to avoid indirect influences of 
+other variables.
 
 
-   As shown in Figure~\ref{fig:prego-entities}, in its current version (December 2021), PREGO knowledge base covers $157$ bacterial phyla ($107$ are Candidatus), $23$ phyla from archaea ($18$ are Candidatus), and $22$ unicellular eukaryotic phyla described in the NCBI Taxonomy database. 
-   The number of bacterial taxa present among the associations of each phylum ranges from the order of $10$s, as in the case of \textit{Candidatus Coatesbacteria}, to hundreds of thousands, e.g., Actinobacteriae. 
-   The number of environmental types, found among the PREGO associations for each phylum, ranges from just a few to up to $1000$. 
-   Similarly, the number of biological processes that have been related to the various phyla may range from less than a dozen, e.g., Yanofskybacteria to up to several thousands, e.g., Bacteroidetes. On the contrary, the number of molecular functions found to be related to taxa of each phylum is rather constant in all three domains.
+\section{Conclusion}
 
-   \begin{figure}[h]
-      \centering
-      \includegraphics[width=0.85\textwidth]{figures/figure_5_all_channels_ranks.png}  
-      \caption[Summary of the unique entities per phylum for each of the four entity types on PREGO]{Summary of all the unique entities per phylum for each of the four entity types (in log10 scale) that appear in PREGO. Phyla are grouped based on their superkingdom (in log10 scale). Only phyla for which associations are available in the PREGO platform are mentioned.}
-      \label{fig:prego-entities}
-   \end{figure}
-
-
-% RPEGO DISCUSSION
-\section{Discussion}
-\label{sec:prego-discussion}
-
-   \subsection{PREGO Contents}
-   \label{subsec:prego-contents-disc}
-
-   On its current version and according to the NCBI Taxonomy that it is based on, PREGO manages to cover a great range of microbial taxa, as most (if not all phyla) are present in the knowledge base (Figure~\ref{fig:prego-entities}). 
-   The different number of organisms' entities per phylum highlights the diverse number of the members of the various phyla. On the contrary, the similar number of molecular functions in all cases indicates the robustness of the main metabolic processes required for life. 
-   With respect to biological processes, their number per phylum varies to some extent, especially for the case of Bacteria and Archaea. 
-   That could be observed as, in many cases, phyla that have been recently described using molecular techniques have not been studied extensively yet, e.g., Candidatus Delongbacteria. 
-   As expected, the number of environmental types that have been associated with members of each phylum varies, as a phylum may be universally present, while others could be strongly niche-specific (e.g., Hydrothermarchaeota).
-
-   Because of its three different channels, PREGO manages to extract associations both in the species and higher taxonomic levels. The Isolates channel supports explicit associations at the species level (Table~\ref{table:prego3} and Figure S3). 
-   Interestingly, the number of such genomes seems to have reached a plateau for now, as PREGO-like platforms include the same order of magnitude. 
-   The \textit{Literature} channel, on the other hand, promotes the extraction of associations at higher taxonomic levels (Table~\ref{table:prego3} and Figure S1). 
-   This also applies to environment—organisms associations derived from the Environmental Samples channel (Table~\ref{table:prego3} and Figure S2). Associations regarding biological processes, though, are strongly enhanced by the Literature channel and the massive increase of literature.
+Deciphering and validating the results presented here requires future work.
+Even though amplicon studies in soil should be interpreted with caution \parencite{alteio2021} they 
+can act as early warning signals towards public health concerns \parencite{banerjee2023Soil}.
+In addition, the immediate release and availability of these data is crucial for 
+taking action.
+The pillar of data integration is the unrestricted open data across disciplines and 
+the open source software.
+"A holistic perspective on soil architecture is needed as a key to soil functions" \parencite{philippot2024the-interplay}, is 
+an important statement for future soil projects.
+Shotgun metagenomics and metatranscriptomics can unleash the functional potential of
+topsoil along with other advancements like long reads sequencing. Higher resolution
+samplings using grid system will enhance the resolution and also the resampling of
+ISD sites in different time points will provide additional insights to the complex soil 
+functions and expand the positive and negative associations in soils \parencite{Liu2024}.
+Lastly, global hotspots \parencite{Guerra2022} and soil ecosystem conservation is needed as 
+a whole and expanding current protection of specific species \parencite{guerra2021tracking}.
+This along with policy \parencite{KONINGER2022} across countries \parencite{Putten2023}
+without borders and the implementation of legislation in Greece \parencite{SCHISMENOS2022100035} is 
+imperative.
 
 
-   % ASSOCIATIOS TABLE - table:prego3
-   \begin{sidewaystable}
-      \begin{tabular}{@{}cccccrcr@{}}
-      \toprule
-      \textbf{Channel} & \textbf{Source} & \textbf{\begin{tabular}[c]{@{}c@{}}Environments \\ - \\ Processes\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Environments \\ - \\ Functions\end{tabular}} & \textbf{Taxonomy} & \multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Taxa \\ -\\  Environments\end{tabular}}} & \textbf{\begin{tabular}[c]{@{}c@{}}Taxa \\ - \\ Processes\end{tabular}} & \multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Taxa \\ -\\ Function\end{tabular}}} \\ \midrule
-      \multirow{3}{*}{Literature} & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MEDLINE \\ PubMed - \\ PMC OA\end{tabular}} & \multirow{3}{*}{883,997} & \multirow{3}{*}{422,579} & Strains & 69,968 & \multicolumn{1}{r}{590,630} & 384,079 \\
-      &  &  &  & Species & 778,877 & \multicolumn{1}{r}{3,501,635} & 1,961,920 \\
-      &  &  &  & Total & 1,669,608 & \multicolumn{1}{r}{7,969,310} & 4,613,827 \\
-      \multirow{9}{*}{\begin{tabular}[c]{@{}c@{}}Environmental \\ samples\end{tabular}} & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MG-RAST \\ amplicon\end{tabular}} & \multirow{3}{*}{-} & \multirow{3}{*}{-} & Strains & 13,645 & \multirow{3}{*}{-} & \multicolumn{1}{c}{\multirow{3}{*}{-}} \\
-      &  &  &  & Species & 39,007 &  & \multicolumn{1}{c}{} \\
-      &  &  &  & Total & 53,439 &  & \multicolumn{1}{c}{} \\
-      & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MG-RAST \\ metagenome\end{tabular}} & \multirow{3}{*}{-} & \multirow{3}{*}{620,846} & Strains & 262,106 & \multirow{3}{*}{-} & 8,626,328 \\
-      &  &  &  & Species & 103,913 &  & 10,715,548 \\
-      &  &  &  & Total & 372,301 &  & 19,950,096 \\
-      & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MGnify \\ amplicon\end{tabular}} & \multirow{3}{*}{-} & \multirow{3}{*}{-} & Strains & 18 & - & \multicolumn{1}{l}{} \\
-      &  &  &  & Species & 30,122 & \multicolumn{1}{r}{351} & \multicolumn{1}{c}{-} \\
-      &  &  &  & Total & 111,976 & \multicolumn{1}{r}{2,097} & \multicolumn{1}{l}{} \\
-      \multirow{9}{*}{\begin{tabular}[c]{@{}c@{}}Annotated Genomes \\ and Isolates\end{tabular}} & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}JGI IMG\\ isolates\end{tabular}} & \multirow{3}{*}{-} & \multirow{3}{*}{-} & Strains & 8,229 & \multirow{3}{*}{-} & 3,461,693 \\
-      &  &  &  & Species & 42,141 &  & 13,216,559 \\
-      &  &  &  & Total & 50,888 &  & 16,821,850 \\
-      & \multirow{3}{*}{STRUO} & \multirow{3}{*}{-} & \multirow{3}{*}{-} & Strains & \multicolumn{1}{c}{\multirow{3}{*}{-}} & \multirow{3}{*}{-} & 1,803 \\
-      &  &  &  & Species & \multicolumn{1}{c}{} &  & 4,070,195 \\
-      &  &  &  & Total & \multicolumn{1}{c}{} &  & 4,079,312 \\
-      & \multirow{3}{*}{BioProject} & \multirow{3}{*}{-} & \multirow{3}{*}{-} & Strains & 3,263 & \multicolumn{1}{r}{7,473} & \multicolumn{1}{l}{} \\
-      &  &  &  & Species & 4,187 & \multicolumn{1}{r}{4,294} & \multicolumn{1}{l}{} \\
-      &  &  &  & Total & 7,641 & \multicolumn{1}{r}{12,169} & \multicolumn{1}{l}{} \\
-      \multirow{3}{*}{Total} & \multirow{3}{*}{All} & \multirow{3}{*}{883,997} & \multirow{3}{*}{1,043,425} & Strains & 357,229 & \multicolumn{1}{r}{598,103} & 12,473,903 \\
-      &  &  &  & Species & 998,247 & \multicolumn{1}{r}{3,506,280} & 29,964,222 \\
-      &  &  &  & Total & 2,265,853 & \multicolumn{1}{r}{7,983,576} & 45,465,085 \\ \cmidrule(l){5-8} 
-      \end{tabular}
-      \caption[Associations among the PREGO entities]{
-         The associations between entities of PREGO after co-occurrence analysis: The supported entity types of associations are Environments—Biological Processes, Environments—Molecular Functions, Taxa—Environments, Taxa—Biological Processes, Taxa—Molecular Functions.
-      }
-      \label{table:prego3}
-   \end{sidewaystable}
+\section{Data and Code}
+The documentation and scripts developed for this study are available in
+\href{https://github.com/savvas-paragkamian/crete_soil_microbiome/}{Crete soil microbiome github repository}.
+This repository contains all the necessary scripts for the data retrieval,
+filtering and ASV inference, taxonomy assignment, data integration of spatial data, 
+functional annotation and the subsequent analyses and visualisation.
+Code is structured to be reproducible and interoperable.
 
-   Additionally, the text mining methodology of the Literature channel has retrieved most of the entities present in PREGO knowledge base (Table~\ref{table:prego2}). 
-   A significant contribution to the taxa with associations is due to the PMC OA processing by the text mining pipeline of the Literature channel. 
-   This is in-line with reports in other applications of text mining when using full text articles \parencite{westergaard2018comprehensive}. 
-   However, the resulting associations are suggestive because of the text mining nature, and therefore subject for further review by the users.
+\section{Competing interests}
+No competing interest is declared.
 
-   \subsection{Related Tools' Functionality and Content}
-   \label{subsec:prego-similar-platforms}
+\section{Author contributions statement}
+Conceptualization: LS, EP, GK, AM;
+Data curation: JH, LS, EP, SY, SP;
+Formal Analysis: SP, JH;
+Funding acquisition: LS, AM, SP;
+Investigation: LS, SY, SP, JH;
+Methodology: SP, GK, EP, LS, SY, CC, CP, HZ, MS;
+Project administration: LS, EP, GK;
+Resources: EP, LS, SY, AM;
+Software: SP, JH, HZ;
+Supervision: LS, EP, GK, PS;
+Validation: JH, CP, CC, HZ, PS, DT, MS, LS;
+Visualization: SP, JH;
+Writing – original draft: SP;
+Writing – review and editing: All authors.
 
-   There is an emerging niche for tools similar to PREGO to bring forward microbe associations and metadata. 
-   Table~\ref{table:prego4} summarizes the common and different features of BacDive, WoM, NMDC data portal, and PREGO. 
-   All of them commonly share the environmental associations and biological/metabolic processes with the microbes.
+\section{Acknowledgments}
+The authors thank the anonymous reviewers for their valuable suggestions.
 
-   BacDive is a well-established platform with a focus on phenotype and cultivation information for about 100,000 prokaryotes, bacteria, and archaea. 
-   It has a high level of curation for most of its input types, like literature, internal databases, and personal collections. 
-   The NMDC data portal has published the scheme, the user interface, and a demonstrative collection of samples that will be populated later on. Standout features are the spatial visualization with coordinates and the detailed information of the samples, e.g., sequencing instruments and methodology. 
-   An alternative approach is facilitated by WoM, which aims to bind chemistry to microbes. An environment, in particular, is defined as the starting metabolite pool that is transformed by an organism.
-   Another tool is The Microbe Directory that contains fully curated metadata for about 8000 microbes from all superkingdoms. This tool focuses on conditions of growth and on host taxa.
-
-   Complementary to these tools, PREGO contains associations of bacteria, archaea, and eukaryotes. Distinctive features are the associations of environments with processes/functions and the large-scale literature integration with text mining. Most importantly, most of the tools are complementary to each other with minimum overlap, an indication of the opportunities for further innovative synergies.
-
-
-   % PREGO COMPARISONS - table:prego4
-   \begin{table}[ht]
-
-      \begin{adjustwidth}{-0.75cm}{}
-
-      \begin{tabular}{@{}lllll@{}}
-      
-      \toprule
-      Functionality & BacDive & Web of Microbes & NMDC & PREGO \\ \midrule
-      manual curation & high & high & intermediate & low \\ 
-
-      literature integration & limited & no & no & yes \\
-
-      environment—taxa associations & yes & yes & yes & yes \\
-
-      \begin{tabular}[c]{@{}l@{}}environment—process/\\ function associations\end{tabular} & no & no & no & yes \\
-
-      process/function—taxa associations & yes & yes & yes & yes \\
-      phenotypic data & yes & no & no & no \\
-
-      data origin & \begin{tabular}[c]{@{}l@{}} original \\integration \end{tabular} & original & \begin{tabular}[c]{@{}l@{}} original \\integration \end{tabular} & integration \\
-
-      spatial coordinates & yes & no & yes & no \\
-
-      application programming interface & yes & no & yes & yes \\
-
-      bulk download & limited & yes & yes & yes \\ \bottomrule
-
-      \end{tabular}
-      \end{adjustwidth}
-      \caption[Feature comparison between PREGO and other similar platforms]{Feature comparison among platforms that facilitate knowledge discovery and integration of microbial data.}
-      \label{table:prego4}
-   
-   \end{table}      
-
-   \subsection{PREGO Next Steps}
-   \label{subsec:prego-next-steps}
-
-   PREGO is a user-friendly association mining and sharing platform. 
-   Its modular web-architecture grants it the flexibility for further improvements in the aforementioned aspects, namely: 
-   source datasets, user interface, entity, and association scope expansion. Regarding datasets, additional data, such as transcriptomes from MGnify and other records annotated with metadata from studies in \href{https://ebi-metagenomics.github.io/blog/2021/11/17/Publication-Annotations/}{EuroPMC}, accessed on 24 December 2021) \parencite{ferguson2021europe}, could be incorporated. 
-   Similarly, the \href{https://data.microbiomedata.org/}{NMDC data platform standards-compliant annotated records}\footnote{\href{https://data.microbiomedata.org/}{https://data.microbiomedata.org/}} (accessed on 24 December 2021) could serve as an additional resource with its high-quality metadata \parencite{wood2020national, vangay2021microbiome}. 
-   Reciprocally, if requested, pertinent literature and association summaries could be programmatically offered to interested third parties.
-
-   Furthermore, the entity types supported by the PREGO system could be expanded. For example, GOmf terms could be upgraded as a search-entry point to the system. 
-   In addition, disease and tissue describing terms, already supported by the PREGO-underlying EXTRACT system \parencite{pafilis2016extract}, could enter the PREGO ecosystem of associated entities. 
-   From a statistics perspective, the calculation of a combined association score, when an association is reported by more than one channel of information, could be another feature to add.
-
-   The user interface can be enhanced to support multiple entity and/or sequence queries, instead of single ones. 
-   Sequences can be processed by taxonomy assignment pipelines (e.g., PEMA \parencite{zafeiropoulos2020pema}) and be converted into searching PREGO for associations. 
-   In addition, network visualization tools, like Arena3Dweb \parencite{karatzas2021arena3dweb}, could allow interactive browsing of associations through multi-layered graphs. 
-   Enrichment analyses, like those performed by OnTheFly2.0 \parencite{baltoumas2021onthefly2} or Flame \parencite{thanati2021flame}, 
-   can be incorporated. 
-   Omics data analysis pipelines, like MiBiOmics \parencite{zoppi2021mibiomics}, environment associations with sequences using SeqEnv \parencite{sinclair2016seqenv} and biogeochemical associations with metagenomic data with DiTing~\parencite{xue_diting_2021} could be enabled by comparing the associations pertinent to different groups of entities. 
-   The computationally intensive tasks of multiple queries, taxonomy assignments to sequences and enrichment analysis could be offered by our in-house High Performance Computing facility (https://hpc.hcmr.gr/, accessed on 24 December 2021) \parencite{zafeiropoulos_0s_2021} in synergy with pertinent Research Infrastructures like \href{https://elixir-europe.org}{ELIXIR}\footnote{\href{https://elixir-europe.org}{https://elixir-europe.org}} (accessed on 24 December 2021) and \href{https://www.lifewatch.eu/}{LifeWatch ERIC}\footnote{\href{https://www.lifewatch.eu/}{https://www.lifewatch.eu/}} (accessed on 24 December 2021).
-
-
-
-   \subsection*{Availability of Supporting Source Codes:} 
-   The PREGO software modules are available under BSD 2-Clause “Simplified” License. Scripts, where additional libraries have been used, are subject to their individual licenses. More information on each module can be found as listed below:
-   
-   \begin{itemize}
-      \item prego\_gathering\_data 
-      \href{https://github.com/lab42open-team/prego_gathering_data}{github.com/lab42open-team/prego\_gathering\_data}
-      \item prego\_daemons \href{https://github.com/lab42open-team/prego_daemons}{github.com/lab42open-team/prego\_daemons}
-      \item prego\_mappings \href{https://github.com/lab42open-team/prego_mappings}{github.com/lab42open-team/prego\_mappings} 
-      \item prego\_statistics \href{https://github.com/lab42open-team/prego_statistics}{github.com/lab42open-team/prego\_statistics}
-   \end{itemize}
-
-   Additional software and curated lists along with their individual license are:
-   \begin{itemize}
-      \item tagger:	\href{https://github.com/larsjuhljensen/tagger}{https://github.com/larsjuhljensen/tagger}, BSD 2-Clause "Simplified" License
-      \item mamba: \href{https://github.com/larsjuhljensen/mamba}{https://github.com/larsjuhljensen/mamba}, BSD 2-Clause "Simplified" License 
-      \item tagger dictionary:  \href{https://download.jensenlab.org/}{https://download.jensenlab.org/} and there in: \\
-      \href{https://download.jensenlab.org/prego_dictionary.tar.gz}{https://download.jensenlab.org/prego\_dictionary.tar.gz}, CC-BY 4.0 license
-   \end{itemize}
-
+\section{Funding}
+SP was supported by the 3rd H.F.R.I. Scholarships for PHD Candidates (no. 5726) for his work.
