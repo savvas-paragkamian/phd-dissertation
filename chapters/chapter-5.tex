@@ -108,62 +108,12 @@ Warning signals are also identified for various types of ecosystems.
 \section{Materials and Methods}\label{methods}
 
 \begin{figure}[t] 
-    \centering\includegraphics[width=\columnwidth]{isd_crete_soil_microbiome}
+    \centering\includegraphics[width=\columnwidth]{crete_integration_soil_microbiome}
     \caption{Workflow of this study. Data integration of ISD data with multiple types of spatial data. Then, a threefold analysis of function annotations, network analysis and differential abundance. All these data and methods are used to focus on specific taxa, ecosystems and threats.}
     \label{fig:workflow}
 \end{figure}
 
 \subsection{Island Sampling Day: Crete}\label{isd_data}
-
-Ten teams followed a pre-defined sampling route of sampling locations. Samples
-were collected in a single day in order to control for variations in environmental
-factors that may impact the abundance and diversity of microbes such as season,
-temperature and humidity. Soil samples were collected by 26 participants in 10 teams.
-For each sampling location, teams selected two specific sampling sites that were
-at least 10 feet from the edge of the road and 2 feet (0.6 m) from the base of
-the identified tree or plant. Flora located at the sampling site were
-identified and photographed. Soil was collected from the two sub site locations (5-10 feet (1.5-3 m) apart).
-At each sub site, soil was sampled (3 replicates, collected one inch apart). 
-
-Two replicate sets of the 144 sub site samples were shipped, on dry ice, to the
-University of Maryland Soil Lab (Dr. Stephanie Yarwood) for RNA and DNA extraction
-and soil chemistry analysis (USDA PERMIT NUMBER: P330-16-00090).
-Prior to DNA extraction, the moisture, total organic Carbon and Nitrogen (CN) weights
-and CN analysis were determined. The CN analysis was conducted on 10/4/2016.
-Dr. Yarwood’s group submitted 144 combustion capsules of soil for C and N analyses using LECO CN628 
-
-DNA was extracted from 144 soil samples following the Earth Microbiome Project (EMP)
-standard protocols, utilizing the MoBio RNA extraction kit and the  MoBio DNA elution kit to go with RNA kit (Qiagen).
-Quantification was performed using Qbit (Thermofisher) to confirm extraction, Qbit dsDNA
-quantification. Three of the samples, collected in sand, had no detectable DNA
-following extractions. Additionally, 17 samples had a DNA amount too low for metagenomics: 1 from ISD1, ISD4, and ISD35, 6 from ISD7, 4 from ISD8, and 3 from ISD10. A second attempt to re-extract with MoBio powermax kit (2g soil). 
-
-Amplicon libraries were prepared and sequenced (16S ribosomal (rRNA) amplicon
-sequenced (16S rRNA V3, V4 region)) on an Illumina HiSeq2500 with processing of
-the reads conducted to determine the relative abundances and taxonomic diversity of bacterial taxa in soil.
-Sequencing analysis was conducted at the Institute for Genome Sciences, Genomics
-Resource Center (Maryland Genomics) at the University of Maryland School of Medicine.
-The V3-V4 region of 16S rRNA gene from each sample was sequenced, using a
-PCR-based protocol that targets the V3-V4 region of the 16S rRNA gene (V3 V4 primers: Forward: 5'-ACTCCTACGGGAGGCAGCAG-3'; Reverse: 5'-GGACTACHVGGGTWTCTAAT-3').
-
-This study uses the ISD Crete data that have been deposited
-in the European Nucleotide Archive (ENA) at EMBL-EBI under accession number PRJEB21776.
-The raw sequences (fastq files) and metadata (xml files) were downloaded with custom scripts using the ENA API \parencite{Yuan2023}.
-Specific information regarding the ISD sampling, DNA extractions, PCR and sequencing
-protocols are discussed here \parencite{holm2024}. The bioinformatics workflow is 
-reproducible as described in Appendix Figure \ref{fig:isd_workflow_taxonomy}.
-
-Amplicon Sequence Variants were inferred using DADA2 \parencite{Callahan2016} for 
-filtering, denoising and chimeric reads removal. Normalisation of the reads
-across samples was implemented with the SRS R package \parencite{Beule2020}. Samples
-with less than 10000 reads were removed. ASVs were assigned to taxonomy using 
-DADA2 with Silva 138 \parencite{quast_silva_2013}.
-
-\begin{figure}[t] 
-    \centering\includegraphics[width=\columnwidth]{isd_map_fig1-small}
-    \caption{Crete ISD sampling. A. The routes of the single day event sampling. B. Beta diversity differences are represented with color.}
-    \label{fig:isd_crete_sampling}
-\end{figure}
 
 \subsection{Crete data cube}\label{data}
 
@@ -206,6 +156,16 @@ The environment we worked had Python 3.11.4, R version 4.3.2 \parencite{rcoretea
 and Julia language version 1.9.3 \parencite{Julia-2017}in Julia language version 1.9.3 \parencite{Julia-2017}.
 Finally, computations were performed on HPC infrastructure of HCMR \parencite{zafeiropoulos_0s_2021}.
 
+\subsection{Data and Code}
+The documentation and scripts developed for this study are available in
+\href{https://github.com/savvas-paragkamian/crete_soil_microbiome/}{Crete soil microbiome github repository}.
+This repository contains all the necessary scripts for the data retrieval,
+filtering and ASV inference, taxonomy assignment, data integration of spatial data, 
+functional annotation and the subsequent analyses and visualisation.
+Additional scripts about data integration are available in
+\href{https://github.com/savvas-paragkamian/crete-data-integration}{Crete data integration}.
+Code is structured to be reproducible and interoperable.
+
 \section{Results}\label{results}
 
 \subsection{Literature}
@@ -226,6 +186,18 @@ Database for Europe (SPADE) \parencite{Hiederer2006}.
 
 LTER map
 
+\begin{figure}[h] 
+    \centering\includegraphics[width=\columnwidth]{crete_integration_ena_terrestrial.png}
+    \caption{Available terrestrial metagenomic samples from ENA in Crete.}
+    \label{fig:isd_crete_ena}
+\end{figure}
+
+
+\begin{figure}[h] 
+    \centering\includegraphics[width=\columnwidth]{crete_integration_map_wosi_soil.png}
+    \caption{Soil samples from Crete that are uploaded in WoSIS.}
+    \label{fig:isd_crete_ena}
+\end{figure}
 
 GBIF map 
 
@@ -308,7 +280,7 @@ appear concentrated in Richtis gorge. Most plant pathogens occur in an agricultu
 field in south Rethymnon. 
 
 \begin{figure}[t] 
-    \centering\includegraphics[width=\columnwidth]{isd_functions_faprotax}
+    \centering\includegraphics[width=\columnwidth]{crete_integration_functions_faprotax}
 \caption{Heatmap of the FAPROTAX functions relative abundances per sample.}
     \label{fig:isd_functions_faprotax}
 \end{figure}
@@ -389,35 +361,3 @@ without borders and the implementation of legislation in Greece \parencite{SCHIS
 imperative.
 
 
-\section{Data and Code}
-The documentation and scripts developed for this study are available in
-\href{https://github.com/savvas-paragkamian/crete_soil_microbiome/}{Crete soil microbiome github repository}.
-This repository contains all the necessary scripts for the data retrieval,
-filtering and ASV inference, taxonomy assignment, data integration of spatial data, 
-functional annotation and the subsequent analyses and visualisation.
-Code is structured to be reproducible and interoperable.
-
-\section{Competing interests}
-No competing interest is declared.
-
-\section{Author contributions statement}
-Conceptualization: LS, EP, GK, AM;
-Data curation: JH, LS, EP, SY, SP;
-Formal Analysis: SP, JH;
-Funding acquisition: LS, AM, SP;
-Investigation: LS, SY, SP, JH;
-Methodology: SP, GK, EP, LS, SY, CC, CP, HZ, MS;
-Project administration: LS, EP, GK;
-Resources: EP, LS, SY, AM;
-Software: SP, JH, HZ;
-Supervision: LS, EP, GK, PS;
-Validation: JH, CP, CC, HZ, PS, DT, MS, LS;
-Visualization: SP, JH;
-Writing – original draft: SP;
-Writing – review and editing: All authors.
-
-\section{Acknowledgments}
-The authors thank the anonymous reviewers for their valuable suggestions.
-
-\section{Funding}
-SP was supported by the 3rd H.F.R.I. Scholarships for PHD Candidates (no. 5726) for his work.
