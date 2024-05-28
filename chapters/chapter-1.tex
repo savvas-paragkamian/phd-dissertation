@@ -301,14 +301,24 @@ UMAP 2,
 was significantly associated with soil moisture (F=90, p < 0.001).
 PCoA 2 also positively correlated with both organic carbon and nitrogen.
 
-UMAP , NMDS , PCoA
-
 
 \begin{figure}[hbt!]
       \centering
       \includegraphics[width=0.7\textwidth,keepaspectratio]{figures/isd_asv_ordination_UMAP1_elevation_bin_boxplot.png}
       \caption[Elevation and UMAP1]{UMAP major axis and elevation bins}
       \label{fig:isd_elevation_umap1}
+\end{figure}
+
+In addition, the dissimilarity of samples was clusted using the complete linkage method, Figure \ref{fig:isd_samples_dendro}. 
+A chi square test was performed to investigate whether the cluster membership of the samples
+is statisticaly associated with metadata. Elevation bin, p=0.07646, didn't show any 
+significance. Vegetation zone (p=0.0004998) on the other hand was significant.
+
+\begin{figure}[hbt!]
+      \centering
+      \includegraphics[width=0.7\textwidth,keepaspectratio]{figures/isd_clustering_bray_hclust_samples.png}
+      \caption[Samples dendrogram]{Dendrogram of clustering of samples based on the Bray-Curtis dissimilarity}
+      \label{fig:isd_samples_dendro}
 \end{figure}
 
 
