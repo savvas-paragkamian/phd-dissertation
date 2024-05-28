@@ -284,12 +284,6 @@ Application Programming Interfaces (APIs) and programming packages chosen during
 this study are open-source, are in active development, can process many
 documents and can be combined with other tools in some of the considered steps.
 
-   \begin{figure}[ht]
-      \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/deco-figure-4.jpg}
-      \caption[Scanned page of the dataset used]{ A screenshot of the dataset used where the structure of the data and metadata provided can be seen (page 180 from \textcite{WoRMS:SourceID:40714})}
-      \label{fig:forbes-screenshot}
-   \end{figure}
 
     \subsection{Case Study}
 The historical document “Report on the Mollusca and Radiata of the Aegean Sea:
@@ -317,7 +311,7 @@ both on Microsoft Windows 10 and MacOS 10.14.
 
 DECO was developed for the automation of biodiversity historical data
 curation. Its workflow combines image processing tools for scanned historical
-documents OCR with text mining technologies. It extracts biodiversity entities
+documents OCR with text mining technologies, Figure \ref{fig:deco-workflow}. It extracts biodiversity entities
 such as taxon names, environments as described in ENVO and tissue mentions.
 The extracted entities are further enriched with marine data identifiers from
 public APIs (e.g. WoRMS) and presented in a structured format as well as in
@@ -327,6 +321,26 @@ scalable application on large documents. DECO is under the GNU GPLv3 licence
 (for 3rd party components separate licences apply) and is available via the
 GitHub repository (\url{https://github.com/lab42open-team/deco}).
 
+DECO is available here:\url{https://github.com/lab42open-team/deco}. Historical
+marine literature analysis is here:
+\href{https://github.com/savvas-paragkamian/historical-marine-literature}{https://github.com/savvas-paragkamian/historical-marine-literature}.
+BHL, EMODnet Biology and OBIS data are available for download here
+\href{https://about.biodiversitylibrary.org/tools-andservices/developer-and-data-tools/}{https://about.biodiversitylibrary.org/tools-andservices/developer-and-data-tools/}
+and \url{https://www.emodnetbiology.eu/toolbox/en/download/occurrence/explore}
+and here \url{https://obis.org/manual/access/}, respectively. The digitised
+document of the “Report on the Mollusca andRadiata of the Aegean Sea, and on
+their distribution, considered as bearing on Geology. 13th Meeting of the
+British Association for the Advancement of Science, London, 1844” is available
+here: \url{https://www.biodiversitylibrary.org/page/12920789}. The curated
+dataset of the case study is available here (version 1.9 and above):
+\url{http://ipt.medobis.eu/resource?r=mollusca_forbes}.
+
+   \begin{figure}[ht]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/DECO-workflow.png}
+      \caption[DECO workflow]{The steps and tools used in the DECO software container.}
+      \label{fig:deco-workflow}
+   \end{figure}
 
 % DECO RESULTS
 \section{Results}
@@ -839,61 +853,26 @@ the data rescue of these invaluable documents before their decay and inevitable
 loss.
 
 
-\section*{DATA AVAILABILITY STATEMENT}
-
-DECO is available here:\url{https://github.com/lab42open-team/deco}. Historical
-marine literature analysis is here:
-\href{https://github.com/savvas-paragkamian/historical-marine-literature}{https://github.com/savvas-paragkamian/historical-marine-literature}.
-BHL, EMODnet Biology and OBIS data are available for download here
-\href{https://about.biodiversitylibrary.org/tools-andservices/developer-and-data-tools/}{https://about.biodiversitylibrary.org/tools-andservices/developer-and-data-tools/}
-and \url{https://www.emodnetbiology.eu/toolbox/en/download/occurrence/explore}
-and here \url{https://obis.org/manual/access/}, respectively. The digitised
-document of the “Report on the Mollusca andRadiata of the Aegean Sea, and on
-their distribution, considered as bearing on Geology. 13th Meeting of the
-British Association for the Advancement of Science, London, 1844” is available
-here: \url{https://www.biodiversitylibrary.org/page/12920789}. The curated
-dataset of the case study is available here (version 1.9 and above):
-\url{http://ipt.medobis.eu/resource?r=mollusca_forbes}.
-
-\section*{Author Contributions}
-
-Conceptualisation: CA, EP, and VG. Wrote first draft of the manuscript: SP, GS,
-DM, CP, CA, EP, and VG. Revised the manuscript: all. Web applications testing:
-SP, GS, ME, RP. Programming tools testing: SP, HZ, and EP. Code development and
-containerisation: SP and HZ. Work Package Leaders: VG and DM. Project
-coordinator: JB. All authors contributed to the article and approved the
-submitted version.
-
-\section*{Funding}
-This work was supported by EMODnet Biology Phase III
-(EASME/ EMFF/2016/-1.3.1.2/Lot 5/SI2.750022 and EASME/EMFF/2017/1.3.1.2/02/SI2.789013)
-and Phase IV (EMFF/2019/1.3.1.9/Lot6/SI2.837974). The European Marine
-Observation and Data Network (EMODnet) is financed by the European Union under
-Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15
-May 2014 on the European Maritime and Fisheries Fund. SP was supported also by
-EMODnet Biology Phase IV and for different parts of his work he was supported
-from the project “Centre for the study and sustainable exploitation of Marine
-Biological Resources (CMBR)” (MIS 5002670), which is implemented under the
-Action “Reinforcement of the Research and Innovation Infrastructure,” funded by
-the Operational Programme “Competitiveness, Entrepreneurship and Innovation”
-(NSRF 2014–2020) and co-financed by Greece and the EU (European Regional
-Development Fund). GS received support from EMODnet Biology Phase III and Phase
-IV. SP and HZ received support from the Hellenic Foundation for Research and
-Innovation(HFRI) and the General Secretariat for Research and Innovation
-(GSRI), under grant agreement No. 241 (PREGO project). DM and VG have received
-support from LifeWatchGreece Research Infrastructure \parencite{arvanitidis_lifewatchgreece_2016}
-and “Centre for the study and sustainable exploitation of Marine Biological
-Resources (CMBR)” (MIS 5002670), which is implemented under the Action
-“Reinforcement of the Research and Innovation Infrastructure,” funded by the
-Operational Programme “Competitiveness, Entrepreneurship and Innovation”
-(NSRF 2014-2020) and co-financed by Greece and the European Union (European
-Regional Development Fund). LB received support by EMODNET Biology, Phase IV.
-The work of LV is funded by Research Foundation - Flanders (FWO) as part of the
-Belgian contribution to LifeWatch. For different aspects of his work HZ
-received support from ELIXIR-GR: Managing and Analysing Life Sciences Data
-(MIS: 5002780) which is co-financed by Greece and the European Union - European
-Regional Development Fund. CA received support from LifeWatch ERIC. LifeWatch
-ERIC funded the publication fees. The funders had no role in study design, data
-collection and analysis, decision to publish, or preparation of the manuscript.
 
 
+
+   \begin{figure}[ht]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/deco-figure-S1.jpg}
+      \caption[GNRD taxon names identification]{Screenshot of the web application GNRD identifying taxon names.}
+      \label{fig:gnrd-screenshot}
+   \end{figure}
+
+   \begin{figure}[ht]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/deco-figure-S2.jpg}
+      \caption[BOM performing NER]{Screenshot of the web application BOM performing NER. It provides taxon names, text snippets and term co-occurrences.}
+      \label{fig:bom-screenshot}
+   \end{figure}
+   
+   \begin{figure}[ht]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/deco-figure-S3.jpg}
+      \caption[Pensoft Annotator performing NER]{Screenshot of the web application Pensoft Annotator performing NER.}
+      \label{fig:pensoft-annotator-screenshot}
+   \end{figure}
