@@ -157,13 +157,13 @@ DOI: \href{https://doi.org/10.3390/microorganisms10020293}{10.3390/microorganism
 
 
    In cases in which the retrieved data and metadata are in text form, they are standardized to the aforementioned identifiers and taxonomies using Named Entity Recognition (NER) tools, namely the EXTRACT tagger \parencite{pafilis2016extract, jensen2016one}. 
-   In cases where data contain KEGG Orthology terms and/or Uniref identifiers, they are mapped to the respective GOmf using the mapping files available from the UniProt (see Appendix~\ref{app:A}). 
+   In cases where data contain KEGG Orthology terms and/or Uniref identifiers, they are mapped to the respective GOmf using the mapping files available from the UniProt). 
    Associations are extracted after the mapping and standardization of the entities from each resource (Figure~\ref{fig:prego-pipeline}, step 3).
    The association extraction pipeline is distinct for each channel and resource because of differences in the data type origin (see \texttt{prego\_gathering\_data} in the Availability of Supporting Source Codes section). 
    By the means of navigation, the large number of associations returned to the user require a type of sorting; 
    ideally, one that ranks the most trustworthy associations at the top. 
    For those reasons, each channel of PREGO has a dedicated scoring scheme bounded within the (0,5] space for consistency. 
-   In Appendix ~\ref{app:A} , the scoring scheme of each channel is elaborated.
+   In Appendix, the scoring scheme of each channel is elaborated.
 
 
 
@@ -190,8 +190,8 @@ DOI: \href{https://doi.org/10.3390/microorganisms10020293}{10.3390/microorganism
    Among other data types, JGI-IMG \parencite{chen2021img, mukherjee2021genomes} includes millions of genes from isolated genomes (isolates), SAGs and MAGs. Such annotations, along with their corresponding metadata, were collected using web-parsing technologies. Their metadata, describing their related environment/ecosystem, were tagged using the EXTRACT tagger to infer organisms—environments associations. The annotated KEGG terms were mapped to GOmf terms (see Appendix A). The GOmf terms were then used to extract organisms—processes associations.
    
    The Struo pipeline \parencite{de2020struo} and its outcome when using the Genome Taxonomy DataBase (GTDB) (v.03-RS86) \parencite{parks2020complete} was exploited to enrich organisms—processes associations. 
-   A set of 21,276 representative genomes, accompanied by UniRef50 annotations, was retrieved using the provided FTP server. The annotations were then mapped to GOmf terms (see Appendix~\ref{app:A}). 
-   Related GTDB genomes were mapped to their corresponding NCBI taxa (see Appendix~\ref{app:A}). 
+   A set of 21,276 representative genomes, accompanied by UniRef50 annotations, was retrieved using the provided FTP server. The annotations were then mapped to GOmf terms. 
+   Related GTDB genomes were mapped to their corresponding NCBI taxa. 
    All associations extracted from these resources were assigned arbitrarily a confidence level of four out of five. 
    This score choice reflects the high-quality of these data and metadata.
    

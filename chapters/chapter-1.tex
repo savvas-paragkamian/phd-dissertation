@@ -1,6 +1,6 @@
 % --------------------------------------------------
 % 
-% This chapter is for Crete system ecology
+% This chapter is for Island Samplind Day, Crete
 % 
 % --------------------------------------------------
 
@@ -10,7 +10,7 @@
 
 %\textbf{Citation:} \\ 
 
-\section{Introduction}\label{intro}
+\section{Introduction}\label{intro_isd}
 
 Microbes influence global ecosystem functions \parencite{falkowski2008microbial}
 and are ubiquitous \parencite{delgado2016microbial}. The terrestrial biomass of bacteria is
@@ -108,7 +108,7 @@ This is the first analysis
 of this scale of the Cretan soil microbiome, henceforth adding a new chapter of 
 biodiversity in Crete, the microbiome.
 
-\section{Materials and Methods}\label{methods}
+\section{Materials and Methods}\label{isd_methods}
 
 The work purely computational; scripts of the analysis cover the following tasks:
 \begin{itemize}
@@ -129,7 +129,7 @@ The bioinformatic workflow can be summarized to : GET, INFER and ANALYZE as show
       \label{fig:isd_workflow_taxonomy}
    \end{figure}
    
-\subsection{Data retrieval}\label{isd_data}
+\subsection{Data retrieval}\label{isd_get}
 
 This study uses the ISD Crete data that have been deposited
 in the European Nucleotide Archive (ENA) at EMBL-EBI under accession number PRJEB21776.
@@ -141,7 +141,7 @@ The raw sequences (fastq files) and metadata (xml files) were downloaded with cu
     \label{fig:isd_crete_sampling}
 \end{figure}
 
-\subsection{Taxonomic inference}\label{inference}
+\subsection{Taxonomic inference}\label{tax_inference}
 Amplicon Sequence Variants were inferred using DADA2 \parencite{Callahan2016} for 
 filtering, denoising and chimeric reads removal. Normalisation of the reads
 across samples was implemented with the SRS R package \parencite{Beule2020}. Samples
@@ -149,7 +149,7 @@ with less than 10000 reads were removed. ASVs were assigned to taxonomy using
 DADA2 with Silva 138 \parencite{quast_silva_2013}.
 PEMA was used for OTU inference based on VSEARCH \parencite{zafeiropoulos2020pema}.
 
-\subsection{Biodiversity analyses}\label{inference}
+\subsection{Biodiversity analyses}\label{biodiversity}
 
 Numerical ecology analyses,e.g diversity indices, NMDS, PERMANOVA we calculated
 with the vegan R package \parencite{oksanen2024vegan}.
@@ -174,7 +174,7 @@ functional annotation and the subsequent analyses and visualisation.
 Code is structured to be reproducible and interoperable as described in Figure \ref{fig:isd_workflow_taxonomy}.
 
 
-\section{Results}\label{results}
+\section{Results}\label{isd_results}
 
 \subsection{Inference and taxonomy}\label{inference_taxonomy}
 
@@ -218,7 +218,7 @@ D. Phyla relative abundance box plots, each dot represents one sample that the p
 \end{figure}
 
 \begin{table}[]
-    \caption{Taxonomic depth of ASVs and the unique number of taxa of each level.\label{table:asv_taxonomy}}%
+    \caption{Taxonomic depth of ASVs and the unique number of taxa of each level.}%
 \begin{tabular}{@{}lllll@{}}
 classification depth & Total ASV    & Total (ASV) taxa & Total OTUs & Total (OTU) taxa\\
 Kingdom              & 1974         & 2                & 284        & 2               \\
@@ -242,7 +242,7 @@ Total                & $\sim$239000 & 3102             & 6890       & 1057
    
 
 
-\subsection{Drivers and Communities}\label{communities}
+\subsection{Drivers and Communities}\label{isd_communities}
 Highest values of sample metadata:
 ERR3697708, ERR3697732 (isd 4 site 8 loc 1, isd 6 site 2 loc 1) have the highest total nitrogen values (12.3, 7.9).
 ERR3697703, ERR3697702 (isd 4 site 5 loc 2, isd 4 site 5 loc 1) have the highest water content values (141, 102).
@@ -281,17 +281,10 @@ Regarding the ASVs of the Island Sampling Day:
       \centering
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/isd_diversity_elevation_bin_boxplot.png}
       \caption[Elevation and diversity indices]{The distributions of asv, taxa and multiple $\alpha$ diversity indices across the elevation of samples}
-      \label{fig:isd_elevation_metadata}
+      \label{fig:isd_elevation_taxa}
 \end{figure}
 
 Total nitrogen and water content increases with elevation \ref{fig:isd_elevation_metadata}. 
-
-\begin{figure}[hbt!]
-      \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/isd_diversity_elevation_bin_boxplot.png}
-      \caption[Elevation and diversity indices]{The distributions of asv, taxa and multiple $\alpha$ diversity indices across the elevation of samples}
-      \label{fig:isd_elevation_metadata}
-\end{figure}
 
 
 Microbial $\beta$ diversity is associated in different ways with physical and chemical
@@ -316,13 +309,13 @@ significance. Vegetation zone (p=0.0004998) on the other hand was significant.
 
 \begin{figure}[hbt!]
       \centering
-      \includegraphics[width=0.7\textwidth,keepaspectratio]{figures/isd_clustering_bray_hclust_samples.png}
+      \includegraphics[width=\textwidth,keepaspectratio]{figures/isd_asv_clustering_bray_hclust_samples.png}
       \caption[Samples dendrogram]{Dendrogram of clustering of samples based on the Bray-Curtis dissimilarity}
       \label{fig:isd_samples_dendro}
 \end{figure}
 
 
-\section{Discussion}\label{discussion}
+\section{Discussion}\label{isd_discussion}
 
 Soil bacterial biodiversity is very complex, even sites a few meters apart can differ
 significantly in their community composition, Figure \ref{fig:isd_site_locations}.
