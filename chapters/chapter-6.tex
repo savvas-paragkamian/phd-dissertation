@@ -1,0 +1,335 @@
+% --------------------------------------------------
+% 
+% This chapter is for Crete system ecology
+% 
+% --------------------------------------------------
+
+
+%\chapter{Towards a Cretan soil biodiversity data model}
+\chapter{Exploring the soil microbiome coupling with Crete island data cube}
+\label{cha:crete-soil}
+
+%\textbf{Citation:} \\ 
+
+
+% ISD ABSTRACT
+%\section{Abstract}
+%    Microbes are known for their versatility, abundance
+%    and influence on soil ecosystem functioning.
+%    A synthesized knowledge base of microbial biodiversity, in terms of
+%    ecological and remote-sensing data remains a major challenge.
+%    Many worldwide studies have been published regarding soil
+%    microbiome ecosystems, though there are still many blind spots.
+%    Islands can be important case studies for this integration for more resolute and dense samplings.
+%    Here, we utilize the Island Sampling Day Crete 2016 microbial 16S rRNA gene
+%    amplicon data, integrated with soil and remote
+%    sensing data, to decipher the drivers of ecosystem function of the island.
+%    The Island Sampling Day Crete 2016 project has collected 144 topsoil samples
+%    from 72 sites, capturing a lot of this diversity, accompanied by FAIR
+%    (Findable, Accessible, Interoperable and Reproducible) data by design. 
+%    Cretan macroecology has been studied for centuries for its diverse  and endemic
+%    fauna and flora.
+%    In addition, Crete has been considered as a miniature continent with high contrasts in
+%    vegetation cover, elevation, climatic conditions. 
+%    We show that, higher altitudes in Crete found to
+%    be inhabited by a more diverse number of microorganisms, a pattern commonly
+%    seen in several faunistic groups, such as arthropods.
+%    The integration of the spatial data with state of the art methods enabled warning signals
+%    in pristine and grazing ecosystems.
+%    These results along with the
+%    climatic and desertification index influences on the soil microbiome of Crete,
+%    provide the basis to identify major drivers of biodiversity, to evaluate hotspots
+%    and contribute to foreknowledge of threatened ecosystems.
+%
+\section{Introduction}\label{intro_integration}
+
+Soil ecosystems are the cornerstone of terrestrial habitats, biodiversity and henceforth human activities.
+Soils are characterised by multiple properties; chemical, physical and biological that 
+form complex interdependent interactions. Biodiversity of soils covers
+all forms of life, fauna, flora, bacteria, archaea, fungi, viruses. 
+Bacteria and archaea are considered major drivers for the functionality of soil.
+They influence and are influenced by their environment and their community structure 
+defies their macroscopic functionality \parencite{Bahram2018}.
+Global soil microbiome studies have been employed to decipher soil microbiome
+compositions \parencite{thompson2017a-communal, Delgado-Baquerizo-atlas, Labouyrie2023},
+functions \parencite{Bahram2018} and biogeography \parencite{Martiny2006, guerra2020Blind}.
+These results showed the remarkable diversity in soils yet there are blind spots \parencite{guerra2020Blind}
+and these sampling are sparse when considering samples per area density. One of most resolute
+study is by \parencite{Karimi2020} which exemplified the 
+vast complexity of soil bacterial communities and the requirement of
+dense samplings and isolated systems \parencite{Dini-Andreote2021}.
+
+Data and metadata of these samplings are stored in different databases, yet 
+great effort from these distinct communities have led to establishing standards
+to enable FAIR data \parencite{wilkinson2016the-fair}. For amplicon sequences the Genome Standards
+Consortium \parencite{Field2011} has established the MIMARKS \parencite{yilmaz2011minimum}
+standards among others, and has been a advocate for open and unrestricted data \parencite{Amann2019}.
+Examples of rich metadata and platforms of hosting open data and digital soil maps are the 
+European Soil Data Centre \parencite{Panagos2022} and the World Soil Information
+Service (WoSIS) of the ISRIC \parencite{Batjes2024}. Apart from samplings,
+spatial data are openly available terrestrial ecosystems.
+Climatic data, land cover, desertification risk, aridity, soil type, normalized
+vegetation index, bedrock geological formations. From the bacterial point of view, 
+there curated databases that classify in some baseline functionality. 
+
+Crete is a continental forarc island \parencite{ali2016}, fifth largest island of the Mediterranean (8350 km\textsuperscript{2}),
+and a Mediterranean biodiversity hotspot \parencite{myers2000biodiversity}.
+The island of Crete has been studied since the classical times for its'
+fauna \parencite{Sidiropoulos_Polymeni_Legakis_2017,Anastasiou2018Tenebrionid}, flora \parencite{Krimbas_2005} and ecosystems \parencite{Grove1993}.
+Crete is home to the only endemic mammal of Greece, the Cretan shrew (\textit{Crocidura zimmermanni}),
+more than 350 endemic arthropods \parencite{bolanakis2024} and 183 endemic plants \parencite{Kougioumoutzis2020}
+among them a tree \textit{Zelkova abelicea}. Multifaceted factors have shaped the
+biodiversity of the island, for example the sharp elevation gradient \parencite{trigas2013elevational, FAZAN2017},
+the complex evolutionary history \parencite{POULAKAKIS2002} and the human - nature
+interactions over thousands of years \parencite{Vogiatzakis2008_med, Sfenthourakis2017}.
+The major threats of human activities are becoming apparent in the island's ecosystems,
+like desertification \parencite{KARAMESOUTI2018266}, intensive grazing \parencite{JouffroyBapicot2016},
+climate change \parencite{Kougioumoutzis2020,Vogiatzakis2016} and habitat loss \parencite{ISPIKOUDIS1993259}.
+Yet the topsoil microbial diversity of Crete has been unexplored.
+
+Disentangling the soil ecosystem functioning requires an holistic and 
+multidisciplinary approach \parencite{vogel2022}. The integration of the aforementioned
+data is needed to understand the biogeochemical cycles along with biodiversity interactomes 
+that have been characterised as a driver of community composition soil
+functioning \parencite{GUSEVA2022108604}.
+Regarding the latter there are still big challenges to infer actual microbial
+interactions remain \parencite{Faust2021}. All this work is needed in order to meet
+UN and EU soil goals for the 2030 and 2050 for healthy soils \parencite{LAL2021e00398}.
+
+In this study we ask: what the differences in the microbiome communities in different land use types?
+Are there any climatic, geological, elevational, aridity or functional factors that affected the differences?
+How the interactome changes over different land use types and climate?
+Are there any distinctions between arid regions of Crete?
+To address these questions, we integrate multiple types of data and methods to decipher hidden 
+signals of the Island Sampling Day soil microbiome data. In total, 144 samples from
+72 sites (2 samples per site) of Crete are used with their metadata.
+Warning signals are also identified for various types of ecosystems.
+
+
+\section{Materials and Methods}\label{integration_methods}
+
+\begin{figure}[t] 
+    \centering\includegraphics[width=\columnwidth]{crete_integration_soil_microbiome}
+    \caption{Workflow of this study. Data integration of ISD data with multiple types of spatial data. Then, a threefold analysis of function annotations, network analysis and differential abundance. All these data and methods are used to focus on specific taxa, ecosystems and threats.}
+    \label{fig:workflow}
+\end{figure}
+
+\subsection{Island Sampling Day: Crete}\label{isd_data}
+
+\subsection{Crete data cube}\label{spatial_data}
+
+The compilation of Crete data cube has multiple spatial data layers of global,
+European, Greek or Cretan scale. 
+The Copernicus CORINE Land Cover has 3 layers resolution that classify the land
+use and cover in shapefile format \parencite{CLC2023}. 
+WorldClim 2.0 contains global climatic data for 12 variables, e.g annual mean
+temperature and annual precipitation \parencite{Fick2017}.
+The Environmentally Sensitive Areas Index to desertification (ESAI) 
+of Greece dataset \parencite{KARAMESOUTI2018266} were utilised. Additionally the 
+Global Aridity Index and Potential Evapotranspiration Database \parencite{zomer2022version} was include.
+Geological formations shapefiles were downloaded from the geoportal of
+Decentralized Administration of Crete, which were developed by
+Crinno-Emeric Group project\footnote{\url{https://geoportal.apdkritis.gov.gr/gis/apps/storymaps/stories/19690f65abbe4e8ab0141b2fe7261a8c}}.
+The Harmonised World Soil database v2 was incorporated for the soil mapping units and 
+the soil taxonomic classification \parencite{fao2023}.
+Handling and analysis of these data was done with the sf and terra R packages \parencite{Pebesma2023}.
+
+\subsection{Integrative Analysis and Annotations}\label{int_analysis}
+The network inference was facilitated with FlashWeave 0.19.2 \parencite{Tackmann2019}.
+To use FlashWeave we reduced 
+the abundance table of the ASVs to keep the ones at the genus or species level.
+%In addition, we filtered these taxa that appeared in SOSO samples and had more than 
+%SOSO mean relative abundance.
+The subsequent network analyses were carried out
+with the igraph R package \parencite{Csardi2006}.
+
+For taxa function annotation we used the manually curated FAPROTAX database and python script \parencite{loucaDecouplingFunctionTaxonomy2016}.
+Whereas for the differential abundance analysis with ANCOM-BC2 R package \parencite{Lin2023}.
+Numerical ecology analyses,e.g diversity indices, NMDS, PERMANOVA we calculated
+with the vegan R package \parencite{oksanen2024vegan}.
+For PCoA ordination we used ape R packege \parencite{Paradis2004} and UMAP python library\parencite{mcinnes2018umap-software}.
+
+\subsection{Tools}\label{Coding environment}
+PEMA for OTU inference \parencite{zafeiropoulos2020pema}
+U-CIE R package for coloring 3 dimensional data \parencite{Koutrouli2022}
+
+Visualisation was implemented with ggplot2 \parencite{wickham_ggplot2_2016} and pheatmap \parencite{Kolde2019}.
+The environment we worked had Python 3.11.4, R version 4.3.2 \parencite{rcoreteam}
+and Julia language version 1.9.3 \parencite{Julia-2017}in Julia language version 1.9.3 \parencite{Julia-2017}.
+Finally, computations were performed on HPC infrastructure of HCMR \parencite{zafeiropoulos_0s_2021}.
+
+\subsection{Data and Code}
+The documentation and scripts developed for this study are available in
+\href{https://github.com/savvas-paragkamian/crete_soil_microbiome/}{Crete soil microbiome github repository}.
+This repository contains all the necessary scripts for the data retrieval,
+filtering and ASV inference, taxonomy assignment, data integration of spatial data, 
+functional annotation and the subsequent analyses and visualisation.
+Additional scripts about data integration are available in
+\href{https://github.com/savvas-paragkamian/crete-data-integration}{Crete data integration}.
+Code is structured to be reproducible and interoperable.
+
+\section{Results}\label{integration_results}
+
+
+\subsection{Samplings}
+
+
+
+\subsection{Data cube}
+
+Crete data cube.
+
+
+\subsection{Soil microbiome}\label{soil_microbiome}
+
+\begin{sidewaystable*}
+    \caption{Summary of the different spatial layers in Crete in terms of total area, number of samples and microbial diversity.\label{table:data_cube_summary}}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llllllll@{\extracolsep{\fill}}}
+\tabcolsep=0pt%
+class                                           & area & category             & samples & taxa richness & asv richness & mean shannon & sd shannon \\
+Arable land                                     & 88   & CLC LABEL2           & 4       & 1518           & 6178          & 4.73          & 0.17        \\
+Artificial, non-agricultural vegetated areas    & 21   & CLC LABEL2           & NA      & NA             & NA            & NA            & NA          \\
+Forests                                         & 300  & CLC LABEL2           & 4       & 1803           & 8663          & 4.91          & 0.18        \\
+Heterogeneous agricultural areas                & 1103 & CLC LABEL2           & 31      & 13701          & 59581         & 4.83          & 0.24        \\
+Industrial, commercial and transport units      & 40   & CLC LABEL2           & 4       & 1760           & 6517          & 4.79          & 0.32        \\
+Inland waters                                   & 7    & CLC LABEL2           & NA      & NA             & NA            & NA            & NA          \\
+Mine, dump and construction sites               & 10   & CLC LABEL2           & NA      & NA             & NA            & NA            & NA          \\
+Open spaces with little or no vegetation        & 411  & CLC LABEL2           & 7       & 3132           & 14568         & 4.85          & 0.21        \\
+Pastures                                        & 59   & CLC LABEL2           & 4       & 1609           & 7535          & 4.85          & 0.14        \\
+Permanent crops                                 & 2368 & CLC LABEL2           & 22      & 9999           & 43833         & 4.88          & 0.18        \\
+Scrub and/or herbaceous vegetation associations & 3798 & CLC LABEL2           & 58      & 24394          & 110127        & 4.76          & 0.29        \\
+Urban fabric                                    & 111  & CLC LABEL2           & 4       & 1765           & 9828          & 4.78          & 0.19        \\
+-                                               & 1    & Geology              & NA      & NA             & NA            & NA            & NA          \\
+J-E                                             & 1347 & Geology              & 22      & 8995           & 41730         & 4.75          & 0.25        \\
+K-E                                             & 248  & Geology              & NA      & NA             & NA            & NA            & NA          \\
+K.k                                             & 1253 & Geology              & 27      & 11277          & 51737         & 4.72          & 0.25        \\
+K.m                                             & 13   & Geology              & NA      & NA             & NA            & NA            & NA          \\
+Mk                                              & 812  & Geology              & 13      & 5618           & 24633         & 4.79          & 0.2         \\
+Mm.I                                            & 1614 & Geology              & 12      & 5259           & 22854         & 4.86          & 0.15        \\
+Ph-T                                            & 1012 & Geology              & 14      & 6720           & 29742         & 4.92          & 0.19        \\
+Q.al                                            & 911  & Geology              & 34      & 15580          & 64851         & 4.91          & 0.27        \\
+T.br                                            & 300  & Geology              & 2       & 625            & 2839          & 4.4           & 0.24        \\
+f                                               & 118  & Geology              & 2       & 720            & 4753          & 4.5           & 0.01        \\
+fo                                              & 318  & Geology              & 2       & 825            & 4606          & 4.65          & 0.04        \\
+ft                                              & 276  & Geology              & 10      & 4062           & 19085         & 4.79          & 0.17        \\
+o                                               & 94   & Geology              & NA      & NA             & NA            & NA            & NA          \\
+N                                               & 163  & Desertification Risk & NA      & NA             & NA            & NA            & NA          \\
+F2                                              & 1945 & Desertification Risk & 53      & 23404          & 103956        & 4.82          & 0.26        \\
+F1                                              & 1518 & Desertification Risk & 22      & 8817           & 41020         & 4.7           & 0.23        \\
+P                                               & 1593 & Desertification Risk & 36      & 16256          & 73256         & 4.86          & 0.19        \\
+C2                                              & 638  & Desertification Risk & 6       & 2113           & 9105          & 4.59          & 0.22        \\
+Other areas                                     & 290  & Desertification Risk & NA      & NA             & NA            & NA            & NA          \\
+F3                                              & 1144 & Desertification Risk & 14      & 5900           & 25362         & 4.82          & 0.28        \\
+C1                                              & 788  & Desertification Risk & 7       & 3191           & 14131         & 4.93          & 0.25        \\
+C3                                              & 238  & Desertification Risk & NA      & NA             & NA            & NA            & NA          \\
+Semi-Arid                                       & 6336 & Aridity class        & 98      & 43064          & 184930        & 4.83          & 0.25        \\
+Dry sub-humid                                   & 1343 & Aridity class        & 32      & 13649          & 65134         & 4.79          & 0.21        \\
+Humid                                           & 545  & Aridity class        & 8       & 2968           & 16766         & 4.55          & 0.19       
+\end{tabular*}
+\end{sidewaystable*}
+
+
+\subsection{Communities}\label{communities}
+Microbial beta diversity differently associated with physical and chemical
+features of ISD. PCoA 1 (describing 14\% of the variance) was largely driven by
+elevation (F=23, p < 0.001). PCoA 2, which explained 12\% of the variance,
+was significantly associated with soil moisture (F=90, p < 0.001).
+PCoA 2 also positively correlated with both organic carbon and nitrogen.
+
+Mean annual temperature, elevation and total nitrogen are statistically significant variables for
+community dissimilarity across samples (PERMANOVA).
+
+Network of associations (FlashWeave, sensitive) after filtering prevalent ASV (mean normalised relative
+abundance>0.001, samples > 2) led to 7,455 ASVs and
+29,282 associations (787 are negative).
+
+\subsubsection{Functions}\label{functions}
+PREGO
+
+
+The functional annotation was performed with FAPROTAX. Potential human pathogens 
+appear concentrated in Richtis gorge. Most plant pathogens occur in an agricultural 
+field in south Rethymnon. 
+
+\begin{figure}[t] 
+    \centering\includegraphics[width=\columnwidth]{crete_integration_functions_faprotax}
+\caption{Heatmap of the FAPROTAX functions relative abundances per sample.}
+    \label{fig:isd_functions_faprotax}
+\end{figure}
+
+\subsubsection{Significant taxa}\label{sig_taxa}
+Differential abundance (ANCOM-BC2) showed that there are 294 taxa that are significantly different
+with Annual mean temperature and elevation. The geological rock type doesn't distinguish taxa
+across the island. \textit{Rhodococcus equi} (pathogen of foal or similar) is significantly abundant in
+pastures (Corine Land Cover), and has been found in 16 samples.
+
+\section{Discussion}\label{integration_discussion}
+
+Multiple works have emerged the past 5 years about enumerating all
+biodiversity \parencite{Anthony2023} and deciphering the biogeochemical 
+processes and interactions of fauna, flora and microbes in global
+studies \parencite{Fry2019, Crowther2019,GRANDY201640,Delgado-Baquerizo2020} and
+in mountain peaks soil microbiomes \parencite{Adamczyk2019}. One of our profound
+results is that soil bacterial biodiversity is very complex, even sites a few meters apart can differ
+significantly in their community composition, Figure \ref{fig:isd_site_locations}.
+This is a fact that is sometimes neglected in worldwide studies and the island biogeography
+paradigm can assist to remove clutter.
+
+Apart from the profound diversity in soils, there is also high speciation and uniqueness. 
+As shown in Figure \ref{fig:isd_fig2_taxonomy}, most ASVs occur in 1 or 2 or 3 samples.
+This is different when compering with the ocean. When using the deepest taxonomic
+level of ASVs is possible to identify the specialists and generalists \parencite{Barberan2012}. 
+In addition, focusing on the phyla, we see a pattern looking like a phase transition, from 
+rare phyla to phyla that dominate all samples, Figure \ref{fig:isd_fig2_taxonomy} C. Lastly, in Figure \ref{fig:isd_fig2_taxonomy} D,
+and \ref{fig:isd_top_phyla_samples}, we found some distinct top phyla profiles of samples.
+
+Elevation gradients of biodiversity are known since Humboldt's work \parencite{Rahbek2019} 
+yet these patterns remain elusive regarding the soil microbiome \parencite{Looby2020, Siles2023}.
+Mostly because it's difficult to isolate other co-founding effects \parencite{Nottingham2018}.
+In our results elevation showed important distinction of taxa and of diversity. Yet more work is 
+needed to explore the Asterousia mountain transect in isolation to avoid indirect influences of 
+other variables.
+
+Crete's ecosystems are mostly semi-arid, whereas in the mountain ranges there 
+are areas classified as dry sub-humid and humid. Parent material and influences
+on soil functions and bacterial communities have been documented. Here, as shown in Table \ref{table:data_cube_summary},
+Quaternary-alluvial sediments (Q.al) and Phyllite-Quartzite series (Ph-T) hold the most diversity 
+and richness. Maybe because they are mostly found in riverbeds. Critical areas for 
+desertification (C2) hold the most diverse samples. Regarding the land cover the most
+rich sample is near the HCMR building, a high touristic area close to the beach. Yet, forests
+hold the highest Shannon diversity index.
+
+Richtis gorge (highly popular) has alarmingly high values for human pathogens, sulfur respiration and
+nitrate reduction. This gorge has water all year long, rare in the gorges of Crete,
+and is the highest touristic attraction of eastern Crete. It's name means "throw" and 
+there is a local rumor that people threw unwanted stuff throughout the centuries. 
+Nevertheless, it is an important freshwater ecosystem which is not included in 
+any protection regimen or legislation.
+The potential functions of the bacteria in Richtis gorge are an alarming signal which needs to be further investigated.
+Another important finding is the statistically significant presence of \textit{Rhodococcus equi} (pathogen of foal or similar)
+in pastures. It is one of the most common causes of pneumonia in foals which
+become infected by inhaling dust or soil particles contaminated with the bacterium.
+
+\section{Conclusion}
+
+Deciphering and validating the results presented here requires future work.
+Even though amplicon studies in soil should be interpreted with caution \parencite{alteio2021} they 
+can act as early warning signals towards public health concerns \parencite{banerjee2023Soil}.
+In addition, the immediate release and availability of these data is crucial for 
+taking action.
+The pillar of data integration is the unrestricted open data across disciplines and 
+the open source software.
+"A holistic perspective on soil architecture is needed as a key to soil functions" \parencite{philippot2024the-interplay}, is 
+an important statement for future soil projects.
+Shotgun metagenomics and metatranscriptomics can unleash the functional potential of
+topsoil along with other advancements like long reads sequencing. Higher resolution
+samplings using grid system will enhance the resolution and also the resampling of
+ISD sites in different time points will provide additional insights to the complex soil 
+functions and expand the positive and negative associations in soils \parencite{Liu2024}.
+Lastly, global hotspots \parencite{Guerra2022} and soil ecosystem conservation is needed as 
+a whole and expanding current protection of specific species \parencite{guerra2021tracking}.
+This along with policy \parencite{KONINGER2022} across countries \parencite{Putten2023}
+without borders and the implementation of legislation in Greece \parencite{SCHISMENOS2022100035} is 
+imperative.
+
+
