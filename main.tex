@@ -51,6 +51,18 @@ style=authoryear,
 sorting=nyt]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
 
 \addbibresource{references.bib} % The filename of the bibliography
+% try to mention my works
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldsource=author,
+            match=Paragkamian,
+            final]
+      \step[fieldset=keywords, fieldvalue=own]
+    }
+  }
+}
+
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 
@@ -477,30 +489,39 @@ and in capturing raptor birds in the islands of the Aegean sea. Bringing data fr
 extreme environments and then, after the incredible bench work of colleagues, analyse 
 these data made my heart sing.
 
-Another aspect of being a bioinformatician is working in different projects with 
+Another aspect of being a bioinformatician is working on different projects with 
 multiple people. This realisation was a revelation to me and this PhD is the outcome 
 of deep collaboration with four different groups of people and many new friendships. 
-These four projects are:
+
+The chapters of this PhD cover many disciplines, similar to most bioinformatic PhDs,
+yet they all converge to integrating multiple types of data to investigate the multifaceted
+and complex nature and functioning of ecosystems. The main focus is the soil ecosystems and 
+their microbiome, with the island of Crete being the field of application.
+
+The chapters are :
 
 \begin{enumerate}
-    \item ISD project in Chapter \ref{cha:isd-crete-soil}
+    \item Island Sampling Day Crete project in Chapter \ref{cha:isd-crete-soil}
     \item PREGO project in Chapter \ref{cha:prego}
     \item DECO workflow in Chapter \ref{cha:deco}
     \item Endemic arthropods of Crete island in Chapter \ref{cha:arthropods}
-    \item Island Sampling Day Crete, soil microbiome diversity in Chapter \ref{cha:crete-soil}
+    \item The data integration and the soil microbiome diversity in Chapter \ref{cha:crete-idea} and \ref{cha:crete-soil}
 \end{enumerate}
 
-The Island Sampling Day (ISD) is a large scale study for the microbial diversity of the
-topsoil of Crete. It is a 16s rRNA amplicon study designed to put standards into action. 
+The Chapter \ref{cha:isd-crete-soil} is about the Island Sampling Day (ISD), a large scale study for the microbial diversity of the
+topsoil of Crete. It the first large scale microbiome sampling in Crete and I analysed
+all this wealth of data to describe the hidden biodiversity. ISD is a 16s rRNA amplicon study designed to put standards into action. 
 ISD is a citizen science standardisation effort, voluntarily designed and
 operated by the participants of the 18th Genome Standards Consortium
 Workshop and the Hellenic Centre for Marine Research in June 2016.
 This project adds a new chapter to the study of biodiversity in Crete,
 the soil microbial diversity. But these data and metadata alone are 
 insufficient to understand ecosystem function and even the drivers 
-of microbial community structures.
+of microbial community structures. How to enrich these valuable data 
+with existing available information? 
 
-PREGO, is a global data and text mining metagenomic resourse, developed to assist microbiologists
+Regarding the microbes there a wealth of information hidden in text and metagenomic resources.
+To address this issue, I co-developed PREGO, a global data and text mining metagenomic resourse, designed to assist microbiologists
 to enrich their knowledge about microbes, the processes they perform and the environments 
 they appear. We developed PREGO's knowledge base with both a web interface and an Application Programming Interface.
 PREGO is a meta platform, which is based upon open data and standards of metagenomics. 
@@ -511,16 +532,19 @@ valuable information that is missing from databases and text mining solutions un
 this information. Hence, the PREGO approach allowed to bring the heterogeneous
 data together in a single knowledge base. 
 
-To further highlight the importance of historical data along with contemporary we 
-worked on the endemic arthropods of the island of Crete. Based on a novel dataset
+Yet, another biodiversity pillar of the Cretan ecosystems is arthropods which 
+interact with microbiomes. Based on a novel dataset
 that contained historical data and specimens of the Natural History Museum of Crete
-we assessed the conservation status of different taxa. Hence, this work contained 
+we assessed the conservation status of the endemic arthropods of Crete. Doing a assessment of 
+conservation of the endemic arthropods was an obvious priority because to have the ability to 
+study them first the have to be conserved from their documented collapse. Hence, this work contained 
 work from the 19th century along with the 4 decades long samplings of the NHMC. 
 The overlap of Cretan Arthropod distributions with the Natura 2000 protected areas
 were investigated along with their endemicity hotspots and proposed candidate Key Biodiversity Areas.
+This work is serves as an example to further highlight the importance of historical data along with contemporary.
 
-Upon realising the struggles and the benefits of rescuing historical biodiversity data, we 
-reviewed and developed a workflow. Because, apart from the contemporary data and metagenomics, important biodiversity data is 
+Upon realising the struggles and the benefits of rescuing historical biodiversity data, I
+developed a workflow to accelerate the process. Because, apart from the contemporary data and metagenomics, important biodiversity data is 
 included in historical biodiversity documents. This information from 
 previous centuries reports, books and expeditions notes is an important glimpse into
 the past. These data due to their legacy format and other complexities, for example 
@@ -531,11 +555,28 @@ for Object Character Recognition we demonstrated a workflow to rescue such docum
 This workflow is named DECO and is a software container that can handle multiple 
 documents and also combines multiple tools for the steps of the data rescue process.
 
-The final chapter of this PhD is aimed to build a data model of Crete and summarising the 
-available scientific data about the island. This is done primarily through the lens of the enrichment of
-the Island Sampling Day Crete data with spatial data. Additionally, a literature and biodiversity data summary is 
+How to bring all this information from literature, biodiversity and maps in one place? Focusing on Crete
+provided a unique opportunity to use it as a model of the digital representation of ecosystems. 
+As an island has a confined space and also has been studied for thousands of years.
+Being able to collect all the these data in one place allows to perform analyses on the soil ecosystems of Crete.
+Hence, the chapter \ref{cha:crete-idea} is about the total environment of Crete.
+In this chapter I address the questions of 
+\begin{itemize}
+    \item How many documents are containing valuable information?
+    \item What kind of samplings have been carried out?
+    \item Which spatial data about Crete are available? 
+\end{itemize}
+
+Bringing all this information together poses unique challenges of different types of data, standards and code. 
+But with the establishment of this digital description of the open knowledge about Crete allows the generation of novel questions and hypotheses.
+Additionally, a literature and biodiversity data summary is 
 provided to set the basis for future integrative studies and for the documentation of the current status of 
 research regarding the island.
+The soil microbiome is core of the soil ecosystems, and using the aforementioned data I build the Crete Data Cube.
+In the final chapter, \ref{cha:crete-soil} of this PhD, I integrate the soil biodiversity, it's functional potential and 
+the Crete Data Cube to decipher the soil ecosystems of concern, vulnerable soils and one health related taxa. The results 
+of this analysis provide a new perspective of some well known ecosystems of Crete.
+But also sets an example of the importance of integration of prior knowledge and data to address current challenges.
 
 Academic writing and publishing is important, albeit difficult, and I have learned a
 lot during the PhD. The first 3 chapters are accepted/published in journals as
@@ -738,7 +779,7 @@ Candidates (no. 5726) leading to the Chapters \ref{cha:isd-crete-soil}, \ref{cha
 % Uncomment the lines as you write the Appendices
 
 \include{Appendices/AppendixA}
-%\include{Appendices/AppendixB}
+\include{Appendices/AppendixB}
 %\include{Appendices/AppendixC}
 
 %----------------------------------------------------------------------------------------
