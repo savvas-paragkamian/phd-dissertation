@@ -5,52 +5,70 @@
 % --------------------------------------------------
 
 
-\chapter{Towards a Cretan soil biodiversity data model}
+\chapter{Towards a Cretan soil biodiversity data system}
 \label{cha:crete-idea}
 
-%\textbf{Citation:} \\ 
-
-
-% ISD ABSTRACT
-%\section{Abstract}
-%    Microbes are known for their versatility, abundance
-%    and influence on soil ecosystem functioning.
-%    A synthesized knowledge base of microbial biodiversity, in terms of
-%    ecological and remote-sensing data remains a major challenge.
-%    Many worldwide studies have been published regarding soil
-%    microbiome ecosystems, though there are still many blind spots.
-%    Islands can be important case studies for this integration for more resolute and dense samplings.
-%    Here, we utilize the Island Sampling Day Crete 2016 microbial 16S rRNA gene
-%    amplicon data, integrated with soil and remote
-%    sensing data, to decipher the drivers of ecosystem function of the island.
-%    The Island Sampling Day Crete 2016 project has collected 144 topsoil samples
-%    from 72 sites, capturing a lot of this diversity, accompanied by FAIR
-%    (Findable, Accessible, Interoperable and Reproducible) data by design. 
-%    Cretan macroecology has been studied for centuries for its diverse  and endemic
-%    fauna and flora.
-%    In addition, Crete has been considered as a miniature continent with high contrasts in
-%    vegetation cover, elevation, climatic conditions. 
-%    We show that, higher altitudes in Crete found to
-%    be inhabited by a more diverse number of microorganisms, a pattern commonly
-%    seen in several faunistic groups, such as arthropods.
-%    The integration of the spatial data with state of the art methods enabled warning signals
-%    in pristine and grazing ecosystems.
-%    These results along with the
-%    climatic and desertification index influences on the soil microbiome of Crete,
-%    provide the basis to identify major drivers of biodiversity, to evaluate hotspots
-%    and contribute to foreknowledge of threatened ecosystems.
-%
 \section{Introduction}\label{intro_idea}
 
-Examples of rich metadata and platforms of hosting open data and digital soil maps are the 
+Ecosystem ecology studies the interactions of organisms with their surroundings
+as a whole \parencite{van-dyne1966ecosystems}. These interactions are complex and hard to interpret and quantify.
+Macroscopically they represent the flows of energy and materials in the total environment.
+The implications of this approach to ecosystems are that multiple types of disciplines 
+are intersected. For example, soils are defined by their physical characteristics,
+i.e grain size, clay content, their chemistry, i.e pH, elements compositions, and 
+their biodiversity, i.e plants, arthropods and microbes \parencite{vogel2022}. Humans have influenced 
+and/or exploited almost all the environments of earth with their activities.
+Hence, understanding ecosystems requires a synthesis which in the digital era 
+is becoming more and more plausible. 
+
+There are multiple terms that describe the digital representation of ecosystems.
+One of the earliest is "digital earth" which mentioned in the late 90s \parencite{Goodchild_2012}.
+This notion of the virtual earth was initially realised with satellite imaging,
+on-land sensors and the relevant software. Space, an area on Earth, is
+the starting point of ecosystems functioning which is influenced by geography,
+climate, geology, biodiversity and human management. The coupling of all these
+fields, and the data they provide, with spatial information leads to the digital twin of ecosystems.
+
+Studying Earth as a whole and thus generating data at the global scale, all at once,
+is part of a new field called planetary biology. Smaller scales of such integrating systems exist like
+the Island Digital Ecosystem Avatar \parencite{Davies2016}. Islandscapes 
+is also an interesting approach which defines the holistic ecosystem of the island
+and the interface of land and sea \parencite{Vogiatzakis_land_2017}. Also islands
+due to their smaller scale are useful virtual ecological labs.
+
+There are multiple tangible outcomes of integrating all these data gather together about a
+specific place. First, it allows for sampling biases and gaps identification. Second, 
+it enables testing new hypotheses about unforeseen associations of variables. Third, 
+it forms a foundation of the current state of knowledge to assist decision making 
+processes about conservation, ecosystem services management and comparisons for 
+future states. Building such systems is also a cultural treasure for society because
+they will present the uniqueness of each place.
+
+Biodiversity is represented in ecosystems as point occurrences of each taxon. The
+DarwinCore standards have assisted a lot the homogeneity of the data. GBIF is a 
+global aggregator that contains such information about all ecosystems from 
+different resources. It is crucial that each sampling point has rich metadata. 
+Sequences from eDNA studies are also part of biodiversity and are stored in 
+databases like ENA and GenBank.
+From the bacterial point of view, metagenomic samples are abundant in these 
+databases and there are also curated databases that classify them in some baseline functionality. 
+There is also a wealth of knowledge about biodiversity in the literature. 
+Databases like PubMed, Goolge Scholar, Dimentions and Biodiversity Heritage Library 
+are world class providers with different content.
+
+Examples of platforms that host open data soil data are the 
 European Soil Data Centre \parencite{Panagos2022} and the World Soil Information
-Service (WoSIS) of the ISRIC \parencite{Batjes2024}. Apart from samplings,
+Service (WoSIS) of the ISRIC \parencite{Batjes2024}. Apart from samplings and literature,
 spatial data are openly available terrestrial ecosystems.
-Climatic data, land cover, desertification risk, aridity, soil type, normalized
-vegetation index, bedrock geological formations. From the bacterial point of view, 
-there curated databases that classify in some baseline functionality. 
+To name a few, there openly available climatic, land cover, desertification risk, aridity, soil type, normalized
+vegetation index, bedrock geological formations data.
 
-
+In this chapter, the focus is system's approach of the soil ecosystems of the island of Crete.
+First, the literature about Crete is aggregated and summarised. Second, biodiversity data
+from GBIF and IUCN are collected and third a spatial data cube is created. 
+Having all these data joined about Crete shows the culmination of intensive 
+research of the Cretan environments over the centuries and provokes for new
+hypotheses and conservation priorities.
 
 
 \section{Materials and Methods}\label{integration_methods}
