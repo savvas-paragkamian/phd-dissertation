@@ -26,8 +26,11 @@ One of the earliest is "digital earth" which mentioned in the late 90s \parencit
 This notion of the virtual earth was initially realised with satellite imaging,
 on-land sensors and the relevant software. Space, an area on Earth, is
 the starting point of ecosystems functioning which is influenced by geography,
-climate, geology, biodiversity and human management. The coupling of all these
-fields, and the data they provide, with spatial information leads to the digital twin of ecosystems.
+climate, geology, biodiversity and human management across scales \parencite{Zarnetske2019_towards}. The coupling of all these
+fields, and the data they provide, with spatial information leads to the
+digital twin of ecosystems. All these data can be considered as different layers
+of an Earth system data cube \parencite{mahecha2020earth}. The data cube representation
+allows for multivariate modeling and ecosystem level predictions \parencite{mahecha2020earth}.
 
 Studying Earth as a whole and thus generating data at the global scale, all at once,
 is part of a new field called planetary biology. Smaller scales of such integrating systems exist like
@@ -79,41 +82,94 @@ hypotheses and conservation priorities.
 
 \subsection{Literature}\label{crete-literature}
 
-Pubmed was searched using the DIG tool \parencite{fanini2021coupling}.
+Crete is an unambiguous name, this fact allows for simple keyword searches to discover 
+the relevant literature in multiple platforms. Given various possible references to Crete,i.e \textit{Crete, Kriti, Kreta, and Cretan},
+it is essential to account for these variations during the keyword search process.
+
+The corpus of PubMed was downloaded via the ftp protocol and the E-utilities API, details of which can be found on the PubMed Download page.
+The ftp method generates multiple XML files, which were later converted into
+files with tab-separated values. These files were then compressed. Each .tsv.gz file
+features six distinct fields in this format: PMID, DOI, Authors, Journal, Volume:Pages, Year, Title, Abstract.
+Pubmed was searched with the aforementioned keywords using the DIG tool \parencite{fanini2021coupling}.
+
+The Dimensions platform has a user interface specifically tailored for academic literature searches.
+It is the open source equivalent of Web of Science.
+With this interface, a query for \textit{Crete, Kriti, Kreta, and Cretan} within
+the title and abstract fields was requested yielded the articles, each annotated with the respective Field of Research.
+
+Google scholar was also searched through the \textit{serpapi} API using
+a python script. The same keywords were used as in the previous searches.
+
+Historical literature related to the biodiversity of Crete has been explored
+using the BHL data model and schema, conducting searches on titles, items, and subjects.
+Items represent the digitised documents, while subjects are assigned to each title.
+The schema includes a page table with page-level information.
+A comprehensive archive of OCR texts was downloaded, totaling approximately
+40GB compressed and 300GB uncompressed, that includes 62 million OCR pages from 292,000 unique documents.
+To ensure a thorough analysis, search was performed through all pages since
+relevant information about Crete may be embedded within the documents
+themselves, and not necessarily in the title or summaries.
 
 \subsection{Samplings}\label{crete_samplings}
 
 The samplings are distinguished as sequences, biodiversity and soil, using ENA, GBIF and WoSIS respectively.
-The ENA API was used with a POST request containing the bounding box of Crete as a query. This 
+The ENA API was used with a POST request containing the bounding box of Crete as a query \parencite{Yuan2023}. This 
 query returned a list with the sample identifiers. Using this list and a custom python script the API
 was invoked with GET requests to retrieve all the available metadata for each sample.
 GBIF has the in the online user interface the functionality of selecting the area of interest with a bounding box and requesting
-the data. The request was then approved and was downloaded.
-WoSIS has a dedicated Web Feature Service (WFS) that is specialised for spatial data. 
+the data \parencite{noauthor_gbif_nodate}. The request was then approved and was downloaded. All species 
+from IUCN that are in Crete were downloaded from the website \parencite{iucn2024}. IUCN provides the 
+interactive maps selection functionality. 
+WoSIS has a dedicated Web Feature Service (WFS) that is specialised for spatial data \parencite{Batjes2024}. 
 Using the available tutorial and a adjusted R script the samplings and metadata of 
 soil in Crete were retrieved.
+Edaphobase was also searched for sampling information from Crete. Edaphobase is
+a curated database of museum records that aims to include all aspects of soil biodiversity \parencite{BURKHARDT20143}.
 
 In addition, the JGI IMG GOLD database contains many samples which were downloaded from \href{https://gold.jgi.doe.gov/downloads}{the webservice}.
-This path of Public Studies/Biosamples/SPs/APs/Organisms was selected in the excel file format option. 
+This path of Public Studies / Biosamples / SPs / APs / Organisms was selected in the excel file format option. 
 GOLD didn't have any unique samples when compared with ENA.
 
 \subsection{Spatial data}\label{crete_spatial}
 
+Maps were downloaded and cropped from multiple resources.
+In terms of managing spatial data, geometry, and transformations, the following
+R packages were used:
+sf package version 1.0-14 \parencite{Pebesma2023}, for polygons, and the terra
+package version 1.7-55 \parencite{hijmans2024terra}, for rasters.
 
-\subsection{Tools}\label{Coding environment}
+The land use categories were obtained from the CORINE Land Cover (CLC) 2018
+version v.2020.20u1 \parencite{CLC2023}.
+The Historic Land Dynamics Assessment (HILDA+) dataset \parencite{winkler2021global}
+facilitated the exploration of human pressures, such as changes in land usage and agriculture,
+allowing the calculation of land use alterations from 1998 to 2018.
+
+The protected areas of Crete were included as well from the wdpar package \parencite{Hanson2022}.
+In WorldClim 2.0, twelve global climatic variables, such as the annual mean
+temperature and annual precipitation, were included \parencite{Fick2017}.
+The dataset on the Environmentally Sensitive Areas Index to desertification (ESAI)
+in Greece \parencite{KARAMESOUTI2018266} was also employed, alongside the
+Global Aridity Index Database \parencite{zomer2022version}.
+The geological formations of Crete were derived from the geoportal of the
+Decentralized Administration of Crete. These maps were created by the Crinno-Emeric Group
+project \url{https://geoportal.apdkritis.gov.gr/gis/apps/storymaps/stories/19690f65abbe4e8ab0141b2fe7261a8c}.
+Furthermore, the Harmonised World Soil Database v2 was integrated for soil mapping units and taxonomic soil classification \parencite{fao2023}.
+
+\subsection{Tools and code}\label{Coding environment}
 Visualisation was implemented with ggplot2 \parencite{wickham_ggplot2_2016} and pheatmap \parencite{Kolde2019}.
 The environment we worked had Python 3.11.4, R version 4.3.2 \parencite{rcoreteam}.
 Finally, computations were performed on HPC infrastructure of HCMR \parencite{zafeiropoulos_0s_2021}.
 
-\subsection{Data and Code}
 Scripts about data integration are available in
-\href{https://github.com/savvas-paragkamian/crete-data-integration}{Crete data integration}.
+\href{https://github.com/savvas-paragkamian/crete-data-integration}{Crete data integration repository}.
 Code is structured to be reproducible and interoperable.
 
 \section{Results}\label{crete_idea_results}
 
 \subsection{Historical and Contemporary literature}
 
+Regarding PubMed the search process yielded 1556 unique abstracts. These were retrieved with only a handful of false positives.
+The majority of these abstracts pertain to biomedical topics. Out of those, 170 originate from environmental sciences.
 
 \subsection{Biodiversity and samplings}
 
@@ -144,6 +200,9 @@ LTER map
 \end{figure}
 
 GBIF map 
+
+Edaphobase has in total, 26 resources with 17 different sampling points covering 120 distinct taxa.
+
 
 
 \subsection{Maps}
