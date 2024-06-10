@@ -37,9 +37,11 @@ and the interface of land and sea \parencite{Vogiatzakis_land_2017}. Also island
 due to their smaller scale and confined nature are useful virtual ecological labs. They harbour 20\% of 
 biodiversity even though they cover less than 7\% of land surface area. Also they are under major threats 
 that diminish their biodiversity \parencite{fernandez-palacios2021scientists}.
+Further focusing on soil, could assist bringing the natural and human activities 
+together in the so-called soilscape \parencite{LAGACHERIE2001105}.
 
 There are multiple tangible outcomes of integrating all these data gather together about a
-specific place. First, it allows for sampling biases and gaps identification. Second, 
+specific place and biome. First, it allows for sampling biases and gaps identification. Second, 
 it enables testing new hypotheses about unforeseen associations of variables. Third, 
 it forms a foundation of the current state of knowledge to assist decision making 
 processes about conservation, ecosystem services management and comparisons for 
@@ -51,11 +53,11 @@ DarwinCore standards have assisted a lot the homogeneity of the data. GBIF is a
 global aggregator that contains such information about all ecosystems from 
 different resources \parencite{noauthor_gbif_nodate}. It is crucial that each sampling point has rich metadata. 
 Sequences from eDNA studies are also part of biodiversity and are stored in 
-databases like ENA and GenBank.
+databases like ENA, JGI IMG and GenBank.
 From the bacterial point of view, metagenomic samples are abundant in these 
 databases and there are also curated databases that classify them in some baseline functionality. 
 There is also a wealth of knowledge about biodiversity in the literature. 
-Databases like PubMed, Goolge Scholar, Dimentions and Biodiversity Heritage Library 
+Databases like PubMed, Goolge Scholar, Dimensions and Biodiversity Heritage Library 
 are world class providers with different content.
 
 Examples of platforms that host open data soil data are the 
@@ -80,6 +82,20 @@ hypotheses and conservation priorities.
 Pubmed was searched using the DIG tool \parencite{fanini2021coupling}.
 
 \subsection{Samplings}\label{crete_samplings}
+
+The samplings are distinguished as sequences, biodiversity and soil, using ENA, GBIF and WoSIS respectively.
+The ENA API was used with a POST request containing the bounding box of Crete as a query. This 
+query returned a list with the sample identifiers. Using this list and a custom python script the API
+was invoked with GET requests to retrieve all the available metadata for each sample.
+GBIF has the in the online user interface the functionality of selecting the area of interest with a bounding box and requesting
+the data. The request was then approved and was downloaded.
+WoSIS has a dedicated Web Feature Service (WFS) that is specialised for spatial data. 
+Using the available tutorial and a adjusted R script the samplings and metadata of 
+soil in Crete were retrieved.
+
+In addition, the JGI IMG GOLD database contains many samples which were downloaded from \href{https://gold.jgi.doe.gov/downloads}{the webservice}.
+This path of Public Studies/Biosamples/SPs/APs/Organisms was selected in the excel file format option. 
+GOLD didn't have any unique samples when compared with ENA.
 
 \subsection{Spatial data}\label{crete_spatial}
 
@@ -136,6 +152,8 @@ Multiple maps for Crete.
 
 
 \section{Discussion}\label{crete_idea_discussion}
+
+Compare with Samothrace \parencite{noll2024insights}.
 
 \section{Conclusion}
 
