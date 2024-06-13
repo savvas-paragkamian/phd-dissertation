@@ -177,23 +177,27 @@ Code is structured to be reproducible and interoperable as described in Figure \
 \section{Results}\label{isd_results}
 
 \subsection{Inference and taxonomy}\label{inference_taxonomy}
+The Illumina HiSeq2500 generated 51 million reads (approximately 16-20 GB),
+with an average of 355,326 reads/sample (ranging from 2,437 to 525,144).
+This data and its associated metadata were submitted to the ENA under study
+accession number PRJEB21776. The sequencing process yielded 51 million reads,
+averaging 250-500 K reads/sample (equating to roughly 15-20 GB of data).
+On average, each sample contained about 355,326 reads, though this varied from
+2,437 to 525,144. Reads shorter than 445 bp or longer than 515 bp were fewer than
+15,000, see Figure \ref{fig:isd_srs-curve_samples}.
 
-The Illumina HiSeq2500 libraries yielded 51 million sequenced reads (16-20 GB) with
-an average of 355,326 reads/sample (range 2,437-525144). Sequences and the
-metadata thereof were submitted to the ENA under the study accession number PRJEB21776.
-Sequencing produced 51 million reads, with an average of 250-500 K reads per
-sample (15-20 GB of data), with an average of 355,326 average reads per sample
-(range: 2,437-525,144) and less than 15,000 reads for reads of either less than
-445 bp or over 515 bp, Figure \ref{fig:isd_srs-curve_samples}.
+From the 144 samples, two samples were 
+neglected because they had fewer than 10000 reads. Also 3 samples didn't yield any DNA and 1 wasn't uploaded to ENA due 
+to some errors. Thus, 138 samples in total were included in the subsequent analysis.
    
-   \begin{figure}[h]
+   \begin{figure}[hbt!]
       \centering
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/isd_crete_srs_curve.jpeg}
       \caption[SRS curve]{SRS curve of the samples. }
       \label{fig:isd_srs-curve_samples}
    \end{figure}
 
-\begin{figure}[h] 
+\begin{figure}[hbt!] 
     \centering\includegraphics[width=\columnwidth]{figures/isd_community_site_locations_dif.png}
 \caption{Sample dissimilarity between samples in the same site (2 subsites) and the rest.}
     \label{fig:isd_site_locations}
@@ -241,7 +245,6 @@ Total                & $\sim$239000 & 3102             & 6890       & 1057
 \end{figure}
    
 
-
 \subsection{Drivers and Communities}\label{isd_communities}
 Highest values of sample metadata:
 ERR3697708, ERR3697732 (isd 4 site 8 loc 1, isd 6 site 2 loc 1) have the highest total nitrogen values (12.3, 7.9).
@@ -266,9 +269,6 @@ Taxa richness is positevely correlated (0.26, Pearson correlation) with water co
 $\alpha$-diversity (Shannon Index) is not correlated significantly with any
 by physical and chemical features.
 
-Regarding the ASVs of the Island Sampling Day:
-
-
 
 \begin{figure}[hbt!]
       \centering
@@ -292,7 +292,6 @@ elevation (F=23, p < 0.001).
 UMAP 2,
 was significantly associated with soil moisture (F=90, p < 0.001).
 PCoA 2 also positively correlated with both organic carbon and nitrogen.
-
 
 \begin{figure}[hbt!]
       \centering
