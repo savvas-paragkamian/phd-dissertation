@@ -90,7 +90,8 @@ The corpus of PubMed was downloaded via the ftp protocol and the E-utilities API
 The ftp method generates multiple XML files, which were later converted into
 files with tab-separated values. These files were then compressed. Each .tsv.gz file
 features six distinct fields in this format: PMID, DOI, Authors, Journal, Volume:Pages, Year, Title, Abstract.
-Pubmed was searched with the aforementioned keywords using the DIG tool \parencite{fanini2021coupling}.
+Pubmed was searched with the aforementioned keywords using the DIG tool \parencite{fanini2021coupling}. To further 
+analyse the results, the MeSH terms were retrieved using the \href{https://www.ncbi.nlm.nih.gov/books/NBK25497/}{E-utilities API}.
 
 The Dimensions platform has a user interface specifically tailored for academic literature searches.
 It is the open source equivalent of Web of Science.
@@ -166,11 +167,18 @@ Code is structured to be reproducible and interoperable.
 
 \section{Results}\label{crete_idea_results}
 
-\subsection{Historical and Contemporary literature}
+\subsection{Contemporary literature}
 
-Regarding PubMed the search process yielded 1556 unique abstracts. These were retrieved with only a handful of false positives.
-The majority of these abstracts pertain to biomedical topics. Out of those, 170 originate from environmental sciences.
+Regarding PubMed, the search process yielded 1556 unique abstracts about Crete.
+These were retrieved with only a handful of false positives.
+The majority of these abstracts pertain to biomedical topics.
+Out of those, 170, 11\%, originate from environmental sciences.
 
+Google scholar 
+
+Dimensions 
+
+\subsection{Historical literature}
 Regarding the Biodiversity Heritage Library and historical literature, it was
 observed that 25,812 documents contained fewer than five mentions of keywords related to Crete.
 Conversely, a smaller set of 3,696 documents exhibited five or more mentions of such keywords.
@@ -221,14 +229,14 @@ Soil in Europe (GEMAS) \parencite{REIMANN2018302} and the Soil Profile Analytica
 Database for Europe (SPADE) \parencite{Hiederer2006}.
 LTER map
 
-\begin{figure}[h] 
+\begin{figure}[hbt!] 
     \centering\includegraphics[width=\columnwidth]{crete_integration_ena_terrestrial.png}
     \caption{Available terrestrial metagenomic samples from ENA in Crete.}
     \label{fig:isd_crete_ena}
 \end{figure}
 
 
-\begin{figure}[h] 
+\begin{figure}[hbt!] 
     \centering\includegraphics[width=\columnwidth]{crete_integration_map_wosi_soil.png}
     \caption{Soil samples from Crete that are uploaded in WoSIS.}
     \label{fig:isd_crete_wosis}
@@ -242,7 +250,85 @@ Edaphobase has in total, 26 resources with 17 different sampling points covering
 
 \subsection{Maps}
 
-Multiple maps for Crete.
+For the description of Crete terrestrial environment 10 layers were used as shown in Figure \ref{fig:crete_data_cube_map}.
+
+\begin{figure}[hbt!] 
+    \centering\includegraphics[width=0.93\columnwidth]{crete_data_cube_maps.png}
+    \caption[Crete data cube]{The ten layers of the terrestrial environments of Crete.
+    A. The digital elevation map. B. The Corine Land Cover EEA, Level 2.
+    C. The geology of Crete. D. The Harmonised World Soil dataset, version 2.
+    E. The Historic Land Dynamics Assessment dataset. F. The different protection areas of the island.
+    G. The mean surface temperature of WorldClim2. H. The mean precipitation of  WorldClim2.
+    I. The aridity index of soil, from the Global Aridity Index v3. J. The desertification risk assessment}
+    \label{fig:crete_data_cube_map}
+\end{figure}
+
+
+The area per category is presented in Table \ref{table:crete_data_cube_area}.
+
+\begin{longtable}{llll}
+    \caption{Area cover, in km\textsuperscript{2}, of the different categories per spatial data layer of Crete. \label{table:crete_data_cube_area}} \\
+\textbf{hilda+ transition 1978-2018}               & \textbf{area} & \textbf{Aridity index class}               & \textbf{area}    \\
+\endfirsthead
+%
+\endhead
+%
+urban (stable)                                     & 250.23        & Semi-Arid                                  & 6244.44          \\
+urban to cropland                                  & 5.06          & Dry sub-humid                              & 1323.28          \\
+urban to pasture/rangeland                         & 4.03          & Humid                                      & 537.20           \\
+urban to unmanaged grass/shrubland                 & 1.01          &                                            &                  \\
+cropland to urban                                  & 56.57         & \textbf{Soil (HWSD2)}                      & \textbf{area}    \\
+cropland (stable)                                  & 1,193.61      & Calcaric Fluvisols                         & 598.40           \\
+cropland to pasture/rangeland                      & 648.72        & Calcaric Regosols                          & 2250.80          \\
+cropland to forest                                 & 163.42        & Chromic Luvisols                           & 767.04           \\
+cropland to unmanaged grass/shrubland              & 5.05          & Eutric Cambisols                           & 97.92            \\
+pasture/rangeland to urban                         & 64.47         & Lithic Leptosols                           & 4777.00          \\
+pasture/rangeland to cropland                      & 145.34        & NA                                         & 4.08             \\
+pasture/rangeland (stable)                         & 4,694.29      &                                            &                  \\
+pasture/rangeland to forest                        & 205.83        & \textbf{elevation}                         & \textbf{area}    \\
+pasture/rangeland to unmanaged grass/shrubland     & 127.28        & (0,200{]}                                  & 2227.85          \\
+pasture/rangeland to sparse/no vegetation          & 1.01          & (200,400{]}                                & 2192.21          \\
+forest to cropland                                 & 1.01          & (400,600{]}                                & 1584.84          \\
+forest to pasture/rangeland                        & 23.22         & (600,800{]}                                & 815.99           \\
+forest (stable)                                    & 162.33        & (800,1000{]}                               & 484.21           \\
+unmanaged grass/shrubland to urban                & 10.08         & (1000,1200{]}                              & 355.34           \\
+unmanaged grass/shrubland to cropland             & 41.40         & (1200,1400{]}                              & 249.44           \\
+unmanaged grass/shrubland to pasture/rangeland    & 271.59        & (1400,1600{]}                              & 150.83           \\
+unmanaged grass/shrubland to forest               & 20.20         & (1600,1800{]}                              & 91.55            \\
+unmanaged grass/shrubland (stable)                & 10.09         & (1800,2000{]}                              & 75.50            \\
+sparse/no vegetation to cropland                   & 9.11          & (2000,2200{]}                              & 39.69            \\
+sparse/no vegetation to pasture/rangeland          & 84.87         & (2200,2400{]}                              & 12.23            \\
+sparse/no vegetation to forest                     & 1.01          & (2400,2600{]}                              & 0.21             \\
+sparse/no vegetation (stable)                      & 6.05          &                                            &                  \\
+water                                              & 164.57        &                                            &                  \\
+\textbf{CLC 2}                                     &               & \textbf{geology}                           &                  \\
+Arable land                                        & 88.29         & -                                          & 0.57             \\
+Artificial, non-agricultural vegetated areas       & 20.68         & J-E                                        & 1346.89          \\
+Forests                                            & 299.93        & K-E                                        & 247.97           \\
+Heterogeneous agricultural areas                   & 1102.96       & K.k                                        & 1252.97          \\
+Industrial, commercial and transport units         & 39.77         & K.m                                        & 12.95            \\
+Inland waters                                      & 6.74          & Mk                                         & 811.96           \\
+Mine, dump and construction sites                  & 10.05         & Mm.I                                       & 1614.25          \\
+Open spaces with little or no vegetation           & 410.66        & Ph-T                                       & 1012.08          \\
+Pastures                                           & 59.25         & Q.al                                       & 910.75           \\
+Permanent crops                                    & 2367.70       & T.br                                       & 299.58           \\
+Scrub and/or herbaceous vegetation associations    & 3797.83       & f                                          & 117.83           \\
+Urban fabric                                       & 110.63        & fo                                         & 317.59           \\
+                                                   &               & ft                                         & 275.55           \\
+\textbf{Protected areas}                           & \textbf{area} & o                                          & 93.94            \\
+Aesthetic Forest                                   & 0.17          &                                            &                  \\
+Sites of Community Importance (Habitats Directive) & 0.34          & \textbf{Desertification risk}              & \textbf{area}    \\
+Game breeding station                              & 1.02          & N                                          & 159.10           \\
+Controlled hunting area                            & 11.59         & F2                                         & 1900.60          \\
+Core zone in National (Woodland) Park              & 47.56         & F1                                         & 1483.50          \\
+UNESCO-MAB Biosphere Reserve                       & 88.65         & P                                          & 1556.60          \\
+Protected Forest                                   & 417.74        & C2                                         & 623.50           \\
+Wildlife Refuge                                    & 610.70        & Other areas                                & 283.80           \\
+Special Protection Area (Birds Directive)          & 1261.78       & F3                                         & 1118.00          \\
+Special Areas of Conservation (Habitats Directive) & 2371.42       & C1                                         & 769.70           \\
+total protected (no overlap)                       & 2900.59       & C3                                         & 232.20           \\
+total protected                                    & 4810.96       & \textbf{Crete total}                       & \textbf{8345}
+\end{longtable}
 
 
 \section{Discussion}\label{crete_idea_discussion}
