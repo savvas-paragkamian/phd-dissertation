@@ -94,6 +94,8 @@ files with tab-separated values. These files were then compressed. Each .tsv.gz 
 features six distinct fields in this format: PMID, DOI, Authors, Journal, Volume:Pages, Year, Title, Abstract.
 Pubmed was searched with the aforementioned keywords using the DIG tool \parencite{fanini2021coupling}. To further 
 analyse the results, the MeSH terms were retrieved using the \href{https://www.ncbi.nlm.nih.gov/books/NBK25497/}{E-utilities API}.
+MeSH terms were also further analysed with custom script to extract 
+parent categories from the \href{https://www.nlm.nih.gov/databases/download/mesh.html}{xml global file}.
 
 The Dimensions platform has a user interface specifically tailored for academic literature searches.
 It is the open source equivalent of Web of Science.
@@ -174,11 +176,36 @@ Code is structured to be reproducible and interoperable.
 Regarding PubMed, the search process yielded 1556 unique abstracts about Crete.
 These were retrieved with only a handful of false positives.
 The majority of these abstracts pertain to biomedical topics.
-Out of those, 170, 11\%, originate from environmental sciences.
+Using the Medical Subject Headings (MeSH) terms, 291 abstracts didn't have associated terms. 
+There were 3301 associated MeSH terms of the abstracts retrieved. 
+The most used term is "Human" appearing in 907 abstracts. The geographical 
+place Greece is also mentioned in 1100 abstracts. Genetic phenomena
+and Behavior mechanisms are listed in 500 abstracts, each. 
+While infections and organic chemicals are in 200 abstracts each. These terms 
+can appear with overlaps in abstracts.
+Out all the original set of abstracts, the 170, 11\%, originate from environmental sciences.
+From these, Phylogeny was assigned to 24, Ecosystem to 21, Environmental Monitoring to 16
+and Conservation of Natural Resources in 8 abstracts.
 
-Google scholar 
+Dimensions web application includes a broad range of disciplines publications.
+Regarding Crete there are 2,675 publications in History, Heritage, and Archaeology,
+making it the most prevalent discipline in this platform.
+Earth Sciences follow with 2,256 publications, while Education and Historical
+Studies contribute 1,973 and 1,925 publications, respectively.
+The exploration in Biological Sciences also constitutes of
+Crete's academic interest, with 1,539 papers published about the island.
 
-Dimensions 
+Google scholar contains books and articles in the results. The search through
+the API resulted in 910 documents. 
+The research is summarised as follows:
+
+\begin{itemize}
+    \item Biodiversity with 25\%,
+    \item History with 22\%,
+    \item Archaeological 21\%,
+    \item Sociology is represented with 15\% publications,
+    \item Folklore studies also are present, with 13\% of publications.
+\end{itemize}
 
 \subsection{Historical literature}
 Regarding the Biodiversity Heritage Library and historical literature, it was
@@ -214,45 +241,52 @@ French (FRE): 105
 German (GER): 268
 English (ENG): 1,350
 
-The oldest document was published in 1554 and there are 1482 items published before 1960.
+The oldest document was published in 1554 and there are 1482 items published before 1960 containing thousands of taxa occurrences.
 
 \subsection{Biodiversity and samplings}
 
-Worldwide projects of microbiome studies have collected one or two topsoil
-samples from Crete \parencite{Vasar2022, Labouyrie2023, Bahram2018, Orgiazzi2018}.
-Some have focused on soil fungi \parencite{Mikryukov2023, Davison2021, Tedersoo2021}
-and other soil eukaryotes \parencite{Aslani2022}.
-The only thorough microbiome study of a soil ecosystem in Crete, to our knowledge,
-is in the north west part of the island, the Koiliaris Critical Zone Observatory \parencite{tsiknia2014}.
-Apart from the soil microbiome, soil physical and chemical properties has been
-investigated by global and European projects like the Forum of European Geological Surveys
-(FOREGS) \parencite{nerc19017}, the Geochemical Mapping of Agricultural and Grazing Land
-Soil in Europe (GEMAS) \parencite{REIMANN2018302} and the Soil Profile Analytical
-Database for Europe (SPADE) \parencite{Hiederer2006}.
-LTER map
-
-\begin{figure}[hbt!] 
-    \centering\includegraphics[width=\columnwidth]{crete_integration_ena_terrestrial.png}
-    \caption{Available terrestrial metagenomic samples from ENA in Crete.}
-    \label{fig:isd_crete_ena}
-\end{figure}
-
-
-\begin{figure}[hbt!] 
-    \centering\includegraphics[width=\columnwidth]{crete_integration_map_wosi_soil.png}
-    \caption{Soil samples from Crete that are uploaded in WoSIS.}
-    \label{fig:isd_crete_wosis}
-\end{figure}
-
-GBIF map 
-
+GBIF as an biodiversity aggregator contains a most open data occurrences of species. 
+Regarding Crete, it contains 116,643 occurrences of 7065 unique species,
+10189 unique taxa (Figure \ref{fig:crete-samplings}). The data
+have been provided by 196 different publishers, e.g Institutions, Museum Collections, Platforms etc.
+There is a single occurrence of 1684, the oldest in Crete on the Gbif platform. Before 
+1960 there are 1021 unique taxa with 2051 occurrences submitted by 62 publishers (Figure \ref{ig:crete_taxa_gbif}).
 Edaphobase has in total, 26 resources with 17 different sampling points covering 120 distinct taxa.
+A part of it is included in GBIF, yet it provides some additional functionalities. 
 
+\begin{figure}[hbt!] 
+    \centering\includegraphics[width=0.7\columnwidth]{crete_gbif_taxa_accumulation_classification.png}
+    \caption{Taxa identifications in Crete across the years. Data from GBIF.}
+    \label{fig:crete_taxa_gbif}
+\end{figure}
 
+Regarding the genomic and metagenomic samples from Crete, ENA hosts all the public 
+available data and metadata. There are 92 studies with 1205 samples.
+From there the 530 samples are terrestrial metagenomic samples as shown in
+Figure \ref{fig:crete-samplings} C. 
+The most samples and studies are in the soil metagenome with 164 samples in 7 studies, without the
+ISD project presented in Chapter \ref{cha:isd-crete-soil}.
+Insect metagenome has 108 samples from 2 studies
+and plant metagenomes contains 69 samples in 2 studies.
+Then follows air metagenome with 61 samples during 3 studies.
+
+\begin{figure}[hbt!] 
+    \centering\includegraphics[width=\columnwidth]{crete_map_crete_samples.png}
+    \caption[Samplings in Crete]{Samplings in Crete. A. GBIF occurrences in Crete.
+    B. Edaphobase samplings in Crete. C. ENA metagenomic samples in Crete (without ISD). D. WoSIS soil samples in Crete.}
+    \label{fig:crete-samplings}
+\end{figure}
+
+WoSIS contains soil samplings about physical and chemical characteristics. Regarding 
+Crete, it has 27 sampling locations. These data were collected during 3 EU projects, namely,
+EU-FOREGS, EU-GEMAS and EU-SPADE.
 
 \subsection{Maps}
 
-For the description of Crete terrestrial environment 10 layers were used as shown in Figure \ref{fig:crete_data_cube_map}.
+Crete is km\textsuperscript{2} in area size. It is a mosaic, as the ten
+terrestrial environmental layers indicate in Figure \ref{fig:crete_data_cube_map}.
+In terms of aridity, the largest area falls under the Semi-Arid class with 6244.44 km\textsuperscript{2},
+followed by Dry sub-humid with 1323.28 km\textsuperscript{2}, and Humid with 537.20 km\textsuperscript{2}, Table \ref{table:crete_data_cube_area}.
 
 \begin{figure}[hbt!] 
     \centering\includegraphics[width=0.93\columnwidth]{crete_data_cube_maps.png}
@@ -265,80 +299,220 @@ For the description of Crete terrestrial environment 10 layers were used as show
     \label{fig:crete_data_cube_map}
 \end{figure}
 
+Crete has undergone significant land-use changes in the past 40 years. In total, 250.23 km\textsuperscript{2}
+of land transitioning to urban, while 56.57 of urban fabric has moved to various other land types.
+Cropland experienced the extensive changes, shifting 648.72 km\textsuperscript{2}
+units to pasture/rangeland, 163.42 km\textsuperscript{2} to forest.
+Meanwhile, forests increased during that period by 365 km\textsuperscript{2}, Table \ref{table:crete_data_cube_area}.
 
-The area per category is presented in Table \ref{table:crete_data_cube_area}.
+Key transitions include:
+\begin{itemize}
+    \item Urban expansion, with the most significant development occurring from agricultural land.
+    \item Conversion of croplands to various uses, notably to pastures, forests, and unmanaged grasslands.
+    \item Transitions from pastures to urban areas and different types of vegetation.
+    \item Forest developments, including both expansion and contraction in various regions.
+    \item Water bodies have a considerable area but no change in the total area reported.
+\end{itemize}
 
-\begin{longtable}{llll}
+The geological map of Crete reveals a complex stratigraphy,characterized by carbonate
+rocks. Namely these include the limestone of Tripolis (1252.97 km\textsuperscript{2}),
+Plattenkalk (1346.89 \textsuperscript{2}), Limestone of Pindos (247.97 \textsuperscript{2}).
+The island also has a Neogenic section (Mk, 811.96; Mm.I, 1614.25). The
+Quaternary alluvium (Q.al, 910.75) and other sedimentary rocks (Ph-T, 1012.08; f, 117.83; fo, 317.59; ft, 275.55)
+contributing to the diverse geological features of Crete.
+
+HWSD (Harmonized World Soil Database) results reveal a diverse range of soil types.
+Predominant among these are Lithic Leptosols (4777 km\textsuperscript{2}),
+representing 61.11\% of the sampled soils.
+These are typically shallow soils on hard rocky outcrops.
+Calcaric Regosols, accounting for 2250.80 instances (27.82\%),
+are another category. These are shallow, light-coloured soils, frequently
+found on karst landscapes.
+Calcaric Fluvisols, Chromic Luvisols, and Eutric Cambisols were also
+identified, with 598.40 (7.29\%), 767.04 (9.53\%), and 97.92 (1.21\%) occurrences
+respectively. These soils are typically associated with alluvial deposits, have
+a clay-enriched subsoil, and possess a high base saturation.
+
+The highest degree of protection of Crete habitats was observed in the Special Areas
+of Conservation (Habitats Directive) with 2371.42 km\textsuperscript{2}.
+It is followed by the Wildlife Refuge (610.70 km\textsuperscript{2}),
+and Special Protection Area (Birds Directive) at 1261.78 km\textsuperscript{2}.
+Furthermore, the Core zone of the National (Woodland) Park, i.e Samaria Gorge, covers 47.56 km\textsuperscript{2}.
+In summary, the protection directives of Crete's natural areas are span several categories and cover 2900 km\textsuperscript{2}
+of Crete with some conservation sites overlapping.
+
+Area coverage of land-use management, conservation efforts, geology and
+desertification risks in Crete, are presented in Table \ref{table:crete_data_cube_area}.
+
+\begin{longtable}{ll}
     \caption{Area cover, in km\textsuperscript{2}, of the different categories per spatial data layer of Crete. \label{table:crete_data_cube_area}} \\
-\textbf{hilda+ transition 1978-2018}               & \textbf{area} & \textbf{Aridity index class}               & \textbf{area}    \\
+\textbf{hilda+ transition 1978-2018}               & \textbf{area}    \\
 \endfirsthead
 %
 \endhead
 %
-urban (stable)                                     & 250.23        & Semi-Arid                                  & 6244.44          \\
-urban to cropland                                  & 5.06          & Dry sub-humid                              & 1323.28          \\
-urban to pasture/rangeland                         & 4.03          & Humid                                      & 537.20           \\
-urban to unmanaged grass/shrubland                 & 1.01          &                                            &                  \\
-cropland to urban                                  & 56.57         & \textbf{Soil (HWSD2)}                      & \textbf{area}    \\
-cropland (stable)                                  & 1,193.61      & Calcaric Fluvisols                         & 598.40           \\
-cropland to pasture/rangeland                      & 648.72        & Calcaric Regosols                          & 2250.80          \\
-cropland to forest                                 & 163.42        & Chromic Luvisols                           & 767.04           \\
-cropland to unmanaged grass/shrubland              & 5.05          & Eutric Cambisols                           & 97.92            \\
-pasture/rangeland to urban                         & 64.47         & Lithic Leptosols                           & 4777.00          \\
-pasture/rangeland to cropland                      & 145.34        & NA                                         & 4.08             \\
-pasture/rangeland (stable)                         & 4,694.29      &                                            &                  \\
-pasture/rangeland to forest                        & 205.83        & \textbf{elevation}                         & \textbf{area}    \\
-pasture/rangeland to unmanaged grass/shrubland     & 127.28        & (0,200{]}                                  & 2227.85          \\
-pasture/rangeland to sparse/no vegetation          & 1.01          & (200,400{]}                                & 2192.21          \\
-forest to cropland                                 & 1.01          & (400,600{]}                                & 1584.84          \\
-forest to pasture/rangeland                        & 23.22         & (600,800{]}                                & 815.99           \\
-forest (stable)                                    & 162.33        & (800,1000{]}                               & 484.21           \\
-unmanaged grass/shrubland to urban                & 10.08         & (1000,1200{]}                              & 355.34           \\
-unmanaged grass/shrubland to cropland             & 41.40         & (1200,1400{]}                              & 249.44           \\
-unmanaged grass/shrubland to pasture/rangeland    & 271.59        & (1400,1600{]}                              & 150.83           \\
-unmanaged grass/shrubland to forest               & 20.20         & (1600,1800{]}                              & 91.55            \\
-unmanaged grass/shrubland (stable)                & 10.09         & (1800,2000{]}                              & 75.50            \\
-sparse/no vegetation to cropland                   & 9.11          & (2000,2200{]}                              & 39.69            \\
-sparse/no vegetation to pasture/rangeland          & 84.87         & (2200,2400{]}                              & 12.23            \\
-sparse/no vegetation to forest                     & 1.01          & (2400,2600{]}                              & 0.21             \\
-sparse/no vegetation (stable)                      & 6.05          &                                            &                  \\
-water                                              & 164.57        &                                            &                  \\
-\textbf{CLC 2}                                     &               & \textbf{geology}                           &                  \\
-Arable land                                        & 88.29         & -                                          & 0.57             \\
-Artificial, non-agricultural vegetated areas       & 20.68         & J-E                                        & 1346.89          \\
-Forests                                            & 299.93        & K-E                                        & 247.97           \\
-Heterogeneous agricultural areas                   & 1102.96       & K.k                                        & 1252.97          \\
-Industrial, commercial and transport units         & 39.77         & K.m                                        & 12.95            \\
-Inland waters                                      & 6.74          & Mk                                         & 811.96           \\
-Mine, dump and construction sites                  & 10.05         & Mm.I                                       & 1614.25          \\
-Open spaces with little or no vegetation           & 410.66        & Ph-T                                       & 1012.08          \\
-Pastures                                           & 59.25         & Q.al                                       & 910.75           \\
-Permanent crops                                    & 2367.70       & T.br                                       & 299.58           \\
-Scrub and/or herbaceous vegetation associations    & 3797.83       & f                                          & 117.83           \\
-Urban fabric                                       & 110.63        & fo                                         & 317.59           \\
-                                                   &               & ft                                         & 275.55           \\
-\textbf{Protected areas}                           & \textbf{area} & o                                          & 93.94            \\
-Aesthetic Forest                                   & 0.17          &                                            &                  \\
-Sites of Community Importance (Habitats Directive) & 0.34          & \textbf{Desertification risk}              & \textbf{area}    \\
-Game breeding station                              & 1.02          & N                                          & 159.10           \\
-Controlled hunting area                            & 11.59         & F2                                         & 1900.60          \\
-Core zone in National (Woodland) Park              & 47.56         & F1                                         & 1483.50          \\
-UNESCO-MAB Biosphere Reserve                       & 88.65         & P                                          & 1556.60          \\
-Protected Forest                                   & 417.74        & C2                                         & 623.50           \\
-Wildlife Refuge                                    & 610.70        & Other areas                                & 283.80           \\
-Special Protection Area (Birds Directive)          & 1261.78       & F3                                         & 1118.00          \\
-Special Areas of Conservation (Habitats Directive) & 2371.42       & C1                                         & 769.70           \\
-total protected (no overlap)                       & 2900.59       & C3                                         & 232.20           \\
-total protected                                    & 4810.96       & \textbf{Crete total}                       & \textbf{8345}
+urban (stable)                                     & 250.23           \\
+urban to cropland                                  & 5.06             \\
+urban to pasture/rangeland                         & 4.03             \\
+urban to unmanaged grass/shrubland                 & 1.01             \\
+cropland to urban                                  & 56.57            \\
+cropland (stable)                                  & 1,193.61         \\
+cropland to pasture/rangeland                      & 648.72           \\
+cropland to forest                                 & 163.42           \\
+cropland to unmanaged grass/shrubland              & 5.05             \\
+pasture/rangeland to urban                         & 64.47            \\
+pasture/rangeland to cropland                      & 145.34           \\
+pasture/rangeland (stable)                         & 4,694.29         \\
+pasture/rangeland to forest                        & 205.83           \\
+pasture/rangeland to unmanaged grass/shrubland     & 127.28           \\
+pasture/rangeland to sparse/no vegetation          & 1.01             \\
+forest to cropland                                 & 1.01             \\
+forest to pasture/rangeland                        & 23.22            \\
+forest (stable)                                    & 162.33           \\
+unmanaged grass/shrubland to urban                 & 10.08            \\
+unmanaged grass/shrubland to cropland              & 41.40            \\
+unmanaged grass/shrubland to pasture/rangeland     & 271.59           \\
+unmanaged grass/shrubland to forest                & 20.20            \\
+unmanaged grass/shrubland (stable)                 & 10.09            \\
+sparse/no vegetation to cropland                   & 9.11             \\
+sparse/no vegetation to pasture/rangeland          & 84.87            \\
+sparse/no vegetation to forest                     & 1.01             \\
+sparse/no vegetation (stable)                      & 6.05             \\
+water                                              & 164.57           \\
+\textbf{CLC 2}                                     &                  \\
+Arable land                                        & 88.29            \\
+Artificial, non-agricultural vegetated areas       & 20.68            \\
+Forests                                            & 299.93           \\
+Heterogeneous agricultural areas                   & 1102.96          \\
+Industrial, commercial and transport units         & 39.77            \\
+Inland waters                                      & 6.74             \\
+Mine, dump and construction sites                  & 10.05            \\
+Open spaces with little or no vegetation           & 410.66           \\
+Pastures                                           & 59.25            \\
+Permanent crops                                    & 2367.70          \\
+Scrub and/or herbaceous vegetation associations    & 3797.83          \\
+Urban fabric                                       & 110.63           \\
+                                                   &                  \\
+\textbf{Protected areas}                           & \textbf{area}    \\
+Aesthetic Forest                                   & 0.17             \\
+Sites of Community Importance (Habitats Directive) & 0.34             \\
+Game breeding station                              & 1.02             \\
+Controlled hunting area                            & 11.59            \\
+Core zone in National (Woodland) Park              & 47.56            \\
+UNESCO-MAB Biosphere Reserve                       & 88.65            \\
+Protected Forest                                   & 417.74           \\
+Wildlife Refuge                                    & 610.70           \\
+Special Protection Area (Birds Directive)          & 1261.78          \\
+Special Areas of Conservation (Habitats Directive) & 2371.42          \\
+total protected (no overlap)                       & 2900.59          \\
+total protected                                    & 4810.96          \\
+\textbf{Aridity index class}                       & \textbf{area}    \\
+Semi-Arid                                          & 6244.44          \\
+Dry sub-humid                                      & 1323.28          \\
+Humid                                              & 537.20           \\
+                                                   &                  \\
+\textbf{Soil (HWSD2)}                              & \textbf{area}    \\
+Calcaric Fluvisols                                 & 598.40           \\
+Calcaric Regosols                                  & 2250.80          \\
+Chromic Luvisols                                   & 767.04           \\
+Eutric Cambisols                                   & 97.92            \\
+Lithic Leptosols                                   & 4777.00          \\
+NA                                                 & 4.08             \\
+                                                   &                  \\
+\textbf{elevation}                                 & \textbf{area}    \\
+(0,200{]}                                          & 2227.85          \\
+(200,400{]}                                        & 2192.21          \\
+(400,600{]}                                        & 1584.84          \\
+(600,800{]}                                        & 815.99           \\
+(800,1000{]}                                       & 484.21           \\
+(1000,1200{]}                                      & 355.34           \\
+(1200,1400{]}                                      & 249.44           \\
+(1400,1600{]}                                      & 150.83           \\
+(1600,1800{]}                                      & 91.55            \\
+(1800,2000{]}                                      & 75.50            \\
+(2000,2200{]}                                      & 39.69            \\
+(2200,2400{]}                                      & 12.23            \\
+(2400,2600{]}                                      & 0.21             \\
+                                                   &                  \\
+\textbf{geology}                                   & \textbf{area}    \\
+-                                                  & 0.57             \\
+J-E Plattenkalk                                    & 1346.89          \\
+K-E Limestone of Pindos                            & 247.97           \\
+K.k Limestone of Tripolis                          & 1252.97          \\
+K.m Carbonaceous Allochthonous                     & 12.95            \\
+Mk Neogenic                                        & 811.96           \\
+Mm.I Neogenic                                      & 1614.25          \\
+Ph-T Phylites - Chalazites                         & 1012.08          \\
+Q.al Quaternary alluvium                           & 910.75           \\
+T.br  Limestone of Tripolis                        & 299.58           \\
+f Schale                                           & 117.83           \\
+fo Schale of Pindos                                & 317.59           \\
+ft Flysch of Tripolis                              & 275.55           \\
+o Ophilite Complex Allochthonous                   & 93.94            \\
+                                                   &                  \\
+\textbf{Desertification risk}                      & \textbf{area}    \\
+N non-affected                                     & 159.10           \\
+F2 fragile (medium)                                & 1900.60          \\
+F1 fragile (low)                                   & 1483.50          \\
+P potential                                        & 1556.60          \\
+C2 critical areas (medium)                         & 623.50           \\
+Other areas                                        & 283.80           \\
+F3 fragile (high)                                  & 1118.00          \\
+C1 critical areas (low)                            & 769.70           \\
+C3 critical areas (high)                           & 232.20           \\
+\textbf{Crete total}                               & \textbf{8345}
+
+
+
+
 \end{longtable}
 
 
 \section{Discussion}\label{crete_idea_discussion}
 
+The wide range of languages and year of historical publications illustrates the
+global impact and interdisciplinary nature Cretan historical biodiversity literature.
+These results indicate Crete's rich archaeological and historical past,
+combined with its diverse geological features, have made it an attractive subject
+for multidisciplinary research. Further studies will undoubtedly continue to
+unearth more insights into Crete's intriguing history and natural environment.
+
+Yet a lot of work is needed to rescue the hidden biodiversity knowledge in
+historical literature, natural history collections and herbaria \parencite{Paragkamian2022}.
+In Crete this is apparent from the 2 orders of magnitude difference in the documents
+in GBIF before 1960 and the imaged documents in Biodiversity Heritage Library. The 
+difference in taxa are in 2 orders in magnitude less in GBIF. These data 
+require specialised curators to rescue and is crucial to include for 
+further comparisons and information homogeneity. Of course there must be 
+a lot of documents with important information not even imaged, thereby under 
+critical threats to become lost.
+
+Worldwide projects of microbiome studies have collected one or two topsoil
+samples from Crete \parencite{Vasar2022, Labouyrie2023, Bahram2018, Orgiazzi2018}.
+Some have focused on soil fungi \parencite{Mikryukov2023, Davison2021, Tedersoo2021}
+and other soil eukaryotes \parencite{Aslani2022}.
+The only thorough microbiome study of a soil ecosystem in Crete, to our knowledge,
+is in the north west part of the island, the Koiliaris Critical Zone Observatory \parencite{tsiknia2014}.
+
 Compare with Samothrace \parencite{noll2024insights}.
 
-The wide range of languages and year of publications illustrates the global impact and interdisciplinary nature Cretan historical biodiversity literature.
+\begin{figure}[hbt!] 
+    \centering\includegraphics[width=\columnwidth]{crete_map_crete_lter.png}
+    \caption[LTERs in Crete]{Long term monitoring stations in Crete}
+    \label{fig:crete-lter}
+\end{figure}
 
+Apart from the soil microbiome, soil physical and chemical properties has been
+investigated by global and European projects like the Forum of European Geological Surveys
+(FOREGS) \parencite{nerc19017}, the Geochemical Mapping of Agricultural and Grazing Land
+Soil in Europe (GEMAS) \parencite{REIMANN2018302} and the Soil Profile Analytical
+Database for Europe (SPADE) \parencite{Hiederer2006}. These data with other data
+not publicly available have led to the creation of the \href{https://esdac.jrc.ec.europa.eu/content/soil-map-greece-0}{soil map} of Crete 
+and Greece in general. These maps are not as complete as the geological maps (Figure \ref{fig:crete_data_cube_map} C), 
+and that is the reason of the coarse mapping of the Harmonized World Soil Database map of Crete (Figure \ref{fig:crete_data_cube_map} D).
+Soil type results highlight the diversity of soil types on Crete, with a
+dominance of Lithic Leptosols and Calcaric Regosols, which may be linked to the
+region's geomorphological features (karst, limestone).
 
 Focusing in a confined area provides unique opportunities for data integration.
 And as complex systems ecologists have stated bringing together information across
@@ -346,7 +520,7 @@ scales \parencite{brown2004METABOLIC} and functions leads to emergent properties
 predict before \parencite{smith2016Origin}. The techniques to integrate are multiple in terms of statistics and modelling. But,
 the advent of Large Language Models revolutionised the data interpretation and 
 user interaction. In ecology and conservation this is very promising \parencite{doi2024biodiversity}.
-In my opinion, the presented knowledge base of Crete would be a suitable 
+The presented knowledge base of Crete would be a suitable 
 case study to investigate these significant advancements to tighten the integration and form a 
 user application.
 
