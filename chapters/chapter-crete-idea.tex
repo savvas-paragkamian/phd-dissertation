@@ -82,6 +82,19 @@ hypotheses and conservation priorities.
 
 \section{Materials and Methods}\label{integration_methods}
 
+This section presents the methods and data that are required to create
+a Cretan soil biodiversity data system, Figure \ref{fig:crete_soil_logo}. First, the literature regarding 
+Crete is downloaded and analysed. Then sampling data from different 
+resources about sequences, biodiversity occurrences and soil samples 
+are retrieved. Lastly, the spatial data are incorporated as different 
+layers of the whole island.
+
+\begin{figure}[hbt!] 
+    \centering\includegraphics[width=0.7\columnwidth]{crete_soil_integration_logo.png}
+    \caption{The schematic representation of the different types of data needed to create the Crete Soil System.}
+    \label{fig:crete_soil_logo}
+\end{figure}
+
 \subsection{Literature}\label{crete-literature}
 
 Crete is an unambiguous name, this fact allows for simple keyword searches to discover 
@@ -121,10 +134,9 @@ The samplings are distinguished as sequences, biodiversity and soil, using ENA, 
 The ENA API was used with a POST request containing the bounding box of Crete as a query \parencite{Yuan2023}. This 
 query returned a list with the sample identifiers. Using this list and a custom python script the API
 was invoked with GET requests to retrieve all the available metadata for each sample.
-GBIF has the in the online user interface the functionality of selecting the area of interest with a bounding box and requesting
-the data \parencite{noauthor_gbif_nodate}. The request was then approved and was downloaded. All species 
-from IUCN that are in Crete were downloaded from the website \parencite{iucn2024}. IUCN provides the 
-interactive maps selection functionality. 
+GBIF has incorporated in the online user interface, the functionality of selecting the area of interest with a bounding box and then requesting
+the data \parencite{noauthor_gbif_nodate}. The request was first approved and then it was downloaded. 
+
 WoSIS has a dedicated Web Feature Service (WFS) that is specialised for spatial data \parencite{Batjes2024}. 
 Using the available tutorial and a adjusted R script the samplings and metadata of 
 soil in Crete were retrieved.
@@ -183,7 +195,7 @@ place Greece is also mentioned in 1100 abstracts. Genetic phenomena
 and Behavior mechanisms are listed in 500 abstracts, each. 
 While infections and organic chemicals are in 200 abstracts each. These terms 
 can appear with overlaps in abstracts.
-Out all the original set of abstracts, the 170, 11\%, originate from environmental sciences.
+Out all the original set of abstracts, the 177, 11\%, originate from environmental sciences.
 From these, Phylogeny was assigned to 24, Ecosystem to 21, Environmental Monitoring to 16
 and Conservation of Natural Resources in 8 abstracts.
 
