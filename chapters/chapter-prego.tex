@@ -9,105 +9,97 @@
 \label{cha:prego}
 
 
-\textbf{Citation:} \\ 
-Zafeiropoulos H, Paragkamian S, Ninidakis S, Pavlopoulos GA, Jensen LJ, Pafilis E. PREGO: A Literature and Data-Mining Resource to Associate Microorganisms, Biological Processes, and Environment Types. Microorganisms. 2022; 10(2):293. \\ 
-Shared co-first authorship.
-
-\textbf{Journal:} Microorganisms
-
-This article belongs to the Special Issue Selected Papers from the 9th Conference of the Hellenic Scientific Society MIKROBIOKOSMOS \textit{Beneficial Microbes at the Heart of Mikrobiokosmos}
-
-DOI: \href{https://doi.org/10.3390/microorganisms10020293}{10.3390/microorganisms10020293}\footnote{
-   For author contributions and supplementary material please refer to the relevant sections. 
-   This is a modified version of the published version,
-   in terms of relevance, coherence and formatting.}
-
-
-
-% PREGO ABSTRACT
-%\section{Abstract}
-%
-%   To elucidate ecosystem functioning, it is fundamental to recognize \textit{what} processes occur in which environments (\textit{where}) and which microorganisms carry them out (\textit{who}). 
-%   Here, we present PREGO, a one-stop-shop knowledge base providing such associations. 
-%   PREGO combines text mining and data integration techniques to mine such what-where-who associations from data and metadata scattered in the scientific literature and in public omics repositories. 
-%   Microorganisms, biological processes, and environment types are identified and mapped to ontology terms from established community resources. 
-%   Analyses of comentions in text and co-occurrences in metagenomics data/metadata are performed to extract associations and a level of confidence is assigned to each of them thanks to a scoring scheme. 
-%   The PREGO knowledge base contains associations for 364,508 microbial taxa, 1090 environmental types, 15,091 biological processes, and 7,971 molecular functions with a total of almost 58 million associations. 
-%   These associations are available through a web interface (\href{https://prego.hcmr.gr}{https://prego.hcmr.gr}), an Application Programming Interface (API), and bulk download. 
-%   By exploring environments and/or processes associated with each other or with microbes, PREGO aims to assist researchers in design and interpretation of experiments and their results. 
-%   To demonstrate PREGO's capabilities, a thorough presentation of its web interface is given along with a meta-analysis of experimental results from a lagoon-sediment study of sulfur-cycle related microbes.
-%
-% RPEGO INTRODUCTION
 \section{Introduction}
 \label{sec:prego-intro}
 
-The rapid advancements in genomic technology have significantly impacted the field of biology and medicine, creating an imperative need for the establishment of genomic standards to ensure the reliability and reproducibility of research findings. As genomic datasets grow exponentially, the importance of these standards in genomic research cannot be overstated. Standards are essential for enabling the comparison of results across different studies, facilitating data sharing and collaboration, and ultimately driving the progression of genomic medicine (PMID:21713030).
+The rapid advancements in genomic technology have significantly impacted the
+all fields of biology, creating a need for the establishment
+of genomic standards to ensure the reliability and reproducibility of research
+findings \parencite{Field2011}. As genomic datasets grow exponentially, the importance of these standards
+in genomic research cannot be overstated. Standards are essential for enabling
+the comparison of results across different studies, facilitating data sharing and
+collaboration, and ultimately driving the progression of genomic medicine \parencite{vangay2021microbiome}.
+However, the potential of genomic data is often limited by the lack of accompanying
+metadata.
 
-However, the potential of genomic data is often limited by the lack of accompanying metadata. Data devoid of metadata are essentially a black box, with no contextual information to interpret the results or to assess their relevance. This issue is especially prevalent in genomics, where the complexity and diversity of the data necessitate comprehensive metadata for accurate analysis (PMID:21552244). Without proper metadata, it becomes challenging to assess data quality, reproducibility, and to ensure that research conclusions are robust.
+Data devoid of metadata are essentially a black box, with no contextual
+information to interpret the results or to assess their relevance \parencite{michener_nongeospatial_1997}.
+This issue is
+prevalent in genomics, where the complexity and diversity of the data
+necessitate comprehensive metadata for accurate analysis \parencite{vangay2021microbiome}.
+Without proper metadata, it becomes challenging to assess data quality,
+reproducibility, and to ensure that research conclusions are robust.
+The emergence of metagenomic resources has added a new dimension to genomic
+research, with a myriad of databases providing a wealth of data on microbial
+communities from various environments.
+Examples of public resources are MGnify \parencite{mitchell2020mgnify},
+JGI/IMG \parencite{chen2021img} and MG-RAST \parencite{wilke2015restful}). Each one 
+has it's one pipeline to analyse user submitted environmental sequences. MGnify
+directly imports data from ENA sequence database.
+These resources are invaluable for
+understanding the genetic diversity and functional potential of microbial
+ecosystems. Adding to the complexity, the sheer volume of data and the varying formats in which
+they are presented can make comparing and combining these resources a daunting task. 
 
-The emergence of metagenomic resources has added a new dimension to genomic research, with a myriad of databases providing a wealth of data on microbial communities from various environments. These resources are invaluable for understanding the genetic diversity and functional potential of microbial ecosystems. However, the sheer volume of data and the varying formats in which they are presented can make mining these resources a daunting task. To overcome this, text mining techniques have become essential for efficiently extracting relevant information from the vast literature on metagenomics. By leveraging text mining, researchers can more readily identify and use the rich information that is often hidden within the text, thereby accelerating discoveries in this rapidly evolving field (PMID:16418747).
+Metagenomic mining approaches are required to leverage vast databases and analyze
+microorganisms from diverse environments \parencite{delmont2011metagenomic}.
+Mining allows scientists to extract and interpret genetic material 
+from multiple resources thus providing a comprehensive view of the microbiome.
+Metadata associated with each sample in these databases, such as source information and collection conditions,
+contribute significantly to the contextual understanding and statistical interpretation of the data.
+Enable researchers to make meaningful comparisons across different studies.
+Furthermore, the application of metagenomic mining to these rich databases can help
+uncover novel genes, metabolic pathways, and potential therapeutic targets \parencite{ma2023a-genomic},
+thus driving advancements in health, agriculture, and environmental sustainability.
+To accomplish this, named entity recognition techniques have become essential for
+efficiently harmonising relevant information from metadata.
 
+Named entity recognition is a term identification process. It is based upon
+vocabularies and ontologies that provided multiple versions of terms and 
+hierarchy relationships. Environment Ontology (ENVO) \parencite{buttigieg2016environment} 
+is an important ontology that has classified environments and metagenomic 
+resources suggest it's usage in the metadata in fields like biome and 
+environmental feature. Molecular functions and biological processes are two separate 
+ontologies, part of Gene Ontology \parencite{ashburner2000gene, gene2021gene} that
+are widely used in bioinformatics and are open source. 
+Regarding functions and pathways, the KEGG database \parencite{kanehisa2000kegg} is the most used resource
+in microbial ecology, yet it requires a licence to implement it in a new resource.
+Taxa names are also extracted from free text based on different taxonomies. In microbiology,
+NCBI taxonomy \parencite{schoch2020ncbi} is convenient to use and implement because every taxon 
+is represented by sequences. Nevertheless, LPSN (List of Prokaryotic names with Standing in Nomenclature) \parencite{parte2020list}
+is a curated nomenclature that has high accuracy. Based on some of the aforementioned 
+systems it is possible to extract entity names from metadata fields and free text in general 
+in order to homogenise metadata and data fields.
 
-Old intro
+Apart from metagenomic data, scientific literature contains invaluable information
+about microbes, their functions and habitats. This information is usually hidden 
+or captured by experts on the fields. 
+Text mining methods have been long assisted in extracting knowledge from 
+the scientific literature \parencite{jensen2006Literature}. 
+By leveraging text mining, researchers can more readily identify and use the rich information that
+is often hidden within the text, thereby accelerating discoveries in this
+rapidly evolving field \parencite{badal2019Challenges}. Text mining is a multiple step
+process \parencite{10.5555/1199003}. It begins with establishing a corpus with 
+documents specifically formatted for the tools used. PubMed \parencite{roberts2001pubmed}
+holds more that 40 million abstracts through MEDLINE. These data are accessible 
+and open access, therefore useful for text mining applications. A downside is the 
+domain of publications because it doesn't cover most of ecological and environmental 
+journals. Then these documents are analysed with Named Entity Recognition and a 
+score of co-occurrences between entities is produced. This lies in the principle 
+that the highest the co-mention of terms the higher the probability there is 
+a biological meaning of this association \parencite{jensen2006Literature}.
+Text mining approaches have been very successful in unearthing novel 
+associations of proteins and deceases \parencite{pletscher2015diseases}.
 
-Microbes are omnipresent and impact global ecosystem functions \parencite{falkowski2008microbial} through their abundance \parencite{bar2018biomass}, versatility \parencite{delgado2016microbial}, and interactions \parencite{rottjers2018hairballs}. 
-   These facts have inspired microbiologists from diverse scientific fields to study their genotype and phenotype \parencite{morris2020linking}, their metabolism \parencite{biggs2015metabolic}, and their interactions with the environment \parencite{hall2018understanding}. 
-   All this work has resulted in a wealth of knowledge available in the forms of literature and experimental data. Literature contains vast amounts of information in the free text form that overwhelms researchers. 
-   Advanced text mining methods \parencite{jensen2006Literature} have been developed to assist this issue. 
-   Experimental data and their metadata require mining \parencite{delmont2011metagenomic} as well for their integration, mostly through metagenomic mining from online repositories. 
-   Hence, the combination of this knowledge about microbial life (who), their metabolic functions (what), and the environment they influence (where) is an important step to study ecosystem function \parencite{raes2008Molecular}.
+PREGO, the resource developed and presented in \textcite{microorganisms10020293}
+as part of this PhD (see \ref{fig:prego_paper}), is a hypothesis generation platform designed to integrate the 
+available knowledge about microbes and their processes and environments. 
+It is a global platform, first of it's kind that combines metagenomic data with literature
+using an established text mining methodology. 
+In this chapter, the development of PREGO is presented along with the analysis of global 
+soil microbiome knowledge.
 
-   High Throughput Sequencing (HTS) has turned the page on microbial ecology studies \parencite{nilsson2019mycobiome}. 
-   Over the past 20 years, both the taxonomic and the functional profiles of microbial communities from both local and large-scale regions (e.g., Tara Oceans \parencite{pesant2015open}, Earth Microbiome \parencite{gilbert2014earth}) are being accumulated at a higher and higher rate. 
-   Extreme environments, i.e., areas with high salinity, low pH, etc., are being studied, providing us with unprecedented insight \parencite{shu2021microbial}. 
-   Both amplicon and shotgun metagenomics studies have played a crucial part in this development. Latest technological breakthroughs, such as Metagenome-Assembled Genomes (MAGs) and Single Amplified Genomes (SAGs), are enhancing the assessment of the taxonomic and functional repertoire of microbiomes even further. 
-   However, the mass use of these technologies and their consequent data have led to a number of needs and challenges, with metadata curation being among the most crucial ones.
-
-   Standards-promoting communities, like \href{https://gensc.org/}{Genomic Standards Consortium (GSC)}\footnote{
-      \href{https://gensc.org/}{https://gensc.org/}
-   }, their efforts, like Minimum Information about any (x) Sequence (MIxS) \parencite{yilmaz2011minimum}, and projects endorsing those, like National Microbiome Data Collaborative (NMDC) \parencite{wood2020national, vangay2021microbiome}, offer guidelines and best-practices to assist the annotation of microbial ecology samples. 
-   Controlled vocabularies and ontologies contribute to these efforts as they describe each subject area with formal terms \parencite{walls2014semantics}. 
-   Environment types, for example, are described by the Environment Ontology (ENVO) \parencite{buttigieg2016environment}. 
-   Other key biological aspects that have been captured include molecular functions (Gene Ontology Molecular Function (GOmf) \parencite{ashburner2000gene, gene2021gene}, Enzyme Commission nomenclature \parencite{noauthor_1999}, etc.), and the pathways carrying out different biological processes (GO Biological Process (GObp), MetaCyc \parencite{caspi2020metacyc}, etc.). 
-   These knowledge structures, along with taxonomic centralized resources like the National Center for Biotechnology Information (NCBI) Taxonomy \parencite{schoch2020ncbi}
-   and LPSN (List of Prokaryotic names with Standing in Nomenclature) \parencite{parte2020list}, 
-   provide the means for a standardized representation of, for example, environments, process-oriented terms, and microbial taxa, respectively. Global-scale public resources (like MGnify \parencite{mitchell2020mgnify}, 
-   JGI/IMG \parencite{chen2021img}, 
-   MG-RAST \parencite{wilke2015restful}) 
-   combine some of the aforementioned resources to support the collection, analysis, and distribution of multiple types of HTS data (e.g., amplicon, metagenomics, metatranscriptomics, etc.).
-
-   Besides the data and the analyses \textit{per se}, the related scientific literature stores valuable information in billions of text lines. 
-   PubMed \parencite{schoch2020ncbi} and PubMed Central (PMC) \parencite{roberts2001pubmed} are gateways to relationships among microbes (\textit{who}), the environments they live in (\textit{where}) and their associated processes and functions (\textit{what}) hidden in text \parencite{harmston2010papers}. 
-   Text mining (on both literature and metadata) can serve the extraction of these relationships. Named Entity Recognition (NER) can, for example, locate organism names \parencite{pafilis2013species}, ENVO and GO terms \parencite{pafilis2016extract} mentioned in text and map them to their corresponding identifiers. 
-   Association statistics, like co-mention analysis, can subsequently suggest ranked association among such entities \parencite{von2005string, franceschini2012string}. 
-   The new era of omics has been interwoven with data integration \parencite{gomez2014data} by bringing together scattered and fragmented pieces of information.
-
-   The time is ripe for tools that integrate all this knowledge and henceforth assist researchers to tackle major challenges like climate change \parencite{cavicchioli2019scientists}, 
-   sustainability \parencite{d2021microbiome}, 
-   and synthetic ecology \parencite{conde2020synthetic}.
-   Many resources have emerged in this realm \parencite{baltoumas2021biomolecule}, 
-   each one serving a specific purpose, such as BacDive \parencite{reimer2019bac}. 
-   BacDive is a large-scale curated database with prokaryotic information about phenotypic, morphological, and metabolic information. 
-   Other resources like Microbe Directory \parencite{shaaban2018microbe}, 
-   Web of Microbes (WoM) \parencite{kosina2018web}, 
-   and Microbial Interaction Network Database (\href{http://www.microbialnet.org/mind_home.html}{MIND}\footnote{
-      \href{http://www.microbialnet.org/mind_home.html}{http://www.microbialnet.org/mind\_home.html}
-   }) focus on microbial environmental conditions, metabolite interactions with microbes and microbe-microbe interactions, respectively. 
-   In addition, taking advantage of aforementioned resources, novel pipelines, e.g., \parencite{tang2020tripartite}, are emerging with the aim to explore the network associations of who (microbial taxa) is performing what (microbial processes) and where (environments) directly using graph theory \parencite{koutrouli2020guide}. 
-   These analyses and resources are important because microbiologists can enrich their data to explore hypotheses but also to identify potential gaps in knowledge regarding these associations \parencite{li2021microbial}.
-
-   Here, we present PREGO, a hypothesis generation web resource that is designed to be useful to microbiologists—in particular microbial ecologists and environmental microbiologists. 
-   Its specific aims include: 
-   (a) the gathering of source data, metadata, and literature followed by the extraction of microorganism, process, environment associations contained therein, 
-   (b) making such a mined knowledge base available to life sciences researchers via an easy to use and explore web portal. 
-   As such, PREGO can be useful also to system microbiologists and large-scale data analysts through bulk download and programming access. 
-   We document the principles, analysis methodology, and contents behind PREGO. 
-   Last but not least, we demonstrate PREGO's capabilities for researcher-support related to the above through a case study involving sulfate-reducing microorganisms.
-
-
-
-% RPEGO METHODS
-\section{Methods \& Implementation}
+\section{Methods}
 \label{sec:prego-methods}
 
    PREGO is a resource designed to assist molecular ecologists in acquiring a single point overview of what-where-who process–environment–organism associations. The system is comprised of two main parts: (a) a server that periodically harvests data and extracts process-environment-organism associations from the scientific literature, environmental samples, and genome annotation sequences (Figure~\ref{fig:prego-pipeline}, step 1 to 5) and (b) a web-based interface as well as an Application Programming Interface (API) that provides users and programmers with a friendly way to extract and navigate across the process–environment–organism associations (Figure~\ref{fig:prego-pipeline}, step 6).
@@ -116,11 +108,9 @@ Microbes are omnipresent and impact global ecosystem functions \parencite{falkow
       \centering
       \includegraphics[width=0.98\columnwidth]{figures/prego_analysis_horizontal.png}
       \caption[PREGO analysis methodology]{
-         PREGO analysis methodology: PREGO periodically retrieves three distinct types of data from open access resources. 
-         Scientific text, environmental sample data, and genomic annotations are handled with respective methodologies in order to standardize their entities. 
-         Named Entity Recognition and Comention/Co-occurrence analysis is the common framework in order to build a weighted association network with nodes being the entity identifiers. Lastly, all these associations are available through a Web interface and an API. 
-         All these steps have been implemented in an autonomous way with regular cycles of updates (see Appendix~\ref{app:B}). 
-         Icons used from the Noun Project released under CC BY: Books by Shakeel Ch., Bacteria by Maxim Kulikov, ftp by DinosoftLab, Mountain by Diane, Ship on Sea by farra nugraha, River by Chanut is Industries.
+         PREGO methodology: retrieval of 3 types of open access data resources, literature, environmental DNA samples, and genomic annotations. 
+         Named Entity Recognition and co-occurrences bring together associations from organisms, environments and processes. 
+         These associations has a score and are provided is a Web interface and an API. Figure adopted by \parencite{microorganisms10020293}.
       }
       \label{fig:prego-pipeline}
    \end{figure}
