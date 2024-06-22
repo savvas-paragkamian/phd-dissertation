@@ -174,7 +174,8 @@ Furthermore, the Harmonised World Soil Database v2 was integrated for soil mappi
 
 \subsection{Tools and code}\label{Coding environment}
 Visualisation was implemented with ggplot2 \parencite{wickham_ggplot2_2016} and pheatmap \parencite{Kolde2019}.
-The environment we worked had Python 3.11.4, R version 4.3.2 \parencite{rcoreteam}.
+Taxon names resolve and taxonomic classification was facilitated by taxize R package \ref{chamberlain_taxize_2013}.
+The working environment had Python 3.11.4, R version 4.3.2 \parencite{rcoreteam}.
 Finally, computations were performed on HPC infrastructure of HCMR \parencite{zafeiropoulos_0s_2021}.
 
 Scripts about data integration are available in
@@ -229,7 +230,8 @@ Of the filtered 35,130 pages, a content analysis was carried out to identify the
 BHL employs the gnfinder tool on each OCRed page \parencite{mozzherin_gnamesgnfinder_2022}.
 The results showed that 23,391 pages (66.61\%) contained taxon names within 3,000 distinct items.
 From these, 890, contained more that 50 different taxon names.
-Additionally, 75,405 unique taxon names were detected across these pages, with a total of 214,215 occurrences.
+Additionally, 75,405 unique taxon names were detected across these pages, with a total of 214,215 occurrences. 
+The phyla with most taxa are summarised in Table \ref{table:crete_bhl_phyla}. 
 The items with taxon names were further analyzed based on the titles mentioned
 in the Biodiversity Heritage Library (BHL). It was found that 1,879 items had titles in various languages, with the following distribution:
 
@@ -255,6 +257,30 @@ English (ENG): 1,350
 
 The oldest document was published in 1554 and there are 1482 items published before 1960 containing thousands of taxa occurrences.
 
+\begin{longtable}{llll}
+    \caption{Number of taxa per Phylum as mentioned in documents that offer information about Crete. Note that some documents contain information from multiple places. \label{table:crete_bhl_phyla}} \\
+\textbf{Animalia} & \textbf{Taxa} & \textbf{Plantae} & \textbf{Taxa} \\
+\endfirsthead
+%
+\endhead
+%
+Annelida          & 291           & Anthocerotophyta & 11            \\
+Arthropoda        & 21916         & Bryophyta        & 650           \\
+Brachiopoda       & 189           & Charophyta       & 45            \\
+Bryozoa           & 138           & Chlorophyta      & 83            \\
+Chordata          & 7353          & Marchantiophyta  & 283           \\
+Cnidaria          & 444           & Rhodophyta       & 77            \\
+Ctenophora        & 16            & Tracheophyta     & 26971         \\
+Echinodermata     & 224           &                  &               \\
+Hemichordata      & 14            &                  &               \\
+Mollusca          & 4271          &                  &               \\
+Nematoda          & 83            &                  &               \\
+Nemertea          & 15            &                  &               \\
+Platyhelminthes   & 134           &                  &               \\
+Porifera          & 251           &                  &               \\
+Rotifera          & 51            &                  &              
+\end{longtable}
+
 \subsection{Biodiversity and samplings}
 
 GBIF as an biodiversity aggregator contains a most open data occurrences of species. 
@@ -274,7 +300,7 @@ A part of it is included in GBIF, yet it provides some additional functionalitie
 
 Regarding the genomic and metagenomic samples from Crete, ENA hosts all the public 
 available data and metadata. There are 92 studies with 1205 samples.
-From there the 530 samples are terrestrial metagenomic samples as shown in
+From these, the 530 samples are terrestrial metagenomic samples as shown in
 Figure \ref{fig:crete-samplings} C. 
 The most samples and studies are in the soil metagenome with 164 samples in 7 studies, without the
 ISD project presented in Chapter \ref{cha:isd-crete-soil}.
