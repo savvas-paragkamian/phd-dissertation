@@ -29,6 +29,18 @@ DOI: \href{https://doi.org/10.21203/rs.3.rs-2671168/v1}{10.21203/rs.3.rs-2671168
 
 Functioning of arthropods has been investigating since the seventies \parencite{rosswall1997energetical}.
 
+
+%% need to modify
+Hotspot definitions vary from quantitative methods to experts opinions and curation.
+In quantitative methods, grid size and shape influences the determination of
+the areas of interest such as hotspots and key biodiversity areas \parencite{hurlbert2007species,nhancale2011the-influence}.
+Choosing the size of the grid is not trivial \parencite{mo2019influences} and is dependent
+on the conservation goals \parencite{margules2000systematic}. In the past decade,
+there have been major advances for conservation standards, guidelines,
+frameworks and tools available to be put into action \parencite{bongaarts2019ipbes}.
+
+
+%%%%% old
 Numbering approximately 7,000 species [extrapolated from Fauna Europaea
 \parencite{jong2014fauna} and \textcite{legakis2018}], the Arthropods of Crete, Greece,
 have been studied for almost two centuries \parencite{Anastasiou2018Tenebrionid}.
@@ -74,35 +86,13 @@ for data and code (see \href{https://doi.org/10.5281/zenodo.10635645}{Supplement
 \section{Methods}
 \label{sec:arthropods-method}
    
-    \subsection{Taxa selection criteria}
-    \label{subsec:arthropods-taxa-selection}
 
-We aggregated data of Cretan endemic Arthropod groups (NHMC collections and bibliography). The taxa included should satisfy the following criteria:
-\begin{itemize}
 
-    \item There should be at least one authoritative work on the group for Crete which
-should make clear remarks about the group’s taxonomic dynamics, so that future
-taxonomical or systematic works on the taxon would not severely affect our inferences.
-In essence, we selected groups whose biodiversity is well studied and we do not
-expect significant changes in their number of species for Crete. 
-
-    \item The geographic information about the endemic species distribution should be in
-a form convertible to coordinates (i.e., either in coordinates or with a
-precise locality). The included coordinates are precise, while the converted
-ones do not exceed a radius of certainty more than 2 km.
-
-    \item The group should not be dominated by cavernicolous species. We opted to exclude
-cave dwelling fauna, since it is a special system, governed by different
-biogeographical and ecological processes. Thus, groups like terrestrial Isopods
-were excluded for their high percentage of cavernicolous species \parencite{schmalfuss2004the-terrestrial,sfendourakis2018}.
-
-\end{itemize}
+    \subsection{Species occurrences}
+    \label{subsec:arthropods-data-assemblage}
 
 Based on the above criteria, the selected groups are:
 Araneae, Chilopoda, Coleoptera, Diplopoda, Heteroptera, Hymenoptera (Chrysididae, Formicidae, Symphyta), Lepidoptera (Geometridae), Odonata, Orthoptera, Scorpiones and Trichoptera.
-
-    \subsection{Data assemblage}
-    \label{subsec:arthropods-data-assemblage}
 
 We curated the bibliography and the NHMC collection to assemble taxa
 occurrences. The bibliography used
@@ -116,12 +106,6 @@ All species
 from IUCN that are in Crete were downloaded from the website \parencite{iucn2024}. IUCN provides the 
 interactive maps selection functionality. 
 
-    \subsection{Taxa distributions}
-    \label{subsec:arthropods-taxa-assessments}
-For the taxa assessment I used the Preliminary Automated Conservation Assessment
-(PACA) pipeline \parencite{stevart2019a-third}. PACA is an approximation of the IUCN
-assessment based on 
-
 Criterion B, i.e. on the Extent of Occurrence (EOO) and
 Area of Occupancy (AOO).
 
@@ -131,16 +115,8 @@ Criterion B could overestimate the danger of Arthropods \parencite{cardoso2011ad
 which should always be taken into consideration.
 
     
-    \subsection{Endemicity Hotspots (EHs), and Key Biodiversity Areas (KBAs)}
+    \subsection{Grids and hotspots}
     \label{subsec:arthropods-ehs-kbas}
-
-Hotspot definitions vary from quantitative methods to experts opinions and curation.
-In quantitative methods, grid size and shape influences the determination of
-the areas of interest such as hotspots and key biodiversity areas \parencite{hurlbert2007species,nhancale2011the-influence}.
-Choosing the size of the grid is not trivial \parencite{mo2019influences} and is dependent
-on the conservation goals \parencite{margules2000systematic}. In the past decade,
-there have been major advances for conservation standards, guidelines,
-frameworks and tools available to be put into action \parencite{bongaarts2019ipbes}.
 
 In order to avoid biases concerning the grid cell size, the same
 pipeline was tested with cells of different size (4 x 4, 8 x 8 and 10 x 10 km).
@@ -153,11 +129,6 @@ We made the same treatment for each of the selected groups separately.
 We redefined EHs as the 10\% of the grid cells with max overlap of the orders
 to check for biases towards more speciose orders (e.g. Coleoptera).
 
-For the investigation of KBAs \parencite{iucn2016} we used the WEGE index \parencite{farooq2020wege}
-on the same grid as hotspots based on the PACA assessments and the distributions
-of the taxa. WEGE can be used to indicate candidate KBAs or prioritize already
-existing KBAs (given the limited resources available for conservation) but does
-not replace a throughout KBAs assessment \parencite{farooq2020wege}.
 
     \subsection{Spatial overlaps}
     \label{subsec:arthropods-spatial}
@@ -170,37 +141,21 @@ estimate the change of land use the from 1998 to 2018. Furthermore, I examined
 the overlap of the AOO.
 
 
-    \subsection{Tools and scripts}
+    \subsection{Code}
     \label{subsec:arthropods-tools}
-We performed the analyses using the R Statistical Software \parencite{rcoreteam},
+
+    We performed the analyses using the R Statistical Software \parencite{rcoreteam},
 the visualization using the ggplot2 R package \parencite{wickham_ggplot2_2016}. The figures
 created are colored using the colorblind-friendly 'Okabe-Ito' palette \parencite{ichihara2008color}.
 We calculated EOO and AOO using the ConR R package \parencite{dauby2017conr:} and PACA
 using custom scripts. For the spatial data handling, transformations and
 geometry we used the sf v1.0-14 \parencite{pebesma2018simple} and terra v1.7-55 R packages \parencite{hijmans2024terra}.
-WEGE index is calculated with the WEGE R package \parencite{farooq2020wege}.
 Adaptive grid is created using the quadtree R package \parencite{friend2023quadtree}.
 Jaccard similarity was calculated with the vegan 2.6-4 R package \parencite{oksanen2024vegan}.
 All scripts are reproducible by design and available in this 
 \href{https://github.com/savvas-paragkamian/arthropoda_assessment_crete}{GitHub repository}.
 
-
-\begin{itemize}
-    \item Data, scripts and results of the analysis are available and documented \href{https://github.com/savvas-paragkamian/arthropods_assessment_crete}{here} 
-
-    \item Supplementary Material are available at the Zenodo repository \href{https://doi.org/10.5281/zenodo.10635645}{here} 
-
-    \item Supplementary Material 1 is the Supplementary-material-1.xlsx file which
-contains the occurrences as compiled from the literature and the specimens of the
-NHMC. In addition all references of the literature are included in a separate sheet.
-
-    \item Supplementary Material 2 is the Supplementary-material-2.docx which
-contains five (5) supplementary figures and four (4) supplementary tables.
-    \item Supplementary Material 3 is the
-Supplementary-material-3-hilda-crete-1998-2018.mp4 timelapse video of yearly
-changes of Land Use based on HILDA+ dataset.
-
-\end{itemize}
+Data, scripts and results of the analysis are available and documented \href{https://github.com/savvas-paragkamian/arthropods_assessment_crete}{here} 
 
 % RESULTS
 \section{Results}
@@ -328,25 +283,6 @@ water                                          & 165         & 78               
 \end{table}
 
 
-In order to evaluate the human impact in the yielded EHs and candidate KBAs we
-used CORINE layers (Figure \ref{fig:arthropods-fig5}). At LEVEL 1 of the classification, the dominant
-habitat is “Forest and semi-natural areas”, covering ~ 76-78\% of the EHs/KBAs,
-while agricultural areas also display coverage of 20-22\%. This exhibits the
-presence of human activity in the EHs/KBAs. Using the LEVEL 2 CORINE
-layer, we acquired a more detailed image of the coverage. The dominant habitat
-seems to consist of scrub and/or herbaceous vegetation  (56\% coverage),
-forests (12\%), permanent crops (10\%) and open spaces with little or
-no vegetation (10\%) (Appendix Table \ref{table:arthropods-tableS3}). With HILDA+ we
-estimated some negative and some positive transitions within the EHs/KBAs in
-the previous two decades (Appendix Table \ref{table:arthropods-tableS4}). Around 10-12\% of
-forest area has been transformed to cropland. Likewise 22-25\% of cropland has
-been transformed to pastureland. On the other hand 15-26\% of cropland area has
-been transformed to forest. Worryingly urban areas have increased for about 16.8\%,
-although outside EHs and KBAs mainly at the expense of croplands and
-pasturelands (Appendix Table \ref{table:arthropods-tableS4}). Finally, water areas remain
-stable, albeit more research is needed to assess potential decreases in the
-quality of this habitat, especially given the aggressive urban and touristic expansion.
-
 
    \begin{figure}[ht]
       \centering
@@ -431,6 +367,5 @@ The reduction of croplands could be interpreted under the general trend of
 urbanization (Appendix Table \ref{table:arthropods-tableS4}), which nevertheless occurs
 outside EHs and KBAs, but a shift towards montane areas especially under new
 forms of tourism could deeply impact the sites of conservation importance.
-    
 
 
