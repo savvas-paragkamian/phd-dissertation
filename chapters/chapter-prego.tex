@@ -362,6 +362,17 @@ assigned taxon with the other entities in the abstracts.
 The BioProject derived associations were assigned the score of three (out of five)
 because of the implementation of the text mining pipeline.
 
+
+\subsection{Soil use case}
+\label{soil-prego-m}
+
+PREGO's knowledge base was searched for it's contents about soil environments. 
+The dictionary of PREGO was first searched for the ENVO term of soil, ENVO:00001998,
+and then all the child terms were also retrieved. Using this list of 
+ENVO terms about soil, all channels of information were filtered, summarised and 
+analysed for patterns as a use case. ARENA3D Web \parencite{karatzas2021arena3dweb} and
+igraph \parencite{Csardi2006} were used for network analysis.
+
 \subsection{Behind the scenes}
 \label{deamons}
 
@@ -401,6 +412,7 @@ mappings and statistics in GNU AWK.
       \item prego\_daemons \href{https://github.com/lab42open-team/prego_daemons}{github.com/lab42open-team/prego\_daemons}
       \item prego\_mappings \href{https://github.com/lab42open-team/prego_mappings}{github.com/lab42open-team/prego\_mappings} 
       \item prego\_statistics \href{https://github.com/lab42open-team/prego_statistics}{github.com/lab42open-team/prego\_statistics}
+      \item prego\_use\_case \href{https://github.com/lab42open-team/prego_use_case}{github.com/lab42open-team/prego\_use\_case}
    \end{itemize}
 
 Additional software and curated lists along with their individual license are:
@@ -473,12 +485,45 @@ Data are compressed to tar.gz format so expect an order of magnitude higher file
       \label{table:prego-appD-1}
    \end{table}
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% soil %%%%%%%%%%%%%%%%%%%%%%%%%%%%
    \subsection{PREGO about soil}
    \label{subsec:prego-soil}
 
+Searching for an environment in PREGO's knoweldge base is possible through
+it's web interface, it's API and bulk data. This analysis used PREGO's bulk data. 
+In total, the dictionary contain 115 ENVO terms related to soil. These terms were
+used to filter associations of environments with organisms, processes and functions 
+from all channels. This search resulted in 207939 PREGO associations. 
+To keep the most trustful associations and to be comparable with the Chapter \ref{cha:isd-crete-soil}
+filters were applied. In Literature channel, only associations with score 4.8 or higher were kept. 
+In Environmental Samples and Annotated Genomes associations with score of 3 or higher were kept. 
+In addition, only taxa from species and strain taxonomic level were selected.
+This filtering led to 14,379 associations, 599 from Literature, 7003 from Environmental
+Samples and 6777 from Annotated Genomes.
+
+In total, 49 ENVO terms were associated with 6276 taxa, 169 biological processes
+and 3017 molecular functions. The network was further reduced to keep the 
+biggest connected component. 
+The majority of associations, 10,929, were with environments and organisms.
+Environments with molecular functions have 3139 associations, followed by 
+environments with biological processes with 274 associations \ref{fig:prego-soil-network}.
+
+The soil (ENVO:00001998) has 11694 associations
+loam (ENVO:00002258) has 1222 associations,
+rhizosphere (ENVO:00005801) 393 associations,
+forest soil (ENVO:00002261) has 300 associations and
+meadow soil (ENVO:00005761) has 226 associations.
+
+   \begin{figure}[hbt!]
+      \centering
+      \includegraphics[width=\columnwidth]{figures/prego_soil_arena.png}
+      \caption[PREGO soil network]{
+         The four layers of associations, -27 is environments, -2 is organisms, -21 is biological processes, -23 is molecular functions. The nodes that are labeled are the with the most associations.}
+      \label{fig:prego-soil-network}
+   \end{figure}
+
+Regarding taxonomy, archaea have 122 taxa and 7 phyla, bacteria have 5985 taxa
+in 119 phyla and eukaryotes have 224 in 5 phyla \ref{fig:prego-soil-phyla}
 
    \begin{figure}[hbt!]
       \centering
@@ -487,7 +532,6 @@ Data are compressed to tar.gz format so expect an order of magnitude higher file
          Phyla associated with soil in the PREGO knowledge base.}
       \label{fig:prego-soil-phyla}
    \end{figure}
-
 
 
 \section{Discussion}
