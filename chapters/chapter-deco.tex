@@ -83,46 +83,26 @@ to increase portability and longevity.
 \section{Method}
 \label{sec:deco-method}
 
-\subsection{General workflow}
+    \subsection{DECO}
 
+The DECO (bioDivErsity Data Curation wOrkflow) is a command-line interface
+designed for biodiversity data rescue. It starts with Optical Character Recognition
+(OCR) and proceeds through Named Entity Recognition (NER) and Entity Mapping, Figure \ref{fig:deco-workflow}.
+It is suitable for large libraries containing scanned biodiversity documents.
+The tool requires a PDF file as input and outputs the contents of the file in a specified directory.
+The tool includes usage instructions, requiring parameters for the PDF file
+path (-f) and output directory (-d). If these parameters are missing or incorrect, it displays appropriate error messages and exits.
+Also the need for a stable internet connection during certain steps is emphasized.
 
-   \begin{figure}[htp!]
-      \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/deco-figure-1.jpg}
-      \caption[Historical document rescue process]{Steps of the historical document rescue (Figure adopted from \parencite{Paragkamian2022}).
-      Availability of information from historical data increases as the curation tasks are completed (as exemplified by the fan on the right).
-  Icons used from the Noun Project released under CC BY: book by Oleksandr Panasovskyi, scanning by LAFS, Book info by Xinh Studio, Library by ibrandify, Scanner Text by Wolf Böse, Check form by allex, Whale by Alina Oleynik, Fish by Asmuh, tag code vigorn, pivot layout by paisan, Certificate by P Thanga Vignesh, web service by mynamepong.}
-      \label{fig:rescue-workflow}
-   \end{figure}
+Once the script successfully starts, it creates a new directory for the outputs
+and assigns a unique identifier to the files. It converts the PDF pages into images
+using ImageMagick, then uses Tesseract for OCR to extract text from these images.
+All extracted text is combined into a single text file. Next, DECO performs NER
+using the EXTRACT tool to identify organisms, environments, and tissues, and
+uses the gnfinder tool to detect organism names. It then maps these entities to Aphia IDs via an API.
 
-
-    \subsection{Demonstrator}
-
-DECO was developed for the automation of biodiversity historical data
-curation. Its workflow combines image processing tools for scanned historical
-documents OCR with text mining technologies, Figure \ref{fig:deco-workflow}. It extracts biodiversity entities
-such as taxon names, environments as described in ENVO and tissue mentions.
-The extracted entities are further enriched with marine data identifiers from
-public APIs (e.g. WoRMS) and presented in a structured format as well as in
-report format with automated visualisation components. Furthermore, the
-workflow was implemented as a Docker container to ease its installation and its
-scalable application on large documents. DECO is under the GNU GPLv3 licence
-(for 3rd party components separate licences apply) and is available via the
-GitHub repository (\url{https://github.com/lab42open-team/deco}).
-
-DECO is available here:\url{https://github.com/lab42open-team/deco}. Historical
-marine literature analysis is here:
-\href{https://github.com/savvas-paragkamian/historical-marine-literature}{https://github.com/savvas-paragkamian/historical-marine-literature}.
-BHL, EMODnet Biology and OBIS data are available for download here
-\href{https://about.biodiversitylibrary.org/tools-andservices/developer-and-data-tools/}{https://about.biodiversitylibrary.org/tools-andservices/developer-and-data-tools/}
-and \url{https://www.emodnetbiology.eu/toolbox/en/download/occurrence/explore}
-and here \url{https://obis.org/manual/access/}, respectively. The digitised
-document of the “Report on the Mollusca andRadiata of the Aegean Sea, and on
-their distribution, considered as bearing on Geology. 13th Meeting of the
-British Association for the Advancement of Science, London, 1844” is available
-here: \url{https://www.biodiversitylibrary.org/page/12920789}. The curated
-dataset of the case study is available here (version 1.9 and above):
-\url{http://ipt.medobis.eu/resource?r=mollusca_forbes}.
+Finally, the DECO generates a report using RMarkdown, summarizing the workflow's results and the total runtime of the workflow.
+The script operates under the GNU GPLv3 license and emphasizes 
 
    \begin{figure}[ht]
       \centering
@@ -131,143 +111,224 @@ dataset of the case study is available here (version 1.9 and above):
       \label{fig:deco-workflow}
    \end{figure}
 
+
+    \subsection{Optical Character Recognition}
+
+To perform OCR, the Tesseract 4 OCR engine is employed. 
+Prior to performing OCR the provided PDF document must be transformed to images. This 
+task is carried out with imageMagick tool.
+Then, for each page of the document the Tesseract is executed to generate text.
+In cases which the PDF document has been 
+already OCRed this step is replaced by ghostscript text extraction from PDF.
+    
+
+    \subsection{Named Entity Recognition}
+\textit{Global Names Parser} was employed to process scientific names. Gnfinder
+is a fast, high-precision tool designed for biodiversity informaticians and
+biologists working with large numbers of scientific names.
+It can replace manual parsing and standardization methods, which are expensive
+and prone to errors, thereby enhancing the interoperability of biological information \parencite{mozzherin_gnamesgnfinder_2022}.
+Gnfinder returns a json file that is transformed to tabular data with jq tool.
+
+DECO uses the EXTRACT API script, a Perl-based tool designed for interacting
+with the EXTRACT API to identify and tag specific entities within a given text.
+The script processes a tab-delimited input file, which contains columns for resource ID,
+field, and text to be mined. It sends the text entries to the EXTRACT Tagger API,
+retrieves the identified entities, and outputs the results in a tab-delimited format,
+listing the tagged words, their entity types, and term identifiers.
+This script supports a variety of entity types and DECO uses the NCBI Taxonomy
+entries, BRENDA Tissue Ontology terms, and Environment Ontology terms.
+The opens the input file processes each entry by making an HTTP POST request to the EXTRACT API.
+This script was authored by Dr Evangelos Pafilis of the Hellenic Centre for Marine Research 
+and is available with the 2-clause BSD License \parencite{pafilis2016extract}.
+
+    \subsection{Entity Mapping}
+    
+In DECO there is an R script that defines the functions to interact with the WoRMS (World Register of Marine Species)
+API based on different query types and to process the retrieved data.
+The worms api function constructs the appropriate API URL and makes GET requests
+to the WoRMS API, returning the content if the request is successful or the status code otherwise.
+The get AphiaIDs extract function takes a vector of IDs and a tool name,
+iteratively querying the WoRMS API for each ID using the specified tool,
+storing the results in a dataframe, and including a progress bar to monitor the process.
+It avoids server overload by introducing random pauses between requests.
+The get AphiaIDs gnfinder function is similar but tailored for the "gnfinder" tool,
+handling multiple records per query and appending results to a dataframe.
+Both functions return dataframes with standardized column names containing information from the WoRMS database.
+Depending on the size of the document and it's contents, this step can be the most 
+time consuming because of pauses between requests. For the requests the httr R package was used \parencite{httr2023}.
+
+
+    \subsection{Reporting}
+The RMarkdown script titled "DECO results and Report", automatically generates a
+report displaying workflow information and descriptive statistics of the results.
+It reads two tab-delimited files containing taxonomic data from gnfinder and extract.
+The data from these files are grouped by taxonomic rank and summarized to count the total occurrences for each rank.
+Two bar plots are created using ggplot2: the first visualizes the taxonomic ranks
+of Aphia IDs found with gnfinder, and the second visualizes the ranks found with EXTRACT.
+Both plots display the counts of taxa for each rank. The report also includes placeholders
+for the number of document pages and the word count.
+Packages used are ggplot2 \parencite{wickham_ggplot2_2016} and rmarkdown \parencite{rmarkdown2020}. 
+
+    \subsection{Container}
+
+The Docker container described is built from an Ubuntu 18.04 base image.
+It starts by setting the environment variables to make apt non-interactive,
+then installs basic tools like wget and curl. Subsequent steps include updating
+the package list and installing essential packages like software-properties-common, git, and setting the timezone to Athens.
+For R dependencies, it removes any existing R installations and installs
+several required libraries and compilers, including gfortran, build-essential, and aptitude.
+System libraries needed for the Tidyverse R package \parencite{Wickham2019tidy} are also installed, alongside the Pandoc document converter.
+The container then sets up Tesseract OCR dependencies, which include various
+image libraries, followed by building and installing Leptonica from source.
+Ghostscript and ImageMagick are downloaded, built, and installed from source as well.
+Next, it installs jq for JSON processing and Tesseract OCR itself, along with its
+language data files. The container also installs gnfinder for finding scientific names in texts.
+R 4.0.3 is downloaded and installed, and the Tidyverse package is added using Rscript.
+The second part of the container setup clones the DECO workflow repository from GitHub,
+adjusts permissions for the /home/deco directory, and sets it as the working directory when the container starts.
+
+\subsection{Tools}
+The system tools of DECO consist of a collection of software, each with
+specific versions optimized for various tasks. GNU bash (v3.2.57) and R (v4.0.3)
+facilitate scripting and statistical analysis. Perl (v5.32.0) is used for advanced text processing.
+Data transformation is handled by tools such as awk (v20070501) for tabular data,
+ghostscript (v9.53.3) for PDFs, ImageMagick (v7.0.10-30) for images,
+and jq (v1.6) for JSON files.
+R packages tidyverse (v1.3.0) and httr (v1.4.2) streamline data handling and web-based data extraction.
+Workflow tools comprise Tesseract OCR (v4.1.1) for optical character recognition,
+gnfinder (v0.11.1) for document segmentation, and EXTRACT (v2) for extracting data from documents.
+
 % DECO RESULTS
-\section{Results}
+\section{Results and Discussion}
 \label{sec:deco-results}
 
+\subsection{Terminology reconciliation}
+
+The literature review and tool evaluation lead to the summarisation and 
+reconciliation of curation steps terms, Figure \ref{fig:rescue-workflow}. 
+Many works refer to digitisation as imaging and information extraction together. 
+It is important to distinguish all steps required in order to be more precise 
+and be able to design tools to facilitate such tasks.
+
+Digitisation is the task of bringing a physical document in digital form. 
+This is the first task towards the rescue of a document. The steps to 
+do this is first to identify the document. Second step is the imaging (e.g scanning)
+the document using specific standards, then add various metadata to the collated images,
+and finally upload to a database. Most of the times the format is the PDF format of 
+the digitised documents.
+
+The second task is the transcription of the imaged document. This task
+takes the images of the document and transforms it to text format. The
+Optical Character Recognition step is part of computer vision field
+which identifies patterns in images and assigns letters. This step is 
+a well established field with multiple tools available \parencite{Paragkamian2022}.
+Even though there is a lot of praise in these tools, most of the time they 
+need corrections especially in languages other than English and in cases of 
+complex formatting of documents, e.g tables, special characters etc. For that 
+reason is it suggested to be curated and corrected in this task.
+
+The third task is about Information Extraction. This step is what interests 
+ecologists the most and the current text mining tools goal. These tools can perform
+entity recognition and mapping in identifiers of databases. Some also provide visual 
+cues which are useful. The last step is the publication of occurrences and taxa
+information to public databases using standards. This form of data is the state of 
+the art and only then the information of the documents is considered rescued.
+
+   \begin{figure}[htp!]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/deco-figure-1.jpg}
+      \caption[Historical document rescue process]{Steps of the historical document rescue (Figure adopted from \parencite{Paragkamian2022}).}
+      \label{fig:rescue-workflow}
+   \end{figure}
+
+\subsection{Curation across tasks}
+
+Human curation of historical documents is challenging albeit priceless as discussed 
+in chapters \ref{cha:crete-idea} and \ref{cha:arthropods}.
+It is a tedious and interdisciplinary process \parencite{faulwetter_emodnet_2016,beja_chapter_2022},
+that handles propagated errors derived from all the aforementioned tasks.
+Georeferencing issues may arise from the use of outdated location names or sampling
+points instead of actual geographical coordinates. Furthermore, taxonomic constraints, like synonyms and the lack of referenced taxon names or specimens,
+necessitate expertise from taxonomists. Measurements in non-standard units must be
+converted to the SI system. Changes in old geographical nomenclature and
+political boundaries over time, as well as land-sea coordinate shifts due
+to coastline alterations, should be considered. Moreover, the prevalence of
+non-English languages in historic scientific papers necessitates curators proficient in multiple languages, 
+especially French, German and Latin.
+
+Curators' specialized domain knowledge is irreplaceable by automation.
+Numerous historical documents remain uncurated in digital libraries such as BHL,
+Belgian Marine Bibliography, Web of Science, Wiley Online Library, and Taylor and
+Francis Online, to name a few \parencite{kearney_its_2019}. While BHL offers Optical
+Character Recognition (OCR) for these documents, and there are several tools for
+this purpose, OCR still represents a significant bottleneck in data processing,
+particularly for handwritten texts or poor-quality images \parencite{lyal_digitising_2016}.
+Nevertheless, the rapid advancements of tools help curators to perform faster and
+more accurate document rescue.
 
 
-   \subsubsection{One-Stop-Shop Tools}
-The main all-in-one GUI computer program is Golden-GATE-
-imagine\footnote{\url{https://github.com/plazi/GoldenGATE-Imagine}}, an updated
-version of GoldenGATE editor \parencite{sautter_semi-automated_2007}. This tool
-supports OCR, NER and entity mapping, as described in the various steps of the
-curator’s workflow by providing annotations on PDF backed up by ontologies. It
-was developed by Plazi in 2015 and was last updated in 2016. Several recent
-biodiversity data related publications still report the use of it although it
-has not been updated since that time
-\parencite{10.3897/biss.3.37078,rivera-quiroz_extracting_2019,10.3897/biss.4.59178}.
-Due to its open source nature, Golden-Gate-imagine can be further developed by
-any interested parties, as exemplified in GNfinder.
+\subsection{A Biodiversity Data Curation Programming Workflow}
+
+It is common that each tool performs one step as summarised in \parencite{Paragkamian2022, beja_chapter_2022}.
+The one-stop-shop approach aims at incorporating multiple workflow steps. 
+The Golden-GATE-imagine\footnote{\url{https://github.com/plazi/GoldenGATE-Imagine}}, an updated
+version of GoldenGATE editor \parencite{sautter_semi-automated_2007}, is such tool. This tool
+performs transcription and information extraction and provides annotations on PDF derived from ontologies. It
+was developed by Plazi in 2015 and was last updated in 2016, albeit still functional.
+
+The same approach was adopted by the CLI workflow, DECO, developed in this work.
+DECO demonstrates the advantages of the CLI tools and open source software.
+DECO performs OCR, organism name (with 2 tools) and environments entity recognition, entity mapping 
+to WoRMS, and reporting with a summary. It is executed with a single command with 
+the PDF and returns each page in text, taxon names per page with NCBI IDs and WoRMS IDS and environments
+ENVO IDS. It also returns a file that summarises all steps and entities identifications.
+To facilitate all this functionality multiple tools are employed which makes it 
+cumbersome for the users to install. This also makes the tool unstable from 
+future releases of updates. To resolve these issues DECO is provided as 
+a DOCKER container as well. The code and containers have been tested on
+Ubuntu, Mac and Debian server (Table \ref{table-CLI}).
+
+Furthermore, DECO, is a demonstration of EMODnet Biology’s aims to rescue historical biodiversity documents.
+This is the first CLI tool that brings together state-of-the-art image processing, OCR tools, text mining
+technologies and Web APIs, in order to assist curators. By using programming
+interface and Command Line Tools the workflow is scalable, customisable and
+modular, meaning that more tools can be incorporated to, e.g. include the
+entities mentioned in the previous section. It can be used on a
+personal computer and on servers as a Docker container or as an executable workflow.
 
 \begin{table}[ht]
-\large
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lllll}
+    \begin{tabular}{p{0.192\linewidth}p{0.192\linewidth}p{0.192\linewidth}p{0.192\linewidth}p{0.192\linewidth}}
 \hline
-\textbf{OS} & \textbf{Source code - running time} & \textbf{Container - running time (minutes)} & \textbf{CPU} & \textbf{RAM (GB)} \\
+\textbf{OS} & \textbf{Local running time} & \textbf{Container running time} & \textbf{CPU} & \textbf{RAM (GB)} \\
 \hline
-macOS Catalina 10.15.7 & 28 minutes & Docker - 33’ & Intel(R) Core(TM) i5-4258U CPU @ 2.40GHz & 8 \\
-Linux Ubuntu 18.04.5 LTS (Bionic Beaver) & 20 minutes & Docker - 27’ & Intel(R) Pentium(R) Dual-Core CPU T4200 @ 2.00GHz & 4 \\
-Linux Debian server 4.9.0-8-amd64 & --- & Singularity - 20’ & Intel(R) Xeon(R) Silver 4114 CPU @ 2.20GHz & 4
+macOS Catalina 10.15.7 & 28 min & Docker - 33 min & Intel(R) Core(TM) i5-4258U CPU @ 2.40GHz & 8 \\
+Linux Ubuntu 18.04.5 LTS (Bionic Beaver) & 20 min & Docker  27 min & Intel(R) Pentium(R) Dual-Core CPU T4200 @ 2.00GHz & 4 \\
+Linux Debian server 4.9.0-8-amd64 & --- & Singularity - 20 min & Intel(R) Xeon(R) Silver 4114 CPU @ 2.20GHz & 4
 \end{tabular}%
-}
 \caption{The platforms where the CLI workflow was tested.Please note that running time can be affected by internet speed and stability due to API calls. The workflow uses open source tools and software libraries that are distributed across the major platforms; Linux, Mac and Windows.}
 \label{table-CLI}
 \end{table}
 
-   \subsection{DECO: A Biodiversity Data Curation Programming Workflow}
-A CLI workflow named DECO developed to demonstrate the advantages of the CLI
-approach, is available via this GitHub repository\footnote{\url{https://github.com/lab42open-team/deco}}.
-DECO has connected different tools of the programming curation steps
-\ref{fig:curation-process}. The execution is via a single command with a
-user-provided PDF file and the output are the taxon names and records from
-WoRMS API, taxonomy NCBI IDs and ENVO terms from the Environmental Ontology.
-Complementary tools (i.e. Ghostscript\footnote{https://www.ghostscript.com/index.html},
-jq\footnote{https://stedolan.github.io/jq/} and ImageMagick\footnote{https://imagemagick.org/index.php})
-and UNIX commands are also called in a single Bash script which unifies
-the workflow. In order to simplify the setup procedure of the workflow a Docker
-container and a Singularity container were developed that include all the
-dependencies and the code. The code and both containers have been tested on
-Ubuntu, Mac and Debian server (Table \ref{table-CLI}). For a larger corpus of biodiversity
-historical data the recommendation is to use the Singularity container in a
-remote server or a High Performance Computing (HPC) cluster.
+\section{Conclusion}
 
-% DECO DISCUSSION
-\section{Discussion}
-\label{sec:deco-discussion}
-
-Several factors may turn the curation of historical documents into a
-serious challenge \parencite{faulwetter_emodnet_2016,beja_chapter_2022}.
-Errors from the first and second tasks, as presented in Figure 
-\ref{fig:rescue-workflow} (i.e. bad quality imaging, mis-recognised characters etc.)
-are propagated through the whole process. In terms of georeferencing
-constraints, location names or sampling points on an old map may be provided
-instead of the actual coordinates. Additionally, taxonomic constraints
-(e.g. old, currently unaccepted synonyms, lack of authority associated with the
-taxon names) combined with the absence of taxonomic literature or voucher
-specimens (e.g. identifier number for samples of natural history/expedition
-collections) require the taxonomists’ assistance. Numerical measurement units
-often need to be converted to the International System of Units (SI system)
-(e.g. fathoms to metres)\parencite{calder_proposal_1982,wieczorek_darwin_2012}.
-Old toponyms and political boundaries that have now changed should also be
-taken into consideration, as well as coordinates that now fall on land instead
-of in the sea, due to the changes in the coastline. Lastly, the use of
-languages other than English is quite common in old scientific publications, so
-multilingual curators are required. 
-
-   \subsection{Data Rescue Landscape}
-   The huge difference between rescued historical marine datasets uploaded on
-OBIS and the available digital items on BHL holdings reflects the challenges
-faced by curators and the minimal attention paid by the wider community,
-when compared to other data rescue activities (e.g. specimens, oceanographic
-data, etc.). Many publications lack basic metadata such as location, date,
-purpose or method of sampling. Tracing this information is limited as the data
-providers may (a) have forgotten these details, (b) be retired or (c) be
-deceased \parencite{michener_nongeospatial_1997}.
-
-In the last few years, an upsurge in web applications development regarding the
-enhancement of biodiversity data digitisation has been observed. This is an
-indication of the need for such initiatives. Advancements in the field of OCR,
-text mining and information technology promise semi-automation and acceleration
-of the curator’s work, which could transform the biodiversity curation field
-into an -omics like, interdisciplinary field that requires complementary skills
-of document handling, web technologies and text mining, to name but a few.
-
-   \subsection{Curation Step-Wise Remarks}
-   The curators’ role is invaluable in the data rescue process, as their domain
-specific expertise is far from becoming entirely automated. There are plenty of
-available digitised historical documents that are not curated in web libraries,
-such as BHL, the Belgian Marine
-Bibliography\footnote{\url{https://www.vliz.be/en/belgian-marine-bibliography}},
-Web of Science \footnote{https://www.webofknowledge.com}, Wiley Online
-Library \footnote{https://onlinelibrary.wiley.com} and Taylor \& Francis
-Online \footnote{https://www.tandfonline.com/}, among others \parencite{kearney_its_2019}.
-BHL provides “OCRed” documents and there are plenty of other tools that can
-tackle this process which are reviewed elsewhere \parencite{10.3897/rio.6.e58030},
-however OCR is a crucial limiting step in the workflows, in terms of the
-information transformed from image to text, because there are many cases that
-lead to mispelled or lost text; especially the case with handwritten text and
-poor quality images \parencite{lyal_digitising_2016}.
-   
-\subsection{DECO}
-   The CLI scientific workflow assembled in this paper, DECO, is a demonstration
-of EMODnet Biology’s vision for biodiversity data rescue using programming
-tools. To the best of our knowledge, this is the first task-driven CLI that
-brings together state-of-the-art image processing, OCR tools, text mining
-technologies and Web APIs, in order to assist curators. By using programming
-interface and Command Line Tools the workflow is scalable, customisable and
-modular, meaning that more tools can be incorporated to, e.g. include the
-entities mentioned in the previous section. It is fast, may be used on a
-personal computer, and is available as a Docker and a Singularity container.
-The containerised versions of the workflow simplify the installation procedure
-and increase its stability, scalability and portability because they include
-all the necessary dependencies. This CLI scientific workflow promises a faster
-and high throughput processing that could be applied to any type of data, not
-only historical, thus contributing to the overall digitisation of biodiversity
-knowledge.
-
-   \subsection{Concluding Remarks}
-   Historical marine biodiversity data provide important and significant
-snapshots of the past that can help understand the current status of ocean
-ecosystems and predict future trends in face of the climate crisis. There is a
-wealth of historical documents that have been digitised yet, most of their data
-have not been rescued or published in online systems. To accelerate the tedious
-data rescue process it is essential that more curators become engaged, and
-tools for Information Extraction and Publication get improved to satisfy their
-needs. Tools like DECO and GoldenGATE demonstrate possible future directions
-for one-stop-shop applications for command line and graphical user interfaces,
-respectively. Research Infrastructures can play a pivotal role towards this
-goal. Last but not least, the community and funding bodies should prioritise
-the data rescue of these invaluable documents before their decay and inevitable
-loss.
+The historical biodiversity rescue community is small across the globe and the funding 
+is even less. Most people perform these tasks because they care and/or want to
+incorporate historical context in their work as shown in chapter \ref{cha:arthropods}. 
+Working groups and initiatives in infrastructures are beginning to 
+form with Biodiversity Information Standards (TDWG) adoption in historical documents.
+Yet a lot of effort is required to rescue the already digitised documents.
+In addition, a huge leap is needed to rescue the hard copies of many 
+biodiversity documents, which comprise the vase majority of historical 
+documents. The Biodiversity Heritage Library and Internet Archives 
+have done a tremendous work in this realm with 300 million pages 
+imaged but this is the top of the iceberg comparing to what lies in 
+scientists libraries and drawers. This is a major challenge of the current 
+generation of ecologists, to save the work of previous generations. 
+Tools like DECO and GoldenGATE demonstrate the possibilities 
+and future directions in applications to accelerate this work.
+In my view, these tools and approaches must be provided but big 
+infrastructures and/or services because the rapid advancements of 
+text mining field, like transformer models and large language models, require 
+dedicated developers and funding.
+Furthermore, it's essential that the community and funding bodies prioritize the preservation of these irreplaceable records, as they face the risk of deterioration and eventual loss.
