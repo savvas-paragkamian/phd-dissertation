@@ -506,7 +506,7 @@ and 3017 molecular functions. The network was further reduced to keep the
 biggest connected component. 
 The majority of associations, 10,929, were with environments and organisms.
 Environments with molecular functions have 3139 associations, followed by 
-environments with biological processes with 274 associations \ref{fig:prego-soil-network}.
+environments with biological processes with 274 associations, Figure \ref{fig:prego-soil-network} and \ref{fig:prego-soil-network_k}.
 
 The soil (ENVO:00001998) has 11694 associations
 loam (ENVO:00002258) has 1222 associations,
@@ -518,8 +518,17 @@ meadow soil (ENVO:00005761) has 226 associations.
       \centering
       \includegraphics[width=\columnwidth]{figures/prego_soil_arena.png}
       \caption[PREGO soil network]{
-         The four layers of associations, -27 is environments, -2 is organisms, -21 is biological processes, -23 is molecular functions. The nodes that are labeled are the with the most associations.}
+         The four layers of associations, -27 is environments, -2 is organisms, -21 is biological processes, -23 is molecular functions. The nodes that are labeled are the with the most associations. With gray are displayed the Literature derived associations while with pale yellow the Environmental samples. }
       \label{fig:prego-soil-network}
+   \end{figure}
+   
+
+   \begin{figure}[hbt!]
+      \centering
+      \includegraphics[width=\columnwidth]{figures/prego_soil_arena_knowledge.png}
+      \caption[PREGO soil network]{
+         Associations of Annotated Genomes in PREGO, -27 is environments, -2 is organisms.}
+      \label{fig:prego-soil-network_k}
    \end{figure}
 
 Regarding taxonomy, archaea have 122 taxa and 7 phyla, bacteria have 5985 taxa
@@ -639,79 +648,25 @@ and bulk data download may make it a useful platform for researchers with specif
    \subsection{Soil microbiome}
    \label{subsec:prego-soil}
 
+Soil is the most prominent environment in terrestrial ecosystems. Yet 
+biological information about the microbes and their processes remains 
+scattered. PREGO's knowledge base and interface provides a unique 
+approach towards the harmonisation of this information. As shown 
+in Figure \ref{fig:prego-soil-phyla} the information is scattered in multiple ways.
+The source of information, i.e the channels of PREGO, is a major barrier of unification and
+secondly a important limitation is the taxonomic barrier, i.e
+different super-kingdoms of microbes, because different kingdoms have different experts.
+Euryarchaeota and Crenarchaeota are phyla from
+Archaea and 
+small eukaryotes are mostly represented by the fungi phylum Ascomycota. Proteobacteria
+and Actinobacteriae are dominating soil environments (Figure \ref{fig:prego-soil-phyla}),
+global environments in general as shown in \textcite{microorganisms10020293} 
+and Crete island soils (Figure \ref{fig:isd_fig2_taxonomy} of Chapter \ref{cha:isd-crete-soil}).
+The abundance of taxa of Ascomycota indicates the importance of their interactions 
+with bacteria and archaea which only recently has been explored \parencite{Labouyrie2023} in scale. 
+There is an absence of Environmental samples about Ascomycota, but the Literature and Annotated genomes 
+channel is evidence of their importance.
+The soil case study of PREGO shows the importance of data integration techniques
+and metadata in order to identify gaps in knowledge and discover what is known.
 
-%   \begin{table}[ht]
-%      \begin{tabular}{@{}cccrccc@{}}
-%      \toprule
-%      \textbf{Channel} & \textbf{Source} & \multicolumn{2}{c}{\textbf{Taxonomy}} & \textbf{\begin{tabular}[c]{@{}c@{}}Environ- \\ ments\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Biological \\ Processes\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Molecular \\ Functions\end{tabular}} \\ \midrule
-%      \multirow{3}{*}{Literature} & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MEDLINE \\ PubMed - \\ PMC OA\end{tabular}} & Strains & 8,929 & \multirow{3}{*}{1,077} & \multirow{3}{*}{15,079} & \multirow{3}{*}{7,318} \\
-%      &  & Species & 240,377 &  &  &  \\
-%      &  & Total & 342,506 &  &  &  \\
-%      \multirow{9}{*}{\begin{tabular}[c]{@{}c@{}}Environ- \\ mental \\ samples\end{tabular}} & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MG-RAST \\ amplicon\end{tabular}} & Strains & 1,392 & \multirow{3}{*}{162} & \multirow{3}{*}{-} & \multirow{3}{*}{-} \\
-%      &  & Species & 4,324 &  &  &  \\
-%      &  & Total & 5,859 &  &  &  \\
-%      & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MG-RAST \\ metagenome\end{tabular}} & Strains & 2,522 & \multirow{3}{*}{258} & \multirow{3}{*}{-} & \multirow{3}{*}{3,839} \\
-%      &  & Species & 4,406 &  &  &  \\
-%      &  & Total & 7,157 &  &  &  \\
-%      & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MGnify \\ amplicon\end{tabular}} & Strains & 2 & \multirow{3}{*}{216} & \multirow{3}{*}{11} & \multicolumn{1}{l}{\multirow{3}{*}{-}} \\
-%      &  & Species & 1,471 &  &  & \multicolumn{1}{l}{} \\
-%      &  & Total & 2,955 &  &  & \multicolumn{1}{l}{} \\
-%      \multirow{9}{*}{\begin{tabular}[c]{@{}c@{}}Annotated\\Genomes \&\\Isolates\end{tabular}} & \multirow{3}{*}{JGI IMGisolates} & Strains & 2,398 & \multirow{3}{*}{241} & \multirow{3}{*}{-} & \multirow{3}{*}{3,670} \\
-%      &  & Species & 11,203 &  &  &  \\
-%      &  & Total & 13,849 &  &  &  \\
-%      & \multirow{3}{*}{STRUO} & Strains & 6 & \multirow{3}{*}{-} & \multirow{3}{*}{-} & \multirow{3}{*}{2,789} \\
-%      &  & Species & 19,289 &  &  &  \\
-%      &  & Total & 19,325 &  &  &  \\
-%      & \multirow{3}{*}{BioProject} & Strains & 5,754 & \multirow{3}{*}{309} & \multirow{3}{*}{626} & \multirow{3}{*}{-} \\
-%      &  & Species & 3,373 &  &  &  \\
-%      &  & Total & 9,393 &  &  &  \\
-%      \multirow{3}{*}{Total} & \multirow{3}{*}{All} & Strains & 12,840 & \multirow{3}{*}{1,090} & \multirow{3}{*}{15,091} & \multirow{3}{*}{7,971} \\
-%      &  & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} &  &  &  \\
-%      &  & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} &  &  &  \\ \bottomrule
-%      \end{tabular}
-%
-%      \caption[The entities of PREGO after the NER and mapping of every source]{
-%         The entities of PREGO after the NER and mapping of every source. 
-%         Counts of distinct entities of Taxa, Environments (ENVO terms), Biological Processes (Gene Ontology Biological process) and Molecular Function (Gene Ontology Molecular Function).
-%      }
-%      \label{table:prego2}
-%
-%   \end{table}
-
-
-%   % ASSOCIATIOS TABLE - table:prego3
-%   \begin{sidewaystable}
-%      \begin{tabular}{@{}cccccrcr@{}}
-%      \toprule
-%      \textbf{Channel} & \textbf{Source} & \textbf{\begin{tabular}[c]{@{}c@{}}Environments \\ - \\ Processes\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Environments \\ - \\ Functions\end{tabular}} & \textbf{Taxonomy} & \multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Taxa \\ -\\  Environments\end{tabular}}} & \textbf{\begin{tabular}[c]{@{}c@{}}Taxa \\ - \\ Processes\end{tabular}} & \multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Taxa \\ -\\ Function\end{tabular}}} \\ \midrule
-%      \multirow{3}{*}{Literature} & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MEDLINE \\ PubMed - \\ PMC OA\end{tabular}} & \multirow{3}{*}{883,997} & \multirow{3}{*}{422,579} & Strains & 69,968 & \multicolumn{1}{r}{590,630} & 384,079 \\
-%      &  &  &  & Species & 778,877 & \multicolumn{1}{r}{3,501,635} & 1,961,920 \\
-%      &  &  &  & Total & 1,669,608 & \multicolumn{1}{r}{7,969,310} & 4,613,827 \\
-%      \multirow{9}{*}{\begin{tabular}[c]{@{}c@{}}Environmental \\ samples\end{tabular}} & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MG-RAST \\ amplicon\end{tabular}} & \multirow{3}{*}{-} & \multirow{3}{*}{-} & Strains & 13,645 & \multirow{3}{*}{-} & \multicolumn{1}{c}{\multirow{3}{*}{-}} \\
-%      &  &  &  & Species & 39,007 &  & \multicolumn{1}{c}{} \\
-%      &  &  &  & Total & 53,439 &  & \multicolumn{1}{c}{} \\
-%      & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MG-RAST \\ metagenome\end{tabular}} & \multirow{3}{*}{-} & \multirow{3}{*}{620,846} & Strains & 262,106 & \multirow{3}{*}{-} & 8,626,328 \\
-%      &  &  &  & Species & 103,913 &  & 10,715,548 \\
-%      &  &  &  & Total & 372,301 &  & 19,950,096 \\
-%      & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}MGnify \\ amplicon\end{tabular}} & \multirow{3}{*}{-} & \multirow{3}{*}{-} & Strains & 18 & - & \multicolumn{1}{l}{} \\
-%      &  &  &  & Species & 30,122 & \multicolumn{1}{r}{351} & \multicolumn{1}{c}{-} \\
-%      &  &  &  & Total & 111,976 & \multicolumn{1}{r}{2,097} & \multicolumn{1}{l}{} \\
-%      \multirow{9}{*}{\begin{tabular}[c]{@{}c@{}}Annotated Genomes \\ and Isolates\end{tabular}} & \multirow{3}{*}{\begin{tabular}[c]{@{}c@{}}JGI IMG\\ isolates\end{tabular}} & \multirow{3}{*}{-} & \multirow{3}{*}{-} & Strains & 8,229 & \multirow{3}{*}{-} & 3,461,693 \\
-%      &  &  &  & Species & 42,141 &  & 13,216,559 \\
-%      &  &  &  & Total & 50,888 &  & 16,821,850 \\
-%      & \multirow{3}{*}{STRUO} & \multirow{3}{*}{-} & \multirow{3}{*}{-} & Strains & \multicolumn{1}{c}{\multirow{3}{*}{-}} & \multirow{3}{*}{-} & 1,803 \\
-%      &  &  &  & Species & \multicolumn{1}{c}{} &  & 4,070,195 \\
-%      &  &  &  & Total & \multicolumn{1}{c}{} &  & 4,079,312 \\
-%      & \multirow{3}{*}{BioProject} & \multirow{3}{*}{-} & \multirow{3}{*}{-} & Strains & 3,263 & \multicolumn{1}{r}{7,473} & \multicolumn{1}{l}{} \\
-%      &  &  &  & Species & 4,187 & \multicolumn{1}{r}{4,294} & \multicolumn{1}{l}{} \\
-%      &  &  &  & Total & 7,641 & \multicolumn{1}{r}{12,169} & \multicolumn{1}{l}{} \\
-%      \multirow{3}{*}{Total} & \multirow{3}{*}{All} & \multirow{3}{*}{883,997} & \multirow{3}{*}{1,043,425} & Strains & 357,229 & \multicolumn{1}{r}{598,103} & 12,473,903 \\
-%      &  &  &  & Species & 998,247 & \multicolumn{1}{r}{3,506,280} & 29,964,222 \\
-%      &  &  &  & Total & 2,265,853 & \multicolumn{1}{r}{7,983,576} & 45,465,085 \\ \cmidrule(l){5-8} 
-%      \end{tabular}
-%      \caption[Associations among the PREGO entities]{
-%         The associations between entities of PREGO after co-occurrence analysis: The supported entity types of associations are Environments—Biological Processes, Environments—Molecular Functions, Taxa—Environments, Taxa—Biological Processes, Taxa—Molecular Functions.
-%      }
-%      \label{table:prego3}
-%   \end{sidewaystable}
 
