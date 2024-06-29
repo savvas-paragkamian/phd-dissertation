@@ -8,26 +8,17 @@
 \chapter{Cretan Endemic Arthropods: distribution, threats and hotspots}
 \label{cha:arthropods}
 
-
-This work is based on the finding of \textcite{bolanakis2024}.
-\textbf{Citation:} \\ 
-Giannis Bolanakis, Savvas Paragkamian, Maria Chatzaki, Nefeli Kotitsa, Liubitsa Kardaki and Apostolos Trichas.\\
-The conservation status of the Cretan Endemic Arthropods under Natura 2000 network,
-Shared co-first authorship.
-
-Accepted the 21st of May 2024 in the Journal of Biodiversity and Conservation.
-
-DOI: \href{https://doi.org/10.21203/rs.3.rs-2671168/v1}{10.21203/rs.3.rs-2671168/v1}\footnote{
-   For author contributions and supplementary material please refer to the relevant sections. 
-   This is a modified version of the published version,in terms of relevance, coherence and formatting.}
-
-
-
 % INTRODUCTION
 \section{Introduction}
 \label{sec:arthropods-intro}
 
 Functioning of arthropods has been investigating since the seventies \parencite{rosswall1997energetical}.
+
+Importance of arthropods in functioning
+
+Crete data since 19th century. 
+
+To being able to study first they have to be conserved.
 
 
 %% need to modify
@@ -65,21 +56,26 @@ economy \parencite{rackham1996the-making}. Overgrazing impacts severely soil ero
 soil moisture and vegetation \parencite{kosmas2015exploring,orestis2015exploring}. All the
 above contribute to a worrying trend for Crete, i.e. the higher percentage of
 Threatened endemic Arthropods when compared with the respective European
-groups (Appendix Figure \ref{fig:arthropods-figS1}).
+groups.
 
+The bibliography and the NHMC collection was curated to assemble taxa
+occurrences. The bibliography used
+contains both historical and contemporary published material.
 Using over 100 publications (as of 2020) and 733 NHMC sampling events
-(\href{https://doi.org/10.5281/zenodo.10635645}{Supplementary Material}), we assembled a dataset of 343 taxa (species and subspecies),
+(\href{https://doi.org/10.5281/zenodo.10635645}{data online availability}), a dataset of 343 taxa (species and subspecies) was assembled,
 with 4,924 records across 1,569 distinct sites of Crete. The taxa
 are distributed to eleven orders, with Coleoptera having the most taxa (206)
 and Chilopoda and Scorpiones the least (two).
+Based on the criteria described in \textcite{bolanakis2024} the data resulted in the
+following orders:
+Araneae, Chilopoda, Coleoptera, Diplopoda, Heteroptera, Hymenoptera (Chrysididae, Formicidae, Symphyta), Lepidoptera (Geometridae), Odonata, Orthoptera, Scorpiones and Trichoptera.
+
 
 In this study I aim to a) identify cretan arthropods available information
-b) compare with the the endemics of Crete
+b) compare with the endemics of Crete
 c) their relation with the anthropogenic pressures in these sites.
 To do so, I assembled the accumulated knowledge of 
 online databases.
-Secondly, we committed to the Findable, Accessible, Interoperable and Reproducible (FAIR) principles \parencite{wilkinson2016the-fair}
-for data and code (see \href{https://doi.org/10.5281/zenodo.10635645}{Supplementary Material}).
 
 
 % METHODS
@@ -91,12 +87,6 @@ for data and code (see \href{https://doi.org/10.5281/zenodo.10635645}{Supplement
     \subsection{Species occurrences}
     \label{subsec:arthropods-data-assemblage}
 
-Based on the above criteria, the selected groups are:
-Araneae, Chilopoda, Coleoptera, Diplopoda, Heteroptera, Hymenoptera (Chrysididae, Formicidae, Symphyta), Lepidoptera (Geometridae), Odonata, Orthoptera, Scorpiones and Trichoptera.
-
-We curated the bibliography and the NHMC collection to assemble taxa
-occurrences. The bibliography used
-contains both historical and contemporary published material.
 The coordinate reference system we used for all location data is WGS84 - EPSG:4326.
 
 From here on, we refer to both species
@@ -129,13 +119,14 @@ We made the same treatment for each of the selected groups separately.
 We redefined EHs as the 10\% of the grid cells with max overlap of the orders
 to check for biases towards more speciose orders (e.g. Coleoptera).
 
+    \subsection{EOO and AOO}
+    \label{subsec:arthropods-eoo-aoo}
+
+
 
     \subsection{Spatial overlaps}
     \label{subsec:arthropods-spatial}
-I retrieved land use categories from the CORINE Land Cover, CLC 2018 version
-v.2020-20u1 \parencite{CLC2023}.
-To evaluate the current land use I used the CORINE Land Cover
-and to examine the human pressure (change in land use, agriculture), I used the
+To examine the human pressure (change in land use, agriculture), I used the
 Historic Land Dynamics Assessment (HILDA+) dataset \parencite{winkler2021global} to
 estimate the change of land use the from 1998 to 2018. Furthermore, I examined
 the overlap of the AOO.
@@ -161,11 +152,18 @@ Data, scripts and results of the analysis are available and documented \href{htt
 \section{Results}
 \label{sec:arthropods-results}
 
-   \begin{figure}[ht]
+   \begin{figure}[htp!]
       \centering
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-FigS1.png}
       \caption[Comparisons of Threatened Endemics in Crete, Greece, Europe and the World]{Comparisons of Threatened Endemics in Crete, Greece, Europe and the World for seven Arthropod groups (top to bottom, data aggregated from the IUCN web resource). Values are absolute (proportion in parentheses). Also, note that there are 3 threatened species of Scorpiones in the World Red List column and 5 not threatened species in the Trichoptera column.}
       \label{fig:arthropods-figS1}
+   \end{figure}
+
+   \begin{figure}[htp!]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-fig_crete_sampling_intensity_order.png}
+      \caption[Sampling intensity]{Sampling intensity in Crete (i.e number of samples) in each 10 km grid for all samples and for each arthropod order.}
+      \label{fig:arthropods-sampling-intesity}
    \end{figure}
 
     \subsection{Grid cell size}
@@ -178,11 +176,11 @@ The unique taxa of the EHs of each grid is distributed as follows: 10 km=283,
 species. The 4 km grid mostly highlighted areas known for their tourist/recreational activities,
 indicating that it is more sensitive to sampling intensity.
 Focusing on sampling we applied the adaptive grid size with quadtrees resulting
-in 157 grids with 8 km length, 38 with 4 km and 74 with 2 km (Appendix Figure \ref{fig:arthropods-figS5}).
+in 157 grids with 8 km length, 38 with 4 km and 74 with 2 km (Figure \ref{fig:arthropods-figS5}).
 This indicates the preference of larger cells for the majority of our dataset
 even though a small percent of regions has higher density of sampling.
 The highest overlap among all grids is between the 10 km and 8 km reaching
-57\% (Appendix Table \ref{table:arthropods-tableS2}). Finally, the 10 km grid has more taxa
+57\% (Table \ref{table:arthropods-tableS2}). Finally, the 10 km grid has more taxa
 per cell and is a reference grid system.
 Based on our analysis and interoperability and reproducibility aims we choose
 the 10 km EEA reference grid for the EHs and candidate KBAs inference.
@@ -190,20 +188,28 @@ Nevertheless, we also performed the WEGE analysis for KBAs using the adaptive
 grid, yielding practically the same areas as the 10km grid minus Zakros (Figure \ref{fig:arthropods-fig5}).
 The same pipeline can not be done with EHs for they require a fixed cell size.
 
-   \begin{figure}[ht]
+
+   \begin{figure}[htp!]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods_crete_multiple_grids_hotspots.png}
+      \caption[Comparisons of different grid sizes]{Comparisons of different grid sizes to identify hotspots.}
+      \label{fig:arthropods-different-hotposts}
+   \end{figure}
+
+   \begin{figure}[htp!]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-fig_grid_stat.png}
+      \caption[Comparisons of proportions of endemics across grid sizes hotspots]{Comparisons of different grid sizes. A. The proportion of endemics. B. The Jaccard similarity across hotspots with the same grid size.}
+      \label{fig:arthropods-different-hotposts-stat}
+   \end{figure}
+
+
+   \begin{figure}[htp!]
       \centering
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-Fig_quads.png }
-      \caption[Adaptive grid size based on sampling using quadtrees]{Adaptive grid size based on sampling using quadtrees. A. The proportion of threatened species on all the cells, 157 grids with 8 km length, 38 with 4 km and 74 with 2 km. B. The endemic taxa density with quad cells. C. WEGE with quad cells.}
+      \caption[Adaptive grid size based on sampling using quadtrees]{Adaptive grid size based on sampling using quadtrees.}
       \label{fig:arthropods-figS5}
    \end{figure}
-
-   \begin{figure}[ht]
-      \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-fig_crete_sampling_intensity_order.png}
-      \caption[Sampling intensity for every order]{Sampling intensity (i.e number of samples) in each 10 km grid for all samples and for each arthropod order.}
-      \label{fig:arthropods-figS7}
-   \end{figure}
-
 
 \begin{table}[]
     \caption{Different grid size hotspots overlap. The top 10\% of cells with most species are considered as hotspots. All units are in km\textsuperscript{2}.}
@@ -219,33 +225,19 @@ The same pipeline can not be done with EHs for they require a fixed cell size.
 \end{table}
 
 
-\begin{table}[]
-    \caption{Corine Land Cover LEVEL 1 and 2 categories area and overlaps with protected areas and hotspots/KBAs}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lllllll}
-LABEL1                        & LABEL2                                          & Total area (km\textsuperscript{2}) & \begin{tabular}[c]{@{}l@{}}Natura2000\\ (km\textsuperscript{2})\end{tabular} & \begin{tabular}[c]{@{}l@{}}Wildlife\\ (km\textsuperscript{2})\end{tabular} & \begin{tabular}[c]{@{}l@{}}Hotspots\\ (km\textsuperscript{2})\end{tabular} & WEGE KBAs (km\textsuperscript{2}) \\
-Agricultural areas            & Arable land                                     & 88.29            & 34.11                                                      & 1.03                                                     & 26.90                                                    & 26.91           \\
-Agricultural areas            & Heterogeneous agricultural areas                & 1102.96          & 130.00                                                     & 19.71                                                    & 93.42                                                    & 100.17          \\
-Agricultural areas            & Pastures                                        & 59.25            & 15.11                                                      & 1.81                                                     & 8.50                                                     & 9.71            \\
-Agricultural areas            & Permanent crops                                 & 2367.70          & 122.71                                                     & 34.87                                                    & 146.30                                                   & 164.33          \\
-Artificial surfaces           & Artificial, non-agricultural vegetated areas    & 20.68            & NA                                                         & NA                                                       & NA                                                       & NA              \\
-Artificial surfaces           & Industrial, commercial and transport units      & 39.77            & 0.65                                                       & 0.97                                                     & 0.33                                                     & 0.33            \\
-Artificial surfaces           & Mine, dump and construction sites               & 10.05            & 0.57                                                       & 1.15                                                     & 0.32                                                     & 0.32            \\
-Artificial surfaces           & Urban fabric                                    & 110.63           & 2.63                                                       & 1.45                                                     & 3.54                                                     & 3.92            \\
-Forest and semi natural areas & Forests                                         & 299.93           & 199.20                                                     & 60.36                                                    & 163.62                                                   & 146.67          \\
-Forest and semi natural areas & Open spaces with little or no vegetation        & 410.66           & 322.04                                                     & 46.58                                                    & 143.27                                                   & 98.52           \\
-Forest and semi natural areas & Scrub and/or herbaceous vegetation associations & 3797.83          & 1519.02                                                    & 438.63                                                   & 785.19                                                   & 813.61          \\
-Water bodies                  & Inland waters                                   & 6.74             & 2.50                                                       & 1.80                                                     & 0.99                                                     & 0.31           
-\end{tabular}%
-}
-\label{table:arthropods-tableS3}
-\end{table}
+   \begin{figure}[htp!]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods_aoo-eoo_order.png}
+      \caption[AOO, EOO relationship per order]{The relationship of AOO and EOO of species of different orders. Each dot is a species. }
+      \label{fig:arthropods-eoo-aoo}
+   \end{figure}
+
 
    \begin{figure}[ht]
       \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-Fig4.png}
-      \caption[AOO, EOO and N2K overlaps per order]{A. Locations, EOO and AOO of all orders. Each dot represents one taxon and boxplots show the mean value and the first and third quantiles. The y axis is in log10 scale. B. Proportion of overlap of AOO with Natura 2000 areas per Order. Each dot is a taxon with its respective proportion of AOO overlap. The horizontal line of the boxplot shows the average, and the box shows the 1st and 3rd quantiles of the values.}
-      \label{fig:arthropods-fig4}
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-fig_crete-hotspots_order.png}
+      \caption[Hotspots of every order]{Endemicity hotspots across orders.}
+      \label{fig:arthropods-hotspots-order}
    \end{figure}
 
     \subsection{Human Intervention}
@@ -255,41 +247,32 @@ Water bodies                  & Inland waters                                   
 \begin{table}[]
     \caption{The land use transitions in the 20 year period (1998-2018) from the HILDA+ dataset.}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{lllll}
-HiLDA+ transitions                             & Crete (km\textsuperscript{2}) & Natura2000 (km\textsuperscript{2}) & EHs (km\textsuperscript{2}) & WEGE KBAs (km\textsuperscript{2}) \\
-urban (stable)                                 & 326         & 46               & 14        & 8               \\
-urban to pasture/rangeland                     & 3           & NA               & NA        & NA              \\
-cropland to urban                              & 42          & 1                & NA        & NA              \\
-cropland (stable)                              & 1314        & 186              & 71        & 63              \\
-cropland to pasture/rangeland                  & 565         & 74               & 32        & 28              \\
-cropland to forest                             & 178         & 40               & 20        & 33              \\
-cropland to unmanaged grass/shrubland          & 3           & 1                & NA        & NA              \\
-cropland to sparse/no vegetation               & 3           & 3                & 3         & NA              \\
-pasture/rangeland to urban                     & 13          & NA               & NA        & NA              \\
-pasture/rangeland to cropland                  & 82          & 15               & 3         & 3               \\
-pasture/rangeland (stable)                     & 5124        & 2594             & 1198      & 1210            \\
-pasture/rangeland to forest                    & 11          & 6                & 3         & 3               \\
-pasture/rangeland to unmanaged grass/shrubland & 137         & 73               & 38        & 33              \\
-pasture/rangeland to sparse/no vegetation      & 2           & 2                & 2         & 1               \\
-forest to pasture/rangeland                    & 34          & 33               & 25        & 20              \\
-forest (stable)                                & 364         & 182              & 174       & 177             \\
-forest to unmanaged grass/shrubland            & 2           & 1                & 2         & 2               \\
-unmanaged grass/shrubland (stable)             & 1           & NA               & NA        & NA              \\
-sparse/no vegetation (stable)                  & 2           & 2                & 2         & NA              \\
-water                                          & 165         & 78               & 5         & 3              
+\begin{tabular}{llll}
+HiLDA+ transitions                             & Crete (km\textsuperscript{2}) & Natura2000 (km\textsuperscript{2}) & EHs (km\textsuperscript{2}) \\
+urban (stable)                                 & 326         & 46               & 14        \\
+urban to pasture/rangeland                     & 3           & NA               & NA        \\
+cropland to urban                              & 42          & 1                & NA        \\
+cropland (stable)                              & 1314        & 186              & 71        \\
+cropland to pasture/rangeland                  & 565         & 74               & 32        \\
+cropland to forest                             & 178         & 40               & 20        \\
+cropland to unmanaged grass/shrubland          & 3           & 1                & NA        \\
+cropland to sparse/no vegetation               & 3           & 3                & 3         \\
+pasture/rangeland to urban                     & 13          & NA               & NA        \\
+pasture/rangeland to cropland                  & 82          & 15               & 3         \\
+pasture/rangeland (stable)                     & 5124        & 2594             & 1198      \\
+pasture/rangeland to forest                    & 11          & 6                & 3         \\
+pasture/rangeland to unmanaged grass/shrubland & 137         & 73               & 38        \\
+pasture/rangeland to sparse/no vegetation      & 2           & 2                & 2         \\
+forest to pasture/rangeland                    & 34          & 33               & 25        \\
+forest (stable)                                & 364         & 182              & 174       \\
+forest to unmanaged grass/shrubland            & 2           & 1                & 2         \\
+unmanaged grass/shrubland (stable)             & 1           & NA               & NA        \\
+sparse/no vegetation (stable)                  & 2           & 2                & 2         \\
+water                                          & 165         & 78               & 5         
 \end{tabular}%
 }
 \label{table:arthropods-tableS4}
 \end{table}
-
-
-
-   \begin{figure}[ht]
-      \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-Fig5.png}
-      \caption[Land Use of Crete and the changes]{A. CORINE Land Cover, LEVEL 2 of the Copernicus system. B. HILDA+ Land use change for the years 1998-2018.}
-      \label{fig:arthropods-fig5}
-   \end{figure}
 
 
 % DISCUSSION
@@ -356,15 +339,15 @@ Moreover, threats associated with agriculture are the number one threat for
 Insect species inside protected areas in Europe \parencite{chowdhury2023protected}.
 Nevertheless, regarding change in land use, there is a somewhat equal
 transition trend from cropland to forest and vice versa inside EHs and KBAs
-(Appendix Table \ref{table:arthropods-tableS4}). This means that while some sites are being
+(Table \ref{table:arthropods-tableS4}). This means that while some sites are being
 degraded others may recover. More research within EHs and KBAs is essential in
 order to quantify the impact (negative or positive) of these transitions to the
 endemic Arthropods. A vast amount of cropland has been transformed to pasture
-lands (Appendix Table \ref{table:arthropods-tableS4}) which requires further examination,
+lands (Table \ref{table:arthropods-tableS4}) which requires further examination,
 since grazing has both positive [eg. on Gnaphosidae (Spiders) communities \parencite{kaltsas2019overgrazed}]
 and negative effects [e.g. Carabidae (Coleoptera) \parencite{kaltsas2013ground}].
 The reduction of croplands could be interpreted under the general trend of
-urbanization (Appendix Table \ref{table:arthropods-tableS4}), which nevertheless occurs
+urbanization (Table \ref{table:arthropods-tableS4}), which nevertheless occurs
 outside EHs and KBAs, but a shift towards montane areas especially under new
 forms of tourism could deeply impact the sites of conservation importance.
 
