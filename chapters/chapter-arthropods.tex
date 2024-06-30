@@ -5,7 +5,7 @@
 % --------------------------------------------------
 
 
-\chapter{Cretan Endemic Arthropods: distribution, threats and hotspots}
+\chapter{Cretan Endemic Arthropods: distribution, hotspots and threats}
 \label{cha:arthropods}
 
 % INTRODUCTION
@@ -15,10 +15,25 @@
 Functioning of arthropods has been investigating since the seventies \parencite{rosswall1997energetical}.
 
 Importance of arthropods in functioning
+\parencite{GRANDY201640} beyond microbes
+\parencite{COLEMAN2024131}
 
+\parencite{Fry2019}
+\parencite{briones2014soilfauna}
+
+Biomass of arthropods and specific orders 
+\parencite{milo-arthropods}
+\parencite{bar2018biomass}
+
+soil dwelling arthropods
+
+soil health and arthropods
+\parencite{insects11010054}
 Crete data since 19th century. 
 
 To being able to study first they have to be conserved.
+
+protected areas, IUCN assessments and hotspots and Key Biodiversity Areas
 
 
 %% need to modify
@@ -83,30 +98,55 @@ online databases.
 \label{sec:arthropods-method}
    
 
+    \subsection{Taxa distributions}
+    \label{subsec:arthropods-eoo-aoo}
+Retrieval and compilation of information on arthropod species' taxonomy,
+global distributions, and IUCN status was performed using public databases.
+The dataset of endemic species assessments from a TSV file and several IUCN Red
+List datasets for Greece, endemic Greek species, Europe, and the world.
 
-    \subsection{Species occurrences}
-    \label{subsec:arthropods-data-assemblage}
-
-The coordinate reference system we used for all location data is WGS84 - EPSG:4326.
-
-From here on, we refer to both species
-and subspecies as “taxa”.
-    
-All species 
 from IUCN that are in Crete were downloaded from the website \parencite{iucn2024}. IUCN provides the 
 interactive maps selection functionality. 
+%It begins by loading necessary libraries such as sf, tidyverse, readxl, rredlist, taxize, units, and vegan. 
+For each Red List dataset, it processes the data to identify threatened species
+(those categorized as Critically Endangered, Endangered, or Vulnerable), groups
+them by taxonomic order and threat status, and adds a source identifier.
+These processed datasets are combined into a single dataset of threatened species, which is saved to a TSV file.
+The script also filters out all arthropod species from the IUCN Red Listr
+datasets, saves this information to a TSV file, and retrieves their GBIF IDs,
+although the time-consuming classification process is commented out.
+Additionally, the script resolves species names using the GBIF Backbone Taxonomy
+and retrieves GBIF IDs for the endemic species, identifying and handling species
+without GBIF IDs separately. It performs classification for the species using
+GBIF data, merges this with the original endemic species data, and saves the
+final dataset with taxonomic information to a TSV file.
 
-Criterion B, i.e. on the Extent of Occurrence (EOO) and
-Area of Occupancy (AOO).
+The aoo overlap function is part of the IUCN assessment process for arthropods
+under Criterion B, which focuses on the Area of Occupancy (AOO) and its overlap
+with protected areas. This function takes in the shapefiles of species' AOO,
+a baseline map (Crete), a shapefile of overlap areas (protected areas and land use maps),
+Initially, each species' AOO is calculated, converting the data to a spatial feature
+and calculating its area in square kilometers. It computes the intersection of
+the AOO with protected areas, determines the overlapping area, and stores the
+species' name, AOO area, and overlap area. Maps are also generated for each
+species that depict the AOO and its overlap with protected areas.
 
-Criterion B is the widely used for Arthropods \parencite{cardoso2011adapting,carpaneto2015a-red-list},
-because the majority of Arthropods taxa are missing neccessary information of the other criteria (A, C, D and E).
-Criterion B could overestimate the danger of Arthropods \parencite{cardoso2011adapting},
-which should always be taken into consideration.
+The eoo calculation function is designed to calculate the Extent of Occurrence (EOO),
+the number of sites and the overlap with a provided area.
+The EOO for a single species is calculated if there are more than three occurrences.
+EOO is the convex hull of the species' occurrences, it is checked if the EOO is valid
+polygon and calculates its area in square kilometers. The function computes the intersection of the EOO with protected areas and calculates the overlapping area.
+One figure for each species is also produced for more thorough assessments.
+Together, these functions provide a comprehensive method for calculating and
+assessing the AOO and EOO of arthropods, including their overlaps with protected
+areas, as part of the IUCN assessment process. This approach allows for detailed
+spatial analysis and visualization, facilitating the conservation status evaluation of arthropod species.
 
-    
-    \subsection{Grids and hotspots}
+
+    \subsection{Grid assay}
     \label{subsec:arthropods-ehs-kbas}
+Assessments of hotspots of endemic and threatened species of Cretan arthropods using various grid sizes, including 1, 4, 8, and 10 square kilometers, and employs adaptive resolution techniques such as quadtree. Initially, it loads essential data, including endemic species occurrences, Cretan shapefiles, and Natura2000 areas. For each grid size, the script transforms and joins occurrence data, calculates distinct species and sampling efforts, and assesses correlations between species richness and sampling intensity. The 10 km grid analysis involves spatial joins, summarizing species occurrences, and calculating sampling intensity, followed by Pearson correlation assessment. The 1 km grid analysis similarly joins data, identifies species occurrences, and evaluates correlation metrics. The 4 and 8 km grids utilize manually created rasters to map occurrences and sampling efforts, with similar summarization and correlation steps. The script then explores adaptive resolution using quadtree, generating spatial polygons and assessing species richness and endemism hotspots. Finally, the results are visualized in detailed plots, showcasing hotspots across various grid sizes and the adaptive quadtree approach, providing a comprehensive assessment of biodiversity hotspots on Crete.
+
 
 In order to avoid biases concerning the grid cell size, the same
 pipeline was tested with cells of different size (4 x 4, 8 x 8 and 10 x 10 km).
@@ -119,13 +159,8 @@ We made the same treatment for each of the selected groups separately.
 We redefined EHs as the 10\% of the grid cells with max overlap of the orders
 to check for biases towards more speciose orders (e.g. Coleoptera).
 
-    \subsection{EOO and AOO}
-    \label{subsec:arthropods-eoo-aoo}
-
-
-
-    \subsection{Spatial overlaps}
-    \label{subsec:arthropods-spatial}
+    \subsection{Land use change}
+    \label{subsec:arthropods-land-use}
 To examine the human pressure (change in land use, agriculture), I used the
 Historic Land Dynamics Assessment (HILDA+) dataset \parencite{winkler2021global} to
 estimate the change of land use the from 1998 to 2018. Furthermore, I examined
@@ -135,7 +170,9 @@ the overlap of the AOO.
     \subsection{Code}
     \label{subsec:arthropods-tools}
 
-    We performed the analyses using the R Statistical Software \parencite{rcoreteam},
+The coordinate reference system we used for all location data is WGS84 - EPSG:4326.
+
+We performed the analyses using the R Statistical Software \parencite{rcoreteam},
 the visualization using the ggplot2 R package \parencite{wickham_ggplot2_2016}. The figures
 created are colored using the colorblind-friendly 'Okabe-Ito' palette \parencite{ichihara2008color}.
 We calculated EOO and AOO using the ConR R package \parencite{dauby2017conr:} and PACA
@@ -152,12 +189,28 @@ Data, scripts and results of the analysis are available and documented \href{htt
 \section{Results}
 \label{sec:arthropods-results}
 
+    \subsection{EOO and AOO}
+    \label{subsec:arthropods-sampling}
+
    \begin{figure}[htp!]
       \centering
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-FigS1.png}
       \caption[Comparisons of Threatened Endemics in Crete, Greece, Europe and the World]{Comparisons of Threatened Endemics in Crete, Greece, Europe and the World for seven Arthropod groups (top to bottom, data aggregated from the IUCN web resource). Values are absolute (proportion in parentheses). Also, note that there are 3 threatened species of Scorpiones in the World Red List column and 5 not threatened species in the Trichoptera column.}
       \label{fig:arthropods-figS1}
    \end{figure}
+
+
+   \begin{figure}[htp!]
+      \centering
+      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods_aoo-eoo_order.png}
+      \caption[AOO, EOO relationship per order]{The relationship of AOO and EOO of species of different orders. Each dot is a species. }
+      \label{fig:arthropods-eoo-aoo}
+   \end{figure}
+
+
+    \subsection{Hotspot size selection}
+    \label{subsec:arthropods-grids}
+
 
    \begin{figure}[htp!]
       \centering
@@ -166,8 +219,9 @@ Data, scripts and results of the analysis are available and documented \href{htt
       \label{fig:arthropods-sampling-intesity}
    \end{figure}
 
-    \subsection{Grid cell size}
-    \label{subsec:arthropods-grids}
+
+
+
 The grid cell size 10 x 10 km is the most suitable for our study since our
 dataset - being compiled from numerous different sources and sampling efforts -
 is rather coarse and inhomogenous for a smaller cell size.
@@ -225,14 +279,6 @@ The same pipeline can not be done with EHs for they require a fixed cell size.
 \end{table}
 
 
-   \begin{figure}[htp!]
-      \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods_aoo-eoo_order.png}
-      \caption[AOO, EOO relationship per order]{The relationship of AOO and EOO of species of different orders. Each dot is a species. }
-      \label{fig:arthropods-eoo-aoo}
-   \end{figure}
-
-
    \begin{figure}[ht]
       \centering
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-fig_crete-hotspots_order.png}
@@ -240,12 +286,12 @@ The same pipeline can not be done with EHs for they require a fixed cell size.
       \label{fig:arthropods-hotspots-order}
    \end{figure}
 
-    \subsection{Human Intervention}
+    \subsection{Land use changes}
     \label{subsec:arthropods-human-intervention}
 
 
 \begin{table}[]
-    \caption{The land use transitions in the 20 year period (1998-2018) from the HILDA+ dataset.}
+    \caption{The land use transitions from 1998 to 2018, using the HILDA+ dataset.}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{llll}
 HiLDA+ transitions                             & Crete (km\textsuperscript{2}) & Natura2000 (km\textsuperscript{2}) & EHs (km\textsuperscript{2}) \\
@@ -299,8 +345,13 @@ speciation, preservation and extinction of biodiversity \parencite{steinbauer201
 This synergistic effect of mountains-islands has also been recovered in other
 areas such as the Balearic islands \parencite{guardiola2023are-mediterranean}.
 
-    \subsection{Species assessment}
+    \subsection{Criterion B preliminary assessment}
     \label{subsec:arthropods-species-assessment-disc}
+
+Criterion B is the widely used for Arthropods \parencite{cardoso2011adapting,carpaneto2015a-red-list},
+because the majority of Arthropods taxa are missing necessary information of the other criteria (A, C, D and E).
+Criterion B could overestimate the danger of Arthropods \parencite{cardoso2011adapting},
+which should always be taken into consideration.
 
 Arthropods with wider ranges that are not assessed as Threatened under
 criterion B, are not necessarily Least Concern and should not be neglected.
