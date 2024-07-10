@@ -105,7 +105,7 @@ global distributions, and IUCN status was performed using public databases.
 The dataset of endemic species assessments from a TSV file and several IUCN Red
 List datasets for Greece, endemic Greek species, Europe, and the world.
 
-from IUCN that are in Crete were downloaded from the website \parencite{iucn2024}. IUCN provides the 
+Taxa from IUCN that appear in Crete were downloaded from the website \parencite{iucn2024}. IUCN provides the 
 interactive maps selection functionality. 
 %It begins by loading necessary libraries such as sf, tidyverse, readxl, rredlist, taxize, units, and vegan. 
 For each Red List dataset, it processes the data to identify threatened species
@@ -145,7 +145,22 @@ spatial analysis and visualization, facilitating the conservation status evaluat
 
     \subsection{Grid assay}
     \label{subsec:arthropods-ehs-kbas}
-Assessments of hotspots of endemic and threatened species of Cretan arthropods using various grid sizes, including 1, 4, 8, and 10 square kilometers, and employs adaptive resolution techniques such as quadtree. Initially, it loads essential data, including endemic species occurrences, Cretan shapefiles, and Natura2000 areas. For each grid size, the script transforms and joins occurrence data, calculates distinct species and sampling efforts, and assesses correlations between species richness and sampling intensity. The 10 km grid analysis involves spatial joins, summarizing species occurrences, and calculating sampling intensity, followed by Pearson correlation assessment. The 1 km grid analysis similarly joins data, identifies species occurrences, and evaluates correlation metrics. The 4 and 8 km grids utilize manually created rasters to map occurrences and sampling efforts, with similar summarization and correlation steps. The script then explores adaptive resolution using quadtree, generating spatial polygons and assessing species richness and endemism hotspots. Finally, the results are visualized in detailed plots, showcasing hotspots across various grid sizes and the adaptive quadtree approach, providing a comprehensive assessment of biodiversity hotspots on Crete.
+Assessments of hotspots of endemic and threatened species of Cretan arthropods
+using various grid sizes, including 1, 4, 8, and 10 square kilometers, and
+employs adaptive resolution techniques such as quadtree. Initially, it loads
+essential data, including endemic species occurrences, Cretan shapefiles, and
+Natura2000 areas. For each grid size, the script transforms and joins occurrence
+data, calculates distinct species and sampling efforts, and assesses correlations
+between species richness and sampling intensity. The 10 km grid analysis involves
+spatial joins, summarizing species occurrences, and calculating sampling intensity,
+followed by Pearson correlation assessment. The 1 km grid analysis similarly joins data,
+identifies species occurrences, and evaluates correlation metrics.
+The 4 and 8 km grids utilize manually created rasters to map occurrences and
+sampling efforts, with similar summarization and correlation steps. The script
+then explores adaptive resolution using quadtree, generating spatial polygons
+and assessing species richness and endemism hotspots.
+Finally, the results are visualized in detailed plots, showcasing hotspots
+across various grid sizes and the adaptive quadtree approach, providing a comprehensive assessment of biodiversity hotspots on Crete.
 
 
 In order to avoid biases concerning the grid cell size, the same
