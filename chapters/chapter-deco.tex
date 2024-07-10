@@ -286,16 +286,15 @@ ENVO IDS. It also returns a file that summarises all steps and entities identifi
 To facilitate all this functionality multiple tools are employed which makes it 
 cumbersome for the users to install. This also makes the tool unstable from 
 future releases of updates. To resolve these issues DECO is provided as 
-a DOCKER container as well. The code and containers have been tested on
-Ubuntu, Mac and Debian server (Table \ref{table-CLI}).
+a DOCKER container as well. Testing of the code and containerised version of DECO
+has been carried out in major operating systems, Ubuntu, Mac and Debian server (Table \ref{table-CLI}).
 
-Furthermore, DECO, is a demonstration of EMODnet Biology’s aims to rescue historical biodiversity documents.
-This is the first CLI tool that brings together state-of-the-art image processing, OCR tools, text mining
-technologies and Web APIs, in order to assist curators. By using programming
-interface and Command Line Tools the workflow is scalable, customisable and
-modular, meaning that more tools can be incorporated to, e.g. include the
-entities mentioned in the previous section. It can be used on a
-personal computer and on servers as a Docker container or as an executable workflow.
+Last but not least, DECO, serves as a demonstrator towards the rescue of historical biodiversity documents.
+It is the first CLI tool which incorporates state-of-the-art image processing, OCR tools, text mining
+technologies and Web APIs, in one place. This is crucial for curators.
+DECO is also scalable, customisable and modular by design.
+Different tools can be integrated that perform better and/or extract different entities. 
+Users can run it on their personal computer and on servers either as a Docker container or as an executable workflow.
 
 \begin{table}[ht]
     \begin{tabular}{p{0.192\linewidth}p{0.192\linewidth}p{0.192\linewidth}p{0.192\linewidth}p{0.192\linewidth}}
@@ -306,7 +305,8 @@ macOS Catalina 10.15.7 & 28 min & Docker - 33 min & Intel(R) Core(TM) i5-4258U C
 Linux Ubuntu 18.04.5 LTS (Bionic Beaver) & 20 min & Docker  27 min & Intel(R) Pentium(R) Dual-Core CPU T4200 @ 2.00GHz & 4 \\
 Linux Debian server 4.9.0-8-amd64 & --- & Singularity - 20 min & Intel(R) Xeon(R) Silver 4114 CPU @ 2.20GHz & 4
 \end{tabular}%
-\caption{The platforms where the CLI workflow was tested.Please note that running time can be affected by internet speed and stability due to API calls. The workflow uses open source tools and software libraries that are distributed across the major platforms; Linux, Mac and Windows.}
+\caption{DECO is compatible with all major platforms, Linux, Mac and Windows, and HPCs due to it's containirised version.
+Running time can be affected by internet speed to API calls.}
 \label{table-CLI}
 \end{table}
 
