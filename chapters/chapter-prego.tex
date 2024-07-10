@@ -172,16 +172,22 @@ relevance to the user's query is what makes platforms useful to users.
 Hence, scoring is an indispensable component of data platforms 
 that respond to queries.
 
-PREGO responses with relevant and probable associations are the user query
+PREGO responses to the user's query with associations that have the highest score
 through the three channels of information. 
-Each channel has a tailored scoring scheme depending on the data structure to
+Channels have a different scoring schemes based on the data structure to
 rank the associations of terms.
-All associations are scored and normalised in the interval $(0,5]$ to maintain consistency. 
-The scoring starts with the contingency table (Table~\ref{table:pregoA1}) of two random variables, $X$ and $Y$.
+The score of every association across entities and channels is normalised in the interval $(0,5]$.
+This transformation unifies the ranking.
+Furthermore, the values are rounded, with ceiling function, to be integers
+and are represented with stars in the web interface as a visual aid to the user.
+
+Scoring starts with the contingency table (Table~\ref{table:pregoA1}) of $X$ and $Y$.
 For example, $X = 1$ is a NCBI id and $Y = 1$ represents an GObp term id. 
-The $c_{1,1}$ is the co-mention count of these two terms, $X = 1$ and $Y = 1$, i.e., the joint frequency. 
-The marginals, $c_{1,.}$ and $c{.,1}$ for $x$ and $y$ respectively, are the counts for entity type id. 
-These frequencies are used differently depending on the scoring indices.
+The $c_{1,1}$ represents the count of times that these two terms, $X = 1$ and $Y = 1$, 
+are mentioned together, i.e. the co-mention frequency. 
+The marginals, $c_{1,.}$ and $c{.,1}$ for $x$ and $y$ respectively,
+are the frequencies for each entity. 
+Different scoring indices are used depending on the channel and the origin of the data.
 Each scoring scheme, must be evaluated and benchmarked because there is not a 
 single perfect measure. 
 
@@ -194,16 +200,15 @@ single perfect measure.
     & \multicolumn{1}{l|}{No} & $c_{0,y}$ & $c_{0,0}$ & $c_{0,.}$ \\
     & \multicolumn{1}{l|}{Total} & $c_{.,y}$ & $c_{.,0}$ & $c_{.,.}$
    \end{tabular}
-   \caption[PREGO contingency table between two terms]{Contingency table of co-occurrences between entities $X = x$ and $Y = y$. 
-   $c_{x,y}$ is the count of the
-co-occurrence of these entities. $c_{x,.}$ is the count of the $x$ with all the
-entities of $Y$ typy. Conversely, $c_{.,y}$ is the count of $y$ with all the entities of $X$ type (e.g., taxonomy}
+   \caption[PREGO contingency table between two terms]{Contingency table of $X = x$ and $Y = y$.}
    \label{table:pregoA1}
 \end{table}
 
-The Literature channel scores associations of each pair of entities based on their co-occurrence in each document, paragraph, and sentence.
+The Literature channel scores associations of each pair of entities based on their co-occurrence. 
+Literature scores associations depending on the level of co-occurrence, and distinguishes
+the sentence level (higher score) from the paragraph level and finally the document level.
 Environmental Samples channel scores associations based on abundance tables and metadata. Hence, the number of samples that entities co-occur. 
-Thus, it has two depth levels, microbes with metadata, and sample identifiers.
+Thus, it has two levels, microorganisms with metadata, and the sample identifiers.
 The Genome Annotation and Isolates channel has predetermined values of scores
 based on the resource and the level of manual curation which contain the most trustworthy associations. 
 
@@ -241,7 +246,8 @@ and oa comm directories.
 
    \subsubsection{Tagger}
 
-Text mining is on the corpus using the dictionary through the EXTRACT tagger \parencite{pafilis2016extract, jensen2016one}.
+Text mining is applied on the compiled corpus, mentioned before,
+using the EXTRACT tagger \parencite{pafilis2016extract, jensen2016one}.
 The tagger is implemented in C++ and first loads all entities of the dictionary
 and then it recognises the co-occurrences in the corpus and returns them with a score. 
 The tagger output files, the pubmed tsv files and dictionary files are used by
@@ -267,39 +273,41 @@ is running using 8 threads.
 
 Literature channel adopts the scoring scheme of STRING 9.1 \parencite{franceschini2012string}
 and COMPARTMENTS \parencite{binder2014compartments}. This scoring has three steps. 
-First, for each co-occurrence of a pair of entities, a weighted count is
-calculated because of the complexity of the text.
+First, for each co-occurrence of a pair of entities, the following weighted count is
+calculated based on the textual level of the co-occurrence:
 
 \begin{equation}
    c_{x,y} = \sum_{k=1}^{n}{w_d \delta_{dk}(x,y) +w_p \delta_{p,k}(x,y) + w_s \delta_{sk}(x,y)}
    \label{eq:prego-score-1}
 \end{equation}
 
-Different weights are used for each part of the document ($k$) for which both
-entities have been co-mentioned, $w_d = 1$ for the weight for the whole document
-level, $w_p = 2$ for the weight of the paragraph level, and $w_s = 0.2$ for the
-same sentence weight. 
-The delta functions equal to one (Equation~\ref{eq:prego-score-1}) if the co-occurrence
-exists and is zero if it doesn't. Therefore, the weighted count becomes higher as
-the entities are mentioned in the same paragraph and even higher when in the same sentence.
-Subsequently, the score is calculated with the following equation:
+Weights of each level of the document ($k$) are used.
+$w_d = 1$ is the weight for a co-occurrence at the document
+level. 
+At he paragraph level, the $w_p = 2$ is used. And at the sentence level, the most
+informative level, the weight is $w_s = 0.2$.
+The delta functions equal to one (Equation~\ref{eq:prego-score-1})
+If the co-occurrence is apparent, the delta functions equal to one (Equation~\ref{eq:prego-score-1}),
+and zero otherwise.
+Therefore, the weighted count increases as the entities are mentioned 
+closer to each other in the text. 
+After the counts, the score is calculated with the following equation:
 
 \begin{equation}
    score_{x,y} = c_{x,y}^a (\frac{c_{x,y} c_{.,.}}{c_{x, .}c_{.,y}})^{1-a}
    \label{eq:prego-score-2}
 \end{equation}
 
-where $a = 0.6$ is a weighting factor, and the $c_{x,.}$, $c_{.,.}$, 
-$c_{.,y}$ are the weighted counts as shown in Table~\ref{table:pregoA1} estimated using the same Equation~\ref{eq:prego-score-2}. 
-This weighting factor has been optimized and benchmarked in multiple 
-applications of text mining~\parencite{franceschini2012string, binder2014compartments, pletscher2015diseases}. 
-The value of Equation~\ref{eq:prego-score-2} has been noted that is sensitive to
-the increasing size of the number of documents (MEDLINE PubMed—PMC OA).
-Therefore, to obtain a more robust measure, the value of the score is transformed to $z$-score. 
-This transformation is presented in detail in the COMPARTMENTS resource \parencite{binder2014compartments}. 
-Finally, the confidence score is the $z$-score divided by two. Cases in which
-the scores exceed the (0,4] interval are capped to a maximum of 4 out of 5 to
-reflect the uncertainty of the text mining pipeline.
+where $a = 0.6$ is a weight, which has been benchmarked in other 
+text mining applications ~\parencite{franceschini2012string, binder2014compartments, pletscher2015diseases}. 
+The $c_{x,.}$, $c_{.,.}$, $c_{.,y}$ are the weighted frequencies as shown in Table~\ref{table:pregoA1}.
+They are calculated estimated using the same Equation~\ref{eq:prego-score-1}. 
+
+The value of Equation~\ref{eq:prego-score-2} is not robust as
+the volume of the corpus increases (MEDLINE PubMed—PMC OA).
+To reduce this sensitivity the score is further transformed to $z$-score divided by two.
+The maximum value of associations in the Literature channel is 4 out of 5, because 
+text mining has many false positives which introduce uncertainties.
 
    \subsection{Environmental Samples}
    \label{subsec:prego-envsamples}
@@ -329,12 +337,14 @@ The equation of the score is:
    score_{x,y} = 2.0*{\frac{\sqrt{c_{x,y}}}{c_{.,y}^{0.1}}}
 \end{equation}
 
-This is asymmetric because the denominator is the marginal of the associated entity. 
-Thus, the value is reduced as the marginal of $y$ is increasing, i.e., the number of samples that $y$ is found. 
-Conversely, it promotes pairs of associations in which the number of samples of 
-the association are similar to the marginal of $y$. 
-The exponents on the numerator and denominator equal to $0.5$ and 
-to $0.1$, respectively, in order to reduce the rapid increase of score.
+Environmental Samples score is asymmetric meaning that the score of $score_{x,y}$ is different from $score_{y,x}$.
+This is the case because the denominator is the marginal frequency of the associated entity. 
+The score is reduced when $c_{.,y}$ is increasing, i.e., the total number of samples occurrences of $y$. 
+So the score increases when the number of samples that the entities co-occur 
+approaches the number of samples of the marginal of $y$.
+The exponents moderate the increase of the score and they were 
+manually set to $0.5$ for the numerator and 
+to $0.1$ for the denominator.
 Lastly, the value of the score is capped in the range $(0,4]$.
 
    \subsection{Annotated Genomes and Isolates}
@@ -639,7 +649,7 @@ and bulk data download may make it a useful platform for researchers with specif
 
       \end{tabular}
       \end{adjustwidth}
-      \caption[Feature comparison between PREGO and other similar platforms]{Feature comparison among platforms that facilitate knowledge discovery and integration of microbial data.}
+      \caption[Feature comparison between PREGO and other similar platforms]{Comparison of similar platforms to PREGO across a range of features.}
       \label{table:prego4}
    
    \end{table}      
