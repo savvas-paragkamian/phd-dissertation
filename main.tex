@@ -134,7 +134,7 @@ linkcolor=teal
 \addresses{} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
 
 \subject{Microbial Ecology} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
-\keywords{ecosystem functioning, macroecology, microbial networks, conservation} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
+\keywords{ecosystem functioning, data integration, microbial ecology, text mining, spatial analysis, networks, conservation} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
 \university{\href{https://www.uoc.gr}{University of Crete}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
 \department{\href{https://www.biology.uoc.gr}{University of Crete, Department of Biology}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
 \group{\href{https://imbbc.hcmr.gr}{Institute of Marine Biology, Biotechnology and Aquaculture (IMBBC) - HCMR}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
@@ -230,7 +230,7 @@ published in peer reviewed journals with impact factor and I am the first author
     \item Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
     \item I have acknowledged all main sources of help.
     \item Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself. The same is clearly indicated in each \hyperref[app:publications]{Publication} with the Contributor Roles Taxonomy (CRediT) system.
-    \item This thesis has scored 20\% similarity score using Turnitin account of University of Crete on 26th of June 2024 using the settings "exclude bibliography, exclude quoted material".
+    \item This thesis was processed with Turnitin software using the account of University of Crete. The similarity report indicated a score below 10\% using the options settings "exclude bibliography, exclude quoted material".
 \end{itemize}
 % 
 \noindent Signed:\\
@@ -265,7 +265,25 @@ responsible for them (who). Ecosystems form complex associations of taxa,
 abiotic parameters and physical characteristics of the materials. For example,
 the soil ecosystem holds 10 billion cells in each gram. The texture and the 
 chemistry of the soil affects and is affected by the existing taxa across the
-tree of life, plants, arthropods, bacteria, fungi etc. Regarding microbes and
+tree of life, plants, arthropods, bacteria, fungi etc.
+
+Apart from plants and fauna, microbes significantly influence soil ecosystem
+functioning, yet synthesizing microbial biodiversity data remains challenging.
+Island biogeography presents a unique opportunity, to advance the understanding
+of microbiome diversity in the soil environment.
+Crete, as a continental island, has a distinct natural and evolutionary history
+with extreme contrasts in vegetation cover, climatic conditions and geology. 
+It has been studied for centuries and because of its location in southeastern
+Mediterranean is important for climate change studies.
+To this end, the first island-wide soil microbiome study conducted on the
+island of Crete in 2016. Together, a team of researchers and citizen scientists collected 435 soil samples
+from 72 sites across four distinct ecozones in a single day.
+Assessing the microbiome diversity drivers revealed that
+Crete microbial diversity is driven by total nitrogen and soil moisture along elevation
+gradient. But some patterns and functions of the soil microbiome of Crete weren't explained 
+by chemical characteristics. 
+
+Regarding microbes and
 metagenomics there is a wealth of data in open omics databases and in the 
 literature. Yet, all this information is inhomogeneous and spread in separate 
 resources. PREGO, a comprehensive knowledge base, amalgamates
@@ -276,8 +294,29 @@ mapping them to ontology terms. Through text and metagenomics data analysis,
 PREGO extracts associations, assigning confidence levels via a scoring scheme.
 With 364,508 microbial taxa, 1090 environmental types, 15,091 biological processes,
 and 7,971 molecular functions, PREGO aims to aid researchers in experiment
-design and interpretation. Additionally, it facilitates exploration of
+design and interpretation.
+Additionally, it facilitates exploration of
 environment-process-microbe associations.
+For example, regarding soil ecosystems, 
+49 soil environments are linked with high score associations to 6276 taxa, 169 biological processes, and
+3017 molecular functions. The vast majority of 10,929 associations involved
+environments and organisms, followed by 3139 associations between environments
+and molecular functions, and 274 between environments and biological processes.
+
+Ecosystem data integration is incorporating the available knowledge at the 
+system level. This type of integration is also needed to decipher ecosystem 
+function.
+Data about Crete island was categorised in literature, samplings and maps. The
+literature analysis showed the huge catalogue of historical datasets are not still 
+incorporated in open databases. In addition, Crete has been sampled for soil and
+biodiversity in many different ecosystems.
+Regarding maps, there are different aspects of the soil ecosystem, climate,
+geology, elevation and slope, soil type, land cover type, land management
+are among the major aspects of the Crete Soil System.
+In addition, Crete has been 
+assessed for climate change and desertification in many studies adding 
+more layers of information to create a Crete Soil System. 
+All these data are further establishing Crete as a great soil model island.
 
 Furthermore, to understand the current status of ecosystems is important to 
 know their past conditions. Historical biodiversity documents are crucial for
@@ -295,36 +334,29 @@ conservation actions because there are under multiple threats.
 An example of ecosystem collapse is the arthropod decline, a globally documented
 trend that remains insufficiently handled by the society. In
 Crete, a biodiversity hotspot, research on its arthropod fauna dates back centuries.
-Here we investigate the conservation status of the Cretan Arthropods using
-Preliminary Automated Conservation Assessments (PACA) and the overlap of Cretan
-Arthropod distributions with the Natura 2000 protected areas. Moreover we
-investigate their endemicity hotspots and propose candidate Key Biodiversity Areas.
-In order to perform these analyses, we assembled occurrences of the endemic
-Arthropods in Crete located in the collections of the Natural History Museum of
-Crete together with literature data. Conservation status assessments using PACA
-reveal potential threats to 75\% of endemic arthropods.
-Endemic taxa hotspots and candidate Key Biodiversity Areas are mainly in
-mountainous regions, often overlapping with Natura 2000 protected areas.
-However, human activities impact these areas, and some taxa lack sufficient
-protection.
+Using the latest compiled data from the Natural History Museum of Crete,
+the endemicity distributions and hotspots were identified for the arthropods of 
+Crete. 
+Tackling on the hotspot definition, different grids were tested and the 10km\textsuperscript{2}
+was the most robust for these data. Using this grid, which is also the reference 
+grid of European Environmental Agency, showed that
+Araneae, Chilopoda, Coleoptera, Diplopoda, Heteroptera, Hymenoptera (Chrysididae, Formicidae, Symphyta),
+Lepidoptera (Geometridae), Odonata, Orthoptera, Scorpiones and Trichoptera hotspots
+are mostly distributed in Cretan mountains. This finding complies with 
+similar studies on plants. These hotspots are mostly overlapping with 
+protected areas, like the Natura2000 network.
+However, human activities negatively impact these areas, raising 
+concerns of the status of most endemic arthropods especially those that lack
+sufficient protection.
 
-Apart from plants and fauna, microbes significantly influence soil ecosystem
-functioning, yet synthesizing microbial biodiversity data remains challenging.
-Island biogeography presents a unique opportunity, to advance the understanding
-of microbiome diversity in the soil environment.
-Crete, as a continental island, has a distinct natural and evolutionary history
-with extreme contrasts in vegetation cover, climatic conditions and geology. 
-It has been studied for centuries and because of its location in southeastern
-Mediterranean is important for climate change studies.
-To this end, the first island-wide soil microbiome study conducted on the
-island of Crete in 2016, assessed the microbiome diversity drivers and determined that
-Crete microbial diversity is driven by pH and soil moisture along elevation
-gradient. Together, a team of researchers and citizen scientists collected 435 soil samples
-from 72 sites across four distinct ecozones in a single day. The Island Sampling Day Crete 2016
-project, further integrates microbial data with soil, spatial and remote sensing data,
-to decipher ecosystem function drivers on the island. High-altitude areas harbor diverse
-microorganisms, mirroring patterns seen in other faunal groups like arthropods.
-Spatial data integration identifies warning signals in pristine and grazing
+Bringing it all together, the Island Sampling Day Crete data were further
+enriched for microbial taxa with platforms like PREGO and
+soil ecosystems with spatial and remote sensing data from the Crete Soil System.
+Microbe and ecosystem integration are both necessary to decipher ecosystem
+function drivers on the island.
+High-altitude areas harbor 
+lower diversity of microorganisms, reversing the patterns seen in other faunal groups like arthropods.
+Spatial data integration identified warning signals in pristine and grazing
 ecosystems, aiding in identifying biodiversity drivers and evaluating ecosystem threats.
 
 In summary, studying ecosystems ecology with contemporary tools and data poses unique 
@@ -333,6 +365,9 @@ digital and holistic representation of ecosystems. Multiple steps are still requ
 to this realisation but there is a ground opportunity to unlock novel insights 
 through the integration. Conservation and basic research are occurring simultaneously 
 because the window of action in the face of ecosystem services collapse is narrow.
+Major presupposition to accomplish this is open data, open standards and open 
+source code. All these were implemented and promoted in all chapters of this work
+to make it transparent, interoperable and reproducible.
 
 %\textgreek{
 %Για να κατανοήσουμε τη λειτουργία των οικοσυστημάτων, είναι ανάγκη να διακρίνουμε
@@ -600,9 +635,9 @@ for Object Character Recognition we demonstrated a workflow to rescue such docum
 This workflow is named DECO and is a software container that can handle multiple 
 documents and also combines multiple tools for the steps of the data rescue process.
 
-The soil microbiome is core of the soil ecosystems, and using the aforementioned data I build the Crete Data Cube.
+The soil microbiome is core of the soil ecosystems, and using the aforementioned data I build the Crete Soil System.
 In the final chapter, \ref{cha:crete-soil} of this PhD, I integrate the soil biodiversity, it's functional potential and 
-the Crete Data Cube to decipher the soil ecosystems of concern, vulnerable soils and one health related taxa. The results 
+the Crete Soil System to decipher the soil ecosystems of concern, vulnerable soils and one health related taxa. The results 
 of this analysis provide a new perspective of some well known ecosystems of Crete.
 But also sets an example of the importance of integration of prior knowledge and data to address current challenges.
 
