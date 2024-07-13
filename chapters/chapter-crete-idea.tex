@@ -55,12 +55,16 @@ Biodiversity is represented in ecosystems as point occurrences of each taxon. Th
 DarwinCore standards have assisted a lot the homogeneity of the data. GBIF is a 
 global aggregator that contains such information about all ecosystems from 
 different resources \parencite{noauthor_gbif_nodate}. It is crucial that each sampling point has rich metadata. 
+IUCN redlist \parencite{iucn2024} is also an important resource of species occurrences,
+habitats, threats and conservation status of taxa. Redlists contain 
+manually curated content by experts of each taxonomic group which is updated
+after some years depending on the country and group.
 Sequences from eDNA studies are also part of biodiversity and are stored in 
 databases like ENA, JGI IMG and GenBank.
 From the bacterial point of view, metagenomic samples are abundant in these 
 databases and there are also curated databases that classify them in some baseline functionality. 
 There is also a wealth of knowledge about biodiversity in the literature. 
-Databases like PubMed, Goolge Scholar, Dimensions and Biodiversity Heritage Library 
+Databases like PubMed, Google Scholar, Dimensions and Biodiversity Heritage Library 
 are world class providers with different content.
 
 Examples of platforms that host open data soil data are the 
@@ -73,8 +77,8 @@ To name a few, there openly available climatic, land cover, desertification risk
 vegetation index, bedrock geological formations data.
 
 In this chapter, the focus is system's approach of the soil ecosystems of the island of Crete.
-First, the literature about Crete is aggregated and summarised. Second, biodiversity data
-from GBIF and IUCN \parencite{iucn2024} are collected and third a spatial data cube is created. 
+First, the literature about Crete is aggregated and summarised. Second, samplings and biodiversity data
+are collected and third a spatial data cube with maps is created. 
 Having all these data joined about Crete shows the culmination of intensive 
 research of the Cretan environments over the centuries and provokes for new
 hypotheses and conservation priorities.
@@ -136,6 +140,9 @@ query returned a list with the sample identifiers. Using this list and a custom 
 was invoked with GET requests to retrieve all the available metadata for each sample.
 GBIF has incorporated in the online user interface, the functionality of selecting the area of interest with a bounding box and then requesting
 the data \parencite{noauthor_gbif_nodate}. The request was first approved and then it was downloaded. 
+IUCN redlist data were downloaded from the web interface \parencite{iucn2024}.
+Advanced filters were selected, for Land Regions option \textit{Kriti} was opted 
+along with global geographical scope. This search has a permalink on the user's profile.
 
 WoSIS has a dedicated Web Feature Service (WFS) that is specialised for spatial data \parencite{Batjes2024}. 
 Using the available tutorial and a adjusted R script the samplings and metadata of 
@@ -290,7 +297,7 @@ have been provided by 196 different publishers, e.g Institutions, Museum Collect
 The majority of occurrences, 98571, are originated from citizen science platforms, i.e 
 Cornell Lab of Ornithology, iNaturalist.org,Observation.org, Pl@ntNet and naturgucker.de.
 These occurrences were removed from because they are not submitted by experts.
-There is a single occurrence of 1684, the oldest in Crete on the Gbif platform. Before 
+There is a single occurrence of 1684, the oldest in Crete on the GBIF platform. Before 
 1960 there are 1021 unique taxa with 2051 occurrences submitted by 62 publishers (Figure \ref{ig:crete_taxa_gbif}).
 Edaphobase has in total, 26 resources with 17 different sampling points covering 120 distinct taxa.
 A part of it is included in GBIF, yet it provides some additional functionalities. 
@@ -300,6 +307,10 @@ A part of it is included in GBIF, yet it provides some additional functionalitie
     \caption{Taxa identifications in Crete across the years. Data from GBIF.}
     \label{fig:crete_taxa_gbif}
 \end{figure}
+
+IUCN redlist resource download contains multiple comma-separated files that 
+complement the assessment of each taxon. 
+
 
 Regarding the genomic and metagenomic samples from Crete, ENA hosts all the public 
 available data and metadata. There are 92 studies with 1205 samples.
