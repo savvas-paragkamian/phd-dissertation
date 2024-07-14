@@ -304,13 +304,46 @@ A part of it is included in GBIF, yet it provides some additional functionalitie
 
 \begin{figure}[hbt!] 
     \centering\includegraphics[width=0.7\columnwidth]{crete_gbif_taxa_accumulation_classification.png}
-    \caption{Taxa identifications in Crete across the years. Data from GBIF.}
+    \caption{Taxa identifications in Crete across the years. Data from GBIF filtered to exclude citizen science platforms.}
     \label{fig:crete_taxa_gbif}
 \end{figure}
 
-IUCN redlist resource download contains multiple comma-separated files that 
-complement the assessment of each taxon. 
+IUCN redlist resource download contains three types of download.
+The polygon download contains the spatial polygons of distributions 
+of species. Regarding Crete 526 species have this information.
+IUCN has point occurrences download for 90 species. 
+The data download contains multiple comma-separated files that 
+complement the assessment of each taxon. In total, there are 602 species
+in terrestrial habitats, Table \ref{table:crete_iucn_phyla}. 
+The majority of Critically Endangered species are Tracheophyta, the Phylum
+with most assessments in general. There are many species not assessed in IUCN still.
 
+IUCN also holds threats assessments for 266 species in Crete. 
+The most critical threat is the increase in fire frequency and intensity (72 species) 
+for all Phyla. Then small-holder grazing, ranching or farming (66 species) is responsible
+for the second for important threat of Cretan species. 
+The following three categories are about tourism and recreation areas (63 species),
+housing and urban areas (48 species) and recreational activities(37 species).
+
+\begin{table}[]
+\centering
+\caption{Number of taxa per Phylum and IUCN redlist category about the terrestrial species of Crete.
+    CR - Critically Endangered, EN - Endangered, VU - Vulnerable, NT - Near Threatened,
+    LC - Least Concern, DD - Data Deficient.}
+\label{table:crete_iucn_phyla}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lllllll}
+Category & Arthropoda & Bryophyta & Chordata & Mollusca & Tracheophyta & Total \\
+CR       & 2          & 0         & 1        & 3        & 8            & 14    \\
+EN       & 16         & 0         & 1        & 3        & 9            & 29    \\
+VU       & 15         & 1         & 4        & 27       & 11           & 58    \\
+NT       & 9          & 1         & 0        & 3        & 10           & 23    \\
+LC       & 60         & 2         & 20       & 97       & 247          & 426   \\
+DD       & 28         & 1         & 1        & 10       & 12           & 52    \\
+Total    & 130        & 5         & 27       & 143      & 297          & 602  
+\end{tabular}%
+}
+\end{table}
 
 Regarding the genomic and metagenomic samples from Crete, ENA hosts all the public 
 available data and metadata. There are 92 studies with 1205 samples.
@@ -322,7 +355,7 @@ Insect metagenome has 108 samples from 2 studies
 and plant metagenomes contains 69 samples in 2 studies.
 Then follows air metagenome with 61 samples during 3 studies.
 
-\begin{figure}[hbt!] 
+\begin{figure}[!htb] 
     \centering\includegraphics[width=\columnwidth]{crete_map_crete_samples.png}
     \caption[Samplings in Crete]{Samplings in Crete. A. GBIF occurrences in Crete.
     B. Edaphobase samplings in Crete. C. ENA metagenomic samples in Crete (without ISD). D. WoSIS soil samples in Crete.}
