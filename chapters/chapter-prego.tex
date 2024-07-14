@@ -132,7 +132,7 @@ and through Application Programming Interface.
 The knowledge graph in Figure \ref{fig:prego-pipeline} step 5, contains
 nodes categorised in three entity types: \textit{Process}, \textit{Environment}, and \textit{Organism}. 
 Organisms, i.e taxa, are the microbial NCBI Taxonomy Ids (Bacteria, Archaea, and unicellular eukaryotes).
-All environments are mapped to terms of Environmental Ontology. 
+All environments are mapped to terms of Environment Ontology. 
 Each process corresponds to either a Biological process (GObp) or a Molecular function (GOmf) identifier of Gene Ontology. 
 
 PREGO's knowledge base is structured into three channels, depended on the category of the data type.
@@ -145,7 +145,7 @@ Hence, in this channel, the taxonomic and functional profiles and their metadata
 \label{subsec:prego-dict}
 
 PREGO's entities are 4 types and each term corresponds to specific identifier. 
-NCBI taxonomy identifiers for taxa, Environmental Ontology for environments and
+NCBI taxonomy identifiers for taxa, Environment Ontology for environments and
 Gene Ontology for Biological Processes (GObp) and Molecular Functions (GOmfs).
 Gene Ontology was selected because it has a Creative Commons Attribution 4.0 License
 and because it has been mapped to many other resource identifiers.
@@ -527,7 +527,7 @@ meadow soil (ENVO:00005761) has 226 associations.
    \begin{figure}[hbt!]
       \centering
       \includegraphics[width=\columnwidth]{figures/prego_soil_arena.png}
-      \caption[PREGO soil network]{
+      \caption[PREGO soil network of literature and environmental samples]{
          The four layers of associations, -27 is environments, -2 is organisms, -21 is biological processes, -23 is molecular functions. The nodes that are labeled are the with the most associations. With gray are displayed the Literature derived associations while with pale yellow the Environmental samples. }
       \label{fig:prego-soil-network}
    \end{figure}
@@ -536,7 +536,7 @@ meadow soil (ENVO:00005761) has 226 associations.
    \begin{figure}[hbt!]
       \centering
       \includegraphics[width=\columnwidth]{figures/prego_soil_arena_knowledge.png}
-      \caption[PREGO soil network]{
+      \caption[PREGO soil network of associations of annotated genomes]{
          Associations of Annotated Genomes in PREGO, -27 is environments, -2 is organisms.}
       \label{fig:prego-soil-network_k}
    \end{figure}
