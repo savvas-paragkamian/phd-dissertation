@@ -148,6 +148,56 @@ Code is structured to be reproducible and interoperable.
 
 \subsection{Soil microbiome}\label{soil_microbiome}
 
+\begin{figure}[hbt!] 
+    \centering\includegraphics[width=\columnwidth]{isd_taxonomy_representative_phyla_box_label2_f.png}
+\caption{The representative phyla of the different CLC land cover category, level 2. On the x axis is the relative abundance. Each dot is a sample.}
+    \label{fig:isd_representative_phyla_label2}
+\end{figure}
+
+
+The diversity and number of taxa across various land use classes, geological categories,
+desertification risk and aridity levels are summarised in table \ref{table:data_cube_summary}.
+Among the land use classes, arable land is represented by 4 samples containing 1518 taxa,
+with an average Shannon index diversity of 4.73. In contrast, forests, also represented by
+4 samples, exhibit higher diversity with 1803 taxa and a Shannon index of 4.91.
+Heterogeneous agricultural areas are sampled more extensively with 31 samples,
+yielding 13701 taxa and a Shannon index of 4.83, indicating a higher diversity
+within this category.
+Scrub and/or herbaceous vegetation associations,
+the most extensively sampled class with 58 samples, contain 24394 taxa and
+have a Shannon index of 4.76. Urban fabric, with 4 samples, includes 1765
+taxa and a Shannon index of 4.78. ISD project doesn't have samples from inland 
+waters and mines/construction sites. In addition, scrubs show higher diversity among 
+phyla and relative abundances, i.e there are some samples that have very high abundance of 
+Fermicutes, Figure \ref{fig:isd_representative_phyla_label2}.
+
+Geological classes also show considerable variation in diversity and number of taxa.
+The J-E (Plattenkalk) category, with 22 samples, includes 8995 taxa and has a Shannon index of 4.75.
+The K.k (Limestone of Tripoli) category, with 27 samples, holds 11277 taxa and
+an index of 4.72. The Mk (Neogenic) class, represented by 13 samples, includes 5618 taxa and a
+Shannon index of 4.79. The Mm.I (Neogenic) category contains 12 samples with 5259 taxa and a Shannon index of 4.86.
+Ph-T (Phylites - Chalazites), with 14 samples, harbors 6720 taxa and a Shannon index of 4.92,
+the highest diversity value. It is followed by Q.al (Quaternary alluvium), the most sampled
+geological class with 34 samples, contains 15580 taxa and has a Shannon index of 4.91, reflecting substantial biodiversity.
+
+In the context of desertification risk, the F2 (fragile) category, with 53 samples,
+includes 23404 taxa and a Shannon index of 4.82. The F1 (fragile) category,
+represented by 22 samples, holds 8817 taxa and has a Shannon index of 4.7.
+The C2 (critical areas) category, with 6 samples, includes 2113 taxa and a Shannon index of 4.59.
+The F3 category, represented by 14 samples, contains 5900 taxa and a Shannon index of 4.82,r
+while the C1 category, with 7 samples, includes 3191 taxa and has a
+Shannon index of 4.93, indicating the highest diversity among the desertification risk classes.
+
+Aridity classes also show varied diversity and number of taxa. The semi-arid class,
+extensively sampled with 98 samples, includes 43064 taxa and has a Shannon index of 4.83,
+reflecting significant biodiversity. The dry sub-humid class, with 32 samples, holds
+13649 taxa and has a Shannon index of 4.79. The humid class, with 8 samples, includes 2968 taxa and a Shannon index of 4.55, indicating lower diversity compared to other aridity classes.
+
+In summary, the analysis reveals that categories like forests, heterogeneous agricultural areas,
+and scrub and/or herbaceous vegetation associations exhibit high biodiversity.
+Geological classes such as Ph-T and Q.al, along with aridity classes like
+semi-arid regions, also show substantial diversity.
+
 \begin{sidewaystable*}
     \caption{Summary of the different spatial layers in Crete in terms of total area, number of samples and microbial diversity.\label{table:data_cube_summary}}
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llllllll@{\extracolsep{\fill}}}
@@ -209,13 +259,11 @@ Network of associations (FlashWeave, sensitive) after filtering prevalent ASV (m
 abundance>0.001, samples > 2) led to 7,455 ASVs and
 29,282 associations (787 are negative).
 
-\subsubsection{Functions}\label{functions}
-PREGO
-
-
+\subsubsection{Significant taxa}\label{sig_taxa}
 The functional annotation was performed with FAPROTAX. Potential human pathogens 
-appear concentrated in Richtis gorge. Most plant pathogens occur in an agricultural 
-field in south Rethymnon. 
+appear concentrated in Richtis gorge. Some examples of potential pathogens identified in soil 
+are \textit{Klebsiella aerogenes}, \textit{Mycobacterium neoaurum}, \textit{Bacillus anthracis} and \textit{Acinetobacter lwoffii}.
+Most plant pathogens occur in an agricultural field in south Rethymnon. 
 
 \begin{figure}[t] 
     \centering\includegraphics[width=\columnwidth]{crete_integration_functions_faprotax}
@@ -223,7 +271,6 @@ field in south Rethymnon.
     \label{fig:isd_functions_faprotax}
 \end{figure}
 
-\subsubsection{Significant taxa}\label{sig_taxa}
 Differential abundance (ANCOM-BC2) showed that there are 294 taxa that are significantly different
 with Annual mean temperature and elevation. The geological rock type doesn't distinguish taxa
 across the island. \textit{Rhodococcus equi} (pathogen of foal or similar) is significantly abundant in
