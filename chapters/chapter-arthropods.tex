@@ -162,7 +162,7 @@ spatial analysis and visualization, facilitating the conservation status evaluat
     \subsection{Grid assay}
     \label{subsec:arthropods-ehs-kbas}
 
-    Assessments of hotspots of endemic and threatened species of Cretan arthropods
+Assessments of hotspots of endemic and threatened species of Cretan arthropods
 ware carried out using various grid sizes, including 1, 4, 8, and 10 square kilometers, and
 adaptive resolution algorithms such as quadtree. 
 Endemicity Hotspots (EH) used here are the local biodiversity hotspots which contain
@@ -216,6 +216,8 @@ Code is reproducible and available in this
     \subsection{EOO and AOO}
     \label{subsec:arthropods-sampling}
 
+
+
    \begin{figure}[htp!]
       \centering
       \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-FigS1.png}
@@ -235,6 +237,12 @@ Code is reproducible and available in this
     \subsection{Hotspot size selection}
     \label{subsec:arthropods-grids}
 
+Another definition of endemicity hotspots is using 10\% of grids with maximum
+overlap between the EHs of the different orders.
+This yielded essentially the same mountains as aggregation points of EHs.
+Only Thrypti is excluded with this method which is undersampled in groups such as
+Orthoptera, Araneae, Tenebrionidae and Carabidae, but still has an important
+endemic biodiversity mostly driven by Staphylinidae.
 
    \begin{figure}[htp!]
       \centering
@@ -349,81 +357,78 @@ water                                          & 165         & 78               
 \section{Discussion}
 \label{sec:arthropods-discussion}
 
-    \subsection{Endemicity Hotspots}
-    \label{subsec:arthropods-Endemicity-Hotspots}
+Arthropod species have huge gaps regarding their IUCN assessments worldwide,
+country wide and in Crete, as shown in Figure \ref{figures/arthropods-FigS1.png}. 
+This is a fact that has been documented in multiple occasions \parencite{chowdhury2023protected}. 
+Arthropods are mostly assessed with the Criterion B \parencite{cardoso2011adapting,carpaneto2015a-red-list},
+because the criteria A, C, D and E are rarely available for these taxa.
+This means that the assessments could exaggerate the dangers of Arthropods \parencite{cardoso2011adapting},
+albeit being real. 
 
-Mountains host a great amount of Earth’s biodiversity, being a main driver for
-the birth of species \parencite{antonelli2018geological,noroozi2018hotspots,rahbek2019building,Rahbek2019}
-and a crucial frontier for their fate \parencite{steinbauer2018accelerated,urban2018escalator}.
-Crete is not an exception to this trend \parencite{kougioumoutzis2020plant,trigas2013elevational}.
-Our results conform to that, since the EHs are gathered primarily in the major
-Cretan mountains. Lefka Ori and Dikti are the sites with the most
-EHs, in agreement with studies focused on vascular plants \parencite{dimitrakopoulos2004questioning,kougioumoutzis2020plant}.
-\textcite{sfenthourakis2001hotspots}, employing invertebrate groups, also recovered these mountains as EHs.
+The endemic arthropods of Crete dataset is extremely inhomogeneous due to
+different sampling methods and sampling efforts per order, as well as per family.
+It is also historically inconsistent due to the variable interest towards
+different groups in different times.
+Thus, the handling of the occurrences of this dataset are kept with absolute numbers 
+and are not normalised or extrapolated. 
+Nevertheless, it is the most complete and integrated dataset regarding the Cretan Arthropods.
+The congruence with EHs obtained in other studies with completely different
+datasets (i.e. vascular plants) \parencite{kougioumoutzis2020plant} and their biogeographical interpretation suggest
+that they are not a sampling artifact. 
+This important bias was also tackled with the inference of the adaptive grid using quadtrees.
+The grid size of this grid is based on the sampling intensity, the higher the
+intensity and the cell breaks into smaller ones resulting in 157 grids with
+8 km length, 38 with 4 km and 74 with 2 km. Essentially, yielding the same areas 
+as hotspots, Table \ref{table:arthropods-tableS2}. Furthermore, the 10x10km reference 
+grid includes more endemics, Figure \ref{fig:arthropods-different-hotposts-stat},
+hence representing a better proxy for future conservation plans.
 
-Islands are biodiversity sanctuaries \parencite{whittaker2007island}, and
-so are mountains \parencite{rahbek2019humboldts}. Our work advocates for approaches that
-treat islands and mountains under a holistic perspective. The combination of
-the two provides a complex biogeographical interplay governing the forces of
-speciation, preservation and extinction of biodiversity \parencite{steinbauer2016topography-driven}.
-This synergistic effect of mountains-islands has also been recovered in other
-areas such as the Balearic islands \parencite{guardiola2023are-mediterranean}.
+It appears that only in Coleoptera there is an oversample in the Cretan mountains \ref{fig:arthropods-sampling-intesity}.
+On the other hand, the oversampling in the Cretan mountains is a result of two facts.
+First, the high biodiversity that is concentrated there, creates a positive
+feedback where new species are discovered in the mountains driving more experts
+to search the mountains with more intensity.
+Second, the geological and ecological
+complexity of the mountain relief requires an intense sampling in order to
+cover its habitat diversity. In contrast the lowlands are more homogeneous and require less sampling effort.
 
-    \subsection{Criterion B preliminary assessment}
-    \label{subsec:arthropods-species-assessment-disc}
+Endemicity hotspots of Crete are mostly concentrated at the major mountains. 
+Similarly to other studies on plants \parencite{dimitrakopoulos2004questioning,kougioumoutzis2020plant}
+and invertebrates \textcite{sfenthourakis2001hotspots},
+Lefka Ori mountain range and mount Dikti have the most EHs, Figure \ref{fig:arthropods-different-hotposts}.
+Mountains are known for their increased biodiversity  \parencite{antonelli2018geological, Rahbek2019} 
+and Crete follows this trend with endemic arthropods, Figure \ref{fig:arthropods-hotspots-order}.
 
-Criterion B is the widely used for Arthropods \parencite{cardoso2011adapting,carpaneto2015a-red-list},
-because the majority of Arthropods taxa are missing necessary information of the other criteria (A, C, D and E).
-Criterion B could overestimate the danger of Arthropods \parencite{cardoso2011adapting},
-which should always be taken into consideration.
+The satellite islands of Crete are consistently not obtained as EHs, with the exception of
+Gavdos as an EH in the 4 x 4 km grid. The rest of the islands are not yielded
+even with different grids, yet they host endemic species (i.e. Dionysades islands
+host two endemic taxa of Tenebrionidae), and thus have conservation value.
+Of course, all core islets of Crete are under Natura 2000 protection, thus the
+assurance of the implementation of the network’s rules and measures will play an
+important role in the conservation of their single island endemics.
+Besides having single island endemic species, islets like Gavdos or Dionysades doe trigger
+other criteria, like Key Biodiversity Areas that can be included in a conservation plan \parencite{farooq2023a-call}.
+This analysis is a first approach of Crete’s Arthropods distribution and hotspot status.
+The tools (but also the policies) behind the selection of adequate protection
+areas need to be refined, but this is a global issue when it comes to spot areas
+of biogeographical or conservational importance. 
 
-Arthropods with wider ranges that are not assessed as Threatened under
-criterion B, are not necessarily Least Concern and should not be neglected.
-Arthropod communities can be affected by the reduction of the abundance of
-common and abundant species that offer important functions to the biocommunity.
-Wide range does not guarantee high abundance (even though this is true for many
-taxa) and even common species can be threatened \parencite{habel2018vanishing,klink2023disproportionate}.
+Arthropod species, particularly insects within hotspots are significantly impacted
+by human activities, notably agriculture, which represents 19.6\% of these activities \parencite{raven2021agricultural}.
+Agriculture-related threats pose the foremost danger to insect species even within
+protected areas \parencite{chowdhury2023protected}. There is an almost equal trend
+of land-use change from cropland to forest and vice versa within EHs, Table \ref{table:arthropods-tableS4}
+This indicates a dual process of degradation and recovery across various sites.
+Additional research is critical to understand the impact, positive or negative, of these transitions on endemic arthropods.
+The transformation of a significant portion of cropland into pasture has dual
+effects, such as a positive influence on Gnaphosidae communities \parencite{kaltsas2019overgrazed}
+and negative effects on Carabidae species \parencite{kaltsas2013ground}.
+Furthermore, the observed reduction in cropland may reflect the broader trend
+of urbanization occurring largely outside EHs, but the potential shift towards
+mountain areas due to new tourism forms could pose a serious threat to these important conservation areas.
 
-The inclusion of Arthropod taxa in protected areas is often insufficient, with
-Arthropods experiencing declines inside the protected areas \parencite{borges2005ranking,chowdhury2023protected,harry2019protected,rada2019protected}.
-In fact, even when certain Arthropod groups are adequately included in N2K,
-there are gaps and omissions \parencite{sanchez-fernandez2008are-the-endemic,verovnik2011is-the-natura}.
-At a global level 75\% of Insects are not sufficiently covered by protected
-areas \parencite{chowdhury2023three-quarters}. Crete stands in an intermediate position,
-following the general trend of Greece’s N2K adequacy, being the best covered
-area at a national level \parencite{kougioumoutzis2021plant,spiliopoulou2021the-natura}.
-However, there are some clear gaps regarding certain taxa, encouraging more
-locally focused conservation policies complementary to N2K. For example actions
-need to be taken for KBAs that fall outside N2K like Kritsa and Zakros.
-
-Biases towards Arthropods cause their poor coverage by protected
-areas \parencite{chowdhury2023protected,damen2013protected,delso2021protected}. These
-biases derive from geography, size, color and charisma \parencite{cardoso2012habitats,mammola2020towards,wang2021out-of-sight},
-and even from political/economic reasons \parencite{dias-silva2021protected}. For example,
-the strongest driver for a conservation program funding within the European
-Union is the online popularity \parencite{mammola2020towards}. The unpopularity of
-Arthropods has begun to change \parencite{wagner2021insect}, especially through citizen
-science, which is a trend we should build on to properly conserve the Arthropods.
-
-    \subsection{Human Intervention in Arthropods’ EHs}
-    \label{subsec:arthropods-human-intervention-ehs}
-Human activities account for almost 20\% of the EHs. The primary human activity
-in the EHs is agriculture (~19.6\%). Agricultural intensification is one of the
-most important drivers of Arthropods’ decline \parencite{bruhl2019biodiversity,habel2019agricultural,raven2021agricultural}.
-Moreover, threats associated with agriculture are the number one threat for
-Insect species inside protected areas in Europe \parencite{chowdhury2023protected}.
-Nevertheless, regarding change in land use, there is a somewhat equal
-transition trend from cropland to forest and vice versa inside EHs and KBAs
-(Table \ref{table:arthropods-tableS4}). This means that while some sites are being
-degraded others may recover. More research within EHs and KBAs is essential in
-order to quantify the impact (negative or positive) of these transitions to the
-endemic Arthropods. A vast amount of cropland has been transformed to pasture
-lands (Table \ref{table:arthropods-tableS4}) which requires further examination,
-since grazing has both positive [eg. on Gnaphosidae (Spiders) communities \parencite{kaltsas2019overgrazed}]
-and negative effects [e.g. Carabidae (Coleoptera) \parencite{kaltsas2013ground}].
-The reduction of croplands could be interpreted under the general trend of
-urbanization (Table \ref{table:arthropods-tableS4}), which nevertheless occurs
-outside EHs and KBAs, but a shift towards montane areas especially under new
-forms of tourism could deeply impact the sites of conservation importance.
-
+Arthropods are crucial for soil functioning and their role as ecosystem engineers 
+is mostly neglected \parencite{COLEMAN2024131}. There is still a lot of effort to decipher their interplay 
+with plants and microbes but the first step is to conserve them and overcome the 
+biases in conserving popular species \parencite{mammola2020towards}.
 
