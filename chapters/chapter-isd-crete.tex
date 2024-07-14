@@ -277,18 +277,12 @@ by physical and chemical features.
       \label{fig:isd_elevation_metadata}
 \end{figure}
 
-\begin{figure}[hbt!]
-      \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/isd_diversity_elevation_bin_boxplot.png}
-      \caption[Elevation and diversity indices]{The distributions of asv, taxa and multiple $\alpha$ diversity indices across the elevation of samples}
-      \label{fig:isd_elevation_taxa}
-\end{figure}
 
-Total nitrogen and water content increases with elevation \ref{fig:isd_elevation_metadata}. 
+Total nitrogen and water content have a positive correlation with elevation \ref{fig:isd_elevation_metadata}. 
 
 Microbial $\beta$ diversity is associated in different ways with physical and chemical
 measurements. UMAP 1 ordination was largely driven by
-elevation (F=23, p < 0.001). 
+elevation (F=23, p < 0.001), Figure \ref{fig:isd_elevation_umap1}. 
 UMAP 2,
 was significantly associated with soil moisture (F=90, p < 0.001).
 PCoA 2 also positively correlated with both organic carbon and nitrogen.
@@ -305,7 +299,7 @@ A chi square test was performed to investigate whether the cluster membership of
 is statisticaly associated with metadata. Elevation bin, p=0.07646, didn't show any 
 significance. Vegetation zone (p=0.0004998) on the other hand was significant.
 
-\begin{figure}[hbt!]
+\begin{figure}[!hbt]
       \centering
       \includegraphics[width=\textwidth,keepaspectratio]{figures/isd_asv_clustering_bray_hclust_samples.png}
       \caption[Samples dendrogram]{Dendrogram of clustering of samples based on the Bray-Curtis dissimilarity}
