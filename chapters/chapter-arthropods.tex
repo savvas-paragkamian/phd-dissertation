@@ -97,47 +97,63 @@ online databases.
 \section{Methods}
 \label{sec:arthropods-method}
    
+    \subsection{Data retrieval}
+    \label{subsec:arthropods-land-use}
+
+The occurrences of the endemic arthropods of Crete were downloaded from the
+\href{https://zenodo.org/records/10635645}{Zenodo repository}. This dataset
+is a manually compiled dataset from the Natural History Museum of Crete \parencite{bolanakis2024}.
+
+Retrieval and compilation of information on arthropod species' taxonomy,
+global distributions, and IUCN status was performed using public databases.
+Taxa from IUCN that appear in Crete were downloaded from the website \parencite{iucn2024}. IUCN provides the 
+interactive maps selection functionality. 
+The dataset of endemic species assessments from a TSV file and several IUCN Red
+List datasets for Greece, endemic Greek species, Europe, and the world.
+Each Red List dataset, was processed to identify threatened species
+(those categorized as Critically Endangered, Endangered, or Vulnerable).
+They were grouped by taxonomic order and threat status, and a source identifier was created.
+All arthropod species names from the IUCN Red List were used to retrieve their GBIF IDs
+and resolve their species names using the GBIF Backbone Taxonomy.
+This taxonomy was used to harmonise and summarise all different datasets from IUNC
+
+Reference grids were downloaded as shapefiles from \href{https://www.eea.europa.eu/en/datahub/datahubitem-view/3c362237-daa4-45e2-8c16-aaadfb1a003b}{EEA reference grid}.
+The European Environment Agency grids are the standard reporting format of the Bern Convention
+on the Emerald Network of Areas of Special Conservation Interest (ASCI).
+
+Landscape changes are mostly due to human activities in Crete.
+The Historic Land Dynamics Assessment (HILDA+) dataset \parencite{winkler2021global}
+is a global analysis to identify land use changes using remote sensing and 
+historical data. Crete was cropped from this dataset and the land use change was 
+summarised for 20 years period, from 1998 to 2018. This period has the most 
+high quality data baselines. The dataset is in raster format of 1 km\textsuperscript{2}
+resolution. Each year has one raster file with values the ids of the land use. 
+Using the 1998 and 2018 baselines, they were combined to calculate the 
+transitions of each cell from one id to another. Some cells have undergone 
+multiple transitions during this period which are neglected in the analysis.
 
     \subsection{Taxa distributions}
     \label{subsec:arthropods-eoo-aoo}
-Retrieval and compilation of information on arthropod species' taxonomy,
-global distributions, and IUCN status was performed using public databases.
-The dataset of endemic species assessments from a TSV file and several IUCN Red
-List datasets for Greece, endemic Greek species, Europe, and the world.
 
-Taxa from IUCN that appear in Crete were downloaded from the website \parencite{iucn2024}. IUCN provides the 
-interactive maps selection functionality. 
-%It begins by loading necessary libraries such as sf, tidyverse, readxl, rredlist, taxize, units, and vegan. 
-For each Red List dataset, it processes the data to identify threatened species
-(those categorized as Critically Endangered, Endangered, or Vulnerable), groups
-them by taxonomic order and threat status, and adds a source identifier.
-These processed datasets are combined into a single dataset of threatened species, which is saved to a TSV file.
-The script also filters out all arthropod species from the IUCN Red Listr
-datasets, saves this information to a TSV file, and retrieves their GBIF IDs,
-although the time-consuming classification process is commented out.
-Additionally, the script resolves species names using the GBIF Backbone Taxonomy
-and retrieves GBIF IDs for the endemic species, identifying and handling species
-without GBIF IDs separately. It performs classification for the species using
-GBIF data, merges this with the original endemic species data, and saves the
-final dataset with taxonomic information to a TSV file.
-
-The aoo overlap function is part of the IUCN assessment process for arthropods
-under Criterion B, which focuses on the Area of Occupancy (AOO) and its overlap
-with protected areas. This function takes in the shapefiles of species' AOO,
+Endemic arthropod distributions were estimated using the criterion B of IUCN. 
+Three metrics are important in the criterion B, the Extent of Occurrence (EOO),
+the Area of Occupancy (AOO) and 
+number of locations of a species that are 10km apart.
+AOO function input is the shapefile of a species occurrences,
 a baseline map (Crete), a shapefile of overlap areas (protected areas and land use maps),
 Initially, each species' AOO is calculated, converting the data to a spatial feature
-and calculating its area in square kilometers. It computes the intersection of
-the AOO with protected areas, determines the overlapping area, and stores the
-species' name, AOO area, and overlap area. Maps are also generated for each
-species that depict the AOO and its overlap with protected areas.
+and calculating its area in square kilometers. 
+AOO function was set to use 2x2 km grids that it maps on the area after 1000
+repeats. The placement of the grid with maximum squares is selected and this AOO 
+is selected for a taxon. Hence, AOO rasterized taxon occurrences to an optimum 
+2x2km grid to estimate its' distribution.
 
-The eoo calculation function is designed to calculate the Extent of Occurrence (EOO),
-the number of sites and the overlap with a provided area.
+The Extent of Occurrence (EOO) calculation is the convex hull polygon of the occurrences 
+of a taxon. There are cases where this metric is overlapping with marine areas due 
+to the nature of the polygon. Hence this metric tends to overestimate the 
+total area of distribution of a taxon.
 The EOO for a single species is calculated if there are more than three occurrences.
-EOO is the convex hull of the species' occurrences, it is checked if the EOO is valid
-polygon and calculates its area in square kilometers. The function computes the intersection of the EOO with protected areas and calculates the overlapping area.
-One figure for each species is also produced for more thorough assessments.
-Together, these functions provide a comprehensive method for calculating and
+Together, these calculation provide a comprehensive method for calculating and
 assessing the AOO and EOO of arthropods, including their overlaps with protected
 areas, as part of the IUCN assessment process. This approach allows for detailed
 spatial analysis and visualization, facilitating the conservation status evaluation of arthropod species.
@@ -145,60 +161,53 @@ spatial analysis and visualization, facilitating the conservation status evaluat
 
     \subsection{Grid assay}
     \label{subsec:arthropods-ehs-kbas}
-Assessments of hotspots of endemic and threatened species of Cretan arthropods
-using various grid sizes, including 1, 4, 8, and 10 square kilometers, and
-employs adaptive resolution techniques such as quadtree. Initially, it loads
-essential data, including endemic species occurrences, Cretan shapefiles, and
-Natura2000 areas. For each grid size, the script transforms and joins occurrence
-data, calculates distinct species and sampling efforts, and assesses correlations
-between species richness and sampling intensity. The 10 km grid analysis involves
-spatial joins, summarizing species occurrences, and calculating sampling intensity,
-followed by Pearson correlation assessment. The 1 km grid analysis similarly joins data,
-identifies species occurrences, and evaluates correlation metrics.
-The 4 and 8 km grids utilize manually created rasters to map occurrences and
-sampling efforts, with similar summarization and correlation steps. The script
-then explores adaptive resolution using quadtree, generating spatial polygons
-and assessing species richness and endemism hotspots.
-Finally, the results are visualized in detailed plots, showcasing hotspots
-across various grid sizes and the adaptive quadtree approach, providing a comprehensive assessment of biodiversity hotspots on Crete.
 
+    Assessments of hotspots of endemic and threatened species of Cretan arthropods
+ware carried out using various grid sizes, including 1, 4, 8, and 10 square kilometers, and
+adaptive resolution algorithms such as quadtree. 
+Endemicity Hotspots (EH) used here are the local biodiversity hotspots which contain
+the 10\% of the richest (in endemic taxa) grid cells.
+The testing of different grid sizes and the adaptive grid is helpful to avoid 
+spatial scale biases and sampling biases.
+Arthropod order biases were also investigated to examine whether some species
+rich taxonomic groups drive the hotspots (e.g. Coleoptera). Hence, endemicity 
+hotspots were also created for each order and their overlap was measured.
 
-In order to avoid biases concerning the grid cell size, the same
-pipeline was tested with cells of different size (4 x 4, 8 x 8 and 10 x 10 km).
-For the subsequent analyses we opted for the 10 x 10 km grid (see section \ref{subsec:arthropods-grids})
-which is also the EEA reference grid, the standard for the reporting format
-(Groups of Experts, 2017) of the Resolution No. 8 (2012) of the Standing Committee
-to the Bern Convention on the Emerald Network of Areas of Special Conservation Interest (ASCI).
-Moreover, the EHs of the various cell sizes are aggregated in the same areas.
-We made the same treatment for each of the selected groups separately.
-We redefined EHs as the 10\% of the grid cells with max overlap of the orders
-to check for biases towards more speciose orders (e.g. Coleoptera).
+To facilitate this analysis, the essential data, including endemic species occurrences, Crete shapefiles
+are used. For each grid size, occurrence
+data were transformed and joined to calculate distinct species and sampling efforts,
+and correlations between species richness and sampling intensity.
+The 1km\textsuperscript{2} and 10 km\textsuperscript{2} grids are the 
+EEA reference grid.
+These grids are in shapefile format and their handling involves spatial joins,
+summarizing species occurrences, and calculating sampling intensity,
+followed by Pearson correlation assessment.
 
-    \subsection{Land use change}
-    \label{subsec:arthropods-land-use}
-To examine the human pressure (change in land use, agriculture), I used the
-Historic Land Dynamics Assessment (HILDA+) dataset \parencite{winkler2021global} to
-estimate the change of land use the from 1998 to 2018. Furthermore, I examined
-the overlap of the AOO.
+The 4 and 8 km\textsuperscript{2} grids utilize manually created rasters to map occurrences and
+sampling efforts, with similar summarization and correlation steps.
+The adaptive resolution grid is based on quadtrees, generating spatial polygons
+and assessing species richness and endemicity hotspots.
+The minimum cell length was set to 1 km\textsuperscript{2} and maximum to 10 km\textsuperscript{2}.
+The algorithm split threshold was set to 4, i.e. if a grid has more than 4 samplings
+it is split.
+All various grid sizes and the adaptive quadtree approach, provide a comprehensive assessment of biodiversity hotspots on Crete.
 
 
     \subsection{Code}
     \label{subsec:arthropods-tools}
 
-The coordinate reference system we used for all location data is WGS84 - EPSG:4326.
+The coordinate reference system WGS84 - EPSG:4326 was used throughout the analysis.
+Data, like the EEA reference grid were transformed to EPSG:4326 prior analysis.
 
-We performed the analyses using the R Statistical Software \parencite{rcoreteam},
-the visualization using the ggplot2 R package \parencite{wickham_ggplot2_2016}. The figures
-created are colored using the colorblind-friendly 'Okabe-Ito' palette \parencite{ichihara2008color}.
-We calculated EOO and AOO using the ConR R package \parencite{dauby2017conr:} and PACA
-using custom scripts. For the spatial data handling, transformations and
-geometry we used the sf v1.0-14 \parencite{pebesma2018simple} and terra v1.7-55 R packages \parencite{hijmans2024terra}.
-Adaptive grid is created using the quadtree R package \parencite{friend2023quadtree}.
-Jaccard similarity was calculated with the vegan 2.6-4 R package \parencite{oksanen2024vegan}.
-All scripts are reproducible by design and available in this 
+All calculations, spatial data handling and data retrieval were implemented using the R Statistical Software \parencite{rcoreteam}.
+Ggplot2 package was used for bar plots, heatmaps, boxplots and maps \parencite{wickham_ggplot2_2016}.
+EOO was calculated with a custom function and AOO using the ConR R package \parencite{dauby2017conr:}.
+Spatial analysis involved polygon and raster data handling, using the sf v1.0-14 \parencite{pebesma2018simple}
+and terra v1.7-55 R packages \parencite{hijmans2024terra}, respectively.
+Quadtree R package was used to infer the adaptive resolution grids \parencite{friend2023quadtree}.
+Code is reproducible and available in this 
 \href{https://github.com/savvas-paragkamian/arthropoda_assessment_crete}{GitHub repository}.
 
-Data, scripts and results of the analysis are available and documented \href{https://github.com/savvas-paragkamian/arthropods_assessment_crete}{here} 
 
 % RESULTS
 \section{Results}
