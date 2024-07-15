@@ -216,19 +216,32 @@ Code is reproducible and available in this
     \subsection{EOO and AOO}
     \label{subsec:arthropods-sampling}
 
-
+The Orders of Arthropods under this study are Araneae, Chilopoda, Coleoptera,
+Diplopoda, Heteroptera, Hymenoptera (Chrysididae, Formicidae, Symphyta),
+Lepidoptera (Geometridae), Odonata, Orthoptera, Scorpiones and Trichoptera.
+As shown in Figure \ref{fig:arthropods-figS1}, the taxa that are assessed are 
+a very low number comparing to identified taxa. The dataset contains 343 taxa species and subspecies).
+These taxa have been documented in 4,924 occurrences across 1,569 sampling sites in the island.
 
    \begin{figure}[htp!]
       \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-FigS1.png}
+      \includegraphics[width=\textwidth,keepaspectratio]{figures/arthropods-FigS1.png}
       \caption[Comparisons of Threatened Endemics in Crete, Greece, Europe and the World]{Comparisons of Threatened Endemics in Crete, Greece, Europe and the World for seven Arthropod groups (top to bottom, data aggregated from the IUCN web resource). Values are absolute (proportion in parentheses). Also, note that there are 3 threatened species of Scorpiones in the World Red List column and 5 not threatened species in the Trichoptera column.}
       \label{fig:arthropods-figS1}
    \end{figure}
 
+The preliminary assessment using EOO and AOO assisted to assign approximately the 
+categories of IUCN, Figure \ref{fig:arthropods-eoo-aoo}.
+Both metrics are required and the almost linear positive relationship is also visible. 
+In addition, most endemics are near the origin of axes, reflecting the narrow 
+distributions of most endemics.
+This rough assessment 
+identified that many species could be assigned to Vulnerable and Endangered categories, though 
+manual curation is required. 
 
-   \begin{figure}[htp!]
+   \begin{figure}[htb!]
       \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods_aoo-eoo_order.png}
+      \includegraphics[width=\textwidth,keepaspectratio]{figures/arthropods_aoo-eoo_order.png}
       \caption[AOO, EOO relationship per order]{The relationship of AOO and EOO of species of different orders. Each dot is a species. }
       \label{fig:arthropods-eoo-aoo}
    \end{figure}
@@ -237,67 +250,49 @@ Code is reproducible and available in this
     \subsection{Hotspot size selection}
     \label{subsec:arthropods-grids}
 
-Another definition of endemicity hotspots is using 10\% of grids with maximum
-overlap between the EHs of the different orders.
-This yielded essentially the same mountains as aggregation points of EHs.
-Only Thrypti is excluded with this method which is undersampled in groups such as
-Orthoptera, Araneae, Tenebrionidae and Carabidae, but still has an important
-endemic biodiversity mostly driven by Staphylinidae.
+The samplings cover all areas of Crete and it's satellite islands. 
+Sampling intensity is not distributed equally across Crete, Figure \ref{fig:arthropods-sampling-intesity}.
+Most samplings appear in the mountains ranges of Crete and near Heraklion city.
+Regarding Orders, Odonata are mostly found in lowlands of Crete, whereas 
+most of the other Orders have been sampled in the mountains. 
+Coleoptera are the most sampled Order as expected. 
 
-   \begin{figure}[htp!]
+
+   \begin{figure}[htb!]
       \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-fig_crete_sampling_intensity_order.png}
+      \includegraphics[width=\textwidth,keepaspectratio]{figures/arthropods-fig_crete_sampling_intensity_order.png}
       \caption[Sampling intensity]{Sampling intensity in Crete (i.e number of samples) in each 10 km grid for all samples and for each arthropod order.}
       \label{fig:arthropods-sampling-intesity}
    \end{figure}
 
+Endemicity hotspots (EH) are the top 10\% of grid cells with the most taxa. 
+In Figure \ref{fig:arthropods-different-hotposts}, different EHs are 
+displayed depending on the grid cell size. The 8x8 and 10x10 km 
+hotspots share similarities in the mountain range overlaps, yet there 
+are differences in Rethymnon. The 4x4 km grid has also hotspots overlaps 
+with the other two, but they appear more distributed across the island. 
+There are some hotspots near touristic/archaeological spots and large cities.
 
 
-
-The grid cell size 10 x 10 km is the most suitable for our study since our
-dataset - being compiled from numerous different sources and sampling efforts -
-is rather coarse and inhomogenous for a smaller cell size.
-The unique taxa of the EHs of each grid is distributed as follows: 10 km=283,
-8 km=278, 4 km=293, adaptive cells=267, with the 4km grid covering most endemic
-species. The 4 km grid mostly highlighted areas known for their tourist/recreational activities,
-indicating that it is more sensitive to sampling intensity.
-Focusing on sampling we applied the adaptive grid size with quadtrees resulting
-in 157 grids with 8 km length, 38 with 4 km and 74 with 2 km (Figure \ref{fig:arthropods-figS5}).
-This indicates the preference of larger cells for the majority of our dataset
-even though a small percent of regions has higher density of sampling.
-The highest overlap among all grids is between the 10 km and 8 km reaching
-57\% (Table \ref{table:arthropods-tableS2}). Finally, the 10 km grid has more taxa
-per cell and is a reference grid system.
-Based on our analysis and interoperability and reproducibility aims we choose
-the 10 km EEA reference grid for the EHs and candidate KBAs inference.
-Nevertheless, we also performed the WEGE analysis for KBAs using the adaptive
-grid, yielding practically the same areas as the 10km grid minus Zakros (Figure \ref{fig:arthropods-fig5}).
-The same pipeline can not be done with EHs for they require a fixed cell size.
-
-
-   \begin{figure}[htp!]
+   \begin{figure}[htb!]
       \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods_crete_multiple_grids_hotspots.png}
+      \includegraphics[width=\textwidth,keepaspectratio]{figures/arthropods_crete_multiple_grids_hotspots.png}
       \caption[Comparisons of different grid sizes]{Comparisons of different grid sizes to identify hotspots.}
       \label{fig:arthropods-different-hotposts}
    \end{figure}
+   
+   Another grid type was used, the adaptive grid with quadtrees, Figure \ref{fig:arthropods-figS5}. This type of grid changes 
+size depending on the sampling intensity thereby excluding sampling biases. This
+grid showed similar endemicity hotspots with the 8x8 and 10x10 km grids, Table \ref{table:arthropods-tableS2}. 
 
-   \begin{figure}[htp!]
+   \begin{figure}[htb!]
       \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-fig_grid_stat.png}
-      \caption[Comparisons of proportions of endemics across grid sizes hotspots]{Comparisons of different grid sizes. A. The proportion of endemics. B. The Jaccard similarity across hotspots with the same grid size.}
-      \label{fig:arthropods-different-hotposts-stat}
-   \end{figure}
-
-
-   \begin{figure}[htp!]
-      \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-Fig_quads.png }
+      \includegraphics[width=\textwidth,keepaspectratio]{figures/arthropods-Fig_quads.png }
       \caption[Adaptive grid size based on sampling using quadtrees]{Adaptive grid size based on sampling using quadtrees.}
       \label{fig:arthropods-figS5}
    \end{figure}
 
-\begin{table}[]
+   \begin{table}[]
     \caption{Different grid size hotspots overlap. The top 10\% of cells with most species are considered as hotspots. All units are in km\textsuperscript{2}.}
 \begin{tabular}{cccccc}
 \textbf{Grids}              & \textbf{1 km\textsuperscript{2}} & \textbf{4 km\textsuperscript{2}} & \textbf{8 km\textsuperscript{2}} & \textbf{10 km\textsuperscript{2}} & \textbf{Adaptive cell size} \\
@@ -310,19 +305,77 @@ The same pipeline can not be done with EHs for they require a fixed cell size.
 \label{table:arthropods-tableS2}
 \end{table}
 
+   Another definition of endemicity hotspots is using 10\% of grids with maximum
+overlap between the EHs of the different orders.
+This yielded essentially the same mountains as aggregation points of EHs.
+Only Thrypti is excluded with this method which is undersampled in groups such as
+Orthoptera, Araneae, Tenebrionidae and Carabidae, but still has an important
+endemic biodiversity mostly driven by Staphylinidae.
 
-   \begin{figure}[ht]
+   \begin{figure}[htb!]
       \centering
-      \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/arthropods-fig_crete-hotspots_order.png}
+      \includegraphics[width=\textwidth,keepaspectratio]{figures/arthropods-fig_grid_stat.png}
+      \caption[Comparisons of proportions of endemics across grid sizes hotspots]{Comparisons of different grid sizes. A. The proportion of endemics. B. The Jaccard similarity across hotspots with the same grid size.}
+      \label{fig:arthropods-different-hotposts-stat}
+   \end{figure}
+
+The EH of the 10 km cells had 283 unique species,
+the 8 km cells had 278, the 4 km cells had 293, and adaptive cell sizes contained 267.
+So the 4 km cells have the highest coverage in terms of species number but identified regions
+are popular for tourism and recreation, suggesting that this grid size is more
+sensitive to sample intensity. 
+The largest overlap across grid sizes was observed between the 10 km and 8 km grids, with a
+57\% similarity (detailed in Table \ref{table:arthropods-tableS2}).
+The 10 x 10 km grid also contains more endemics per cell which is 
+an advantage for conservation purposes, Figure \ref{fig:arthropods-different-hotposts-stat}.
+In addition, this grid has the lowest Jaccard similarity across cells 
+meaning that the cells contain different taxa, therefore increasing 
+the endemic coverage, Figure \ref{fig:arthropods-different-hotposts-stat}.
+Furthermore, the 10 km grid is the EEA reference grid system for reporting.
+Overall, the grid cell size of 10 x 10 km was proved to best the others, due to the
+coarse and inconsistent nature of our dataset, which was compiled from various
+sources and sampling efforts.
+
+An additional validation of the choice of this grid, was to test it in each 
+individual Order, Figure \ref{fig:arthropods-hotspots-order}. Coleoptera 
+have presence in all EHs of the 10 km grid, but they also have many overlaps 
+with other Orders. Exceptions are Odonata, Figure \ref{fig:arthropods-hotspots-orders-overlap}. 
+
+   \begin{figure}[htb!]
+      \centering
+      \includegraphics[width=\textwidth,keepaspectratio]{figures/arthropods-fig_crete-hotspots_order.png}
       \caption[Hotspots of every order]{Endemicity hotspots across orders.}
       \label{fig:arthropods-hotspots-order}
+   \end{figure}
+   
+   \begin{figure}[htb!]
+      \centering
+      \includegraphics[width=\textwidth,keepaspectratio]{figures/arthropods_hotspots_order_overlap.png}
+      \caption[Hotspots overlaps across Orders]{The number of common endemicity hotspots of the 10x10 km grid across Orders.}
+      \label{fig:arthropods-hotspots-orders-overlap}
    \end{figure}
 
     \subsection{Land use changes}
     \label{subsec:arthropods-human-intervention}
+The land use transitions from 1998 to 2018, based on the HILDA+ dataset, reveal
+significant land changes in Crete, Natura2000 areas, and endemicity hotspots (EHs), Table \ref{table:arthropods-tableS4}.
+The most stable land use types are pasture/rangeland (5,124 km\textsuperscript{2})
+and cropland (1,314 km\textsuperscript{2}).
+Transitions include cropland to pasture/rangeland (565 km\textsuperscript{2}),
+cropland to forest (178 km\textsuperscript{2}), and pasture/rangeland to
+unmanaged grass/shrubland (137 km\textsuperscript{2}).
+Natura2000 areas show similar stability in pasture/rangeland (2,594 km\textsuperscript{2})
+and cropland (186 km\textsuperscript{2}), with notable transitions like
+pasture/rangeland to unmanaged grass/shrubland (73 km\textsuperscript{2}) and
+cropland to pasture/rangeland (74 km\textsuperscript{2}).
+EHs primarily consist of stable pasture/rangeland (1,198 km\textsuperscript{2})
+and forest (174 km\textsuperscript{2}), with significant transitions such as
+pasture/rangeland to unmanaged grass/shrubland (38 km\textsuperscript{2}) and
+cropland to pasture/rangeland (32 km\textsuperscript{2}).
+An important note is that forests have increased in Crete by 189 km\textsuperscript{2}, 
+and urban areas by 58 km\textsuperscript{2}. 
 
-
-\begin{table}[]
+\begin{table}[ht]
     \caption{The land use transitions from 1998 to 2018, using the HILDA+ dataset.}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{llll}
