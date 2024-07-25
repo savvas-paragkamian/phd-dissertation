@@ -94,7 +94,7 @@ associations of proteins and deceases \parencite{pletscher2015diseases}.
 PREGO, the resource developed and presented in \textcite{microorganisms10020293}
 as part of this PhD (see \ref{fig:prego_paper}), is a hypothesis generation platform designed to integrate the 
 available knowledge about microbes and their processes and environments. 
-It is a global platform, first of it's kind that combines metagenomic data with literature
+It is a global platform, that combines metagenomic data with literature
 using an established text mining methodology. 
 In this chapter, my contributions in the development of PREGO are presented along with the analysis of global 
 soil microbiome knowledge.
@@ -144,14 +144,14 @@ Hence, in this channel, the taxonomic and functional profiles and their metadata
 \subsection{Dictionary of entities}
 \label{subsec:prego-dict}
 
-PREGO's entities are 4 types and each term corresponds to specific identifier. 
+PREGO's entities are types and each term corresponds to specific resource identifier. 
 NCBI taxonomy identifiers for taxa, Environment Ontology for environments and
 Gene Ontology for Biological Processes (GObp) and Molecular Functions (GOmfs).
 Gene Ontology was selected because it has a Creative Commons Attribution 4.0 License
 and because it has been mapped to many other resource identifiers.
 These terms, their names and synonyms comprise the PREGO dictionary. In addition,
 some terms have been removed because of their uniqueness and/or ubiquitousness which reduce the precision of text mining systems.
-These terms comprise the blocklist, a separate file in the dictionary.
+These terms comprise the blocklist, also mentioned as stopword list, a separate file in the dictionary called prego global.
 The ORGANISMS \parencite{pafilis2013species} and ENVIRONMENTS \parencite{pafilis2015environments} are evaluated dictionaries
 whereas Gene Ontology Biological Process and Molecular Function are in experimental stage.
 The dictionary is 
@@ -386,6 +386,13 @@ igraph \parencite{Csardi2006} were used for network analysis.
 \subsection{Behind the scenes}
 \label{deamons}
 
+The pipeline of PREGO is streamlined and integrated to be executed regularly,
+spanning from once a month to six-month cycles, ensuring that changes of resources are
+continuously integrated into PREGO. These cycles are called daemons in PREGO and 
+each channel has a dedicated script that executes all the code while 
+maintaining backups. Daemons provide a streamlined method of executing all steps 
+in PREGO as in Figure \ref{fig:prego-pipeline}.
+
 PREGO's pipeline and hosting is running on a 64 GB RAM DELL R540, 20 core, Debian server.
 The server has 2 terabyte SSD storage for high responsiveness. 
 All code is versioned with the git versioning tool to keep history and 
@@ -395,43 +402,40 @@ The Continuous Development and Continuous Integration (CD/CI) method proved to b
 important aspect during the developed of PREGO in terms of multiple testing,
 resolving bugs and effective collaborative coding. 
 
-The pipeline of PREGO is streamlined and integrated to be executed regularly,
-spanning from once a month to six-month cycles, ensuring that changes of resources are
-continuously integrated into PREGO. These cycles are called daemons in PREGO and 
-each channel has a dedicated script that executes all the code while 
-maintaining backups, Figure \ref{fig:devops}.
-
-
-\begin{figure}[hbt!]
-   \centering
-   \includegraphics[width=95mm]{figures/figure_A1_PREGO_daemons.png}
-   \caption[PREGO DevOps]{Scripts called daemons are executing the PREGO methodology in cycles depending on the updates of the databases used. Figure adopted by \parencite{microorganisms10020293}.}
-   \label{fig:devops}
-\end{figure}
+%\begin{figure}[hbt!]
+%   \centering
+%   \includegraphics[width=95mm]{figures/figure_A1_PREGO_daemons.png}
+%   \caption[PREGO DevOps]{Scripts called daemons are executing the PREGO methodology in cycles depending on the updates of the databases used. Figure adopted by \parencite{microorganisms10020293}.}
+%   \label{fig:devops}
+%\end{figure}
 
 
    \subsection{Code} 
-Code produced for PREGO are available under BSD 2-Clause “Simplified” License.
+   All code of PREGO is available in the following repositories as shown in Table \ref{tab:prego-repos}.
+   Code produced for PREGO are available under BSD 2-Clause “Simplified” License.
 Scripts, where third party libraries have been used, are subject to their individual licenses.
 API calls were implemented in Python 3. Daemons and FTP downloads were written in Bash and 
 mappings and statistics in GNU AWK.
-   
-   \begin{itemize}
-      \item prego\_gathering\_data 
-      \href{https://github.com/lab42open-team/prego_gathering_data}{github.com/lab42open-team/prego\_gathering\_data}
-      \item prego\_daemons \href{https://github.com/lab42open-team/prego_daemons}{github.com/lab42open-team/prego\_daemons}
-      \item prego\_mappings \href{https://github.com/lab42open-team/prego_mappings}{github.com/lab42open-team/prego\_mappings} 
-      \item prego\_statistics \href{https://github.com/lab42open-team/prego_statistics}{github.com/lab42open-team/prego\_statistics}
-      \item prego\_use\_case \href{https://github.com/lab42open-team/prego_use_case}{github.com/lab42open-team/prego\_use\_case}
-   \end{itemize}
 
-Additional software and curated lists along with their individual license are:
-   \begin{itemize}
-      \item tagger:	\href{https://github.com/larsjuhljensen/tagger}{https://github.com/larsjuhljensen/tagger}, BSD 2-Clause "Simplified" License
-      \item mamba: \href{https://github.com/larsjuhljensen/mamba}{https://github.com/larsjuhljensen/mamba}, BSD 2-Clause "Simplified" License 
-      \item tagger dictionary:  \href{https://download.jensenlab.org/}{https://download.jensenlab.org/} and there in: \\
-      \href{https://download.jensenlab.org/prego_dictionary.tar.gz}{https://download.jensenlab.org/prego\_dictionary.tar.gz}, CC-BY 4.0 license
-   \end{itemize}
+\begin{table}[]
+\centering
+\caption{The repositories of PREGO. Each repository corresponds to a module of the platform.}
+\label{tab:prego-repos}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lll}
+    \textbf{Task}           & \textbf{Repository} & \textbf{Licence}                   \\
+gathering data & \href{https://github.com/lab42open-team/prego_gathering_data}{github.com/lab42open-team/prego\_gathering\_data}        & BSD 2-Clause “Simplified” \\
+daemons        & \href{https://github.com/lab42open-team/prego_daemons}{github.com/lab42open-team/prego\_daemons}                       & BSD 2-Clause “Simplified” \\
+mappings       & \href{https://github.com/lab42open-team/prego_mappings}{github.com/lab42open-team/prego\_mappings}                     & BSD 2-Clause “Simplified” \\
+use cases      & \href{https://github.com/lab42open-team/prego_use_case}{github.com/lab42open-team/prego\_use\_case}                    & BSD 2-Clause “Simplified” \\
+statistics     & \href{https://github.com/lab42open-team/prego_statistics}{github.com/lab42open-team/prego\_statistics}                 & BSD 2-Clause “Simplified” \\
+tagger         & \href{https://github.com/larsjuhljensen/tagger}{https://github.com/larsjuhljensen/tagger}                              & BSD 2-Clause “Simplified” \\
+mamba          & \href{https://github.com/larsjuhljensen/mamba}{https://github.com/larsjuhljensen/mamba}                                & BSD 2-Clause “Simplified” \\
+dictionary     & \href{https://download.jensenlab.org/prego_dictionary.tar.gz}{https://download.jensenlab.org/prego\_dictionary.tar.gz} & CC-BY 4.0 license        
+\end{tabular}%
+}
+\end{table}  
+
 
 \section{Results}
 \label{sec:prego-results}
@@ -472,28 +476,14 @@ with entities as nodes and co-occurrences as links with score as weight.
 \label{bulk-download}
 
 All the knowledge base of PREGO is available for download programmatically.
-In Table~\ref{table:prego-appD-1} the hyperlinks are provided, one per channel, along with md5sum files for sanity checks.
+One file is provided per channel, along with md5sum files for sanity checks.
 Data are compressed to tar.gz format so expect an order of magnitude higher file size when decompressed.
-
-   \begin{table}[ht]
-      
-
-      \begin{tabular}{lll}
-      \toprule
-      Channel Link & md5sum & Size (in GB) \\ \midrule
-
-      \href{https://prego.hcmr.gr/download/literature.tar.gz}{Literature} & \href{https://prego.hcmr.gr/download/literature.tar.gz.md5}{literature.tar.gz.md5} & 5.4 \\
-
-      \href{https://prego.hcmr.gr/download/environmental\_samples.tar.gz}{Environmental samples} & 
-      \href{https://prego.hcmr.gr/download/environmental\_samples.tar.gz.md5}{environmental\_samples.tar.gz.md5}
-      & 0.69 \\
-
-      \href{https://prego.hcmr.gr/download/annotated\_genomes\_isolates.tar.gz}{Annotated genomes} &
-      \href{https://prego.hcmr.gr/download/annotated\_genomes\_isolates.tar.gz.md5}{annotated\_genomes\_isolates.tar.gz.md5} & 0.26 \\ \bottomrule
-      \end{tabular}
-      \caption[PREGO Bulk download.]{Bulk download links and md5sum files.}
-      \label{table:prego-appD-1}
-   \end{table}
+Literature channel data are available \href{https://prego.hcmr.gr/download/literature.tar.gz}{here}
+at 5.4 gb size, \href{https://prego.hcmr.gr/download/literature.tar.gz.md5}{literature.tar.gz.md5} is the md5sum file.
+Environmental samples are 0.69 gb compressed and available \href{https://prego.hcmr.gr/download/environmental\_samples.tar.gz}{here},
+with \href{https://prego.hcmr.gr/download/environmental\_samples.tar.gz.md5}{environmental\_samples.tar.gz.md5} as well.
+Annotated genomes tar.gz is 0.26 gb in size, download \href{https://prego.hcmr.gr/download/annotated\_genomes\_isolates.tar.gz}{here}, and 
+the md5sum file \href{https://prego.hcmr.gr/download/annotated\_genomes\_isolates.tar.gz.md5}{here}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% soil %%%%%%%%%%%%%%%%%%%%%%%%%%%%
    \subsection{PREGO about soil}
@@ -501,7 +491,7 @@ Data are compressed to tar.gz format so expect an order of magnitude higher file
 
 Searching for an environment in PREGO's knoweldge base is possible through
 it's web interface, it's API and bulk data. This analysis used PREGO's bulk data. 
-In total, the dictionary contain 115 ENVO terms related to soil. These terms were
+In total, the dictionary contains 115 ENVO terms related to soil. These terms were
 used to filter associations of environments with organisms, processes and functions 
 from all channels. This search resulted in 207939 PREGO associations. 
 To keep the most trustful associations and to be comparable with the Chapter \ref{cha:isd-crete-soil}
@@ -514,21 +504,24 @@ Samples and 6777 from Annotated Genomes.
 In total, 49 ENVO terms were associated with 6276 taxa, 169 biological processes
 and 3017 molecular functions. The network was further reduced to keep the 
 biggest connected component. 
-The majority of associations, 10,929, were with environments and organisms.
+The majority of associations, 10,929, were between environments and organisms.
 Environments with molecular functions have 3139 associations, followed by 
 environments with biological processes with 274 associations, Figure \ref{fig:prego-soil-network} and \ref{fig:prego-soil-network_k}.
 
-The soil (ENVO:00001998) has 11694 associations
-loam (ENVO:00002258) has 1222 associations,
-rhizosphere (ENVO:00005801) 393 associations,
-forest soil (ENVO:00002261) has 300 associations and
-meadow soil (ENVO:00005761) has 226 associations.
+The soil term (ENVO:00001998) is the parent of the rest ontology terms and has 11694 associations.
+Loam (ENVO:00002258) has 1222 associations followed be
+rhizosphere (ENVO:00005801) with 393 associations.
+Forest soil (ENVO:00002261) and meadow soil (ENVO:00005761) are important terms
+that have 300 associations and 226 associations, respectively.
 
    \begin{figure}[hbt!]
       \centering
       \includegraphics[width=\columnwidth]{figures/prego_soil_arena.png}
       \caption[PREGO soil network of literature and environmental samples]{
-         The four layers of associations, -27 is environments, -2 is organisms, -21 is biological processes, -23 is molecular functions. The nodes that are labeled are the with the most associations. With gray are displayed the Literature derived associations while with pale yellow the Environmental samples. }
+         The four layers of associations, -27 is environments, -2 is organisms, -21 is biological processes, -23 is molecular functions.
+     The nodes that are green and labeled are the with the most associations,
+     soil (ENVO:00001998), loam (ENVO:00002258), rhizosphere (ENVO:00005801), forest soil (ENVO:00002261), meadow soil (ENVO:00005761). 
+ With gray are displayed the Literature derived associations while with orange the Environmental samples. }
       \label{fig:prego-soil-network}
    \end{figure}
    
@@ -537,12 +530,12 @@ meadow soil (ENVO:00005761) has 226 associations.
       \centering
       \includegraphics[width=\columnwidth]{figures/prego_soil_arena_knowledge.png}
       \caption[PREGO soil network of associations of annotated genomes]{
-         Associations of Annotated Genomes in PREGO, -27 is environments, -2 is organisms.}
+         Associations of Annotated Genomes in PREGO, -27 is environments, -2 is organisms. Notable nodes are soil (ENVO:00001998), contaminated soil (ENVO:00002116), loam (ENVO:00002258), rhizosphere (ENVO:00005801), forest soil (ENVO:00002261), meadow soil (ENVO:00005761).}
       \label{fig:prego-soil-network_k}
    \end{figure}
 
 Regarding taxonomy, archaea have 122 taxa and 7 phyla, bacteria have 5985 taxa
-in 119 phyla and eukaryotes have 224 in 5 phyla \ref{fig:prego-soil-phyla}
+in 119 phyla and eukaryotes have 224 in 5 phyla, Figure \ref{fig:prego-soil-phyla}.
 
    \begin{figure}[hbt!]
       \centering
@@ -565,10 +558,11 @@ available knowledge to microbiologists. Second, the associations of microorganis
 environments and processes are key for the deciphering of ecosystem function.
 Third, the modular structure and regular cycles of updates are fundamental to
 keep up with the rapid advances of microbial ecology. And last but not least,
+PREGO is implemented to be easy to use and openly accessible to all with it’s graphical and programming user interface.
 
 The harmonisation of information from multiple types of resources and of different
 entities is a major issue in science today. PREGO approached this problem from 
-the Natural Language Processing perspective offering a global integration 
+the Natural Language Processing, data integration and statistics perspective offering a global integration 
 of microbial knowledge. To accomplish this some strategic choices were made, 
 namely using the same dictionary of terms for all resources and used 
 the EXTRACT tagger to identify the terms in free text and metadata.
