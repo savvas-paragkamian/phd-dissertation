@@ -47,14 +47,17 @@ Mining allows scientists to extract and interpret genetic material
 from multiple resources thus providing a comprehensive view of the microbiome.
 Metadata associated with each sample in these databases, such as source information and collection conditions,
 contribute significantly to the contextual understanding and statistical interpretation of the data.
-Enable researchers to make meaningful comparisons across different studies.
+They enable researchers to make meaningful comparisons across different studies.
 Furthermore, the application of metagenomic mining to these rich databases can help
 uncover novel genes, metabolic pathways, and potential therapeutic targets \parencite{ma2023a-genomic},
 thus driving advancements in health, agriculture, and environmental sustainability.
-To accomplish this, named entity recognition techniques have become essential for
-efficiently harmonising relevant information from metadata.
+Yet there isn't a cohesive and standard way of comparing metagenomic data and 
+metadata because users often publish their data with different types of metadata.
 
-Named entity recognition is a term identification process. It is based upon
+To accomplish harmonisation and comparability of data, named entity recognition techniques have become essential for
+efficiently harmonising relevant information from metadata.
+Named entity recognition is a term identification process from text 
+and is part of the Natural Language Processing field. It is based upon
 vocabularies and ontologies that provided multiple versions of terms and 
 hierarchy relationships. Environment Ontology (ENVO) \parencite{buttigieg2016environment} 
 is an important ontology that has classified environments and metagenomic 
@@ -566,39 +569,58 @@ the Natural Language Processing, data integration and statistics perspective off
 of microbial knowledge. To accomplish this some strategic choices were made, 
 namely using the same dictionary of terms for all resources and used 
 the EXTRACT tagger to identify the terms in free text and metadata.
-PREGO manages to a great proportion of microbial taxa, even unicellular eukaryotes, in the knowledge base.
-Because different channels, PREGO extracts associations in the species and higher taxonomic levels.
+PREGO manages a great proportion of microbial taxa, even unicellular eukaryotes, in it's knowledge base.
+Because of the different channels, PREGO extracts associations in the species and higher taxonomic levels.
 Higher level taxonomic associations with environments and processes are present
 which are useful for classification processes and versatility of taxa hypotheses.
-
-One important caveat of this approach is the difficulty to 
-identify false positives, i.e associations that are apparent but without 
-biological meaning. This is because, in the current version, the text mining
-pipeline is based on Named Entity Recognition without taking into account 
-the context. This is an important limitation that Large Language Models 
-are promising.
 
 PREGO provides all this knowledge base in multiple 
 ways and is implemented to be easy to use and openly accessible to all with it’s graphical and programming user interface.
 A dedicated web interface is useful to users for single queries
 and exploration of literature and/or samples. The API is useful and 
 robust for multiple calls and, not for the faint of heart, PREGO is 
-available for bulk download. 
+available for bulk download, section \ref{bulk-download}. 
+
 
    \subsection{Platform comparison}
    \label{subsec:prego-similar-platforms}
 
 
-Based on the table \ref{table:prego4}, BacDive seems to be the most versatile
-platform among the four, offering a wide range of features. It has a high level
+Recently, data integration platforms are being developed.
+Some notable examples are BacDive \parencite{reimer2021bacdive},
+Web of Microbes \parencite{kosina2018web}, SPIRE \parencite{schmidt2023spire} and NMDC \parencite{eloe-fadrosh2022the-national}.
+Because the field is still growing there multiple design and functionality 
+differences of these platforms. Yet some important criteria are the following:
+manual curation, literature integration, environment—taxa associations, environment—process associations,
+data originality, process/function—taxa associations,
+phenotypic data, spatial coordinates, application programming interface, bulk download.
+
+BacDive seems to be the most versatile
+platform yet, offering a wide range of features. It has a high level
 of manual curation, with environment-taxa associations, process/function-taxa
 associations, and phenotypic data available. Additionally, BacDive provides
 spatial coordinates, an application programming interface but limited bulk download of data.
-It has a high score for manual curation, indicating that it is well-maintained and regularly updated with accurate information.
+It has a high level of manual curation, indicating that it is well-maintained and regularly updated with accurate information.
 As for the presence of various types of data, BacDive appears to be the platform
 with the most comprehensive dataset, offering original and integrated data from
 various sources. Its high scores for environment-taxa associations,
 process/function-taxa associations, and phenotypic data suggest that it contains a broad range of microbial data.
+
+Web of Microbes is a manually curated web database that focuses on original data, mostly from metabolomics.
+The environment is defined based on the chemistry and metabolites. It contains taxa associations 
+with functions. Users interact through the 
+web interface and bulk download of the data. NMDC is an integrative platform 
+that also hosts original data. It is designed to make data FAIR from 
+experiments and integrating bioinformatics workflows as well. It doesn't 
+host phenotypic data nor environments to processes associations. 
+Also it has spatial coordinates and interactive maps to show samples. 
+It is a major collaborative effort that has the state of the art user interface
+and quality control systems, therefore providing the users a great platform 
+to upload their -omics data for hosting and bioinformatic pipelines.
+SPIRE is the newest such platform \parencite{schmidt2023spire}. 
+It integrates environmental metagenomic samples after manual curation 
+of their metadata. It contains environment-taxa associations and process/function-taxa associations.
+The data are available through API and bulk download. 
 
 PREGO appears to have some notable benefits. Specifically, it has a high score
 for literature integration, which suggests that it is able to integrate microbial
@@ -613,41 +635,22 @@ curation and environment-taxa associations, are relatively low compared to
 BacDive and Web of Microbes. However, its strengths in literature integration
 and bulk data download may make it a useful platform for researchers with specific needs.
 
+There are some caveats with PREGO's approach. For example, the named entity recognition 
+is prone to identifying terms in cases where they have different meaning, i.e false positives.
+To reduce this effect of the ambiguity of some words a blocklist is constantly 
+updated in the dictionary. These errors are also propagated to the associations 
+but through the scoring scheme and their lower abundance they usually have low ranks.
+The reverse is also a major issue in most text mining application, i.e how many 
+actual terms and associations are not retrieved? These are the false negatives.
+These are important limitations because the context of the text is ignored.
+Large Language Models are promising tools to add context and minimise these issues \parencite{doi2024biodiversity}.
 
-   \begin{table}[ht]
-
-      \begin{adjustwidth}{-0.75cm}{}
-
-      \begin{tabular}{@{}lllll@{}}
-      
-      \toprule
-      Functionality & BacDive & Web of Microbes & NMDC & PREGO \\ \midrule
-      manual curation & high & high & intermediate & low \\ 
-
-      literature integration & limited & no & no & yes \\
-
-      environment—taxa associations & yes & yes & yes & yes \\
-
-      \begin{tabular}[c]{@{}l@{}}environment—process/\\ function associations\end{tabular} & no & no & no & yes \\
-
-      process/function—taxa associations & yes & yes & yes & yes \\
-      phenotypic data & yes & no & no & no \\
-
-      data origin & \begin{tabular}[c]{@{}l@{}} original \\integration \end{tabular} & original & \begin{tabular}[c]{@{}l@{}} original \\integration \end{tabular} & integration \\
-
-      spatial coordinates & yes & no & yes & no \\
-
-      application programming interface & yes & no & yes & yes \\
-
-      bulk download & limited & yes & yes & yes \\ \bottomrule
-
-      \end{tabular}
-      \end{adjustwidth}
-      \caption[Feature comparison between PREGO and other similar platforms]{Comparison of similar platforms to PREGO across a range of features.}
-      \label{table:prego4}
-   
-   \end{table}      
-
+Additionally, PREGO is bound to the dictionaries it uses.
+This is an important asset because it provides an ecosystem of tools
+and ontologies that is compatible. On the other hand, NCBI taxonomy 
+for example, is one of the taxonomy nomenclatures used by microbiologists \parencite{sanford2021microbial}.
+Regarding processes, KEGG orthology terms are the norm because of the tight 
+integration to pathways, whereas PREGO uses Gene Ontology terms.
 
    \subsection{Soil microbiome}
    \label{subsec:prego-soil}
@@ -670,6 +673,9 @@ The abundance of taxa of Ascomycota indicates the importance of their interactio
 with bacteria and archaea which only recently has been explored \parencite{Labouyrie2023} in scale. 
 There is an absence of Environmental samples about Ascomycota, but the Literature and Annotated genomes 
 channel is evidence of their importance.
+In addition, the are many \textit{Candidatus} phyla because these microbes are not 
+cultured yet. These microbes that are in \textit{Candidatus} status are difficult to 
+be retrieved by text mining and score lower, Figure \ref{fig:prego-soil-phyla}.
 The soil case study of PREGO shows the importance of data integration techniques
 and metadata in order to identify gaps in knowledge and discover what is known.
 
