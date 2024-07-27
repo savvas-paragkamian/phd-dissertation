@@ -168,8 +168,6 @@ development of sustainable land management practices and informing strategies to
 \section{Data integration}
 \label{sec:dataintegration}
 
-% add a general paragraph about approaching integration
-
 Data, statistics and mathematics are the indispensable tools of ecology.
 Data in particular, didn't receive the attention of the other two fields in the early 20th 
 century. Still, John Tuckey in his article \textit{"The future of data analysis"} 
@@ -189,8 +187,17 @@ goal in ecological research \parencite{Walter_2012}. The synthesis of multiple
 data types and datasets across the globe has enabled 
 holistic approaches to crucial scientific and societal questions \parencite{heberling_j_mason_data_2021}.
 
-
-% add a fair data and standards
+Important prerequisites of data integration is the adoption of data standards \parencite{michener_ecological_2015}. 
+A standard is a convention that calls for uniformity of data and metadata,
+thus uniting different communities and enabling change in the community level \parencite{Field2011}.
+Each type of data has or is about to have standards. For example, species 
+occurrence data are expected to have the Darwin Core standard \parencite{wieczorek_darwin_2012},
+which is a controlled format with specific guidelines of writing taxonomy, coordinates
+and other specimen information. 
+The ultimate goal regarding data is to make them Findable, Accessible, Interoperable and Reusable \parencite{wilkinson2016the-fair}.
+The FAIR principles are the golden standard of data because they represent the most 
+transparent way to publish data and most importantly because they can enable a 
+global synthesis \parencite{heberling_j_mason_data_2021}.
 
 The explosion of metagenomic and metabarcoding data was followed by the creation
 of many repositories and databases, some project specific and some that
@@ -199,8 +206,10 @@ varies depending on the sampling and it may include location data, habitat type
 and environmental parameters like pH, humidity and nutrients. Metadata
 deficiency of data is a limiting step for the ecosystem function analysis
 which, in the short-term can be resolved with data integration solutions from
-alternative sources (for example satellite data for the sampling region). In
-the long-run, initiatives like data FAIRification will improve their
+alternative sources (for example satellite data for the sampling region). 
+The Genome Standards Consortium has standardised the metadata needed 
+to accompany any sequence \parencite{yilmaz2011minimum,Field2011}
+In the long-run, initiatives like data FAIRification will improve their
 interoperability \parencite{wilkinson2016the-fair}.
 
 Yet there remain some conceptual challenges in microbial community ecology \parencite{prosser2020Conceptual}.
@@ -245,19 +254,23 @@ form of code, as well. All the above are communicated and disseminated through t
 literature in the form of text.
 
 % spatial
-In addition to biodiversity data, the spatial dimension is shaping the biodiversity and with the remote sensing revolution now
+In addition to biodiversity data, the spatial dimension is shaping the biodiversity.
+With the remote sensing revolution now
 it's possible to use these data to monitor resilience \parencite{Lenton2022resilience}. 
 The concept of Digital Earth, first coined in Al Gore’s book entitled 
 “Earth in the Balance” (Gore 1992), was further developed in a speech
-written for Gore at the opening of the California Science Center in 1998. Other words with
-similar meaning are Digital Twin, Island Digital Ecosystem Avatars (IDEA), Earth system
-and Global Earth Observation System of Systems (GEOSS).
+written for Gore at the opening of the California Science Center in 1998 \parencite{Goodchild_2012}. Other words with
+similar meaning are Digital Twin \parencite{barros2024digital},
+Island Digital Ecosystem Avatars (IDEA) \parencite{Davies2016} and
+Earth system \parencite{mahecha2020earth} among others.
+Ecologists can now use satellite spatial data or manually curated maps 
+to find associations with biodiversity patterns. 
+For example, climatic data are openly available \parencite{Fick2017}, 
+and aridity index as well \parencite{zomer2022version}.
 
 \section{Integrative approaches}
 \label{sec:approachintegration}
 
-
-% databases
 Currently there are many global databases with distinct and overlapping 
 scope like GBIF, OBIS, iDigBio, EOL etc. \parencite{feng2022Review}. 
 The contents of these databases covers taxonomy, spatial extend, traits, 
@@ -294,6 +307,7 @@ and their analysis for biogeochemical cycling \parencite{jameson2023Network}.
 Network analysis based on the knowledge base is assisting in the quantification
 of the relations between microbes, their metabolism and ecosystem
 function \parencite{graham2016Microbes,muller2018Using, perez_garcia2016Metabolic}.
+
 Microbial interactions can be inferred from the aforementioned data as shown
 in \parencite{machado2021Polarization} based on their habitat and metabolism.
 These community dynamics can be used to build ecosystem level metabolic
@@ -313,14 +327,30 @@ webs can provide information about energy exchanges in the food webs \parencite{
 Last but not least, information theory is a conceptual framework to bring together agents,
 their interactions and the flow of information through these interactions \parencite{oconnor-information-ecology}.
 
-% add about Planetary biology and islands
-
-% add the transculturalism 
+Data integration and integrative methods are interdisciplinary in most cases. 
+This means that multiple types of data, databases and formats have to be 
+handled.
+Though, the major challenge of integrative methods concerns the scientific culture 
+integration \parencite{Enquist_2024}. 
+This is a conceptual challenge that requires bringing together different schools 
+of thought. 
+\textcite{Enquist_2024} mention three scientific cultures that are challenged to
+interact to decipher planetary scale challenges. The \textit{variance} culture 
+is concerned with the \textit{what} question like natural history research. 
+The \textit{exactitude} culture incorporates all details and neglects 
+generalisations and mostly copes with \textit{how} questions. 
+And thirdly, the \textit{coarse-grained} culture which generalises 
+and searches for abstract principles. Usually this culture deals with 
+\textit{why} questions \cite{Mayr_2004}. 
+These cultures have overlaps and different tools but ultimately when 
+integrated they will provide a synthetic integrated science to study 
+the biosphere. 
 
 \section{Towards ecological research integrity}
 \label{sec:integrity}
 
 Bringing all the aforementioned data and methods together will allow for deciphering ecosystem functioning.
+
 
 How to assist society?
 
