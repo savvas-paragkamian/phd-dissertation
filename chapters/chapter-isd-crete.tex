@@ -17,20 +17,14 @@ and are ubiquitous \parencite{delgado2016microbial}. The terrestrial biomass of 
 70 Gt C, second to plants with a sixfold difference \parencite{bar2018biomass}. In subsurface systems, bacteria and
 archaea are the most abundant, having 90\% of the biomass. These findings of microbial
 ecology are based on amplicon 16s rRNA studies that have flourished since the
-2010s. The endeavor to understand the microbial world faces multiple challenges
+2010s.
+Amplicon rRNA sequencing provides a collection of sequence reads per sample
+based on a marker gene. For bacteria the 16s rRNA gene is amplified with PCR 
+using specific sets of primers.
+This amplification step occurs after the DNA extraction and it's resulting DNA products
+are are sequenced.
+The endeavor to understand the microbial world faces multiple challenges
 across the scientific workflow, from sampling to ecological analyses \parencite{Lee2012}.
-
-Amplicon rRNA sequencing provides a collection of sequence reads per sample. 
-The ecological interpretation of the reads requires their transformation to
-taxonomic information. To do so there are two approaches currently in use, 
-the clustering method and the denoising method. With clustering reads are 
-grouped together and a best representing sequence is produced for each 
-cluster, i.e. the Operational Taxonomic Unit. This approach makes the OTUs 
-from different runs, i.e executions of the algorithm and/or different studies
-incomparable and irreproducible. Currently, many studies propose the use of Amplicon Sequence Variants \parencite{Callahan2017}. 
-ASVs are real biological sequences and can be used for comparison.
-The influence of the different methods to subsequent ecological analyses has
-little impact \parencite{Glassman2018}.
 
 Errors propagate starting with the sampling. There are contaminations from the
 people in the field, in the lab for the DNA extraction \parencite{EISENHOFER2019105}. 
@@ -42,11 +36,33 @@ meaning that the abundances of the reads are not the real representations of the
 These limitations are important to be acknowledged in order to avoid overarching conclusions,
 especially in complex systems such as soil.
 
-Bacteria and archaea are considered major drivers for the functionality of soil.
+The ecological interpretation of the sequenced reads to taxonomic information
+requires their preprocessing to remove errors propagated across steps, e.g PCR and sequencing.
+To do so there are two approaches currently in use, 
+the clustering method and the denoising method. With clustering, reads are 
+grouped together and a best representing sequence is produced for each 
+cluster, i.e. the Operational Taxonomic Unit (OTU). 
+Clustering needs an arbitrary threshold, usually 97\%, and a centroid selection
+that is dependant on the order of input \parencite{zafeiropoulos2020pema}. 
+This approach makes the OTUs 
+from different runs, i.e executions of the algorithm and/or different studies,
+incomparable and irreproducible.
+Denoising methods produce Amplicon Sequence Variants (ASVs),
+which are considered real biological sequences. 
+ASVs can be used for comparison and require less computational power. 
+Yet, because of the vast number of microvariant sequences from ASV algorithms,
+the subsequent analysis is more complex \parencite{Glassman2018}.
+Currently, many studies propose the use of Amplicon Sequence Variants
+instead of OTUs \parencite{Callahan2017}.
+The influence of the different methods to subsequent ecological analyses has
+little impact \parencite{Glassman2018}.
+Accumulated research on taxonomic analyses of bacteria and archaea has
+distinguished them as major drivers of soil ecosystems functionality \parencite{Delgado-Baquerizo-atlas}.
+
 In soil ecosystems, the pillars of human activities and ecosystem services, 
 there is a positive correlation between soil microbial diversity and their multifunctionality \parencite{Delgado-Baquerizo2020}.
 The community structure defies their macroscopic functionality \parencite{Bahram2018}.
-Soils are complex environments that are characterised chemical, physical and biological properties
+Soils are complex environments that are characterised by chemical, physical and biological properties
 that form interdependent associations with feedback loops by their environment. 
 Global soil microbiome studies have been employed to decipher soil microbiome
 compositions \parencite{thompson2017a-communal, Delgado-Baquerizo-atlas, Labouyrie2023},
@@ -54,7 +70,7 @@ functions \parencite{Bahram2018} and biogeography \parencite{Martiny2006, guerra
 The profound diversity of soils is clearly stated in these works, yet there are
 significant blind spots \parencite{guerra2020Blind}.
 When considering the samples per area density, there global studies are rather sparse.
-National wide studies like the one by \parencite{Karimi2020} show the
+National wide studies like the one by \textcite{Karimi2020} show the
 complexity of soil bacteria and the need to design 
 denser samplings and use isolated systems \parencite{Dini-Andreote2021}.
 
@@ -72,9 +88,9 @@ is considered a miniature continent \parencite{Vogiatzakis2008_crete}.
 The Island Sampling Day draws inspiration from the Ocean Sampling Day \parencite{kopf_2015} that is a
 consortium that facilitates yearly samplings in stations from all around the world.
 This has great applications in monitoring and comprehending the complexity of the ocean microbiome and it’s drivers.
-The Island Sampling Day has been organised in two islands, Mo'orea in the French Polynisia and Crete in Greece.
-In the ISD Crete project, 26 people divided in ten teams went across the island in a single day to sample as much diverse 
-ecosystems of Crete. 
+The Island Sampling Day has been organised in two islands, Mo'orea in the French Polynesia and Crete in Greece.
+In the ISD Crete project, 26 people grouped in ten teams went across the island
+in a single day to sample as much diversity as possible from different ecosystems of Crete. 
 Samples were collected in a single day in order to limit the variations of environmental
 factors that may influence the abundance and diversity of microbes such as season,
 temperature and humidity.
@@ -85,7 +101,7 @@ identified and photographed.
 At each sub site, soil was sampled (3 replicates, collected one 3cm apart). 
 
 The University of Maryland Soil Lab (Dr. Stephanie Yarwood) received 288 soil cores
-144 for DNA extraction and 144 for physicochemical measurments. The shipment was on dry ice,
+144 for DNA extraction and 144 for physico-chemical measurements. The shipment was on dry ice,
 under the USDA permit and a Material Transfer Agreement with HCMR.
 The water content, Total Organic Carbon and Nitrogen weights were measured using LECO CN628 analysis platform.
 DNA extraction of 144 soil samples used the protocols of the \href{https://www.protocols.io/view/emp-16s-illumina-amplicon-protocol-cpisvkee}{Earth Microbiome Project} (EMP)
@@ -135,6 +151,10 @@ The bioinformatic workflow can be summarized to : GET, INFER and ANALYZE as show
 This study uses the ISD Crete data that have been deposited
 in the European Nucleotide Archive (ENA) at EMBL-EBI under accession number PRJEB21776.
 The raw sequences (fastq files) and metadata (xml files) were downloaded with custom scripts using the ENA API \parencite{Yuan2023}.
+The sample identifiers of the ENA project were retrieved using the \textit{curl} command from Bash. Using these 
+sample ids with \textit{wget} command the fastq sequences were saved on the HPC facility. Regarding the metadata, 
+a python script was developed to retrieve a xml file for each sample. All xml files
+were transformed to tab delimited files with a second custom python script.
 
 \begin{figure}[h] 
     \centering\includegraphics[width=\columnwidth]{isd_map_fig1-small}
@@ -174,22 +194,57 @@ filtering and ASV inference, taxonomy assignment, data integration of spatial da
 functional annotation and the subsequent analyses and visualisation.
 Code is structured to be reproducible and interoperable as described in Figure \ref{fig:isd_workflow_taxonomy}.
 
-
 \section{Results}\label{isd_results}
 
-\subsection{Inference and taxonomy}\label{inference_taxonomy}
-The Illumina HiSeq2500 sequencing generated 51 million reads (approximately 15 GB),
-averaging 250-500 K reads/sample.
-This data and its associated metadata were submitted to the ENA under study
+\subsection{Data description}
+Data and its' associated metadata were retrieved from ENA under study
 accession number PRJEB21776.
+Even though ISD Crete project has 144 sampling locations, 140 samples were
+downloaded from ENA because 3 samples didn't yield any DNA and 1 wasn't uploaded to ENA due 
+to some errors.
+The metadata retrieved from the project were rich as described in the project. 
+Each sample contained information about the location such as the source material identifiers as an internal
+id, the id of the route, the place name, latitude and longitude, elevation, Vegetation zone,
+environment (biome), environment (feature), environment (material) among others.
+Sample metadata were also about the methodology, i.e the amount or size of sample collected,
+pcr primers, sequencing method, target gene, sample collection device or method,
+sample volume or weight for DNA extraction and the DNA concentration.
+Metadata about soil physical and chemical characteristics were also included, 
+such as total nitrogen, total nitrogen method, total organic C method,
+total organic carbon, water content and water content method. The pH measurements
+were not in the metadata because of an error during upload and thus are not 
+included in this analysis.
+
+The fastq files were downloaded to the HPC and they contained 60 million reads (approximately 15 GB in storage),
+averaging 250-500 K reads/sample, all derived from Illumina HiSeq2500 sequencing platform.
+The read quality filtering and merging steps led to an almost 50\% reducing in sequence size, Table \ref{tab:metrics}. 
 On average, each sample contained about 355,326 reads, though this varied from
 2,437 to 525,144.
+
+\begin{table}[h!]
+\centering
+\caption{Summary of sequencing and quality filtering.}
+\begin{tabular}{@{}ll@{}}
+\textbf{Metric} & \textbf{Value}     \\
+Samples         & 140                \\
+Reads           & $60.6 \times 10^6$ \\
+Ns              & $76.000$           \\
+Filtered        & $50.1 \times 10^6$ \\
+denoisedF       & $45.9 \times 10^6$ \\
+denoisedR       & $48.5 \times 10^6$ \\
+merged          & $35.0 \times 10^6$ \\
+nonchim         & $33.3 \times 10^6$ \\
+\end{tabular}
+\label{tab:metrics}
+\end{table}
+
 Reads shorter than 445 bp or longer than 515 bp were fewer than
 15,000, see Figure \ref{fig:isd_srs-curve_samples}.
-
-From the 144 samples, two samples were 
-neglected because they had fewer than 10000 reads. Also 3 samples didn't yield any DNA and 1 wasn't uploaded to ENA due 
-to some errors. Thus, 138 samples in total were included in the subsequent analysis.
+Reads with unknown bases, Ns, were removed.
+From the 140 samples retrieved from ENA, two samples were 
+neglected because they had fewer than 10000 reads.
+Thus, 138 samples in total were included in the subsequent analysis.
+The reads of the remaining samples were normalised with SRS package at 10000 reads \parencite{Beule2020}
    
    \begin{figure}[hbt!]
       \centering
@@ -198,34 +253,19 @@ to some errors. Thus, 138 samples in total were included in the subsequent analy
       \label{fig:isd_srs-curve_samples}
    \end{figure}
 
-\begin{figure}[hbt!] 
-    \centering\includegraphics[width=\columnwidth]{figures/isd_community_site_locations_dif.png}
-\caption{Sample dissimilarity between samples in the same site (2 subsites) and the rest.}
-    \label{fig:isd_site_locations}
-\end{figure}
+\subsection{Inference and taxonomy}\label{inference_taxonomy}
 
 In summary, DADA2 resulted in 216,360 ASVs (2,704 unique
 taxa; 1123 ASVs at species level and 1059 at genus level) and
-PEMA (VSEARCH) in 13,285 OTUs.
-The representative Phyla ( > 5\% presence in all samples) are:
-Actinobacteriota, Proteobacteria, Chloroflexi, Acidobacteriota,
-Bacterodota and Planctomycetota, Figure \ref{fig:isd_top_phyla_samples}.
-There are 25 specialist taxa (present in samples < 10 and mean relative
-abundance > 0.003) and 146 generalist taxa (samples > 120), Figure \ref{fig:isd_fig2_taxonomy}.
-
-\begin{figure}[hbt!] 
-    \centering\includegraphics[width=\columnwidth]{isd_fig2_taxonomy}
-    \caption{Taxonomic prevalence and representative phyla of the soil bacteria of Crete. 
-    A. Distribution of ASVs samples proportion. B. Distribution of taxa samples
-proportion and categorisation in generalists and specialists. C. Phyla samples proportion.
-D. Phyla relative abundance box plots, each dot represents one sample that the phylum occurs.}
-    \label{fig:isd_fig2_taxonomy}
-\end{figure}
+PEMA (VSEARCH) in 13,285 OTUs; 2319 at family level and 1920 at genus level, Table \ref{table:asv_taxonomy}.
+There is a two orders of magnitude difference in the output of different methods. 
+About 98\% of ASVs occur in 2 samples or less as shown in Figure \ref{fig:isd_fig2_taxonomy}A.
+Hence, finding the prevalent ASVs is no trivial in soils of Crete.
 
 \begin{table}[]
     \caption{Taxonomic depth of ASVs and the unique number of taxa of each level.}%
 \begin{tabular}{@{}lllll@{}}
-classification depth & Total ASV    & Total (ASV) taxa & Total OTUs & Total (OTU) taxa\\
+    \textbf{classification depth} & \textbf{Total ASV}    & \textbf{Total (ASV) taxa} & \textbf{Total OTUs} & \textbf{Total (OTU) taxa}\\
 Kingdom              & 1974         & 2                & 284        & 2               \\
 Phylum               & 4034         & 33               & 121        & 15              \\
 Order                & 38517        & 193              & 1224       & 135             \\
@@ -238,6 +278,34 @@ Total                & $\sim$239000 & 3102             & 6890       & 1057
 \label{table:asv_taxonomy}
 \end{table}
 
+There are 25 specialist taxa (present in samples < 10 and mean relative
+abundance > 0.003) and 146 generalist taxa (samples > 120), Figure \ref{fig:isd_fig2_taxonomy}.
+The representative Phyla, i.e the Phyla with higher than 5\% presence in all samples, are:
+Actinobacteriota, Proteobacteria, Chloroflexi, Acidobacteriota,
+Bacterodota and Planctomycetota, Figure \ref{fig:isd_top_phyla_samples}.
+Actinobacteriota and Proteobacteria in particular are present in all samples with 
+more than 50\% joined relative abundance, 36\% and 19.5\% respectively.
+Acidobacteriota aren't amongst the top phyla in 11 samples, 9 of them are beach
+ecosystems.
+Additional notable mentions of phyla are the Desulfobacterota which have specialist
+role in the ERR3697703 sample from Richtis gorge. Gemmatimonadota appear mostly
+in low carbon, dry samples and related with grazing, Figure \ref{fig:isd_top_phyla_samples}.
+The genus Deinococcus,
+from the Deinococcota phylum, appears in 3 samples from sandy beaches with high relative abundance.
+Apart from bacteria, there are two phyla of archaea in the ISD data, Thermoplasmatota and Euryarchaeota.
+These occur in samples from Kolokytha islet, Agiofaraggo gorge and Schinaria beach, all in the 
+beach environment. 
+
+\begin{figure}[hbt!] 
+    \centering\includegraphics[width=\columnwidth]{isd_fig2_taxonomy}
+    \caption{Taxonomic prevalence and representative phyla of the soil bacteria of Crete. 
+    A. Distribution of ASVs samples proportion. B. Distribution of taxa samples
+proportion and categorisation in generalists and specialists. C. Phyla samples proportion.
+D. Phyla relative abundance box plots, each dot represents one sample that the phylum occurs.}
+    \label{fig:isd_fig2_taxonomy}
+\end{figure}
+
+
 \begin{figure}[hbt!]
       \centering
       \includegraphics[width=\textwidth,keepaspectratio]{figures/isd_asv_taxonomy_ratios_top_phyla_samples.png}
@@ -247,26 +315,27 @@ Total                & $\sim$239000 & 3102             & 6890       & 1057
    
 
 \subsection{Drivers and Communities}\label{isd_communities}
-Highest values of sample metadata:
-ERR3697708, ERR3697732 (isd 4 site 8 loc 1, isd 6 site 2 loc 1) have the highest total nitrogen values (12.3, 7.9).
-ERR3697703, ERR3697702 (isd 4 site 5 loc 2, isd 4 site 5 loc 1) have the highest water content values (141, 102).
-ERR3697655, ERR3697675 (isd 1 site 2 loc 2, isd 2 site 5 loc 2) have the total organic carbon values (238, 177).
 
+The samples have the highest total nitrogen values of soil are
+ERR3697708 (Richtis gorge) and ERR3697732 (Lasithi plateau) with 12.3 and 7.9, respectively.
+Samples ERR3697703 and ERR3697702 (Richtis gorge) have the highest water content values with 141 and 102, respectively.
+Regarding total organic carbon, the samples ERR3697655 (Petres bridge, Rethymno)
+and ERR3697675 (Asterousia mountains) have the highest values of 238 and 177, respectively.
 
-Regarding the OTUs of the Island Sampling Day:
-\begin{itemize}
-    \item The highest shannon diversity have the samples ERR3697693 (isd 3 site 4 loc 2) and
-ERR3697675 (isd 2 site 5 loc 2) with 4.57 and 4.56, respectively.
-    \item ERR3697765 isd 7 site 11 loc 2 have the highest number of OTUs, 1075.
-    \item ERR3697765 isd 7 site 11 loc 2 has the second highest number of OTUs, 1051.
-    \item ERR3697703 isd 4 site 5 loc 2 has the most taxa summing at 871 and ERR3697702 (isd 4 site 5 loc 1) has 869 taxa.
-\end{itemize}
+Regarding sample diversity, the Shannon index was used.
+The samples with the highest diversity using OTUs are ERR3697693 (Elos village, Chania) and
+ERR3697675 (Asterousia mountains) with 4.57 and 4.56, respectively.
+The sample, ERR3697759 (Agiofaraggo gorge) has the highest number of OTUs, with 1075,
+and the sample ERR3697765 (Agiofaraggo gorge) has the second highest number of OTUs, 1051.
+The most unique taxa occur in sample ERR3697703 with 871 and in sample ERR3697702
+with 869 taxa, both samples from Richtis gorge.
 
 The ASV richness of the samples is correlated (0.25, Pearson correlation) with total organic carbon (p=0.003).
 Taxa richness is negatively correlated (-0.30, Pearson correlation) with elevation (p=0.0003). 
 Taxa richness is positively correlated (0.26, Pearson correlation) with water content (p=0.002).
-$\alpha$-diversity (Shannon Index) is not correlated significantly with any
-by physical and chemical features.
+$\alpha$-diversity (Shannon Index) is not correlated significantly with any physical and chemical features.
+In addition, shannon diversity is negatively correlated with elevation (-0.21, p=0.013).
+Total nitrogen and water content also have a positive correlation with elevation \ref{fig:isd_elevation_metadata}. 
 
 \begin{figure}[hbt!]
       \centering
@@ -275,12 +344,12 @@ by physical and chemical features.
       \label{fig:isd_elevation_metadata}
 \end{figure}
 
-Total nitrogen and water content have a positive correlation with elevation \ref{fig:isd_elevation_metadata}. 
-Microbial $\beta$ diversity is associated in different ways with physical and chemical
-measurements. UMAP 1 ordination was largely driven by
+Microbial $\beta$ diversity, measured with the Bray-Curtis metric, is associated in different ways with physical and chemical
+measurements. The difference of microbial communities as measured with Bray-Curtis dissimilarity, can be distinguished with 
+the UMAP and PCoA ordination methods. UMAP major axis 1 was largely driven by
 elevation (F=23, p < 0.001), Figure \ref{fig:isd_elevation_umap1}. 
 UMAP 2, was significantly associated with soil moisture (F=90, p < 0.001).
-PCoA 2 also positively correlated with both organic carbon and nitrogen.
+PCoA 2,  also positively correlated with both organic carbon and nitrogen.
 
 \begin{figure}[hbt!]
       \centering
@@ -293,35 +362,114 @@ In addition, the dissimilarity of samples was clustered using the complete linka
 A chi square test was performed to investigate whether the cluster membership of the samples
 is statistically associated with metadata. Elevation bin, p=0.07646, didn't show any 
 significance. Vegetation zone (p=0.0004998) on the other hand was significant.
+The sample ERR3697714 (Gournes beach) is a group on its' own, and additional 5 groups can be distinguished. 
+This clustering also makes a cluster of the samples of Richtis gorge, the blue group, with an additional sample
+of Lasithi plateau. The purple group also has samples from north beaches of the island together.
+The brown cluster has samples from Gournes beach and Skinaria beach.
 
 \begin{figure}[!hbt]
-      \centering
-      \includegraphics[width=\textwidth,keepaspectratio]{figures/isd_asv_clustering_bray_hclust_samples.png}
-      \caption[Samples dendrogram]{Dendrogram of clustering of samples based on the Bray-Curtis dissimilarity}
-      \label{fig:isd_samples_dendro}
+    \centering
+    % First image (top)
+    \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,keepaspectratio]{figures/isd_asv_clustering_bray_hclust_samples.png}
+        \caption{Sample clustering}
+        \label{fig:dendro}
+    \end{subfigure}
+    \vspace{1cm} % Add vertical space between the images
+    % Second image (bottom)
+    \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/isd_map_crete_dend_cluster.png}
+        \caption{Crete samples with clusters}
+        \label{fig:crete_dendro}
+    \end{subfigure}
+    \caption[Samples dendrogram]{Dendrogram of clustering of samples based on the Bray-Curtis dissimilarity}
+    \label{fig:isd_samples_dendro}
+\end{figure}
+
+Using the three major axes of PCoA to feed the UCIE tool \parencite{Koutrouli2022} returns the differences 
+of microbial communities as color representations. In Figure \ref{fig:isd_crete_sampling}B, each 
+sample represents a color and it showcases the diversity of samples even when they are 
+in the same transect. Sample dissimilarity of samples from the same site was also investigated \ref{fig:isd_site_locations}.
+There are samples that are apart 1 meter that can have up to 40\% difference in
+microbial community. Most of the diversity is between samples that are distant apart,
+yet it is important to note that soils of Crete can have high diversity even when they 
+are adjacent. 
+
+\begin{figure}[hbt!] 
+    \centering\includegraphics[width=0.5\columnwidth]{figures/isd_community_site_locations_dif.png}
+\caption{Sample dissimilarity between samples in the same site (2 subsites) and the rest.}
+    \label{fig:isd_site_locations}
 \end{figure}
 
 
 \section{Discussion}\label{isd_discussion}
 
+The Island Sampling Day Crete provided a great opportunity to 
+exercise reproducibility, as intended by the Genome Standards Consortium.
+All data and metadata were available in one platform
+under one project identifier. This is rare in microbiome projects. Yet retrieving
+all data had it's challenges mostly with metadata. ENA provided xml files when 
+using the API which can be cumbersome to the inexperienced users. 
+Using one platform to host all data showed some limitations though. The pH values
+were not uploaded due to a limitation of the platform because of some samples 
+having missing values. In addition, control samples couldn't be uploaded,
+therefore limiting the decontamination of samples during the bioinformatics workflow.
+All these limitations are currently under development and/or are already fixed. 
+Even with these limitation, the ISD project remains one of the most transparent
+and reproducible soil microbiome projects of this scale.
+
+The design of the ISD samplings has some unique features to study soil microbiome 
+in a large scale. First, Crete is an established studied model for biodiversity and 
+other studies \parencite{Vogiatzakis2008_crete}. Even though an island,
+Crete is mentioned as a miniature continent for it's diverse landscapes in a 
+confined space \parencite{Vogiatzakis_land_2017}. Second, the idea of sampling in a single day 
+also removes an important variable of microbiomes, seasonality \parencite{Chase2021}.
+Third, the notion of transects of sampling to investigate how the microbiome changes
+along a route, a gorge and/or a shoreline is very important and still unknown.
+These factors constitute ISD Crete a great foundation dataset to study the microbial complexities
+of the Cretan soils.
+
 Soil bacterial biodiversity is very complex, even sites a few meters apart can differ
-significantly in their community composition, Figure \ref{fig:isd_site_locations}.
-This is a fact that is sometimes neglected in worldwide studies and the island biogeography
-paradigm can assist to remove clutter.
-
+significantly in their community composition as demonstrated in Figure \ref{fig:isd_site_locations}.
+This is a fact that is sometimes left unmentioned in worldwide studies \parencite{Bahram2018}.
+The island paradigm can assist to remove clutter and use denser samplings.
 Apart from the profound diversity in soils, there is also high speciation and uniqueness. 
-As shown in Figure \ref{fig:isd_fig2_taxonomy}, most ASVs occur in 1 or 2 or 3 samples.
-This is different when compering with the ocean. When using the deepest taxonomic
+As shown in Figure \ref{fig:isd_fig2_taxonomy}, most ASVs occur in 1 or 2 samples.
+This is different when compering with the ocean \parencite{Sunagawa2015}. When using the deepest taxonomic
 level of ASVs is possible to identify the specialists and generalists \parencite{Barberan2012}. 
-In addition, focusing on the phyla, we see a pattern looking like a phase transition, from 
-rare phyla to phyla that dominate all samples, Figure \ref{fig:isd_fig2_taxonomy} C. Lastly, in Figure \ref{fig:isd_fig2_taxonomy} D,
-and \ref{fig:isd_top_phyla_samples}, we found some distinct top phyla profiles of samples.
+In addition, focusing on phyla presence in samples, there is a pattern looking like a phase transition, from 
+rare phyla to phyla that dominate all samples, Figure \ref{fig:isd_fig2_taxonomy} C.
+In Figure \ref{fig:isd_fig2_taxonomy} D,
+and \ref{fig:isd_top_phyla_samples}, the distinct top phyla are shown across all samples.
+In the soils of Crete, the global patterns also applies with Actinobacteriota,
+Proteobacteria, Acidobacteriota and Chloroflexi dominating the samples \parencite{Delgado-Baquerizo-atlas}.
 
-Elevation gradients of biodiversity are known since Humboldt's work \parencite{Rahbek2019} 
+Apart from top phyla, studies like ISD showcase the hidden diversity of soils 
+that traditional microbiology cannot isolate \parencite{gilbert2014earth}. 
+An example is the extremophile taxa from the Deinococcota phylum and archaea that
+inhabit some of the well known beaches of Crete.
+Gemmatimonadota phylum also displays an interesting distribution across Crete, 
+in dry and high elevations. An observation of these samples is that they 
+appear in places where goat grazing is taking place. Crete's landscape 
+has been greatly modified by grazing \parencite{JouffroyBapicot2016}.
+Maybe the Gemmatimonadota abundant presence can be an indication in some cases.
+Yet more investigations are needed both to comprehend the functions of this understudied phylum as well as the 
+microbial trails of grazing.
+As mentioned in section \ref{inference_taxonomy},
+Desulfobacterota have a prominent role in one of the samples, Richtis gorge which
+comprises an distinct transect category of samples, Figure \ref{fig:isd_samples_dendro}.
+The constant flow of water, the high biomass of plants and/or intense touristic activity may
+contribute to the gorge's distinct microbiome. 
+
+Elevation transects and gradients of biodiversity are known since Humboldt's work \parencite{Rahbek2019} 
 yet these patterns remain elusive regarding the soil microbiome \parencite{Looby2020, Siles2023}.
 Mostly because it's difficult to isolate other co-founding effects \parencite{Nottingham2018}.
-In our results elevation showed important distinction of taxa and of diversity. Yet more work is 
-needed to explore the Asterousia mountain transect in isolation to avoid indirect influences of 
+In this chapter, elevation showed important distinction of taxa and of diversity, 
+with increasing elevation the diversity was reduced. Endemic plants \parencite{trigas2013elevational}
+and arthropods \parencite{sfenthourakis2001hotspots} have also been studied in Crete due to its' sharp gradients.
+Yet more work is needed to explore the Asterousia mountain, Agiofaraggo and Richtis gorge transects in isolation to avoid indirect influences of 
 other variables.
 
 Deciphering and validating the results presented here requires future work.
