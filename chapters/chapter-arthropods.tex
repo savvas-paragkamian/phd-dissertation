@@ -126,8 +126,8 @@ Endemic arthropod distributions were estimated using the criterion B of IUCN.
 Three metrics are important in the criterion B, the Extent of Occurrence (EOO),
 the Area of Occupancy (AOO) and 
 number of locations of a species that are 10km apart.
-AOO function input is the shapefile of a species occurrences,
-a baseline map (Crete), a shapefile of overlap areas (protected areas and land use maps),
+AOO's function input is the shapefile of a species occurrences,
+a baseline map (Crete) and a shapefile of overlap areas (protected areas and land use maps).
 Initially, each species' AOO is calculated, converting the data to a spatial feature
 and calculating its area in square kilometers. 
 AOO function was set to use 2x2 km grids that it maps on the area after 1000
@@ -160,11 +160,11 @@ Arthropod order biases were also investigated to examine whether some species
 rich taxonomic groups drive the hotspots (e.g. Coleoptera). Hence, endemicity 
 hotspots were also created for each order and their overlap was measured.
 
-To facilitate this analysis, the essential data, including endemic species occurrences, Crete shapefiles
+To facilitate this analysis, the essential data, including endemic species occurrences and Crete shapefiles
 are used. For each grid size, occurrence
 data were transformed and joined to calculate distinct species and sampling efforts,
 and correlations between species richness and sampling intensity.
-The 1km\textsuperscript{2} and 10 km\textsuperscript{2} grids are the 
+The 1km\textsuperscript{2} and 10 km\textsuperscript{2} grids are downloaded by the 
 EEA reference grid.
 These grids are in shapefile format and their handling involves spatial joins,
 summarizing species occurrences, and calculating sampling intensity,
@@ -185,7 +185,6 @@ All various grid sizes and the adaptive quadtree approach, provide a comprehensi
 
 The coordinate reference system WGS84 - EPSG:4326 was used throughout the analysis.
 Data, like the EEA reference grid were transformed to EPSG:4326 prior analysis.
-
 All calculations, spatial data handling and data retrieval were implemented using the R Statistical Software \parencite{rcoreteam}.
 Ggplot2 package was used for bar plots, heatmaps, boxplots and maps \parencite{wickham_ggplot2_2016}.
 EOO was calculated with a custom function and AOO using the ConR R package \parencite{dauby2017conr:}.
@@ -206,10 +205,10 @@ Code is reproducible and available in this
 The Orders of Arthropods under this study are Araneae, Chilopoda, Coleoptera,
 Diplopoda, Heteroptera, Hymenoptera (Chrysididae, Formicidae, Symphyta),
 Lepidoptera (Geometridae), Odonata, Orthoptera, Scorpiones and Trichoptera.
-As shown in Figure \ref{fig:arthropods-figS1}, the taxa that are assessed are 
-a very low number comparing to identified taxa. The dataset contains 343 taxa species and subspecies).
+As shown in Figure \ref{fig:arthropods-figS1}, the taxa that are assessed in red lists are 
+significantly less comparing to identified taxa. The dataset contains 343 taxa species and subspecies).
 These taxa have been documented in 4,924 occurrences across 1,569 sampling sites in the island.
-Only 135 of known species (1.9\%) \textcite{legakis2018} have been assessed in IUCN,
+Only 135 of known species (1.9\%) have been assessed in IUCN \parencite{legakis2018},
 making Arthropods the third most evaluated group of the
 island, behind vascular plants (291) and land mollusks (165), see also Table \ref{table:crete_iucn_phyla}.
 
@@ -437,7 +436,7 @@ cover its habitat diversity. In contrast the lowlands are more homogeneous and r
 
 Endemicity hotspots of Crete are mostly concentrated at the major mountains. 
 Similarly to other studies on plants \parencite{dimitrakopoulos2004questioning,kougioumoutzis2020plant}
-and invertebrates \textcite{sfenthourakis2001hotspots},
+and invertebrates \parencite{sfenthourakis2001hotspots},
 Lefka Ori mountain range and mount Dikti have the most EHs, Figure \ref{fig:arthropods-different-hotposts}.
 Mountains are known for their increased biodiversity  \parencite{antonelli2018geological, Rahbek2019} 
 and Crete follows this trend with endemic arthropods, Figure \ref{fig:arthropods-hotspots-order}.
