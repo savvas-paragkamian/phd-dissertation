@@ -101,13 +101,13 @@ WorldClim 2.0 contains global climatic data for 12 variables, e.g annual mean
 temperature and annual precipitation \parencite{Fick2017}.
 The Environmentally Sensitive Areas Index to desertification (ESAI) 
 of Greece dataset \parencite{KARAMESOUTI2018266} were utilised. Additionally the 
-Global Aridity Index and Potential Evapotranspiration Database \parencite{zomer2022version} was include.
+Global Aridity Index and Potential Evapotranspiration Database \parencite{zomer2022version} was included.
 Geological formations shapefiles were downloaded from the geoportal of
 Decentralized Administration of Crete, which were developed by
 Crinno-Emeric Group project\footnote{\url{https://geoportal.apdkritis.gov.gr/gis/apps/storymaps/stories/19690f65abbe4e8ab0141b2fe7261a8c}}.
 The Harmonised World Soil database v2 was incorporated for the soil mapping units and 
 the soil taxonomic classification \parencite{fao2023}.
-Handling and analysis of these data was done with the sf and terra R packages \parencite{Pebesma2023}.
+The handling and analysis of these data was done with the sf and terra R packages \parencite{Pebesma2023}.
 
 \subsection{Integrative Analysis and Annotations}\label{int_analysis}
 The network inference was facilitated with FlashWeave 0.19.2 \parencite{Tackmann2019}.
@@ -125,13 +125,10 @@ Numerical ecology analyses,e.g diversity indices, NMDS, PERMANOVA we calculated
 with the vegan R package \parencite{oksanen2024vegan}.
 For PCoA ordination we used ape R packege \parencite{Paradis2004} and UMAP python library\parencite{mcinnes2018umap-software}.
 
-\subsection{Tools}\label{Coding environment}
-PEMA for OTU inference \parencite{zafeiropoulos2020pema}
-U-CIE R package for coloring 3 dimensional data \parencite{Koutrouli2022}
-
+U-CIE R package was used for coloring 3 dimensional data \parencite{Koutrouli2022}.
 Visualisation was implemented with ggplot2 \parencite{wickham_ggplot2_2016} and pheatmap \parencite{Kolde2019}.
-The environment we worked had Python 3.11.4, R version 4.3.2 \parencite{rcoreteam}
-and Julia language version 1.9.3 \parencite{Julia-2017}in Julia language version 1.9.3 \parencite{Julia-2017}.
+The system environment of the analyses had Python 3.11.4, R version 4.3.2 \parencite{rcoreteam}
+and Julia language version 1.9.3 \parencite{Julia-2017}.
 Finally, computations were performed on HPC infrastructure of HCMR \parencite{zafeiropoulos_0s_2021}.
 
 \subsection{Data and Code}
@@ -184,8 +181,8 @@ In the context of desertification risk, the F2 (fragile) category, with 53 sampl
 includes 23404 taxa and a Shannon index of 4.82. The F1 (fragile) category,
 represented by 22 samples, holds 8817 taxa and has a Shannon index of 4.7.
 The C2 (critical areas) category, with 6 samples, includes 2113 taxa and a Shannon index of 4.59.
-The F3 category, represented by 14 samples, contains 5900 taxa and a Shannon index of 4.82,r
-while the C1 category, with 7 samples, includes 3191 taxa and has a
+The F3 category, represented by 14 samples, contains 5900 taxa and a Shannon index of 4.82.
+While the C1 category, with 7 samples, includes 3191 taxa and has a
 Shannon index of 4.93, indicating the highest diversity among the desertification risk classes.
 
 Aridity classes also show varied diversity and number of taxa. The semi-arid class,
@@ -251,15 +248,17 @@ features of ISD. PCoA 1 (describing 14\% of the variance) was largely driven by
 elevation (F=23, p < 0.001). PCoA 2, which explained 12\% of the variance,
 was significantly associated with soil moisture (F=90, p < 0.001).
 PCoA 2 also positively correlated with both organic carbon and nitrogen.
-
 Mean annual temperature, elevation and total nitrogen are statistically significant variables for
 community dissimilarity across samples (PERMANOVA).
 
 Network of associations (FlashWeave, sensitive) after filtering prevalent ASV (mean normalised relative
 abundance>0.001, samples > 2) led to 7,455 ASVs and
-29,282 associations (787 are negative).
+29,282 associations (787 are negative). Regarding node specific metrics, \textit{Mesorhizobium mediterraneum} 
+and \textit{Desertibacter xinjiangensis} have the 
+higher strength, i.e sum of link weights, meaning that it receives a lot of 
+positive associations. On the contrary, Stenotrophobacter has a lot of 
+associations, 35, but the less strenth hence it has many negative associations.
 
-\subsubsection{Significant taxa}\label{sig_taxa}
 The functional annotation was performed with FAPROTAX. Potential human pathogens 
 appear concentrated in Richtis gorge. Some examples of potential pathogens identified in soil 
 are \textit{Klebsiella aerogenes}, \textit{Mycobacterium neoaurum}, \textit{Bacillus anthracis} and \textit{Acinetobacter lwoffii}.
@@ -282,8 +281,8 @@ Multiple works have emerged the past 5 years about enumerating all
 biodiversity \parencite{Anthony2023} and deciphering the biogeochemical 
 processes and interactions of fauna, flora and microbes in global
 studies \parencite{Fry2019, Crowther2019,GRANDY201640,Delgado-Baquerizo2020} and
-in mountain peaks soil microbiomes \parencite{Adamczyk2019}. One of our profound
-results is that soil bacterial biodiversity is very complex, even sites a few meters apart can differ
+in mountain peaks soil microbiomes \parencite{Adamczyk2019}. One profound
+result is that soil bacterial biodiversity is very complex, even sites a few meters apart can differ
 significantly in their community composition, Figure \ref{fig:isd_site_locations}.
 This is a fact that is sometimes neglected in worldwide studies and the island biogeography
 paradigm can assist to remove clutter.
