@@ -27,7 +27,7 @@ The endeavor to understand the microbial world faces multiple challenges
 across the scientific workflow, from sampling to ecological analyses \parencite{Lee2012}.
 
 Errors propagate starting with the sampling. There are contaminations from the
-people in the field, in the lab for the DNA extraction \parencite{EISENHOFER2019105}. 
+people in the field and in the lab for the DNA extraction \parencite{EISENHOFER2019105}. 
 Errors also arise from PCR amplification and from sequencing \parencite{Schloss2011, Schimer2015}.
 Approximation and computation errors are introduced from algorithms that cluster, measure similarities between
 sequences. Semantic errors occur because of reductionist approaches and/or oversimplification
@@ -56,9 +56,9 @@ Currently, many studies propose the use of Amplicon Sequence Variants
 instead of OTUs \parencite{Callahan2017}.
 The influence of the different methods to subsequent ecological analyses has
 little impact \parencite{Glassman2018}.
+
 Accumulated research on taxonomic analyses of bacteria and archaea has
 distinguished them as major drivers of soil ecosystems functionality \parencite{Delgado-Baquerizo-atlas}.
-
 In soil ecosystems, the pillars of human activities and ecosystem services, 
 there is a positive correlation between soil microbial diversity and their multifunctionality \parencite{Delgado-Baquerizo2020}.
 The community structure defies their macroscopic functionality \parencite{Bahram2018}.
@@ -79,7 +79,7 @@ Islands are considered nature's labs and are used in biogeography extensively du
 Island microbiomes from soil \parencite{Li2020} and mycorrhizal fungi \parencite{Delavaux2021} studies
 show the benefits of using islands as models.
 This was the case for the Island Sampling Day (ISD) Crete project
-of the Genome Standards Consortium \parencite{Field2011}
+of the Genomic Standards Consortium \parencite{Field2011}
 during the 18th workshop in June 2016 in Crete island, Greece. The goal of this sampling was to "put standards into action"
 in a soil microbiome survey with a dense sampling, 0.017 samples per km\textsuperscript{2}.
 Hence, ISD Crete is a large scale study in the confined space of the island of Crete which 
@@ -112,7 +112,7 @@ The primers used were 338F, Forward: 5'-ACTCCTACGGGAGGCAGCAG-3' and  806R, Rever
 The sequencing of 16s rRNA amplicons were carried out on an Illumina HiSeq2500 platform
 at the Institute for Genome Sciences, Genomics Resource Center (Maryland Genomics) at the University of Maryland School of Medicine.
 
-The Genome Standards Consortium uploaded the metadata and the sequences to ENA
+The Genomic Standards Consortium uploaded the metadata and the sequences to ENA
 database under the project \href{https://www.ebi.ac.uk/ena/browser/view/PRJEB21776}{PRJEB21776} immediately upon realise. 
 This is an act of unrestricted use of genomic data which exemplifies the importance of 
 having public data even prior publications \parencite{kopf_2015}.
@@ -174,7 +174,7 @@ PEMA was used for OTU inference based on VSEARCH \parencite{zafeiropoulos2020pem
 
 For the numerical ecology analyses,e.g diversity indices, NMDS, PERMANOVA, were calculated
 with the vegan R package \parencite{oksanen2024vegan}.
-For PCoA ordination we used the ape R packege \parencite{Paradis2004} and UMAP python library\parencite{mcinnes2018umap-software}.
+For PCoA ordination we used the ape R packege \parencite{Paradis2004} and UMAP python library \parencite{mcinnes2018umap-software}.
 U-CIE R package was used for coloring 3 dimensional data \parencite{Koutrouli2022} to 
 visualise the $\beta$ diversity differences of samples on the map.
 Visualisation was implemented with ggplot2 \parencite{wickham_ggplot2_2016} and pheatmap \parencite{Kolde2019}.
@@ -204,7 +204,7 @@ downloaded from ENA because 3 samples didn't yield any DNA and 1 wasn't uploaded
 to some errors.
 The metadata retrieved from the project were rich as described in the project. 
 Each sample contained information about the location such as the source material identifiers as an internal
-id, the id of the route, the place name, latitude and longitude, elevation, Vegetation zone,
+id, the id of the route, the place name, latitude and longitude, elevation, vegetation zone,
 environment (biome), environment (feature), environment (material) among others.
 Sample metadata were also about the methodology, i.e the amount or size of sample collected,
 pcr primers, sequencing method, target gene, sample collection device or method,
@@ -216,7 +216,7 @@ were not in the metadata because of an error during upload and thus are not
 included in this analysis.
 
 The fastq files were downloaded to the HPC and they contained 60 million reads (approximately 15 GB in storage),
-averaging 250-500 K reads/sample, all derived from Illumina HiSeq2500 sequencing platform.
+averaging 250-500 K reads/sample, all derived from the Illumina HiSeq2500 sequencing platform.
 The read quality filtering and merging steps led to an almost 50\% reducing in sequence size, Table \ref{tab:metrics}. 
 On average, each sample contained about 355,326 reads, though this varied from
 2,437 to 525,144.
@@ -316,7 +316,7 @@ D. Phyla relative abundance box plots, each dot represents one sample that the p
 
 \subsection{Drivers and Communities}\label{isd_communities}
 
-The samples have the highest total nitrogen values of soil are
+The samples that have the highest total nitrogen values of soil are
 ERR3697708 (Richtis gorge) and ERR3697732 (Lasithi plateau) with 12.3 and 7.9, respectively.
 Samples ERR3697703 and ERR3697702 (Richtis gorge) have the highest water content values with 141 and 102, respectively.
 Regarding total organic carbon, the samples ERR3697655 (Petres bridge, Rethymno)
@@ -335,7 +335,7 @@ Taxa richness is negatively correlated (-0.30, Pearson correlation) with elevati
 Taxa richness is positively correlated (0.26, Pearson correlation) with water content (p=0.002).
 $\alpha$-diversity (Shannon Index) is not correlated significantly with any physical and chemical features.
 In addition, shannon diversity is negatively correlated with elevation (-0.21, p=0.013).
-Total nitrogen and water content also have a positive correlation with elevation \ref{fig:isd_elevation_metadata}. 
+Total nitrogen and water content also have a positive correlation with elevation, Figure \ref{fig:isd_elevation_metadata}. 
 
 \begin{figure}[hbt!]
       \centering
@@ -407,14 +407,15 @@ are adjacent.
 \section{Discussion}\label{isd_discussion}
 
 The Island Sampling Day Crete provided a great opportunity to 
-exercise reproducibility, as intended by the Genome Standards Consortium.
+exercise reproducibility, as intended by the Genomic Standards Consortium.
 All data and metadata were available in one platform
 under one project identifier. This is rare in microbiome projects. Yet retrieving
 all data had it's challenges mostly with metadata. ENA provided xml files when 
 using the API which can be cumbersome to the inexperienced users. 
 Using one platform to host all data showed some limitations though. The pH values
 were not uploaded due to a limitation of the platform because of some samples 
-having missing values. In addition, control samples couldn't be uploaded,
+having missing values (the major drivers didn't change when adding these pH values manually, from personal communication).
+In addition, control samples couldn't be uploaded,
 therefore limiting the decontamination of samples during the bioinformatics workflow.
 All these limitations are currently under development and/or are already fixed. 
 Even with these limitation, the ISD project remains one of the most transparent
